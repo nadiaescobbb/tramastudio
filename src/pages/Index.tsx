@@ -225,8 +225,10 @@ const Index = () => {
       <section className="theme-light bg-background py-24 md:py-32" id="metodo">
         <div className="container-trama">
           <Reveal><div className="eyebrow">CÓMO TRABAJO</div></Reveal>
-          <Reveal delay={80} as="h2" className="h-section mt-4 max-w-[16ch]">
-            Método Trama™
+          <Reveal delay={80}>
+            <h2 className="h-section mt-4 text-foreground max-w-[16ch]">
+              Método Trama™
+            </h2>
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-6 max-w-xl text-base text-muted leading-relaxed">
