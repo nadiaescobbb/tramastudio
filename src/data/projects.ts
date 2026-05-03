@@ -7,6 +7,7 @@ export type Project = {
   format: string;
   conversion: string;
   liveUrl: string;
+  isConcept?: boolean; // Para diferenciar proyectos reales de conceptos de autor
   tagline: string;
   category: string;
   // Hero del dossier
@@ -50,7 +51,7 @@ export const projects: Project[] = [
       "75 unidades. Edición cerrada. El sitio sigue online como archivo de la Edición 01.",
     ],
     pullQuote: {
-      text: "Era lo que quería. Quedó muy sólida.",
+      text: "Era lo que quería. Quedó muy sólida. A dos semanas del lanzamiento, 60 de 75 cajas vendidas.",
       author: "Lautaro — Bosco Argentina",
     },
   },
@@ -63,6 +64,7 @@ export const projects: Project[] = [
     format: "Gabinete Técnico Institucional",
     conversion: "Filtrado de Leads por Criterio",
     liveUrl: "https://estudio-norte.vercel.app/",
+    isConcept: true,
     category: "Identidad Corporativa",
     tagline:
       "Un arquitecto técnico que se presentaba como uno más. El sitio ahora filtra al cliente por criterio antes de que pregunte el precio.",
@@ -92,6 +94,7 @@ export const projects: Project[] = [
     format: "Landing de Alta Intención",
     conversion: "Justificación de Ticket Premium",
     liveUrl: "https://clinicanova.vercel.app/",
+    isConcept: true,
     category: "Posicionamiento Premium",
     tagline:
       "Una clínica que cobra USD 250 por sesión pero tenía una web de USD 20. El sitio ahora justifica el valor real del servicio.",
@@ -121,6 +124,7 @@ export const projects: Project[] = [
     format: "Dossier Visual Médico",
     conversion: "Generación de Confianza Previa",
     liveUrl: "https://camilacorreapsico.vercel.app/",
+    isConcept: true,
     category: "Diseño Editorial",
     tagline:
       "Psicología clínica de alta complejidad. El sitio genera la confianza necesaria antes de que el paciente envíe el primer mensaje.",

@@ -210,8 +210,7 @@ const Index = () => {
           </Reveal>
           <Reveal delay={100}>
             <blockquote className="pull-quote mt-6">
-              "Era lo que quería. Quedó muy sólida. Lautaro lo dijo el día del lanzamiento.
-              Las 75 unidades se agotaron en una semana."
+              "Era lo que quería. Quedó muy sólida. A dos semanas del lanzamiento, 60 de 75 cajas vendidas."
             </blockquote>
           </Reveal>
           <Reveal delay={200}>
