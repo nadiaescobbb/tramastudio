@@ -225,8 +225,8 @@ const Index = () => {
       <section className="theme-light bg-background py-24 md:py-32" id="metodo">
         <div className="container-trama">
           <Reveal><div className="eyebrow">CÓMO TRABAJO</div></Reveal>
-          <Reveal delay={80}>
-            <h2 className="h-section mt-4 max-w-[16ch]">Método Trama™</h2>
+          <Reveal delay={80} as="h2" className="h-section mt-4 max-w-[16ch]">
+            Método Trama™
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-6 max-w-xl text-base text-muted leading-relaxed">
@@ -244,7 +244,7 @@ const Index = () => {
             ].map((s, i) => (
               <Reveal key={s.n} delay={i * 70} className="trama-card">
                 <div className="font-mono text-xs font-bold tracking-widest text-[hsl(var(--accent))]">{s.n}</div>
-                <h3 className="font-heading text-2xl mt-4 leading-tight">{s.t}</h3>
+                <h3 className="font-heading text-2xl mt-4 leading-tight text-foreground">{s.t}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{s.d}</p>
               </Reveal>
             ))}
