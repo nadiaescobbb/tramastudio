@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  TRAMA STUDIO — Design System v5 (React)
+  Reglas: 60/30/10 · Tipografía dual · Spacing rule of 8
+  Todos los colores en HSL.
+*/
+
+@layer base {
+  :root {
+    /* === PALETA OSCURA (default) === */
+    --background: 270 8% 5%;            /* #0b0a0c */
+    --surface: 270 7% 9%;               /* #141316 */
+    --foreground: 40 22% 93%;           /* #f2efe9 */
+    --muted: 36 3% 53%;                 /* #8c8985 */
+    --muted-foreground: 36 3% 53%;
+    --border: 40 22% 93% / 0.08;
+    --border-strong: 40 22% 93% / 0.18;
+
+    /* Accent — naranja Trama */
+    --accent: 14 70% 50%;               /* #d65027 */
+    --accent-foreground: 0 0% 100%;
+    --accent-soft: 14 70% 50% / 0.15;
+
+    /* Shadcn aliases (mapeos) */
+    --card: 270 7% 9%;
+    --card-foreground: 40 22% 93%;
+    --popover: 270 7% 9%;
+    --popover-foreground: 40 22% 93%;
+    --primary: 14 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 270 7% 12%;
+    --secondary-foreground: 40 22% 93%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --input: 270 7% 12%;
+    --ring: 14 70% 50%;
+    --radius: 0.25rem;
+
+    /* Tipografía */
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'IBM Plex Mono', ui-monospace, monospace;
+
+    /* Easing */
+    --ease-trama: cubic-bezier(0.2, 1, 0.3, 1);
+
+    /* Mouse glow */
+    --glow-x: 50vw;
+    --glow-y: 50vh;
+  }
+
+  /* Tema claro (para secciones invertidas) */
+  .theme-light {
+    --background: 40 22% 93%;
+    --surface: 0 0% 100%;
+    --foreground: 270 8% 5%;
+    --muted: 36 3% 42%;
+    --muted-foreground: 36 3% 42%;
+    --border: 270 8% 5% / 0.08;
+    --border-strong: 270 8% 5% / 0.2;
+    --card: 0 0% 100%;
+    --card-foreground: 270 8% 5%;
+    --secondary: 40 22% 88%;
+    --secondary-foreground: 270 8% 5%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+  }
+}
+
+@layer components {
+  .container-trama {
+    @apply w-full mx-auto px-6;
+    max-width: 1100px;
+  }
+  .container-narrow {
+    @apply w-full mx-auto px-6;
+    max-width: 860px;
+  }
+
+  /* Tipografía editorial */
+  .font-heading { font-family: var(--font-heading); }
+  .font-mono { font-family: var(--font-body); }
+
+  .h-display {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    font-size: clamp(56px, 11vw, 132px);
+  }
+  .h-section {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-size: clamp(40px, 6.5vw, 72px);
+  }
+  .h-card {
+    font-family: var(--font-heading);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-size: clamp(22px, 2.5vw, 32px);
+  }
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: hsl(var(--accent));
+  }
+
+  /* Mouse glow */
+  .mouse-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: radial-gradient(600px at var(--glow-x) var(--glow-y), hsl(var(--accent) / 0.08), transparent 80%);
+    transition: background 0.1s linear;
+  }
+  .theme-light .mouse-glow {
+    background: radial-gradient(600px at var(--glow-x) var(--glow-y), hsl(var(--accent) / 0.05), transparent 80%);
+  }
+
+  /* Reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s var(--ease-trama), transform 1s var(--ease-trama);
+    transition-delay: var(--delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Botones */
+  .btn-primary-trama {
+    @apply inline-flex items-center justify-center;
+    background: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border-radius: 2px;
+    transition: transform 0.4s var(--ease-trama), box-shadow 0.4s var(--ease-trama);
+  }
+  .btn-primary-trama:hover {
+    box-shadow: 0 16px 40px hsl(var(--accent) / 0.35);
+  }
+  .btn-primary-trama.large {
+    font-size: 13px;
+    padding: 18px 36px;
+  }
+  .btn-ghost-trama {
+    @apply inline-flex items-center;
+    color: hsl(var(--muted));
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    transition: color 0.2s, transform 0.3s var(--ease-trama);
+  }
+  .btn-ghost-trama:hover {
+    color: hsl(var(--foreground));
+    transform: translateX(4px);
+  }
+
+  /* Tarjetas */
+  .trama-card {
+    background: hsl(var(--surface));
+    border: 1px solid hsl(var(--border));
+    border-radius: 4px;
+    padding: clamp(24px, 3vw, 40px);
+    transition: transform 0.4s var(--ease-trama), border-color 0.4s var(--ease-trama), box-shadow 0.4s var(--ease-trama);
+  }
+  .trama-card:hover {
+    transform: translateY(-6px);
+    border-color: hsl(var(--border-strong));
+    box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+  }
+
+  /* Pull quote editorial */
+  .pull-quote {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
+    border-left: 2px solid hsl(var(--accent));
+    padding-left: clamp(20px, 3vw, 36px);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: hsl(var(--background)); }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--border-strong)); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent)); }
+}
