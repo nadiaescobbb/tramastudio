@@ -1,4 +1,4 @@
-import boscoImg from "@/assets/proj-bosco.jpg";
+import boscoImg from "@/assets/proj-bosco.jpeg";
 import norteImg from "@/assets/proj-norte.jpg";
 import novaImg from "@/assets/proj-nova.jpg";
 import camilaImg from "@/assets/proj-camila.jpg";
