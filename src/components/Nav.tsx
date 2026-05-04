@@ -33,7 +33,7 @@ export const Nav = () => {
         >
           {isHome ? "TRAMA STUDIO" : "← VOLVER AL INICIO"}
         </Link>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-4 sm:gap-8">
           {isHome && (
             <>
               <a href="#trabajos" className="hidden text-xs text-muted hover:text-foreground transition-colors sm:inline-block">Trabajos</a>
@@ -43,8 +43,7 @@ export const Nav = () => {
           )}
           <a
             href={waLink("Hola, quiero contarte mi proyecto.")}
-            className="btn-primary-trama"
-            style={{ padding: "10px 20px" }}
+            className="btn-primary-trama !px-4 !py-2 !text-[10px] sm:!px-7 sm:!py-3.5 sm:!text-[12px]"
           >
             Hablemos
           </a>
