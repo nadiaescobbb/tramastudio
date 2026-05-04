@@ -53,7 +53,7 @@ const Dossier = () => {
                       rel="noopener noreferrer"
                       className="text-sm font-semibold text-[hsl(var(--accent))] underline underline-offset-4"
                     >
-                      Ver en vivo →
+                      {project.isConcept ? "Ver concepto →" : "Ver en vivo →"}
                     </a>
                   )}
                 </div>
@@ -106,12 +106,19 @@ const Dossier = () => {
 
           {project.pullQuote && (
             <Reveal>
-              <blockquote className="pull-quote">"{project.pullQuote.text}"</blockquote>
-              {project.pullQuote.author && (
-                <div className="mt-4 font-mono text-xs uppercase tracking-[0.25em] text-muted">
-                  {project.pullQuote.author}
-                </div>
-              )}
+              <div className="my-12 border-l-2 border-[hsl(var(--accent))] pl-6 md:pl-10">
+                <blockquote className="font-heading text-3xl md:text-5xl italic leading-tight text-foreground">
+                  "{project.pullQuote.text}"
+                </blockquote>
+                {project.pullQuote.author && (
+                  <div className="mt-8 flex items-center gap-4">
+                    <div className="h-[1px] w-6 bg-border" />
+                    <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                      {project.pullQuote.author}
+                    </div>
+                  </div>
+                )}
+              </div>
             </Reveal>
           )}
 
@@ -187,9 +194,9 @@ const Block = ({
         <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[hsl(var(--accent))]">
           {num}
         </span>
-        <h2 className="h-card mt-3 text-2xl md:text-4xl">{title}</h2>
+        <h2 className="font-heading mt-4 text-3xl md:text-5xl text-foreground leading-[1.1] tracking-tight">{title}</h2>
       </div>
-      <div className="flex flex-col gap-4 text-base leading-[1.8] text-muted md:text-lg [&>p>strong]:text-foreground">
+      <div className="flex flex-col gap-6 text-base leading-[1.8] text-muted md:text-lg [&>p>strong]:text-foreground">
         {children}
       </div>
     </div>
