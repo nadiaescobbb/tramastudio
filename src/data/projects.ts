@@ -32,7 +32,7 @@ export const projects: Project[] = [
     liveUrl: "https://universobosco.com.ar/",
     category: "Branding de Culto",
     tagline:
-      "Alfajores de edición limitada. Aplicamos estética oscura para que 75 unidades se agotaran como objetos de colección.",
+      "Alfajores de edición limitada. Aplicamos estética oscura para posicionar el producto como objeto de colección.",
     challenge: [
       "Bosco tenía web. El problema era que era una tienda Tiendanube estándar — idéntica a cientos de otras. Un producto artesanal de edición limitada, con identidad real, presentado en un template genérico con badge de descuento y carrito de compras.",
       "El dueño lo dijo directo: el sitio no representaba a Bosco.",

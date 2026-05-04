@@ -29,7 +29,7 @@ export const Nav = () => {
       <div className="container-trama flex items-center justify-between py-4">
         <Link
           to="/"
-          className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-foreground"
+          className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-foreground"
         >
           {isHome ? "TRAMA STUDIO" : "← VOLVER AL INICIO"}
         </Link>
