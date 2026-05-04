@@ -86,27 +86,27 @@ const Index = () => {
       <Nav />
 
       {/* ── HERO — split screen ───────────────────────────────────── */}
-      <section className="relative h-[100dvh] flex flex-col justify-center pt-20 pb-8 md:pt-24 md:pb-10">
+      <section className="relative min-h-[100dvh] md:h-[100dvh] flex flex-col justify-center pt-20 pb-16 md:pt-24 md:pb-10">
         <div className="container-trama w-full">
           <div className="grid gap-8 lg:gap-14 md:grid-cols-2 items-center" style={{ maxHeight: "calc(100dvh - 7rem)" }}>
 
             {/* Left: copy */}
-            <div>
+            <div className="order-2 md:order-1">
               <div
                 className="eyebrow animate-slide-down opacity-0"
                 style={{ animationDelay: "0ms" }}
               >
                 DISEÑO - COPY - CÓDIGO
               </div>
-              <h1
-                className="font-heading mt-4 animate-slide-up opacity-0 leading-[0.95] tracking-[-0.03em]"
-                style={{ animationDelay: "150ms", fontSize: "clamp(32px, 4vw, 64px)" }}
+                <h1
+                className="font-heading mt-4 animate-slide-up opacity-0 leading-[1.05] tracking-tight text-[38px] md:text-6xl lg:text-7xl"
+                style={{ animationDelay: "150ms" }}
               >
                 Tu próximo cliente ya te está buscando.{" "}
                 <span className="italic text-[hsl(var(--accent))]">¿Qué va a encontrar?</span>
               </h1>
               <p
-                className="mt-6 max-w-md text-base text-muted leading-relaxed animate-slide-up opacity-0"
+                className="mt-6 max-w-md text-[15px] md:text-base text-muted leading-relaxed animate-slide-up opacity-0"
                 style={{ animationDelay: "350ms" }}
               >
                 Diseño, copy y código bajo el mismo criterio. Un solo responsable,
@@ -120,7 +120,7 @@ const Index = () => {
                 <div className="flex flex-col gap-3">
                   <a
                     href={waLink("Hola, quiero contarte mi proyecto.")}
-                    className="btn-primary-trama large"
+                    className="btn-primary-trama"
                   >
                     Escribime por WhatsApp
                   </a>
@@ -133,19 +133,16 @@ const Index = () => {
             </div>
 
             {/* Right: auto-rotating carousel */}
-            <HeroCarousel
-              slides={HERO_SLIDES}
-              active={activeSlide}
-              setActive={setActiveSlide}
-            />
+            <div className="order-1 md:order-2">
+              <HeroCarousel
+                slides={HERO_SLIDES}
+                active={activeSlide}
+                setActive={setActiveSlide}
+              />
+            </div>
           </div>
 
-          {/* Mobile thumbnails */}
-          <HeroThumbnails
-            slides={HERO_SLIDES}
-            active={activeSlide}
-            setActive={setActiveSlide}
-          />
+
         </div>
       </section>
 

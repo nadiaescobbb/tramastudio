@@ -5,8 +5,8 @@ interface Props { slides: Slide[]; active: number; setActive: (i: number) => voi
 
 export const HeroCarousel = ({ slides, active, setActive }: Props) => (
   <div
-    className="relative hidden md:block aspect-[3/4] overflow-hidden rounded-sm animate-slide-up opacity-0"
-    style={{ animationDelay: "250ms", maxHeight: "calc(100dvh - 8rem)" }}
+    className="relative mt-8 md:mt-0 aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-sm animate-slide-up opacity-0"
+    style={{ animationDelay: "250ms", maxHeight: "calc(100dvh - 10rem)" }}
   >
     {/* Images — crossfade */}
     {slides.map((slide, i) => (
@@ -34,15 +34,15 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => (
     </div>
 
     {/* Bottom: progress + label */}
-    <div className="absolute bottom-0 left-0 right-0 p-6 pl-8">
+    <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
       {/* Progress lines */}
-      <div className="mb-5 flex gap-2">
+      <div className="mb-4 md:mb-5 flex gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setActive(i)}
             className="relative h-[1px] flex-1 cursor-pointer overflow-hidden"
-            style={{ background: "rgba(255,255,255,0.12)" }}
+            style={{ background: "rgba(255,255,255,0.1)" }}
           >
             <span
               className="absolute inset-y-0 left-0 transition-all duration-300"
@@ -51,13 +51,13 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => (
                 background:
                   i === active
                     ? "hsl(var(--accent))"
-                    : "rgba(255,255,255,0.35)",
+                    : "rgba(255,255,255,0.3)",
               }}
             />
           </button>
         ))}
       </div>
-      <div className="font-heading text-2xl leading-tight text-white">
+      <div className="font-heading text-lg md:text-2xl leading-tight text-white">
         {slides[active].label}
       </div>
     </div>
