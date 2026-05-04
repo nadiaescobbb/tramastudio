@@ -88,7 +88,7 @@ const Index = () => {
       {/* ── HERO — split screen ───────────────────────────────────── */}
       <section className="relative min-h-[100dvh] md:h-[100dvh] flex flex-col justify-center pt-20 pb-16 md:pt-24 md:pb-10">
         <div className="container-trama w-full">
-          <div className="grid gap-8 lg:gap-14 md:grid-cols-2 items-center" style={{ maxHeight: "calc(100dvh - 7rem)" }}>
+          <div className="grid gap-8 lg:gap-14 md:grid-cols-2 items-center">
 
             {/* Left: copy */}
             <div className="order-2 md:order-1">
