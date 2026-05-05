@@ -90,20 +90,22 @@ const Index = () => {
 
   useGSAP(() => {
     // Scrubbing Text Reveal for Problem Section
-    const words = problemText.current.querySelectorAll(".reveal-word");
-    gsap.fromTo(words, 
-      { opacity: 0.1 },
-      { 
-        opacity: 1, 
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: problemText.current,
-          start: "top 80%",
-          end: "top 20%",
-          scrub: true,
+    if (problemText.current) {
+      const words = problemText.current.querySelectorAll(".reveal-word");
+      gsap.fromTo(words, 
+        { opacity: 0.1 },
+        { 
+          opacity: 1, 
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: problemText.current,
+            start: "top 80%",
+            end: "top 20%",
+            scrub: true,
+          }
         }
-      }
-    );
+      );
+    }
 
     // Responsive Motion Logic
     const mm = gsap.matchMedia();
@@ -116,8 +118,11 @@ const Index = () => {
         end: "bottom 90%",
         pin: "#metodo-title",
         pinSpacing: false,
+        invalidateOnRefresh: true,
       });
     });
+
+    return () => mm.revert();
   }, { scope: container });
 
   return (
