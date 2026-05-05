@@ -245,38 +245,37 @@ const Index = () => {
             Proyectos Seleccionados
           </div>
           <h2 className="h-section max-w-[16ch]">Casos de estudio.</h2>
-          <p className="mt-8 max-w-xl text-lg text-muted leading-relaxed">
-            Cada proyecto resuelve un problema concreto del negocio. No son solo interfaces: 
-            son decisiones de estrategia traducidas a código.
-          </p>
-
-          {/* 5-col editorial grid */}
-          <div className="mt-20 grid gap-4 md:grid-cols-5 md:auto-rows-[320px]">
-            {projects.map((p, i) => (
-              <Reveal key={p.slug} className={WORKS_LAYOUT[i]} delay={i * 60}>
-                <Link
-                  to={`/proyectos/${p.slug}`}
-                  className="group relative block h-full min-h-[280px] overflow-hidden rounded-sm border border-border bg-surface transition-all duration-700 hover:border-[hsl(var(--border-strong))]"
-                >
-                  <img
-                    src={projectImages[p.slug]}
-                    alt={p.name}
-                    className="absolute inset-0 h-full w-full object-cover opacity-60 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
-                  <div className="relative flex h-full flex-col justify-end p-8 md:p-10">
-                    <div className="mb-3 font-mono text-[9px] uppercase tracking-[0.3em] text-[hsl(var(--accent))]">
-                      {p.number} · {p.category}
+          
+          <div className="mt-20 grid gap-6 md:grid-cols-12">
+            {projects.slice(0, 4).map((project, i) => (
+              <Reveal 
+                key={project.slug} 
+                delay={i * 100}
+                className={i === 0 || i === 3 ? "md:col-span-8" : "md:col-span-4"}
+              >
+                <Link to={`/proyecto/${project.slug}`} className="trama-card group block h-full">
+                  <div className="trama-card-inner !p-0 h-full flex flex-col">
+                    <div className="relative aspect-video md:aspect-auto md:flex-1 overflow-hidden min-h-[320px]">
+                      <img 
+                        src={projectImages[project.slug]} 
+                        alt={project.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-90" />
+                      
+                      <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
+                        <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-white/60 mb-4 uppercase drop-shadow-sm">
+                          0{i + 1} — {project.category}
+                        </div>
+                        <h3 className="font-heading text-3xl md:text-5xl text-white tracking-tight leading-tight drop-shadow-md">
+                          {project.title}
+                        </h3>
+                        <div className="mt-6 flex items-center gap-3 text-white/80 font-sans text-xs font-semibold uppercase tracking-widest opacity-0 -translate-x-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-x-0">
+                          <span>Ver caso</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="font-heading text-2xl text-white md:text-3xl leading-tight">
-                      {p.name} <span className="italic text-[hsl(var(--accent))]">{p.accent}</span>
-                    </h3>
-                    <p className="mt-3 max-w-sm text-xs leading-relaxed text-white/50 line-clamp-2">
-                      {p.tagline}
-                    </p>
-                    <span className="mt-6 inline-flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-[hsl(var(--accent))] opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                      Ver proceso <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </span>
                   </div>
                 </Link>
               </Reveal>

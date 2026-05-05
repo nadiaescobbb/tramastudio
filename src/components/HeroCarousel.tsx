@@ -22,8 +22,8 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => (
     ))}
 
     {/* Vignette */}
-    <div className="absolute inset-0 bg-gradient-to-b from-black/35 via-transparent to-[#0b0a0c]/85" />
-    <div className="absolute inset-0 bg-gradient-to-r from-[#0b0a0c]/25 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#0b0a0c]/95" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0b0a0c]/35 to-transparent" />
 
     {/* Top bar */}
     <div className="absolute top-6 left-8 right-6 flex items-center justify-between">
@@ -59,7 +59,7 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => (
           </button>
         ))}
       </div>
-      <div className="font-heading text-lg md:text-2xl leading-tight text-white">
+      <div className="font-heading text-lg md:text-2xl leading-tight text-white drop-shadow-md">
         {slides[active].label}
       </div>
     </div>
