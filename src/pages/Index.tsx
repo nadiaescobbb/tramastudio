@@ -246,34 +246,32 @@ const Index = () => {
           </div>
           <h2 className="h-section max-w-[16ch]">Casos de estudio.</h2>
           
-          <div className="mt-20 grid gap-6 md:grid-cols-12">
+          <div className="mt-20 grid gap-10 md:grid-cols-2">
             {projects.slice(0, 4).map((project, i) => (
-              <Reveal 
-                key={project.slug} 
-                delay={i * 100}
-                className={i === 0 || i === 3 ? "md:col-span-8" : "md:col-span-4"}
-              >
-                <Link to={`/proyectos/${project.slug}`} className="trama-card group block h-full">
-                  <div className="trama-card-inner !p-0 h-full flex flex-col">
-                    <div className="relative aspect-video md:aspect-auto md:flex-1 overflow-hidden min-h-[320px]">
+              <Reveal key={project.slug} delay={i * 100}>
+                <Link to={`/proyectos/${project.slug}`} className="trama-card group block overflow-hidden">
+                  <div className="trama-card-inner !p-0">
+                    <div className="relative aspect-[16/10] overflow-hidden">
                       <img 
                         src={projectImages[project.slug]} 
                         alt={project.name}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                        className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-90" />
-                      
-                      <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
-                        <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-white/60 mb-4 uppercase drop-shadow-sm">
-                          {project.number} — {project.category}
-                        </div>
-                        <h3 className="font-heading text-3xl md:text-5xl text-white tracking-tight leading-tight drop-shadow-md">
-                          {project.name} <span className="italic text-[hsl(var(--accent))]">{project.accent}</span>
-                        </h3>
-                        <div className="mt-6 flex items-center gap-3 text-white/80 font-sans text-xs font-semibold uppercase tracking-widest opacity-0 -translate-x-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-x-0">
-                          <span>Ver caso</span>
-                          <ArrowUpRight className="w-4 h-4" />
-                        </div>
+                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700" />
+                    </div>
+                    <div className="p-8 md:p-10 bg-white">
+                      <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-[hsl(var(--accent))] mb-4 uppercase">
+                        {project.number} — {project.category}
+                      </div>
+                      <h3 className="font-heading text-3xl md:text-4xl text-foreground tracking-tight leading-tight transition-colors duration-500 group-hover:text-[hsl(var(--accent))]">
+                        {project.name} <span className="italic text-muted-foreground">{project.accent}</span>
+                      </h3>
+                      <p className="mt-4 text-muted text-base leading-relaxed line-clamp-2">
+                        {project.tagline}
+                      </p>
+                      <div className="mt-8 flex items-center gap-3 text-[hsl(var(--accent))] font-sans text-xs font-semibold uppercase tracking-widest">
+                        <span>Ver caso de estudio</span>
+                        <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </div>
                     </div>
                   </div>
