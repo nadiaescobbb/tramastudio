@@ -253,22 +253,22 @@ const Index = () => {
                 delay={i * 100}
                 className={i === 0 || i === 3 ? "md:col-span-8" : "md:col-span-4"}
               >
-                <Link to={`/proyecto/${project.slug}`} className="trama-card group block h-full">
+                <Link to={`/proyectos/${project.slug}`} className="trama-card group block h-full">
                   <div className="trama-card-inner !p-0 h-full flex flex-col">
                     <div className="relative aspect-video md:aspect-auto md:flex-1 overflow-hidden min-h-[320px]">
                       <img 
                         src={projectImages[project.slug]} 
-                        alt={project.title}
+                        alt={project.name}
                         className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 transition-opacity duration-700 group-hover:opacity-90" />
                       
                       <div className="absolute bottom-0 left-0 w-full p-8 md:p-12">
                         <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-white/60 mb-4 uppercase drop-shadow-sm">
-                          0{i + 1} — {project.category}
+                          {project.number} — {project.category}
                         </div>
                         <h3 className="font-heading text-3xl md:text-5xl text-white tracking-tight leading-tight drop-shadow-md">
-                          {project.title}
+                          {project.name} <span className="italic text-[hsl(var(--accent))]">{project.accent}</span>
                         </h3>
                         <div className="mt-6 flex items-center gap-3 text-white/80 font-sans text-xs font-semibold uppercase tracking-widest opacity-0 -translate-x-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-x-0">
                           <span>Ver caso</span>
