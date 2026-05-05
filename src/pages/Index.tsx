@@ -176,15 +176,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── INFINITE MARQUEE ─────────────────────────────────────────── */}
-      <div className="relative border-y border-border/60 bg-surface/30 py-10 overflow-hidden marquee-mask">
-        <div className="flex animate-marquee whitespace-nowrap">
-          {[1, 2, 3, 4, 5].map((n) => (
-            <div key={n} className="flex gap-20 px-10 items-center">
+      {/* ── INFINITE MARQUEE — Corrected for seamless loop ──────────────── */}
+      <div className="relative border-y border-border/60 bg-surface/30 py-6 md:py-10 overflow-hidden marquee-mask">
+        <div className="flex animate-marquee whitespace-nowrap w-fit">
+          {[1, 2].map((n) => (
+            <div key={n} className="flex gap-10 md:gap-20 px-5 md:px-10 items-center">
               {["SITIOS DE ALTA CONVERSIÓN", "DESARROLLO A MEDIDA", "ESTRATEGIA DIGITAL", "PERFORMANCE SEO"].map((text, i) => (
-                <div key={i} className="flex items-center gap-10">
-                  <span className="font-mono text-[14px] font-black tracking-[0.4em] text-foreground/90">{text}</span>
-                  <div className="w-2.5 h-2.5 rounded-full bg-[hsl(var(--accent))]" />
+                <div key={i} className="flex items-center gap-6 md:gap-10">
+                  <span className="font-mono text-[12px] md:text-[14px] font-black tracking-[0.3em] md:tracking-[0.4em] text-foreground/90">{text}</span>
+                  <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[hsl(var(--accent))]" />
                 </div>
               ))}
             </div>
@@ -204,11 +204,12 @@ const Index = () => {
             ))}
           </h2>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-12 md:grid-rows-2">
-            <Reveal className="trama-card p-2 md:col-span-7 md:row-span-2">
-              <div className="trama-card-inner p-8 md:p-12">
-                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">01 / SITUACIÓN</div>
-                <h3 className="font-heading text-3xl md:text-5xl mt-6 tracking-[-0.02em] leading-tight">El que no te conoce.</h3>
+          <div className="mt-16 grid gap-6 md:grid-cols-12">
+            {/* Main Situational Card — Left */}
+            <Reveal className="trama-card p-2 md:col-span-7">
+              <div className="trama-card-inner p-8 md:p-12 h-full flex flex-col justify-center">
+                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-8">01 / SITUACIÓN</div>
+                <h3 className="font-heading text-3xl md:text-5xl tracking-[-0.02em] leading-tight">El que no te conoce.</h3>
                 <p className="mt-6 text-lg leading-relaxed text-[#666666]">
                   Tus clientes actuales llegaron por recomendación. Los que no te conocen buscan en internet y{" "}
                   <span className="text-foreground font-medium">no encuentran nada que les diga por qué elegirte a vos</span>.
@@ -216,25 +217,28 @@ const Index = () => {
               </div>
             </Reveal>
             
-            <Reveal className="trama-card p-2 md:col-span-5" delay={100}>
-              <div className="trama-card-inner p-8">
-                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">02 / VALOR</div>
-                <h3 className="font-heading text-2xl mt-4 tracking-tight">Percepción de valor.</h3>
-                <p className="mt-3 text-base leading-relaxed text-[#666666]">
-                  Si tu presencia online no está a la altura de tu servicio real, tu precio no tiene dónde apoyarse.
-                </p>
-              </div>
-            </Reveal>
+            {/* Right Column with two stacked cards */}
+            <div className="md:col-span-5 flex flex-col gap-6">
+              <Reveal className="trama-card p-2 flex-1" delay={100}>
+                <div className="trama-card-inner p-8 h-full">
+                  <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">02 / VALOR</div>
+                  <h3 className="font-heading text-2xl mt-4 tracking-tight">Percepción de valor.</h3>
+                  <p className="mt-3 text-base leading-relaxed text-[#666666]">
+                    Si tu presencia online no está a la altura de tu servicio real, tu precio no tiene dónde apoyarse.
+                  </p>
+                </div>
+              </Reveal>
 
-            <Reveal className="trama-card p-2 md:col-span-5" delay={200}>
-              <div className="trama-card-inner p-8">
-                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">03 / CONVERSIÓN</div>
-                <h3 className="font-heading text-2xl mt-4 tracking-tight">Atención perdida.</h3>
-                <p className="mt-3 text-base leading-relaxed text-[#666666]">
-                  Si en los primeros cinco segundos no queda claro qué hacés, el visitante se va.
-                </p>
-              </div>
-            </Reveal>
+              <Reveal className="trama-card p-2 flex-1" delay={200}>
+                <div className="trama-card-inner p-8 h-full">
+                  <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">03 / CONVERSIÓN</div>
+                  <h3 className="font-heading text-2xl mt-4 tracking-tight">Atención perdida.</h3>
+                  <p className="mt-3 text-base leading-relaxed text-[#666666]">
+                    Si en los primeros cinco segundos no queda claro qué hacés, el visitante se va.
+                  </p>
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
@@ -310,11 +314,11 @@ const Index = () => {
 
       {/* ── MÉTODO — GSAP Pinned Section ───────────────────────────────────────────────── */}
       <section className="bg-background py-32 md:py-48" id="metodo">
-        <div className="container-trama">
+        <div className="container-trama px-8 md:px-12 lg:px-16">
           <div className="grid gap-20 md:grid-cols-12">
             
-            {/* Pinned Title */}
-            <div className="md:col-span-5">
+            {/* Pinned Title — Balanced Spacing */}
+            <div className="md:col-span-4 lg:col-span-5">
               <div id="metodo-title" className="md:pt-4">
                 <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
                   El Proceso
@@ -330,8 +334,8 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Scrolling Steps */}
-            <div className="md:col-span-7 flex flex-col gap-8 md:gap-16">
+            {/* Scrolling Steps — Added Offset for breathing room */}
+            <div className="md:col-span-8 lg:col-span-7 flex flex-col gap-8 md:gap-16">
               {STEPS.map((s, i) => (
                 <div key={s.n} className="trama-card p-2">
                   <div className="trama-card-inner p-8 md:p-12 min-h-[300px] flex flex-col justify-between">
@@ -452,7 +456,7 @@ const Index = () => {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid gap-x-16 gap-y-10 md:grid-cols-2">
+          <div className="mt-20 grid gap-x-20 gap-y-20 md:grid-cols-2">
             {FAQS.map((item, i) => (
               <Reveal key={item.q} delay={i * 50}>
                 <div>
@@ -471,11 +475,11 @@ const Index = () => {
           <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-12">
             Fundador
           </div>
-          <div className="grid gap-16 md:grid-cols-12 md:items-center">
-            {/* Visual Block */}
+          <div className="grid gap-16 md:grid-cols-12 md:items-start">
+            {/* Visual Block — Optimized for diverse viewports */}
             <div className="md:col-span-5 lg:col-span-4">
               <Reveal>
-                <div className="group relative flex aspect-[3/4] w-full flex-col justify-end overflow-hidden rounded-sm border border-border bg-surface p-8">
+                <div className="group relative flex aspect-[4/5] min-h-[450px] w-full flex-col justify-end overflow-hidden rounded-sm border border-border bg-surface p-8">
                   <img 
                     src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop" 
                     alt="Abstract architecture" 
