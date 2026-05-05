@@ -21,12 +21,7 @@ const HERO_SLIDES = [
   { slug: "camila-correa", label: "Camila Correa" },
 ];
 
-const WORKS_LAYOUT = [
-  "md:col-span-3 md:row-span-2",
-  "md:col-span-2 md:row-span-2",
-  "md:col-span-2 md:row-span-1",
-  "md:col-span-3 md:row-span-1",
-];
+
 
 const PLANS = [
   {
@@ -112,7 +107,7 @@ const Index = () => {
 
     mm.add("(min-width: 768px)", () => {
       // Pinning for Metodo Section — Desktop Only
-      ScrollTrigger.create({
+      const st = ScrollTrigger.create({
         trigger: "#metodo",
         start: "top 10%",
         end: "bottom 90%",
@@ -120,6 +115,7 @@ const Index = () => {
         pinSpacing: false,
         invalidateOnRefresh: true,
       });
+      return () => st.kill();
     });
 
     return () => mm.revert();
@@ -209,8 +205,8 @@ const Index = () => {
           </h2>
 
           <div className="mt-16 grid gap-6 md:grid-cols-12 md:grid-rows-2">
-            <Reveal className="trama-card md:col-span-7 md:row-span-2">
-              <div className="trama-card-inner">
+            <Reveal className="trama-card p-2 md:col-span-7 md:row-span-2">
+              <div className="trama-card-inner p-8 md:p-12">
                 <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">01 / SITUACIÓN</div>
                 <h3 className="font-heading text-3xl md:text-5xl mt-6 tracking-[-0.02em] leading-tight">El que no te conoce.</h3>
                 <p className="mt-6 text-lg leading-relaxed text-[#666666]">
@@ -220,8 +216,8 @@ const Index = () => {
               </div>
             </Reveal>
             
-            <Reveal className="trama-card md:col-span-5" delay={100}>
-              <div className="trama-card-inner">
+            <Reveal className="trama-card p-2 md:col-span-5" delay={100}>
+              <div className="trama-card-inner p-8">
                 <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">02 / VALOR</div>
                 <h3 className="font-heading text-2xl mt-4 tracking-tight">Percepción de valor.</h3>
                 <p className="mt-3 text-base leading-relaxed text-[#666666]">
@@ -230,8 +226,8 @@ const Index = () => {
               </div>
             </Reveal>
 
-            <Reveal className="trama-card md:col-span-5" delay={200}>
-              <div className="trama-card-inner">
+            <Reveal className="trama-card p-2 md:col-span-5" delay={200}>
+              <div className="trama-card-inner p-8">
                 <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">03 / CONVERSIÓN</div>
                 <h3 className="font-heading text-2xl mt-4 tracking-tight">Atención perdida.</h3>
                 <p className="mt-3 text-base leading-relaxed text-[#666666]">
@@ -254,8 +250,8 @@ const Index = () => {
           <div className="mt-20 grid gap-10 md:grid-cols-2">
             {projects.slice(0, 4).map((project, i) => (
               <Reveal key={project.slug} delay={i * 100}>
-                <Link to={`/proyectos/${project.slug}`} className="trama-card group block overflow-hidden">
-                  <div className="trama-card-inner !p-0">
+                <Link to={`/proyectos/${project.slug}`} className="trama-card p-2 group block overflow-hidden">
+                  <div className="trama-card-inner p-0">
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <img 
                         src={projectImages[project.slug]} 
@@ -337,8 +333,8 @@ const Index = () => {
             {/* Scrolling Steps */}
             <div className="md:col-span-7 flex flex-col gap-8 md:gap-16">
               {STEPS.map((s, i) => (
-                <div key={s.n} className="trama-card">
-                  <div className="trama-card-inner min-h-[300px] flex flex-col justify-between">
+                <div key={s.n} className="trama-card p-2">
+                  <div className="trama-card-inner p-8 md:p-12 min-h-[300px] flex flex-col justify-between">
                     <div className="flex justify-between items-start">
                       <div className="font-mono text-3xl font-light text-[hsl(var(--accent))]/20">
                         {s.n}
