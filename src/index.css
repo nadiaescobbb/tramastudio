@@ -10,43 +10,59 @@
   Todos los colores en HSL.
 */
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   :root {
-    /* === PALETA OSCURA (default) === */
-    --background: 270 8% 5%;            /* #0b0a0c */
-    --surface: 270 7% 9%;               /* #141316 */
-    --foreground: 40 22% 93%;           /* #f2efe9 */
-    --muted: 36 3% 65%;                 /* Lightness ajustado para mejor legibilidad */
-    --muted-foreground: 36 3% 65%;
-    --border: 40 22% 93% / 0.08;
-    --border-strong: 40 22% 93% / 0.18;
-
-    /* Accent — naranja Trama */
-    --accent: 14 70% 50%;               /* #d65027 */
+    /* Minimalist UI Palette — Warm Editorial */
+    --background: 40 20% 98%;    /* #FBFBFA - Bone/Off-White */
+    --foreground: 0 0% 7%;        /* #111111 - Charcoal */
+    --surface: 0 0% 100%;        /* #FFFFFF - Pure White */
+    
+    --accent: 0 0% 7%;           /* Black for primary CTA */
     --accent-foreground: 0 0% 100%;
-    --accent-soft: 14 70% 50% / 0.15;
-
-    /* Shadcn aliases (mapeos) */
-    --card: 270 7% 9%;
-    --card-foreground: 40 22% 93%;
-    --popover: 270 7% 9%;
-    --popover-foreground: 40 22% 93%;
-    --primary: 14 70% 50%;
+    
+    --border: 0 0% 92%;          /* #EAEAEA - Ultra-light gray */
+    --border-strong: 0 0% 85%;
+    
+    --muted: 0 0% 47%;           /* #787774 - Secondary text */
+    --muted-foreground: 0 0% 47%;
+    
+    --radius: 12px;              /* Base radius for containers */
+  --radius-inner: 6px;         /* Tighter radius for inner elements */
+  
+  /* Tinted Shadows — Warm Charcoal */
+  --shadow-warm: 0 4px 20px -2px hsla(40, 10%, 10%, 0.05), 
+                 0 2px 10px -2px hsla(40, 10%, 10%, 0.03);
+    
+    /* Shadcn aliases */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --primary: 0 0% 7%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 270 7% 12%;
-    --secondary-foreground: 40 22% 93%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 7%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --input: 270 7% 12%;
-    --ring: 14 70% 50%;
-    --radius: 0.25rem;
+    --input: 0 0% 92%;
+    --ring: 0 0% 7%;
 
     /* Tipografía */
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'IBM Plex Mono', ui-monospace, monospace;
 
-    /* Easing */
-    --ease-trama: cubic-bezier(0.2, 1, 0.3, 1);
+    /* Luxury Motion — Haptic Fluidity */
+    --ease-luxury: cubic-bezier(0.32, 0.72, 0, 1);
+    --transition-premium: 700ms var(--ease-luxury);
+
+    /* Spacing Rule of 8 — Massive Whitespace */
+    --section-py: clamp(96px, 15vw, 192px);
+    
+    /* Double Bezel Radius */
+    --radius-outer: 32px;
+    --radius-inner: calc(32px - 8px);
 
     /* Mouse glow */
     --glow-x: 50vw;
@@ -101,8 +117,7 @@
 
 @layer components {
   .container-trama {
-    @apply w-full mx-auto px-6;
-    max-width: 1100px;
+    @apply mx-auto w-full max-w-[1400px] px-6 md:px-12 lg:px-16;
   }
   .container-narrow {
     @apply w-full mx-auto px-6;
@@ -168,20 +183,27 @@
     transform: translateY(0);
   }
 
-  /* Botones */
+  /* Double-Bezel (Doppelrand) Architecture */
+  .trama-card {
+    @apply relative border border-white/10 bg-white/5 p-2 transition-all duration-700 overflow-hidden;
+    border-radius: var(--radius-outer);
+    box-shadow: var(--shadow-warm);
+  }
+  .trama-card-inner {
+    @apply relative h-full w-full bg-surface p-8 border border-white/10;
+    border-radius: var(--radius-inner);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.15);
+  }
+
+  /* Button-in-Button Architecture */
   .btn-primary-trama {
-    @apply inline-flex items-center justify-center;
-    background: hsl(var(--accent));
-    color: hsl(var(--accent-foreground));
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 14px 28px;
-    border-radius: 2px;
-    transition: transform 0.5s var(--ease-trama), box-shadow 0.5s var(--ease-trama);
-    will-change: transform;
+    @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-[13px] font-semibold text-white transition-all duration-700 active:scale-[0.97] rounded-full;
+  }
+  .btn-icon-wrapper {
+    @apply flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:bg-white/20 group-hover:translate-x-1;
+  }
+  .btn-primary-trama.large {
+    @apply py-2.5 pr-2.5;
   }
   .btn-primary-trama:hover {
     transform: translateY(-2px);
@@ -238,4 +260,61 @@
   ::-webkit-scrollbar-track { background: hsl(var(--background)); }
   ::-webkit-scrollbar-thumb { background: hsl(var(--border-strong)); border-radius: 4px; }
   ::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent)); }
+  /* Infinite Marquee */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-marquee {
+    animation: marquee 12s linear infinite;
+    will-change: transform;
+  }
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+
+  /* Minimalist Noise Grain — Subtle Texture */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.025; /* Ultra-subtle to break digital flatness */
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Fluid Island Nav */
+  .nav-island {
+    @apply fixed top-6 left-1/2 -translate-x-1/2 z-[100] flex items-center justify-between px-6 py-3.5 bg-surface/80 backdrop-blur-2xl border border-border rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.04)];
+    transition: all 0.7s var(--ease-luxury);
+    width: min(92vw, 880px);
+  }
+  
+  .nav-island.open {
+    @apply w-[calc(100vw-2rem)] rounded-[2rem] bg-surface/95 backdrop-blur-3xl;
+  }
+  
+  .nav-link-premium {
+    @apply text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-[#666666] hover:text-foreground transition-colors duration-500;
+  }
+  
+  /* Hamburger Morph */
+  .hamburger-line {
+    @apply h-0.5 w-5 bg-foreground transition-all duration-500;
+  }
+  .open .line-1 { transform: translateY(6px) rotate(45deg); }
+  .open .line-2 { transform: translateY(-1px) rotate(-45deg); }
+  
+  /* Mobile Overlay Links */
+  .mobile-overlay-link {
+    @apply text-4xl font-heading tracking-tight text-foreground opacity-0 translate-y-8 transition-all duration-700;
+  }
+  .open .mobile-overlay-link {
+    @apply opacity-100 translate-y-0;
+  }
 }

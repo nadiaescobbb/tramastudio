@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 import { waLink } from "@/data/projects";
 
 export const Nav = () => {
   const [hidden, setHidden] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 
@@ -19,36 +21,91 @@ export const Nav = () => {
   }, []);
 
   return (
-    <nav
-      className="fixed inset-x-0 top-0 z-50 border-b backdrop-blur-xl transition-transform duration-300"
-      style={{
-        background: "hsl(var(--background) / 0.78)",
-        transform: hidden ? "translateY(-100%)" : "translateY(0)",
-      }}
-    >
-      <div className="container-trama flex items-center justify-between py-4">
-        <Link
-          to="/"
-          className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-foreground"
-        >
-          {isHome ? "TRAMA STUDIO" : "← VOLVER AL INICIO"}
-        </Link>
-        <div className="flex items-center gap-4 sm:gap-8">
-          {isHome && (
-            <>
-              <a href="#trabajos" className="hidden text-xs text-muted hover:text-foreground transition-colors sm:inline-block">Trabajos</a>
-              <a href="#metodo" className="hidden text-xs text-muted hover:text-foreground transition-colors sm:inline-block">Método</a>
-              <a href="#servicios" className="hidden text-xs text-muted hover:text-foreground transition-colors sm:inline-block">Servicios</a>
-            </>
-          )}
-          <a
-            href={waLink("Hola, quiero contarte mi proyecto.")}
-            className="btn-primary-trama !px-4 !py-2 !text-[10px] sm:!px-7 sm:!py-3.5 sm:!text-[12px]"
+    <>
+      <nav
+        className={`nav-island ${hidden && !isOpen ? "-translate-y-32" : ""} ${isOpen ? "open" : ""}`}
+      >
+        <div className="flex items-center justify-between w-full">
+          <Link
+            to="/"
+            className="nav-link-premium shrink-0"
+            onClick={() => setIsOpen(false)}
           >
-            Hablemos
-          </a>
+            {isHome ? "Trama Studio" : "← Volver"}
+          </Link>
+
+          {/* Desktop Links */}
+          {isHome && (
+            <div className="hidden lg:flex items-center gap-10">
+              <a href="#trabajos" className="nav-link-premium">Trabajos</a>
+              <a href="#metodo" className="nav-link-premium">Método</a>
+              <a href="#servicios" className="nav-link-premium">Servicios</a>
+            </div>
+          )}
+
+          <div className="flex items-center gap-4">
+            <a
+              href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
+              className="btn-primary-trama group hidden lg:inline-flex"
+            >
+              <span>Hablemos</span>
+              <div className="btn-icon-wrapper">
+                <ArrowUpRight className="w-4 h-4" />
+              </div>
+            </a>
+
+            {/* Hamburger Toggle */}
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex flex-col gap-1.5 p-2 lg:hidden"
+            >
+              <div className="hamburger-line line-1" />
+              <div className="hamburger-line line-2" />
+            </button>
+          </div>
         </div>
-      </div>
-    </nav>
+
+        {/* Mobile Overlay Content */}
+        {isOpen && (
+          <div className="absolute top-[120%] left-0 w-full bg-surface/95 backdrop-blur-3xl rounded-[2rem] border border-border p-10 flex flex-col gap-8 lg:hidden">
+            {[
+              { t: "Trabajos", h: "#trabajos" },
+              { t: "Método", h: "#metodo" },
+              { t: "Servicios", h: "#servicios" },
+              { t: "Contacto", h: "#contacto" },
+            ].map((link, i) => (
+              <a
+                key={link.t}
+                href={link.h}
+                onClick={() => setIsOpen(false)}
+                className="mobile-overlay-link"
+                style={{ transitionDelay: `${100 + i * 100}ms` }}
+              >
+                {link.t}
+              </a>
+            ))}
+            <div className="mt-8 pt-8 border-t border-border">
+              <a 
+                href={waLink("Hola, quiero iniciar un proyecto.")}
+                className="btn-primary-trama group w-full justify-center"
+              >
+                <span>Iniciar proyecto</span>
+                <div className="btn-icon-wrapper">
+                  <ArrowUpRight className="w-4 h-4" />
+                </div>
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+      
+      {/* Dimmer Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-[90] bg-background/40 backdrop-blur-sm animate-in fade-in duration-700"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+    </>
   );
 };

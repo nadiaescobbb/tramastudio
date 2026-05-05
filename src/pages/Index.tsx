@@ -1,12 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { MouseGlow } from "@/components/MouseGlow";
-import { HeroCarousel, HeroThumbnails } from "@/components/HeroCarousel";
+import { HeroCarousel } from "@/components/HeroCarousel";
 import { projects, waLink } from "@/data/projects";
 import { projectImages } from "@/data/project-images";
+import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
   { slug: "bosco", label: "Bosco Argentina" },
@@ -71,6 +77,8 @@ const FAQS = [
 
 const Index = () => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const container = useRef(null);
+  const problemText = useRef(null);
 
   useEffect(() => {
     const t = setInterval(
@@ -80,56 +88,79 @@ const Index = () => {
     return () => clearInterval(t);
   }, []);
 
+  useGSAP(() => {
+    // Scrubbing Text Reveal for Problem Section
+    const words = problemText.current.querySelectorAll(".reveal-word");
+    gsap.fromTo(words, 
+      { opacity: 0.1 },
+      { 
+        opacity: 1, 
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: problemText.current,
+          start: "top 80%",
+          end: "top 20%",
+          scrub: true,
+        }
+      }
+    );
+
+    // Responsive Motion Logic
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 768px)", () => {
+      // Pinning for Metodo Section — Desktop Only
+      ScrollTrigger.create({
+        trigger: "#metodo",
+        start: "top 10%",
+        end: "bottom 90%",
+        pin: "#metodo-title",
+        pinSpacing: false,
+      });
+    });
+  }, { scope: container });
+
   return (
-    <div className="relative">
+    <div ref={container} className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
       <MouseGlow />
       <Nav />
 
       {/* ── HERO — split screen ───────────────────────────────────── */}
-      <section className="relative min-h-[100dvh] md:h-[100dvh] flex flex-col justify-center pt-20 pb-16 md:pt-24 md:pb-10">
-        <div className="container-trama w-full">
-          <div className="grid gap-8 lg:gap-14 md:grid-cols-2 items-center">
-
+      <section className="relative min-h-[100dvh] flex flex-col justify-center pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
+        {/* Ambient Light Spot */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,hsla(40,20%,90%,0.3)_0%,transparent_70%)] pointer-events-none" />
+        
+        <div className="container-trama w-full relative z-10">
+          <div className="grid gap-12 lg:gap-24 md:grid-cols-2 items-center">
+            
             {/* Left: copy */}
             <div className="order-2 md:order-1">
-              <div
-                className="eyebrow animate-slide-down opacity-0"
-                style={{ animationDelay: "0ms" }}
-              >
-                DISEÑO - COPY - CÓDIGO
-              </div>
-                <h1
-                className="font-heading mt-4 animate-slide-up opacity-0 leading-[1.05] tracking-tight text-[38px] md:text-6xl lg:text-7xl"
-                style={{ animationDelay: "150ms" }}
-              >
-                Tu próximo cliente ya te está buscando.{" "}
-                <span className="italic text-[hsl(var(--accent))]">¿Qué va a encontrar?</span>
+              <Reveal>
+                <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-6">
+                  Estrategia - Diseño - Código
+                </div>
+              </Reveal>
+              <h1 className="font-heading animate-slide-up opacity-0 leading-[1.02] tracking-[-0.04em] text-[42px] md:text-6xl lg:text-8xl" style={{ animationDelay: "150ms", textWrap: "balance" }}>
+                Tu negocio merece una{" "}
+                <span className="italic text-[hsl(var(--accent))]">web que trabaje.</span>
               </h1>
-              <p
-                className="mt-6 max-w-md text-[15px] md:text-base text-muted leading-relaxed animate-slide-up opacity-0"
-                style={{ animationDelay: "350ms" }}
-              >
-                Diseño, copy y código bajo el mismo criterio. Un solo responsable,
-                de principio a fin. El sitio queda en tus manos el día que entrego.
+              <p className="mt-8 max-w-md text-base text-muted leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "350ms" }}>
+                Construyo interfaces que convierten la recomendación en decisión. 
+                Sin plantillas, sin intermediarios. Código puro bajo un mismo estándar estético.
               </p>
 
-              <div
-                className="mt-10 flex flex-wrap items-start gap-6 animate-slide-up opacity-0"
-                style={{ animationDelay: "550ms" }}
-              >
-                <div className="flex flex-col gap-3">
-                  <a
-                    href={waLink("Hola, quiero contarte mi proyecto.")}
-                    className="btn-primary-trama"
-                  >
-                    Escribime por WhatsApp
-                  </a>
-                  <span className="text-[11px] text-muted tracking-wide">
-                    Sin formularios. Me contás qué necesitás y te digo si puedo ayudarte.
-                  </span>
+              <div className="mt-12 flex flex-wrap items-center gap-8 animate-slide-up opacity-0" style={{ animationDelay: "550ms" }}>
+                <a href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")} className="btn-primary-trama large group">
+                  <span>Iniciar proyecto</span>
+                  <div className="btn-icon-wrapper">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </a>
+                <div className="hidden sm:flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted">Disponibilidad inmediata</span>
                 </div>
               </div>
-
             </div>
 
             {/* Right: auto-rotating carousel */}
@@ -141,52 +172,65 @@ const Index = () => {
               />
             </div>
           </div>
-
-
         </div>
       </section>
 
-      {/* ── PROBLEMA ─────────────────────────────────────────────── */}
-      <section className="bg-surface/40 py-24 md:py-32" id="problema">
-        <div className="container-trama">
-          <Reveal><div className="eyebrow">EL PROBLEMA</div></Reveal>
-          <Reveal delay={80}>
-            <h2 className="h-section mt-4 max-w-[18ch]">
-              Tus mejores clientes llegaron por recomendación.
-              <br />
-              <span className="italic text-[hsl(var(--accent))]">
-                Los próximos te están googleando ahora.
-              </span>
-            </h2>
-          </Reveal>
-
-          <div className="mt-16 grid gap-4 md:grid-cols-3">
-            <Reveal className="trama-card md:col-span-2 md:row-span-1">
-              <div className="font-mono text-xs font-bold tracking-widest text-[hsl(var(--accent))]">01</div>
-              <h3 className="h-card mt-4">El que no te conoce</h3>
-              <p className="mt-3 text-base leading-relaxed text-muted">
-                Tus clientes actuales llegaron por recomendación. Los que no te conocen buscan en internet y{" "}
-                <span className="text-foreground">no encuentran nada que les diga por qué elegirte a vos</span>.
-                Con web o sin ella, esa ausencia te cuesta clientes todos los días.
-              </p>
-            </Reveal>
-            <Reveal className="trama-card" delay={100}>
-              <div className="font-mono text-xs font-bold tracking-widest text-[hsl(var(--accent))]">02</div>
-              <h3 className="h-card mt-4">Percepción de valor</h3>
-              <p className="mt-3 text-base leading-relaxed text-muted">
-                Si lo que mostrás online no está a la altura de tu servicio real, tu precio no tiene dónde apoyarse. Y el cliente que dudaba, no escribe.
-              </p>
-            </Reveal>
-            <Reveal className="trama-card md:col-span-3" delay={150}>
-              <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-12">
-                <div className="md:w-1/3">
-                  <div className="font-mono text-xs font-bold tracking-widest text-[hsl(var(--accent))]">03</div>
-                  <h3 className="h-card mt-4">Atención perdida en 5 segundos</h3>
+      {/* ── INFINITE MARQUEE ─────────────────────────────────────────── */}
+      <div className="relative border-y border-border/60 bg-surface/30 py-10 overflow-hidden marquee-mask">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {[1, 2, 3, 4, 5].map((n) => (
+            <div key={n} className="flex gap-20 px-10 items-center">
+              {["SITIOS DE ALTA CONVERSIÓN", "DESARROLLO A MEDIDA", "ESTRATEGIA DIGITAL", "PERFORMANCE SEO"].map((text, i) => (
+                <div key={i} className="flex items-center gap-10">
+                  <span className="font-mono text-[14px] font-black tracking-[0.4em] text-foreground/90">{text}</span>
+                  <div className="w-2.5 h-2.5 rounded-full bg-[hsl(var(--accent))]" />
                 </div>
-                <p className="text-base leading-relaxed text-muted md:flex-1">
-                  Si en los primeros cinco segundos no queda claro{" "}
-                  <span className="text-foreground">qué hacés y para quién</span>, el visitante cierra la pestaña.
-                  Y si no tenés web, directamente nunca llega. No es falta de interés. Es falta de presencia.
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── PROBLEMA — Scrubbing Reveal ─────────────────────────────────────────── */}
+      <section className="relative py-32 md:py-48" id="problema">
+        <div className="container-trama">
+          <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
+            El Panorama
+          </div>
+          <h2 ref={problemText} className="font-heading text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight max-w-[20ch]" style={{ textWrap: "balance" }}>
+            {"Tus mejores clientes llegaron por recomendación. Los próximos te están googleando ahora.".split(" ").map((word, i) => (
+              <span key={i} className="reveal-word inline-block mr-[0.25em]">{word}</span>
+            ))}
+          </h2>
+
+          <div className="mt-16 grid gap-6 md:grid-cols-12 md:grid-rows-2">
+            <Reveal className="trama-card md:col-span-7 md:row-span-2">
+              <div className="trama-card-inner">
+                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">01 / SITUACIÓN</div>
+                <h3 className="font-heading text-3xl md:text-5xl mt-6 tracking-[-0.02em] leading-tight">El que no te conoce.</h3>
+                <p className="mt-6 text-lg leading-relaxed text-[#666666]">
+                  Tus clientes actuales llegaron por recomendación. Los que no te conocen buscan en internet y{" "}
+                  <span className="text-foreground font-medium">no encuentran nada que les diga por qué elegirte a vos</span>.
+                </p>
+              </div>
+            </Reveal>
+            
+            <Reveal className="trama-card md:col-span-5" delay={100}>
+              <div className="trama-card-inner">
+                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">02 / VALOR</div>
+                <h3 className="font-heading text-2xl mt-4 tracking-tight">Percepción de valor.</h3>
+                <p className="mt-3 text-base leading-relaxed text-[#666666]">
+                  Si tu presencia online no está a la altura de tu servicio real, tu precio no tiene dónde apoyarse.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal className="trama-card md:col-span-5" delay={200}>
+              <div className="trama-card-inner">
+                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">03 / CONVERSIÓN</div>
+                <h3 className="font-heading text-2xl mt-4 tracking-tight">Atención perdida.</h3>
+                <p className="mt-3 text-base leading-relaxed text-[#666666]">
+                  Si en los primeros cinco segundos no queda claro qué hacés, el visitante se va.
                 </p>
               </div>
             </Reveal>
@@ -194,54 +238,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── TRABAJOS ─────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32" id="trabajos">
+      {/* ── TRABAJOS — Portfolio Grid ─────────────────────────────────────────── */}
+      <section className="py-32 md:py-48 bg-surface/50 border-y border-border" id="trabajos">
         <div className="container-trama">
-          <Reveal><div className="eyebrow">TRABAJOS</div></Reveal>
-          <Reveal delay={80}>
-            <h2 className="h-section mt-4 max-w-[16ch]">
-              Casos reales.
-              <br />
-              <span className="italic text-[hsl(var(--accent))]">Decisiones explicadas.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={140}>
-            <p className="mt-6 max-w-xl text-base text-muted leading-relaxed">
-              Cada proyecto resuelve un problema concreto del negocio. No son screenshots bonitos:
-              son decisiones de estrategia traducidas a píxeles.
-            </p>
-          </Reveal>
+          <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
+            Proyectos Seleccionados
+          </div>
+          <h2 className="h-section max-w-[16ch]">Casos de estudio.</h2>
+          <p className="mt-8 max-w-xl text-lg text-muted leading-relaxed">
+            Cada proyecto resuelve un problema concreto del negocio. No son solo interfaces: 
+            son decisiones de estrategia traducidas a código.
+          </p>
 
           {/* 5-col editorial grid */}
-          <div className="mt-16 grid gap-4 md:grid-cols-5 md:auto-rows-[320px]">
+          <div className="mt-20 grid gap-4 md:grid-cols-5 md:auto-rows-[320px]">
             {projects.map((p, i) => (
               <Reveal key={p.slug} className={WORKS_LAYOUT[i]} delay={i * 60}>
                 <Link
                   to={`/proyectos/${p.slug}`}
-                  className="group relative block h-full min-h-[280px] overflow-hidden rounded-sm border border-border bg-surface transition-all duration-500 hover:border-[hsl(var(--border-strong))]"
+                  className="group relative block h-full min-h-[280px] overflow-hidden rounded-sm border border-border bg-surface transition-all duration-700 hover:border-[hsl(var(--border-strong))]"
                 >
                   <img
                     src={projectImages[p.slug]}
                     alt={p.name}
-                    loading="lazy"
-                    width={1280}
-                    height={960}
-                    className="absolute inset-0 h-full w-full object-cover opacity-75 grayscale-[20%] transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-100 group-hover:grayscale-0"
+                    className="absolute inset-0 h-full w-full object-cover opacity-60 grayscale transition-all duration-700 group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  <div className="relative flex h-full flex-col justify-end p-7 md:p-9">
-                    <div className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[hsl(var(--accent))]">
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
+                  <div className="relative flex h-full flex-col justify-end p-8 md:p-10">
+                    <div className="mb-3 font-mono text-[9px] uppercase tracking-[0.3em] text-[hsl(var(--accent))]">
                       {p.number} · {p.category}
                     </div>
                     <h3 className="font-heading text-2xl text-white md:text-3xl leading-tight">
                       {p.name} <span className="italic text-[hsl(var(--accent))]">{p.accent}</span>
                     </h3>
-                    <p className="mt-2 max-w-sm text-xs leading-relaxed text-white/55 line-clamp-2">
+                    <p className="mt-3 max-w-sm text-xs leading-relaxed text-white/50 line-clamp-2">
                       {p.tagline}
                     </p>
-                    <span className="mt-5 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[hsl(var(--accent))] opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
-                      Ver el proceso
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    <span className="mt-6 inline-flex items-center gap-3 font-mono text-[9px] uppercase tracking-[0.2em] text-[hsl(var(--accent))] opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                      Ver proceso <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </span>
                   </div>
                 </Link>
@@ -276,36 +310,61 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── MÉTODO ───────────────────────────────────────────────── */}
-      <section className="bg-surface/40 py-24 md:py-32" id="metodo">
+      {/* ── MÉTODO — GSAP Pinned Section ───────────────────────────────────────────────── */}
+      <section className="bg-background py-32 md:py-48" id="metodo">
         <div className="container-trama">
-          <Reveal><div className="eyebrow">CÓMO TRABAJO</div></Reveal>
-          <Reveal delay={80}>
-            <h2 className="h-section mt-4 max-w-[16ch]">Método Trama™</h2>
-          </Reveal>
-          <Reveal delay={140}>
-            <p className="mt-6 max-w-xl text-base text-muted leading-relaxed">
-              Estrategia primero. Copy después. Diseño al final. En ese orden, porque
-              al revés no funciona.
-            </p>
-          </Reveal>
+          <div className="grid gap-20 md:grid-cols-12">
+            
+            {/* Pinned Title */}
+            <div className="md:col-span-5">
+              <div id="metodo-title" className="md:pt-4">
+                <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
+                  El Proceso
+                </div>
+                <h2 className="font-heading text-5xl md:text-7xl leading-tight tracking-tight" style={{ textWrap: "balance" }}>
+                  Método <br />
+                  <span className="italic text-[hsl(var(--accent))]">Trama™</span>
+                </h2>
+                <p className="mt-10 max-w-sm text-lg text-muted leading-relaxed">
+                  Estrategia primero. Copy después. Diseño al final. En ese orden, porque 
+                  al revés no funciona.
+                </p>
+              </div>
+            </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s, i) => (
-              <Reveal key={s.n} delay={i * 70} className="trama-card">
-                <div className="font-mono text-xs font-bold tracking-widest text-[hsl(var(--accent))]">{s.n}</div>
-                <h3 className="font-heading text-2xl mt-4 leading-tight">{s.t}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{s.d}</p>
-              </Reveal>
-            ))}
+            {/* Scrolling Steps */}
+            <div className="md:col-span-7 flex flex-col gap-8 md:gap-16">
+              {STEPS.map((s, i) => (
+                <div key={s.n} className="trama-card">
+                  <div className="trama-card-inner min-h-[300px] flex flex-col justify-between">
+                    <div className="flex justify-between items-start">
+                      <div className="font-mono text-3xl font-light text-[hsl(var(--accent))]/20">
+                        {s.n}
+                      </div>
+                      <div className="w-12 h-px bg-border" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading text-3xl md:text-4xl mb-4 tracking-tight">
+                        {s.t}
+                      </h3>
+                      <p className="text-base leading-relaxed text-[#666666] max-w-md">
+                        {s.d}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── SERVICIOS — horizontal editorial rows ────────────────── */}
-      <section className="py-24 md:py-32" id="servicios">
+      <section className="py-32 md:py-48" id="servicios">
         <div className="container-trama">
-          <Reveal><div className="eyebrow">SERVICIOS</div></Reveal>
+          <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
+            Capacidades
+          </div>
           <Reveal delay={80}>
             <h2 className="h-section mt-4 max-w-[14ch]">
               Lo que <span className="italic text-[hsl(var(--accent))]">construimos</span>.
@@ -317,32 +376,37 @@ const Index = () => {
             </p>
           </Reveal>
 
-          <div className="mt-16 border-t border-border">
+          <div className="mt-16 space-y-px bg-border border-y border-border">
             {PLANS.map((p, i) => (
-              <Reveal key={p.name} delay={i * 80}>
-                <div className="border-b border-border py-12 transition-colors duration-300 hover:bg-surface/20">
-                  <div className="grid gap-8 md:grid-cols-12 md:items-start">
-                    <div className="md:col-span-3 lg:col-span-3">
-                      <div className="font-mono text-xs font-bold uppercase tracking-wider text-foreground">{p.name}</div>
-                      <div className="font-heading text-4xl lg:text-5xl mt-3">{p.price}</div>
+              <Reveal key={p.name} delay={i * 100}>
+                <div className="group bg-surface py-16 transition-all duration-500 hover:bg-surface/50">
+                  <div className="grid gap-12 md:grid-cols-12 md:items-start">
+                    <div className="md:col-span-4">
+                      <div className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))]">PLAN / {p.name}</div>
+                      <h3 className="font-heading text-4xl md:text-5xl mt-6 tracking-tight">{p.price}</h3>
                     </div>
-                    <div className="md:col-span-6 lg:col-span-6">
-                      <p className="text-sm leading-relaxed text-muted max-w-xl">{p.desc}</p>
-                      <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                    
+                    <div className="md:col-span-5">
+                      <p className="text-lg leading-relaxed text-[#666666] max-w-md">{p.desc}</p>
+                      <ul className="mt-8 space-y-4">
                         {p.includes.map((it) => (
-                          <li key={it} className="flex items-start gap-3 text-xs text-muted">
-                            <span className="mt-0.5 text-[hsl(var(--accent))] shrink-0">—</span>
+                          <li key={it} className="flex items-center gap-4 text-[13px] text-[#444444]">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[hsl(var(--accent))] opacity-40" />
                             {it}
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="md:col-span-3 lg:col-span-3 flex md:justify-end pt-1">
+                    
+                    <div className="md:col-span-3 flex md:justify-end md:pt-2">
                       <a
                         href={waLink(`Hola, me interesa el plan ${p.name}.`)}
-                        className="btn-primary-trama w-full md:w-auto"
+                        className="btn-primary-trama group"
                       >
-                        Quiero este plan
+                        <span>Iniciar proyecto</span>
+                        <div className="btn-icon-wrapper">
+                          <ArrowUpRight className="w-4 h-4" />
+                        </div>
                       </a>
                     </div>
                   </div>
@@ -381,7 +445,7 @@ const Index = () => {
       </section>
 
       {/* ── FAQ — grid layout (sin acordeón) ─────────────────────── */}
-      <section className="bg-surface/40 py-24 md:py-32" id="faq">
+      <section className="bg-surface/40 py-32 md:py-48" id="faq">
         <div className="container-narrow">
           <Reveal><div className="eyebrow">PREGUNTAS QUE ME HACEN</div></Reveal>
           <Reveal delay={80}>
@@ -404,8 +468,11 @@ const Index = () => {
       </section>
 
       {/* ── FOUNDER ──────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32">
+      <section className="py-32 md:py-48" id="founder">
         <div className="container-trama">
+          <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-12">
+            Fundador
+          </div>
           <div className="grid gap-16 md:grid-cols-12 md:items-center">
             {/* Visual Block */}
             <div className="md:col-span-5 lg:col-span-4">
@@ -482,10 +549,13 @@ const Index = () => {
           </Reveal>
           <Reveal delay={220}>
             <a
-              href={waLink("Hola, quiero contarte mi situación.")}
-              className="btn-primary-trama large mt-10"
+              href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
+              className="btn-primary-trama large group mt-10"
             >
-              Escribime por WhatsApp
+              <span>Iniciar conversación</span>
+              <div className="btn-icon-wrapper">
+                <ArrowUpRight className="w-4 h-4" />
+              </div>
             </a>
           </Reveal>
         </div>

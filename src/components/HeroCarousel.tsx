@@ -8,14 +8,16 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => (
     className="relative mt-8 md:mt-0 aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-sm animate-slide-up opacity-0"
     style={{ animationDelay: "250ms", maxHeight: "calc(100dvh - 10rem)" }}
   >
-    {/* Images — crossfade */}
     {slides.map((slide, i) => (
       <img
         key={slide.slug}
         src={projectImages[slide.slug]}
         alt={slide.label}
         className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms]"
-        style={{ opacity: i === active ? 1 : 0 }}
+        style={{ 
+          opacity: i === active ? 1 : 0,
+          filter: "sepia(0.1) saturate(0.9) contrast(1.05)" 
+        }}
       />
     ))}
 
