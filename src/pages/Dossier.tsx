@@ -120,8 +120,8 @@ const Dossier = () => {
             {/* Asymmetric Visual Blocks */}
             <div className="lg:col-span-8 flex flex-col gap-8 lg:gap-12">
               <Reveal delay={200}>
-                <div className="trama-card overflow-hidden">
-                  <div className="trama-card-inner !p-0">
+                <div className="trama-card p-2 overflow-hidden">
+                  <div className="trama-card-inner p-0">
                     <img 
                       src={projectImages[project.slug]} 
                       className="w-full aspect-[16/9] object-cover" 

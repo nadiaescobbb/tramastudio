@@ -191,10 +191,9 @@ html {
     border-color: hsl(var(--border));
     border-radius: var(--radius-outer);
     box-shadow: var(--shadow-warm);
-    padding: clamp(24px, 4vw, 48px);
   }
   .trama-card-inner {
-    @apply relative h-full w-full p-8 border border-white/5;
+    @apply relative h-full w-full border border-white/5;
     background: hsl(var(--surface));
     border-radius: var(--radius-inner);
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
