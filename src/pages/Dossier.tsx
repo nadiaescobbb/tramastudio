@@ -22,11 +22,11 @@ const Dossier = () => {
       <Nav />
 
       {/* ── HERO DOSSIER — Split Architectural ───────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col pt-32 lg:pt-0">
-        <div className="flex-1 grid lg:grid-cols-12 min-h-full">
+      <section className="relative lg:min-h-screen flex flex-col pt-32 lg:pt-0 overflow-hidden">
+        <div className="flex-1 grid lg:grid-cols-12 lg:min-h-screen">
           
           {/* Left: Content */}
-          <div className="lg:col-span-5 flex flex-col justify-center p-8 md:p-12 lg:p-20 border-r border-border/60 bg-surface/30">
+          <div className="lg:col-span-5 flex flex-col justify-center p-6 md:p-12 lg:p-20 lg:pt-32 border-b lg:border-b-0 lg:border-r border-border/60 bg-surface/30">
             <Reveal>
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-12 h-[1px] bg-[hsl(var(--accent))]" />
@@ -37,7 +37,7 @@ const Dossier = () => {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.05em] text-foreground">
+              <h1 className="font-heading text-4xl md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.05em] text-foreground">
                 {project.name}
                 <br />
                 <span className="italic text-[hsl(var(--accent))]">{project.accent}</span>
@@ -45,13 +45,13 @@ const Dossier = () => {
             </Reveal>
 
             <Reveal delay={200}>
-              <p className="mt-10 max-w-sm text-lg text-muted leading-relaxed">
+              <p className="mt-8 lg:mt-10 max-w-sm text-base md:text-lg lg:text-xl text-muted leading-relaxed lg:leading-[1.6]">
                 {project.tagline}
               </p>
             </Reveal>
 
             {/* Metadata Grid */}
-            <div className="mt-16 grid grid-cols-2 gap-y-10 gap-x-12 border-t border-border/60 pt-12">
+            <div className="mt-12 lg:mt-16 grid grid-cols-2 gap-y-8 lg:gap-y-10 gap-x-12 border-t border-border/60 pt-10 lg:pt-12">
               {[
                 { label: "Industria", value: project.industry },
                 { label: "Formato", value: project.format },
@@ -59,7 +59,7 @@ const Dossier = () => {
                 { label: "Live", value: project.liveUrl, isLink: true },
               ].map((item, i) => (
                 <Reveal key={item.label} delay={300 + i * 50}>
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-2 lg:gap-3">
                     <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-muted-foreground/60 flex items-center gap-2">
                       <div className="w-1 h-1 rounded-full bg-[hsl(var(--accent))]/40" />
                       {item.label}
@@ -69,13 +69,13 @@ const Dossier = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[hsl(var(--accent))] hover:translate-x-1 transition-transform"
+                        className="group inline-flex items-center gap-2 text-[10px] lg:text-sm font-bold uppercase tracking-widest text-[hsl(var(--accent))] hover:translate-x-1 transition-transform"
                       >
                         {project.isConcept ? "Concepto" : "Visitar"}
                         <ArrowUpRight className="w-3 h-3" />
                       </a>
                     ) : (
-                      <span className="text-sm font-bold text-foreground/90 uppercase tracking-tight">{item.value}</span>
+                      <span className="text-[10px] lg:text-sm font-bold text-foreground/90 uppercase tracking-tight">{item.value}</span>
                     )}
                   </div>
                 </Reveal>
@@ -84,7 +84,7 @@ const Dossier = () => {
           </div>
 
           {/* Right: Immersive Image */}
-          <div className="lg:col-span-7 relative h-[60vh] lg:h-auto overflow-hidden bg-surface">
+          <div className="lg:col-span-7 relative h-[50vh] lg:h-auto overflow-hidden bg-surface">
             <img
               src={projectImages[project.slug]}
               alt={project.name}
@@ -96,20 +96,20 @@ const Dossier = () => {
       </section>
 
       {/* ── NARRATIVA — Editorial Bento ───────────────────────────────────── */}
-      <section className="py-32 md:py-48 bg-surface/20 border-y border-border/40">
+      <section className="py-20 md:py-48 bg-surface/20 border-y border-border/40 overflow-hidden">
         <div className="container-trama">
-          <div className="grid gap-20 lg:grid-cols-12 items-start">
+          <div className="grid gap-16 lg:gap-20 lg:grid-cols-12 items-start">
             
             {/* Context */}
-            <div className="lg:col-span-4 sticky top-32">
+            <div className="lg:col-span-4 lg:sticky lg:top-32">
               <Reveal>
-                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))] mb-8">
+                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))] mb-6 lg:mb-8">
                   01 — El Desafío
                 </div>
-                <h2 className="font-heading text-4xl md:text-5xl leading-tight tracking-tighter">
+                <h2 className="font-heading text-3xl md:text-5xl leading-tight tracking-tighter">
                   El sitio no era <span className="italic text-muted">una herramienta</span> de venta.
                 </h2>
-                <div className="mt-8 flex flex-col gap-6 text-muted leading-relaxed">
+                <div className="mt-6 lg:mt-8 flex flex-col gap-6 text-sm md:text-base text-muted leading-relaxed">
                   {project.challenge.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
@@ -118,7 +118,7 @@ const Dossier = () => {
             </div>
 
             {/* Asymmetric Visual Blocks */}
-            <div className="lg:col-span-8 flex flex-col gap-12">
+            <div className="lg:col-span-8 flex flex-col gap-8 lg:gap-12">
               <Reveal delay={200}>
                 <div className="trama-card overflow-hidden">
                   <div className="trama-card-inner !p-0">
@@ -131,22 +131,22 @@ const Dossier = () => {
                 </div>
               </Reveal>
               
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
                 <Reveal delay={300}>
-                  <div className="trama-card bg-surface/40 p-10 flex flex-col justify-between min-h-[300px]">
-                    <CornerDownRight className="w-8 h-8 text-[hsl(var(--accent))]" />
+                  <div className="trama-card bg-surface/40 p-8 lg:p-10 flex flex-col justify-between min-h-[250px] lg:min-h-[300px]">
+                    <CornerDownRight className="w-6 h-6 lg:w-8 lg:h-8 text-[hsl(var(--accent))]" />
                     <div>
-                      <h4 className="font-heading text-xl mb-4">Arquitectura de Conversión</h4>
-                      <p className="text-sm text-muted leading-relaxed">Eliminamos la fricción técnica para que el diseño no distraiga, sino que dirija la atención al valor del producto.</p>
+                      <h4 className="font-heading text-lg lg:text-xl mb-3 lg:mb-4">Arquitectura de Conversión</h4>
+                      <p className="text-xs lg:text-sm text-muted leading-relaxed">Eliminamos la fricción técnica para que el diseño no distraiga, sino que dirija la atención al valor del producto.</p>
                     </div>
                   </div>
                 </Reveal>
                 <Reveal delay={400}>
-                  <div className="trama-card bg-surface/40 p-10 flex flex-col justify-between min-h-[300px]">
-                    <div className="font-mono text-[40px] font-black text-[hsl(var(--accent))]/20 leading-none">60FPS</div>
+                  <div className="trama-card bg-surface/40 p-8 lg:p-10 flex flex-col justify-between min-h-[250px] lg:min-h-[300px]">
+                    <div className="font-mono text-[32px] lg:text-[40px] font-black text-[hsl(var(--accent))]/20 leading-none">60FPS</div>
                     <div>
-                      <h4 className="font-heading text-xl mb-4">Performance Editorial</h4>
-                      <p className="text-sm text-muted leading-relaxed">Implementación de animaciones fluidas que refuerzan la sensación de autoridad y calidad del estudio.</p>
+                      <h4 className="font-heading text-lg lg:text-xl mb-3 lg:mb-4">Performance Editorial</h4>
+                      <p className="text-xs lg:text-sm text-muted leading-relaxed">Implementación de animaciones fluidas que refuerzan la sensación de autoridad y calidad del estudio.</p>
                     </div>
                   </div>
                 </Reveal>
@@ -158,14 +158,17 @@ const Dossier = () => {
 
       {/* ── CRITERIO — Large Scale Quote ───────────────────────────────────── */}
       {project.pullQuote && (
-        <section className="py-32 md:py-64 bg-background">
+        <section className="py-16 md:py-24 bg-background overflow-hidden">
           <div className="container-trama">
             <Reveal>
               <div className="max-w-5xl mx-auto text-center">
-                <div className="flex justify-center mb-16">
-                  <div className="w-px h-24 bg-gradient-to-b from-transparent to-[hsl(var(--accent))]" />
+                <div className="flex flex-col items-center mb-12">
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-[hsl(var(--accent))]/50 mb-6">
+                    ( FEEDBACK )
+                  </span>
+                  <div className="w-px h-16 bg-gradient-to-b from-transparent to-[hsl(var(--accent))]" />
                 </div>
-                <blockquote className="font-heading text-4xl md:text-6xl lg:text-8xl leading-[0.95] tracking-[-0.04em] text-foreground">
+                <blockquote className="font-heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-[-0.04em] text-foreground" style={{ textWrap: "balance" }}>
                   "{project.pullQuote.text}"
                 </blockquote>
                 {project.pullQuote.author && (
@@ -200,10 +203,10 @@ const Dossier = () => {
                 </p>
               </Reveal>
             </div>
-            <div className="lg:col-span-7 flex flex-col gap-4">
+            <div className="lg:col-span-7 flex flex-col gap-6">
               {project.criterion.points.map((pt, i) => (
                 <Reveal key={pt.label} delay={i * 100}>
-                  <div className="group trama-card hover:bg-surface/50 transition-colors p-8 md:p-10">
+                  <div className="group trama-card hover:bg-surface/50 transition-colors p-10 md:p-14">
                     <div className="flex items-start gap-8">
                       <span className="font-mono text-[10px] font-black text-[hsl(var(--accent))]/40 mt-1">
                         (0{i + 1})
@@ -226,7 +229,7 @@ const Dossier = () => {
       </section>
 
       {/* ── SIGUIENTE PROYECTO — Immersive Transition ────────────────────────── */}
-      <section className="relative h-screen flex flex-col overflow-hidden bg-black border-t border-white/10 group">
+      <section className="relative min-h-[60vh] lg:h-screen flex flex-col overflow-hidden bg-black border-t border-white/10 group">
         <img 
           src={projectImages[next.slug]} 
           className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms] ease-out"
@@ -234,18 +237,18 @@ const Dossier = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
         
-        <div className="relative flex-1 flex flex-col items-center justify-center text-center p-8">
+        <div className="relative flex-1 flex flex-col items-center justify-center text-center p-6 lg:p-8">
           <Reveal>
-            <div className="font-mono text-[10px] font-bold uppercase tracking-[0.5em] text-white/50 mb-10">
+            <div className="font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.5em] text-white/50 mb-8 lg:mb-10">
               Siguiente Proyecto
             </div>
             <Link to={`/proyectos/${next.slug}`} className="block">
-              <h2 className="font-heading text-6xl md:text-8xl lg:text-[10rem] text-white leading-none tracking-[-0.06em] hover:text-[hsl(var(--accent))] transition-colors duration-500">
+              <h2 className="font-heading text-4xl md:text-8xl lg:text-[10rem] text-white leading-none tracking-[-0.06em] hover:text-[hsl(var(--accent))] transition-colors duration-500">
                 {next.name}
-                <span className="italic text-[hsl(var(--accent))] ml-4">{next.accent}</span>
+                <span className="italic text-[hsl(var(--accent))] ml-2 lg:ml-4">{next.accent}</span>
               </h2>
             </Link>
-            <Link to={`/proyectos/${next.slug}`} className="mt-16 inline-flex items-center gap-4 text-white/80 font-sans text-xs font-semibold uppercase tracking-[0.3em] hover:gap-8 transition-all duration-500">
+            <Link to={`/proyectos/${next.slug}`} className="mt-12 lg:mt-16 inline-flex items-center gap-4 text-white/80 font-sans text-xs font-semibold uppercase tracking-[0.3em] hover:gap-8 transition-all duration-500">
               <span>Descubrir el proceso</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
