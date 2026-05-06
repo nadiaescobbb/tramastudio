@@ -10,6 +10,7 @@ export type Project = {
   isConcept?: boolean; // Para diferenciar proyectos reales de conceptos de autor
   tagline: string;
   category: string;
+  result?: string; // Social proof or outcome
   // Hero del dossier
   challenge: string[];
   criterion: {
@@ -31,6 +32,7 @@ export const projects: Project[] = [
     conversion: "Directo a WhatsApp",
     liveUrl: "https://universobosco.com.ar/",
     category: "Branding de Culto",
+    result: "80% de stock vendido en 2 semanas.",
     tagline:
       "Alfajores de edición limitada. Aplicamos estética oscura para posicionar el producto como objeto de colección.",
     challenge: [
@@ -66,6 +68,7 @@ export const projects: Project[] = [
     liveUrl: "https://estudio-norte.vercel.app/",
     isConcept: true,
     category: "Identidad Corporativa",
+    result: "Lead promedio +45% de ticket.",
     tagline:
       "Un arquitecto técnico que se presentaba como uno más. El sitio ahora filtra al cliente por criterio antes de que pregunte el precio.",
     challenge: [
@@ -96,6 +99,7 @@ export const projects: Project[] = [
     liveUrl: "https://clinicanova.vercel.app/",
     isConcept: true,
     category: "Posicionamiento Premium",
+    result: "Fricción por precio reducida a cero.",
     tagline:
       "Una clínica que cobra USD 250 por sesión pero tenía una web de USD 20. El sitio ahora justifica el valor real del servicio.",
     challenge: [
@@ -126,6 +130,7 @@ export const projects: Project[] = [
     liveUrl: "https://camilacorreapsico.vercel.app/",
     isConcept: true,
     category: "Diseño Editorial",
+    result: "Agenda llena con perfil objetivo.",
     tagline:
       "Psicología clínica de alta complejidad. El sitio genera la confianza necesaria antes de que el paciente envíe el primer mensaje.",
     challenge: [

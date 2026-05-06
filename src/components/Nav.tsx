@@ -44,17 +44,18 @@ export const Nav = () => {
 
           {/* Desktop Links */}
           {isHome && (
-            <div className="hidden lg:flex items-center gap-10">
+            <div className="hidden md:flex items-center gap-8">
               <a href="#trabajos" className="nav-link-premium">Trabajos</a>
               <a href="#metodo" className="nav-link-premium">Método</a>
               <a href="#servicios" className="nav-link-premium">Servicios</a>
+              <a href="#faq" className="nav-link-premium">FAQ</a>
             </div>
           )}
 
           <div className="flex items-center gap-4">
             <a
               href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
-              className="btn-primary-trama group hidden lg:inline-flex"
+              className="btn-primary-trama group hidden md:inline-flex"
             >
               <span>Hablemos</span>
               <div className="btn-icon-wrapper">
@@ -65,7 +66,7 @@ export const Nav = () => {
             {/* Hamburger Toggle */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="flex flex-col gap-1.5 p-2 lg:hidden"
+              className="flex flex-col gap-1.5 p-2 md:hidden"
             >
               <div className="hamburger-line line-1" />
               <div className="hamburger-line line-2" />
