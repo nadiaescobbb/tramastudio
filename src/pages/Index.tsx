@@ -142,12 +142,12 @@ const Index = () => {
                 </div>
               </Reveal>
               <h1 className="font-heading animate-slide-up opacity-0 leading-[1.02] tracking-[-0.04em] text-[36px] md:text-6xl lg:text-8xl" style={{ animationDelay: "150ms", textWrap: "balance" }}>
-                Tu negocio merece una{" "}
-                <span className="italic text-[hsl(var(--accent))]">web que trabaje.</span>
+                Tu reputación es sólida.{" "}
+                <span className="italic text-[hsl(var(--accent))]">Tu web debería decir lo mismo.</span>
               </h1>
               <p className="mt-6 max-w-md text-sm md:text-base text-muted leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "350ms" }}>
-                Construyo interfaces que convierten la recomendación en decisión. 
-                Sin plantillas, sin intermediarios. Código puro bajo un mismo estándar estético.
+                Traduzco tu autoridad en una interfaz que cierra ventas. 
+                Código propio, rápido y diseñado para ser un activo real de tu negocio, no un gasto mensual.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-6 animate-slide-up opacity-0" style={{ animationDelay: "550ms" }}>
@@ -536,9 +536,9 @@ const Index = () => {
               </Reveal>
               <div className="mt-10 flex flex-col gap-6">
                 {[
-                  "No diseño para gustar. Diseño para que el negocio detrás de la web se entienda antes de que alguien pregunte el precio. Eso requiere criterio sobre qué decir, cómo decirlo y cómo mostrarlo. Las tres cosas juntas, bajo el mismo estándar.",
-                  "El proceso siempre empieza por la estrategia. Qué tiene que entender el visitante, en qué orden, con qué palabras.",
-                  "El resultado no es una web bonita. Es un negocio que se ve a la altura de lo que vale. Construido con código que cualquier profesional puede mantener, para que no dependas de mí ni de nadie más para seguir adelante.",
+                  "El diseño no es un adorno, es el lenguaje de tu negocio. Mi trabajo es que cuando un cliente entre a tu web, entienda el valor de lo que hacés antes de ver el precio. Eso no se logra con herramientas genéricas, se logra con criterio.",
+                  "El proceso siempre empieza por la estrategia. Qué tiene que entender el visitante, en qué orden, y con qué palabras. Si el mensaje es flojo, no hay diseño que lo salve.",
+                  "El resultado es un sitio que proyecta seguridad. Construido con código limpio que cualquier profesional puede mantener, para que seas dueño total de tu presencia digital, hoy y dentro de cinco años.",
                 ].map((t, i) => (
                   <Reveal key={i} delay={140 + (i * 60)}>
                     <p className="text-base leading-relaxed text-muted max-w-xl">{t}</p>
