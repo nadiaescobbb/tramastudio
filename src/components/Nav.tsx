@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { waLink } from "@/data/projects";
+import { Logo } from "./Logo";
 
 export const Nav = () => {
   const [hidden, setHidden] = useState(false);
@@ -28,10 +29,17 @@ export const Nav = () => {
         <div className="flex items-center justify-between w-full">
           <Link
             to="/"
-            className="nav-link-premium shrink-0"
+            className="flex items-center gap-3 group transition-transform duration-500 hover:scale-[1.02]"
             onClick={() => setIsOpen(false)}
           >
-            {isHome ? "Trama Studio" : "← Volver"}
+            {isHome ? (
+              <>
+                <Logo size={24} className="text-[hsl(var(--accent))]" />
+                <span className="nav-link-premium">Trama Studio</span>
+              </>
+            ) : (
+              <span className="nav-link-premium">← Volver</span>
+            )}
           </Link>
 
           {/* Desktop Links */}

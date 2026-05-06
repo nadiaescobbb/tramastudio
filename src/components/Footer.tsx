@@ -1,9 +1,12 @@
+import { Logo } from "./Logo";
+
 export const Footer = () => {
   return (
     <footer className="border-t border-border bg-background pt-24 pb-12">
       <div className="container-trama">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 items-end">
           <div className="lg:col-span-2">
+            <Logo size={48} className="mb-6 text-[hsl(var(--accent))]" />
             <h2 className="font-heading text-4xl md:text-6xl leading-none tracking-tight">
               Trama Studio
             </h2>

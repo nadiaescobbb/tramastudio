@@ -199,7 +199,7 @@ const Index = () => {
             El Panorama
           </div>
           <h2 ref={problemText} className="font-heading text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight max-w-[20ch]" style={{ textWrap: "balance" }}>
-            {"Tus mejores clientes llegaron por recomendación. Los próximos te están googleando ahora.".split(" ").map((word, i) => (
+            {"Tus clientes actuales te recomiendan. Los nuevos te investigan. Si tu web no proyecta la misma solidez que tu trabajo, la recomendación se muere ahí.".split(" ").map((word, i) => (
               <span key={i} className="reveal-word inline-block mr-[0.25em]">{word}</span>
             ))}
           </h2>
@@ -258,15 +258,21 @@ const Index = () => {
                   <div className="trama-card-inner p-0">
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <img 
-                        src={projectImages[project.slug]} 
+                        src={projectImages[project.slug === 'bosco' ? 'bosco-proj' : project.slug]} 
                         alt={project.name}
                         className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       />
+
                       <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700" />
                     </div>
                     <div className="p-8 md:p-10 bg-white">
-                      <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-[hsl(var(--accent))] mb-4 uppercase">
-                        {project.number} — {project.category}
+                      <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-[hsl(var(--accent))] mb-4 uppercase flex flex-wrap items-center gap-x-3">
+                        <span>{project.number} — {project.category}</span>
+                        {project.isConcept && (
+                          <span className="font-sans text-[9px] lowercase tracking-normal bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] px-2 py-0.5 rounded-full">
+                            (Concepto de autor)
+                          </span>
+                        )}
                       </div>
                       <h3 className="font-heading text-3xl md:text-4xl text-foreground tracking-tight leading-tight transition-colors duration-500 group-hover:text-[hsl(var(--accent))]">
                         {project.name} <span className="italic text-muted-foreground">{project.accent}</span>
@@ -381,8 +387,13 @@ const Index = () => {
           <div className="mt-16 space-y-px bg-border border-y border-border">
             {PLANS.map((p, i) => (
               <Reveal key={p.name} delay={i * 100}>
-                <div className="group bg-surface py-16 transition-all duration-500 hover:bg-surface/50">
-                  <div className="grid gap-12 md:grid-cols-12 md:items-start">
+                <div className={`group relative py-16 transition-all duration-500 ${p.featured ? 'bg-surface shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] z-10 scale-[1.02] border-x border-border/40' : 'bg-surface/40 hover:bg-surface/60'}`}>
+                  {p.featured && (
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[hsl(var(--accent))] text-white font-mono text-[9px] uppercase tracking-[0.3em] px-4 py-1.5 rounded-full">
+                      Recomendado
+                    </div>
+                  )}
+                  <div className="container-trama grid gap-12 md:grid-cols-12 md:items-start">
                     <div className="md:col-span-4">
                       <div className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))]">PLAN / {p.name}</div>
                       <h3 className="font-heading text-4xl md:text-5xl mt-6 tracking-tight">{p.price}</h3>
@@ -537,10 +548,8 @@ const Index = () => {
       <section className="border-t border-border py-24 text-center md:py-32" id="contacto">
         <div className="container-narrow">
           <Reveal>
-            <h2 className="h-section">
-              Contame qué tenés y qué necesitás.
-              <br />
-              <span className="italic text-[hsl(var(--accent))]">El resto lo vemos juntos.</span>
+            <h2 className="h-section max-w-[20ch] mx-auto" style={{ textWrap: "balance" }}>
+              Contame qué tenés y qué buscás. El resto lo resolvemos juntos.
             </h2>
           </Reveal>
           <Reveal delay={120}>
