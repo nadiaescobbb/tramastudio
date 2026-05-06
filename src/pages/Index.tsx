@@ -135,22 +135,22 @@ const Index = () => {
           <div className="grid gap-12 lg:gap-24 md:grid-cols-2 items-center">
             
             {/* Left: copy */}
-            <div className="order-2 md:order-1">
+            <div className="order-1 md:order-1">
               <Reveal>
                 <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-6">
                   Estrategia - Diseño - Código
                 </div>
               </Reveal>
-              <h1 className="font-heading animate-slide-up opacity-0 leading-[1.02] tracking-[-0.04em] text-[42px] md:text-6xl lg:text-8xl" style={{ animationDelay: "150ms", textWrap: "balance" }}>
+              <h1 className="font-heading animate-slide-up opacity-0 leading-[1.02] tracking-[-0.04em] text-[36px] md:text-6xl lg:text-8xl" style={{ animationDelay: "150ms", textWrap: "balance" }}>
                 Tu negocio merece una{" "}
                 <span className="italic text-[hsl(var(--accent))]">web que trabaje.</span>
               </h1>
-              <p className="mt-8 max-w-md text-base text-muted leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "350ms" }}>
+              <p className="mt-6 max-w-md text-sm md:text-base text-muted leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "350ms" }}>
                 Construyo interfaces que convierten la recomendación en decisión. 
                 Sin plantillas, sin intermediarios. Código puro bajo un mismo estándar estético.
               </p>
 
-              <div className="mt-12 flex flex-wrap items-center gap-8 animate-slide-up opacity-0" style={{ animationDelay: "550ms" }}>
+              <div className="mt-8 flex flex-wrap items-center gap-6 animate-slide-up opacity-0" style={{ animationDelay: "550ms" }}>
                 <a href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")} className="btn-primary-trama large group">
                   <span>Iniciar proyecto</span>
                   <div className="btn-icon-wrapper">
@@ -165,7 +165,7 @@ const Index = () => {
             </div>
 
             {/* Right: auto-rotating carousel */}
-            <div className="order-1 md:order-2">
+            <div className="order-2 md:order-2">
               <HeroCarousel
                 slides={HERO_SLIDES}
                 active={activeSlide}
@@ -198,7 +198,7 @@ const Index = () => {
           <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
             El Panorama
           </div>
-          <h2 ref={problemText} className="font-heading text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight max-w-[20ch]" style={{ textWrap: "balance" }}>
+          <h2 ref={problemText} className="font-heading text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight max-w-[20ch]" style={{ textWrap: "balance" }}>
             {"Tus clientes actuales te recomiendan. Los nuevos te investigan. Si tu web no proyecta la misma solidez que tu trabajo, la recomendación se muere ahí.".split(" ").map((word, i) => (
               <span key={i} className="reveal-word inline-block mr-[0.25em]">{word}</span>
             ))}
@@ -277,9 +277,15 @@ const Index = () => {
                       <h3 className="font-heading text-3xl md:text-4xl text-foreground tracking-tight leading-tight transition-colors duration-500 group-hover:text-[hsl(var(--accent))]">
                         {project.name} <span className="italic text-muted-foreground">{project.accent}</span>
                       </h3>
-                      <p className="mt-4 text-muted text-base leading-relaxed line-clamp-2">
+                      <p className="mt-4 text-muted text-sm md:text-base leading-relaxed line-clamp-2">
                         {project.tagline}
                       </p>
+                      {project.result && (
+                        <div className="mt-6 flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-green-700">Resultado: {project.result}</span>
+                        </div>
+                      )}
                       <div className="mt-8 flex items-center gap-3 text-[hsl(var(--accent))] font-sans text-xs font-semibold uppercase tracking-widest">
                         <span>Ver caso de estudio</span>
                         <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -340,22 +346,22 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Scrolling Steps — Added Offset for breathing room */}
-            <div className="md:col-span-8 lg:col-span-7 flex flex-col gap-8 md:gap-16">
+            {/* Scrolling Steps — Grid layout for better scanning */}
+            <div className="md:col-span-8 lg:col-span-7 grid gap-6 md:grid-cols-2">
               {STEPS.map((s, i) => (
-                <div key={s.n} className="trama-card p-2">
-                  <div className="trama-card-inner p-8 md:p-12 min-h-[300px] flex flex-col justify-between">
+                <div key={s.n} className="trama-card p-1.5">
+                  <div className="trama-card-inner p-6 md:p-8 min-h-[220px] flex flex-col justify-between">
                     <div className="flex justify-between items-start">
-                      <div className="font-mono text-3xl font-light text-[hsl(var(--accent))]/20">
+                      <div className="font-mono text-2xl font-light text-[hsl(var(--accent))]/20">
                         {s.n}
                       </div>
-                      <div className="w-12 h-px bg-border" />
+                      <div className="w-8 h-px bg-border" />
                     </div>
                     <div>
-                      <h3 className="font-heading text-3xl md:text-4xl mb-4 tracking-tight">
+                      <h3 className="font-heading text-2xl mb-3 tracking-tight">
                         {s.t}
                       </h3>
-                      <p className="text-base leading-relaxed text-[#666666] max-w-md">
+                      <p className="text-xs md:text-sm leading-relaxed text-[#444444]">
                         {s.d}
                       </p>
                     </div>

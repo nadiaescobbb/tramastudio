@@ -27,8 +27,8 @@ html {
     --border: 0 0% 92%;          /* #EAEAEA - Ultra-light gray */
     --border-strong: 0 0% 85%;
     
-    --muted: 0 0% 47%;           /* #787774 - Secondary text */
-    --muted-foreground: 0 0% 47%;
+    --muted: 0 0% 33%;           /* #555555 - Darker for better contrast */
+    --muted-foreground: 0 0% 33%;
     
     --radius: 12px;              /* Base radius for containers */
   --radius-inner: 6px;         /* Tighter radius for inner elements */
@@ -58,8 +58,8 @@ html {
     --ease-trama: var(--ease-luxury);
     --transition-premium: 700ms var(--ease-luxury);
 
-    /* Spacing Rule of 8 — Massive Whitespace */
-    --section-py: clamp(96px, 15vw, 192px);
+    /* Spacing Rule of 8 — Optimized for scanning */
+    --section-py: clamp(64px, 10vw, 128px);
     
     /* Double Bezel Radius */
     --radius-outer: 32px;
@@ -141,7 +141,7 @@ html {
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.03em;
-    font-size: clamp(40px, 6.5vw, 72px);
+    font-size: clamp(32px, 5vw, 56px); /* Reduced from 40/72 to be less overwhelming */
   }
   .h-card {
     font-family: var(--font-heading);
