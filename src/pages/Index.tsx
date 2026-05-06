@@ -207,10 +207,10 @@ const Index = () => {
           <div className="mt-16 grid gap-6 md:grid-cols-12">
             {/* Main Situational Card — Left */}
             <Reveal className="trama-card p-2 md:col-span-7">
-              <div className="trama-card-inner p-8 md:p-12 h-full flex flex-col justify-center">
-                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-8">01 / SITUACIÓN</div>
-                <h3 className="font-heading text-3xl md:text-5xl tracking-[-0.02em] leading-tight">El que no te conoce.</h3>
-                <p className="mt-6 text-lg leading-relaxed text-[#666666]">
+              <div className="trama-card-inner p-8 md:p-10 h-full flex flex-col justify-center">
+                <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-6">01 / SITUACIÓN</div>
+                <h3 className="h-card tracking-tight leading-tight">El que no te conoce.</h3>
+                <p className="mt-4 text-base leading-relaxed text-[#444444]">
                   Tus clientes actuales llegaron por recomendación. Los que no te conocen buscan en internet y{" "}
                   <span className="text-foreground font-medium">no encuentran nada que les diga por qué elegirte a vos</span>.
                 </p>
@@ -220,20 +220,20 @@ const Index = () => {
             {/* Right Column with two stacked cards */}
             <div className="md:col-span-5 flex flex-col gap-6">
               <Reveal className="trama-card p-2 flex-1" delay={100}>
-                <div className="trama-card-inner p-8 h-full">
-                  <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">02 / VALOR</div>
-                  <h3 className="font-heading text-2xl mt-4 tracking-tight">Percepción de valor.</h3>
-                  <p className="mt-3 text-base leading-relaxed text-[#666666]">
+                <div className="trama-card-inner p-8 md:p-10 h-full">
+                  <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-6">02 / VALOR</div>
+                  <h3 className="h-card tracking-tight">Percepción de valor.</h3>
+                  <p className="mt-4 text-sm md:text-base leading-relaxed text-[#444444]">
                     Si tu presencia online no está a la altura de tu servicio real, tu precio no tiene dónde apoyarse.
                   </p>
                 </div>
               </Reveal>
 
               <Reveal className="trama-card p-2 flex-1" delay={200}>
-                <div className="trama-card-inner p-8 h-full">
-                  <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))]">03 / CONVERSIÓN</div>
-                  <h3 className="font-heading text-2xl mt-4 tracking-tight">Atención perdida.</h3>
-                  <p className="mt-3 text-base leading-relaxed text-[#666666]">
+                <div className="trama-card-inner p-8 md:p-10 h-full">
+                  <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-6">03 / CONVERSIÓN</div>
+                  <h3 className="h-card tracking-tight">Atención perdida.</h3>
+                  <p className="mt-4 text-sm md:text-base leading-relaxed text-[#444444]">
                     Si en los primeros cinco segundos no queda claro qué hacés, el visitante se va.
                   </p>
                 </div>
