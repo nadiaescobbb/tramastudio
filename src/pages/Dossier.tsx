@@ -2,7 +2,6 @@ import { Link, useParams } from "react-router-dom";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
-import { MouseGlow } from "@/components/MouseGlow";
 import { projects, waLink } from "@/data/projects";
 import { projectImages } from "@/data/project-images";
 import { ArrowUpRight, ArrowRight, CornerDownRight } from "lucide-react";
@@ -18,7 +17,6 @@ const Dossier = () => {
 
   return (
     <div className="relative min-h-screen bg-background selection:bg-[hsl(var(--accent))] selection:text-white">
-      <MouseGlow />
       <Nav />
 
       {/* ── HERO DOSSIER — Split Architectural ───────────────────────────────────── */}
@@ -27,28 +25,22 @@ const Dossier = () => {
           
           {/* Left: Content */}
           <div className="lg:col-span-5 flex flex-col justify-center p-6 md:p-12 lg:p-20 lg:pt-32 border-b lg:border-b-0 lg:border-r border-border/60 bg-surface/30">
-            <Reveal>
               <div className="flex items-center gap-4 mb-10">
                 <div className="w-12 h-[1px] bg-[hsl(var(--accent))]" />
                 <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))]">
                   Proyecto {project.number}
                 </span>
               </div>
-            </Reveal>
 
-            <Reveal delay={100}>
               <h1 className="font-heading text-4xl md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.05em] text-foreground">
                 {project.name}
                 <br />
                 <span className="italic text-[hsl(var(--accent))]">{project.accent}</span>
               </h1>
-            </Reveal>
 
-            <Reveal delay={200}>
               <p className="mt-8 lg:mt-10 max-w-sm text-base md:text-lg lg:text-xl text-muted leading-relaxed lg:leading-[1.6]">
                 {project.tagline}
               </p>
-            </Reveal>
 
             {/* Metadata Grid */}
             <div className="mt-12 lg:mt-16 grid grid-cols-2 gap-y-8 lg:gap-y-10 gap-x-12 border-t border-border/60 pt-10 lg:pt-12">
@@ -58,8 +50,7 @@ const Dossier = () => {
                 { label: "Conversión", value: project.conversion },
                 { label: "Live", value: project.liveUrl, isLink: true },
               ].map((item, i) => (
-                <Reveal key={item.label} delay={300 + i * 50}>
-                  <div className="flex flex-col gap-2 lg:gap-3">
+                  <div key={item.label} className="flex flex-col gap-2 lg:gap-3">
                     <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-muted-foreground/60 flex items-center gap-2">
                       <div className="w-1 h-1 rounded-full bg-[hsl(var(--accent))]/40" />
                       {item.label}
@@ -69,16 +60,15 @@ const Dossier = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-2 text-[10px] lg:text-sm font-bold uppercase tracking-widest text-[hsl(var(--accent))] hover:translate-x-1 transition-transform"
+                        className="group inline-flex items-center gap-3 px-4 py-2 bg-[hsl(var(--accent))] text-white text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:bg-foreground transition-colors mt-2"
                       >
-                        {project.isConcept ? "Concepto" : "Visitar"}
+                        {project.isConcept ? "Concepto" : "Visitar Sitio"}
                         <ArrowUpRight className="w-3 h-3" />
                       </a>
                     ) : (
                       <span className="text-[10px] lg:text-sm font-bold text-foreground/90 uppercase tracking-tight">{item.value}</span>
                     )}
                   </div>
-                </Reveal>
               ))}
             </div>
           </div>
@@ -88,7 +78,7 @@ const Dossier = () => {
             <img
               src={projectImages[project.slug]}
               alt={project.name}
-              className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000 scale-110 lg:scale-100"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 scale-110 lg:scale-100"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-background/20 to-transparent pointer-events-none" />
           </div>
@@ -111,7 +101,7 @@ const Dossier = () => {
                 </h2>
                 <div className="mt-6 lg:mt-8 flex flex-col gap-6 text-sm md:text-base text-muted leading-relaxed">
                   {project.challenge.map((p, i) => (
-                    <p key={i}>{p}</p>
+                    <p key={i} className="animate-in fade-in duration-700">{p}</p>
                   ))}
                 </div>
               </Reveal>
@@ -119,8 +109,7 @@ const Dossier = () => {
 
             {/* Asymmetric Visual Blocks */}
             <div className="lg:col-span-8 flex flex-col gap-8 lg:gap-12">
-              <Reveal delay={200}>
-                <div className="trama-card p-2 overflow-hidden">
+              <div className="trama-card p-2 overflow-hidden">
                   <div className="trama-card-inner p-0">
                     <img 
                       src={projectImages[project.slug]} 
@@ -129,27 +118,19 @@ const Dossier = () => {
                     />
                   </div>
                 </div>
-              </Reveal>
               
               <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-                <Reveal delay={300}>
-                  <div className="trama-card bg-surface/40 p-8 lg:p-10 flex flex-col justify-between min-h-[250px] lg:min-h-[300px]">
-                    <CornerDownRight className="w-6 h-6 lg:w-8 lg:h-8 text-[hsl(var(--accent))]" />
-                    <div>
-                      <h4 className="font-heading text-lg lg:text-xl mb-3 lg:mb-4">Arquitectura de Conversión</h4>
-                      <p className="text-xs lg:text-sm text-muted leading-relaxed">Eliminamos la fricción técnica para que el diseño no distraiga, sino que dirija la atención al valor del producto.</p>
+                {project.highlights.map((highlight, i) => (
+                    <div key={highlight.title} className="trama-card bg-surface/40 p-8 lg:p-10 flex flex-col justify-between min-h-[250px] lg:min-h-[300px]">
+                      <div className="font-mono text-[24px] lg:text-[32px] font-black text-[hsl(var(--accent))]/20 leading-none">
+                        {highlight.sub}
+                      </div>
+                      <div>
+                        <h4 className="font-heading text-lg lg:text-xl mb-3 lg:mb-4">{highlight.title}</h4>
+                        <p className="text-xs lg:text-sm text-muted leading-relaxed">{highlight.text}</p>
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
-                <Reveal delay={400}>
-                  <div className="trama-card bg-surface/40 p-8 lg:p-10 flex flex-col justify-between min-h-[250px] lg:min-h-[300px]">
-                    <div className="font-mono text-[32px] lg:text-[40px] font-black text-[hsl(var(--accent))]/20 leading-none">60FPS</div>
-                    <div>
-                      <h4 className="font-heading text-lg lg:text-xl mb-3 lg:mb-4">Performance Editorial</h4>
-                      <p className="text-xs lg:text-sm text-muted leading-relaxed">Implementación de animaciones fluidas que refuerzan la sensación de autoridad y calidad del estudio.</p>
-                    </div>
-                  </div>
-                </Reveal>
+                ))}
               </div>
             </div>
           </div>
@@ -205,8 +186,7 @@ const Dossier = () => {
             </div>
             <div className="lg:col-span-7 flex flex-col gap-6">
               {project.criterion.points.map((pt, i) => (
-                <Reveal key={pt.label} delay={i * 100}>
-                  <div className="group trama-card hover:bg-surface/50 transition-colors p-10 md:p-14">
+                  <div key={pt.label} className="group trama-card hover:bg-surface/50 transition-colors p-10 md:p-14">
                     <div className="flex items-start gap-8">
                       <span className="font-mono text-[10px] font-black text-[hsl(var(--accent))]/40 mt-1">
                         (0{i + 1})
@@ -215,30 +195,41 @@ const Dossier = () => {
                         <h3 className="font-heading text-xl md:text-2xl mb-4 group-hover:text-[hsl(var(--accent))] transition-colors">
                           {pt.label}
                         </h3>
-                        <p className="text-muted leading-relaxed">
+                        <p className="text-muted leading-relaxed animate-in fade-in duration-700">
                           {pt.text}
                         </p>
                       </div>
                     </div>
                   </div>
-                </Reveal>
               ))}
             </div>
           </div>
         </div>
+      </section>
+      
+      {/* ── BACK TO PROJECTS — Exit Point ───────────────────────────────────── */}
+      <section className="py-20 md:py-32 bg-background text-center border-t border-border/40">
+        <Reveal>
+          <Link 
+            to="/#trabajos" 
+            className="inline-flex items-center gap-4 px-8 py-4 border border-border rounded-full text-[11px] lg:text-xs font-bold uppercase tracking-[0.3em] text-foreground hover:bg-surface hover:border-[hsl(var(--accent))] transition-all duration-300 group"
+          >
+            <ArrowRight className="w-4 h-4 rotate-180 transition-transform group-hover:-translate-x-2" />
+            <span>Ver todos los proyectos</span>
+          </Link>
+        </Reveal>
       </section>
 
       {/* ── SIGUIENTE PROYECTO — Immersive Transition ────────────────────────── */}
       <section className="relative min-h-[60vh] lg:h-screen flex flex-col overflow-hidden bg-black border-t border-white/10 group">
         <img 
           src={projectImages[next.slug]} 
-          className="absolute inset-0 w-full h-full object-cover opacity-40 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms] ease-out"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-all duration-[1500ms] ease-out"
           alt="Next Project"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
         
         <div className="relative flex-1 flex flex-col items-center justify-center text-center p-6 lg:p-8">
-          <Reveal>
             <div className="font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.5em] text-white/50 mb-8 lg:mb-10">
               Siguiente Proyecto
             </div>
@@ -252,7 +243,6 @@ const Dossier = () => {
               <span>Descubrir el proceso</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
-          </Reveal>
         </div>
       </section>
 

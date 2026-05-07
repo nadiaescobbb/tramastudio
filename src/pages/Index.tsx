@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { MouseGlow } from "@/components/MouseGlow";
-import { HeroCarousel } from "@/components/HeroCarousel";
+import { HeroCarousel, HeroThumbnails } from "@/components/HeroCarousel";
 import { projects, waLink } from "@/data/projects";
 import { projectImages } from "@/data/project-images";
 import { ArrowUpRight } from "lucide-react";
@@ -26,47 +25,50 @@ const HERO_SLIDES = [
 const PLANS = [
   {
     name: "Landing Trama",
-    price: "USD 350",
-    desc: "Para cuando necesitás un lugar claro a donde mandar a la gente. Lista en 10 días hábiles.",
-    includes: ["Diseño y desarrollo desde cero", "Copy y redacción de todo el contenido", "Versión mobile optimizada", "SEO básico y velocidad", "El código es tuyo para siempre", "Seguimiento a los 15 días"],
-    excludes: ["Dominio y hosting", "Fotografías del negocio"],
+    price: "USD 450",
+    desc: "Para cuando necesitás claridad inmediata y una presencia que proyecte el valor real de tu trabajo.",
+    summary: "Ideal para marcas de autor y perfiles profesionales.",
+    includes: ["Estrategia de posicionamiento", "Copy y redacción", "Diseño a medida (no templates)", "Desarrollo en código propio", "Propiedad total del sitio", "Diagnóstico de 60 min."],
+    excludes: ["Dominio y hosting", "Sesión de fotos"],
     featured: false,
   },
   {
-    name: "Web Institucional",
-    price: "USD 550",
-    desc: "Para cuando tu negocio necesita más espacio para contar lo que hace. Lista en 18 días hábiles.",
-    includes: ["Todo lo del plan Landing", "Hasta 5 secciones o páginas", "Sección de testimonios o casos", "Integración con Google Analytics", "El sitio queda en tus manos", "Seguimiento a los 15 días"],
-    excludes: ["Dominio y hosting", "Fotografías del negocio"],
+    name: "Web de Autoridad",
+    price: "USD 750",
+    desc: "Para cuando tu negocio necesita filtrar al cliente correcto antes de la primera conversación.",
+    summary: "Ideal para estudios y empresas de servicios B2B.",
+    includes: ["Todo lo del plan Landing", "Hasta 5 secciones estratégicas", "Justificación de valor/precio", "Integración de métricas", "Guía de Edición (Soberanía)", "Diagnóstico de 60 min."],
+    excludes: ["Dominio y hosting", "Sesión de fotos"],
     featured: true,
   },
   {
-    name: "Motor de Ventas",
-    price: "USD 850",
-    desc: "Catálogo, pagos, stock y panel propio. Todo tuyo desde el primer día.",
-    includes: ["Todo lo del plan Institucional", "Catálogo con filtros y buscador", "Integración MercadoPago", "Panel de administración simple", "Sin dependencia técnica", "Seguimiento a los 15 días"],
-    excludes: ["Dominio y hosting", "Fotografías de productos"],
+    name: "Sistemas a Medida",
+    price: "Consultar",
+    desc: "Plataformas complejas, catálogos o gestores de contenido. Código optimizado y documentado.",
+    summary: "Ideal para startups y productos digitales.",
+    includes: ["Todo lo del plan Autoridad", "Desarrollo de funcionalidades", "Arquitectura escalable", "Optimización extrema", "Documentación técnica", "Acompañamiento post-lanzamiento"],
+    excludes: ["Dominio y hosting"],
     featured: false,
   },
 ];
 
 const EXTRAS = [
-  { name: "Mantenimiento", desc: "Trama disponible después de la entrega. Hasta 3 cambios por mes, respuesta en 48h. Mínimo 3 meses.", price: "USD 60", per: "/mes" },
+  { name: "Mantenimiento", desc: "Trama disponible después de la entrega. Hasta 3 cambios por mes, respuesta en 48h. Mínimo 3 meses.", price: "USD 80", per: "/mes" },
   { name: "Dominio", desc: "Gestionamos el registro y la configuración. Al finalizar queda transferido a tu nombre. No incluye renovación anual.", price: "USD 20", per: "" },
 ];
 
 const STEPS = [
-  { n: "01", t: "Conversación", d: "Antes de cualquier presupuesto, entiendo tu negocio en una sesión de diagnóstico de 60 min. Sin cuestionarios genéricos." },
-  { n: "02", t: "Estrategia y copy", d: "Extraigo tu conocimiento y lo traduzco a un mensaje que venda. Defino qué decir y en qué orden." },
-  { n: "03", t: "Diseño y código", d: "Código estático, rápido y documentado. Construido para durar, sin depender de plataformas cerradas." },
-  { n: "04", t: "Entrega total", d: "Recibís el código y una Guía de Soberanía para editar contenidos. Sos dueño total de tu activo." },
+  { n: "01", t: "Estrategia", d: "Defino **qué tiene que entender el visitante** y en qué orden. El diagnóstico es la base de todo." },
+  { n: "02", t: "Copywriting", d: "Escribo cada palabra con un objetivo: que la web **demuestre tu reputación y autoridad**." },
+  { n: "03", t: "Diseño y Código", d: "El diseño es una **consecuencia de la estrategia**. Código propio, rápido y optimizado." },
+  { n: "04", t: "Propiedad", d: "El sitio es tuyo. Sin cuotas mensuales ni dependencias. Te entrego el **control total**." },
 ];
 
 const FAQS = [
   { q: "¿Por qué no me cobrás por hora?", a: "Porque no te conviene a vos ni a mí. Cobro por proyecto, con alcance y plazo definidos. Vos sabés lo que vas a pagar antes de empezar. Yo me concentro en hacerlo bien, no en estirar las horas." },
   { q: "¿Puedo editar la web después?", a: "Sí. Te entrego el código + una Guía de Soberanía para que puedas editar textos, imágenes y secciones desde una interfaz visual. No quedás atado a mí ni a ninguna plataforma cerrada." },
   { q: "¿Y si no me gusta el diseño?", a: "Antes de tocar una sola línea de código te muestro la dirección visual y la estructura del copy. Iteramos ahí, no después. Cuando empiezo a programar, ya sabemos los dos a dónde vamos." },
-  { q: "¿Cuánto tarda?", a: "Una landing entre 8 y 10 días hábiles. Una web institucional entre 15 y 18. Un motor de ventas entre 25 y 30. Plazos reales, no marketing." },
+  { q: "¿Cuánto tarda?", a: "Una Landing Trama entre 8 y 10 días hábiles. Una Web de Autoridad entre 15 y 18. Un Motor de Ventas entre 25 y 30. Plazos reales, no marketing." },
   { q: "¿Trabajás con clientes fuera de Argentina?", a: "Sí. La facturación es en USD y la comunicación es por WhatsApp o llamada según prefieras. Toda la documentación queda en español o inglés." },
 ];
 
@@ -75,37 +77,45 @@ const Index = () => {
   const container = useRef(null);
   const problemText = useRef(null);
 
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+
   useEffect(() => {
+    if (!isAutoPlaying) return;
     const t = setInterval(
       () => setActiveSlide((p) => (p + 1) % HERO_SLIDES.length),
-      3200
+      3600
     );
     return () => clearInterval(t);
-  }, []);
+  }, [isAutoPlaying]);
+
+  const handleManualSlide = (index: number) => {
+    setIsAutoPlaying(false);
+    setActiveSlide(index);
+  };
 
   useGSAP(() => {
-    // Scrubbing Text Reveal for Problem Section
-    if (problemText.current) {
-      const words = problemText.current.querySelectorAll(".reveal-word");
-      gsap.fromTo(words, 
-        { opacity: 0.1 },
-        { 
-          opacity: 1, 
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: problemText.current,
-            start: "top 80%",
-            end: "top 20%",
-            scrub: true,
-          }
-        }
-      );
-    }
-
     // Responsive Motion Logic
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
+      // Scrubbing Text Reveal for Problem Section — Desktop Only
+      if (problemText.current) {
+        const words = problemText.current.querySelectorAll(".reveal-word");
+        gsap.fromTo(words, 
+          { opacity: 0.3 },
+          { 
+            opacity: 1, 
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: problemText.current,
+              start: "top 80%",
+              end: "top 20%",
+              scrub: true,
+            }
+          }
+        );
+      }
+
       // Pinning for Metodo Section — Desktop Only
       const st = ScrollTrigger.create({
         trigger: "#metodo",
@@ -123,7 +133,6 @@ const Index = () => {
 
   return (
     <div ref={container} className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
-      <MouseGlow />
       <Nav />
 
       {/* ── HERO — split screen ───────────────────────────────────── */}
@@ -136,30 +145,27 @@ const Index = () => {
             
             {/* Left: copy */}
             <div className="order-1 md:order-1">
-              <Reveal>
                 <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-6">
-                  Estrategia - Diseño - Código
+                  Criterio - Estrategia - Ejecución
                 </div>
-              </Reveal>
               <h1 className="font-heading animate-slide-up opacity-0 leading-[1.02] tracking-[-0.04em] text-[36px] md:text-6xl lg:text-8xl" style={{ animationDelay: "150ms", textWrap: "balance" }}>
-                Tu reputación es sólida.{" "}
-                <span className="italic text-[hsl(var(--accent))]">Tu web debería decir lo mismo.</span>
+                Diseñamos sitios que están a la altura <br />
+                <span className="italic text-[hsl(var(--accent))]">del negocio real.</span>
               </h1>
               <p className="mt-6 max-w-md text-sm md:text-base text-muted leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "350ms" }}>
-                Traduzco tu autoridad en una interfaz que cierra ventas. 
-                Código propio, rápido y diseñado para ser un activo real de tu negocio, no un gasto mensual.
+                Trama Studio es un estudio de diseño y desarrollo web. Trabajamos con negocios cuya presencia digital todavía no refleja el nivel real de lo que hacen.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-6 animate-slide-up opacity-0" style={{ animationDelay: "550ms" }}>
-                <a href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")} className="btn-primary-trama large group">
-                  <span>Iniciar proyecto</span>
+                <a href={waLink("Hola, vi Trama Studio y quiero solicitar un diagnóstico para mi proyecto.")} className="btn-primary-trama large group">
+                  <span>Solicitar diagnóstico</span>
                   <div className="btn-icon-wrapper">
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
                 </a>
                 <div className="hidden sm:flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted">Disponibilidad inmediata</span>
+                  <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted">Cupos limitados / Mayo 2026</span>
                 </div>
               </div>
             </div>
@@ -169,28 +175,18 @@ const Index = () => {
               <HeroCarousel
                 slides={HERO_SLIDES}
                 active={activeSlide}
-                setActive={setActiveSlide}
+                setActive={handleManualSlide}
+              />
+              <HeroThumbnails
+                slides={HERO_SLIDES}
+                active={activeSlide}
+                setActive={handleManualSlide}
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── INFINITE MARQUEE — Corrected for seamless loop ──────────────── */}
-      <div className="relative border-y border-border/60 bg-surface/30 py-6 md:py-10 overflow-hidden marquee-mask">
-        <div className="flex animate-marquee whitespace-nowrap w-fit">
-          {[1, 2].map((n) => (
-            <div key={n} className="flex gap-10 md:gap-20 px-5 md:px-10 items-center">
-              {["SITIOS DE ALTA CONVERSIÓN", "DESARROLLO A MEDIDA", "ESTRATEGIA DIGITAL", "PERFORMANCE SEO"].map((text, i) => (
-                <div key={i} className="flex items-center gap-6 md:gap-10">
-                  <span className="font-mono text-[12px] md:text-[14px] font-black tracking-[0.3em] md:tracking-[0.4em] text-foreground/90">{text}</span>
-                  <div className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-[hsl(var(--accent))]" />
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* ── PROBLEMA — Scrubbing Reveal ─────────────────────────────────────────── */}
       <section className="relative py-32 md:py-48" id="problema">
@@ -199,45 +195,46 @@ const Index = () => {
             El Panorama
           </div>
           <h2 ref={problemText} className="font-heading text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight max-w-[20ch]" style={{ textWrap: "balance" }}>
-            {"Tus clientes actuales te recomiendan. Los nuevos te investigan. Si tu web no proyecta la misma solidez que tu trabajo, la recomendación se muere ahí.".split(" ").map((word, i) => (
+            {"Hay negocios muy buenos que online parecen menos de lo que son. Su reputación se construyó por recomendación, pero alguien que entra a su web por primera vez no lo vería.".split(" ").map((word, i) => (
               <span key={i} className="reveal-word inline-block mr-[0.25em]">{word}</span>
             ))}
           </h2>
 
           <div className="mt-16 grid gap-6 md:grid-cols-12">
             {/* Main Situational Card — Left */}
-            <Reveal className="trama-card p-2 md:col-span-7">
+            <div className="trama-card p-2 md:col-span-7">
               <div className="trama-card-inner p-8 md:p-10 h-full flex flex-col justify-center">
                 <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-6">01 / SITUACIÓN</div>
-                <h3 className="h-card tracking-tight leading-tight">El que no te conoce.</h3>
+                <h3 className="h-card tracking-tight leading-tight">El trabajo habla solo, la web no.</h3>
                 <p className="mt-4 text-base leading-relaxed text-[#444444]">
-                  Tus clientes actuales llegaron por recomendación. Los que no te conocen buscan en internet y{" "}
-                  <span className="text-foreground font-medium">no encuentran nada que les diga por qué elegirte a vos</span>.
+                  Tus clientes actuales vuelven y te recomiendan. Pero el tráfico frío que te investiga 
+                  <span className="text-foreground font-medium"> se encuentra con una versión debilitada de lo que sos</span>. 
+                  Ahí entra Trama.
                 </p>
               </div>
-            </Reveal>
+            </div>
             
             {/* Right Column with two stacked cards */}
             <div className="md:col-span-5 flex flex-col gap-6">
-              <Reveal className="trama-card p-2 flex-1" delay={100}>
+              <div className="trama-card p-2 flex-1">
                 <div className="trama-card-inner p-8 md:p-10 h-full">
                   <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-6">02 / VALOR</div>
-                  <h3 className="h-card tracking-tight">Percepción de valor.</h3>
+                  <h3 className="h-card tracking-tight">Percepción de bajo valor.</h3>
                   <p className="mt-4 text-sm md:text-base leading-relaxed text-[#444444]">
                     Si tu presencia online no está a la altura de tu servicio real, tu precio no tiene dónde apoyarse.
                   </p>
                 </div>
-              </Reveal>
+              </div>
 
-              <Reveal className="trama-card p-2 flex-1" delay={200}>
+              <div className="trama-card p-2 flex-1">
                 <div className="trama-card-inner p-8 md:p-10 h-full">
                   <div className="font-mono text-[10px] font-bold tracking-widest text-[hsl(var(--accent))] mb-6">03 / CONVERSIÓN</div>
-                  <h3 className="h-card tracking-tight">Atención perdida.</h3>
+                  <h3 className="h-card tracking-tight">Mensaje poco claro.</h3>
                   <p className="mt-4 text-sm md:text-base leading-relaxed text-[#444444]">
                     Si en los primeros cinco segundos no queda claro qué hacés, el visitante se va.
                   </p>
                 </div>
-              </Reveal>
+              </div>
             </div>
           </div>
         </div>
@@ -253,47 +250,45 @@ const Index = () => {
           
           <div className="mt-20 grid gap-10 md:grid-cols-2">
             {projects.slice(0, 4).map((project, i) => (
-              <Reveal key={project.slug} delay={i * 100}>
-                <Link to={`/proyectos/${project.slug}`} className="trama-card p-2 group block overflow-hidden">
-                  <div className="trama-card-inner p-0">
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <img 
-                        src={projectImages[project.slug === 'bosco' ? 'bosco-proj' : project.slug]} 
-                        alt={project.name}
-                        className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                      />
+              <Link key={project.slug} to={`/proyectos/${project.slug}`} className="trama-card p-2 group block overflow-hidden">
+                <div className="trama-card-inner p-0">
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <img 
+                      src={projectImages[project.slug === 'bosco' ? 'bosco-proj' : project.slug]} 
+                      alt={project.name}
+                      className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                    />
 
-                      <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700" />
-                    </div>
-                    <div className="p-8 md:p-10 bg-white">
-                      <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-[hsl(var(--accent))] mb-4 uppercase flex flex-wrap items-center gap-x-3">
-                        <span>{project.number} — {project.category}</span>
-                        {project.isConcept && (
-                          <span className="font-sans text-[9px] lowercase tracking-normal bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] px-2 py-0.5 rounded-full">
-                            (Concepto de autor)
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="font-heading text-3xl md:text-4xl text-foreground tracking-tight leading-tight transition-colors duration-500 group-hover:text-[hsl(var(--accent))]">
-                        {project.name} <span className="italic text-muted-foreground">{project.accent}</span>
-                      </h3>
-                      <p className="mt-4 text-muted text-sm md:text-base leading-relaxed line-clamp-2">
-                        {project.tagline}
-                      </p>
-                      {project.result && (
-                        <div className="mt-6 flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
-                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-green-700">Resultado: {project.result}</span>
-                        </div>
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-700" />
+                  </div>
+                  <div className="p-8 md:p-10 bg-white">
+                    <div className="font-mono text-[10px] font-bold tracking-[0.3em] text-[hsl(var(--accent))] mb-4 uppercase flex flex-wrap items-center gap-x-3">
+                      <span>{project.number} — {project.category}</span>
+                      {project.isConcept && (
+                        <span className="font-sans text-[9px] lowercase tracking-normal bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] px-2 py-0.5 rounded-full">
+                          (Concepto de autor)
+                        </span>
                       )}
-                      <div className="mt-8 flex items-center gap-3 text-[hsl(var(--accent))] font-sans text-xs font-semibold uppercase tracking-widest">
-                        <span>Ver caso de estudio</span>
-                        <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </div>
+                    <h3 className="font-heading text-3xl md:text-4xl text-foreground tracking-tight leading-tight transition-colors duration-500 group-hover:text-[hsl(var(--accent))]">
+                      {project.name} <span className="italic text-muted-foreground">{project.accent}</span>
+                    </h3>
+                    <p className="mt-4 text-muted text-sm md:text-base leading-relaxed line-clamp-2">
+                      {project.tagline}
+                    </p>
+                    {project.result && (
+                      <div className="mt-6 flex items-center gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-green-700">Resultado: {project.result}</span>
                       </div>
+                    )}
+                    <div className="mt-8 flex items-center gap-3 text-[hsl(var(--accent))] font-sans text-xs font-semibold uppercase tracking-widest">
+                      <span>Ver caso de estudio</span>
+                      <ArrowUpRight className="w-4 h-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </div>
                   </div>
-                </Link>
-              </Reveal>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -302,17 +297,12 @@ const Index = () => {
       {/* ── TESTIMONIAL EDITORIAL ──────────────────────────────────── */}
       <section className="border-y border-border py-32 md:py-48 bg-surface/20">
         <div className="container-trama text-center">
-          <Reveal>
             <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--accent))]">
               Caso de éxito · Bosco Argentina
             </div>
-          </Reveal>
-          <Reveal delay={100}>
             <blockquote className="mx-auto mt-8 max-w-4xl font-heading text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-[-0.02em] text-foreground">
               "Buscábamos alguien que entienda el negocio, no solo que dibuje interfaces. <span className="italic text-muted">Era lo que queríamos. Quedó muy sólida.</span>"
             </blockquote>
-          </Reveal>
-          <Reveal delay={200}>
             <div className="mt-12 flex items-center justify-center gap-4">
               <div className="h-[1px] w-12 bg-border" />
               <div className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground">
@@ -320,7 +310,6 @@ const Index = () => {
               </div>
               <div className="h-[1px] w-12 bg-border" />
             </div>
-          </Reveal>
         </div>
       </section>
 
@@ -340,8 +329,7 @@ const Index = () => {
                   <span className="italic text-[hsl(var(--accent))]">Trama™</span>
                 </h2>
                 <p className="mt-10 max-w-sm text-lg text-muted leading-relaxed">
-                  Estrategia primero. Copy después. Diseño al final. En ese orden, porque 
-                  al revés no funciona.
+                  Estrategia: qué entender y en qué orden. Después el copy. El diseño viene al final, como consecuencia de lo que ya está claro.
                 </p>
               </div>
             </div>
@@ -361,9 +349,10 @@ const Index = () => {
                       <h3 className="font-heading text-2xl mb-3 tracking-tight">
                         {s.t}
                       </h3>
-                      <p className="text-xs md:text-sm leading-relaxed text-[#444444]">
-                        {s.d}
-                      </p>
+                      <p 
+                        className="text-xs md:text-sm leading-relaxed text-[#444444]"
+                        dangerouslySetInnerHTML={{ __html: s.d.replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-bold">$1</strong>') }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -386,14 +375,13 @@ const Index = () => {
           </Reveal>
           <Reveal delay={140}>
             <p className="mt-6 max-w-xl text-base text-muted leading-relaxed">
-              Inversión única. Sin cuotas mensuales. Pagás por criterio y ejecución directa.
+              El resultado es un sitio que filtra al cliente correcto y demuestra tu reputación real. Inversión única, sin dependencias.
             </p>
           </Reveal>
 
           <div className="mt-16 space-y-px bg-border border-y border-border">
             {PLANS.map((p, i) => (
-              <Reveal key={p.name} delay={i * 100}>
-                <div className={`group relative py-16 transition-all duration-500 ${p.featured ? 'bg-surface shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] z-10 scale-[1.02] border-x border-border/40' : 'bg-surface/40 hover:bg-surface/60'}`}>
+                <div key={p.name} className={`group relative py-16 transition-all duration-500 ${p.featured ? 'bg-surface shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] z-10 scale-[1.02] border-x border-border/40' : 'bg-surface/40 hover:bg-surface/60'}`}>
                   {p.featured && (
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[hsl(var(--accent))] text-white font-mono text-[9px] uppercase tracking-[0.3em] px-4 py-1.5 rounded-full">
                       Recomendado
@@ -406,6 +394,9 @@ const Index = () => {
                     </div>
                     
                     <div className="md:col-span-5">
+                      <div className="mb-4 inline-block bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-sm">
+                        {p.summary}
+                      </div>
                       <p className="text-lg leading-relaxed text-[#666666] max-w-md">{p.desc}</p>
                       <ul className="mt-8 space-y-4">
                         {p.includes.map((it) => (
@@ -422,7 +413,7 @@ const Index = () => {
                         href={waLink(`Hola, me interesa el plan ${p.name}.`)}
                         className="btn-primary-trama group"
                       >
-                        <span>Iniciar proyecto</span>
+                        <span>Solicitar diagnóstico</span>
                         <div className="btn-icon-wrapper">
                           <ArrowUpRight className="w-4 h-4" />
                         </div>
@@ -430,14 +421,12 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-              </Reveal>
             ))}
           </div>
 
           {/* Extras — mismas filas que los planes */}
           {EXTRAS.map((m) => (
-            <Reveal key={m.name}>
-              <div className="border-b border-border py-10 transition-colors duration-300 hover:bg-surface/20">
+              <div key={m.name} className="border-b border-border py-10 transition-colors duration-300 hover:bg-surface/20">
                 <div className="grid gap-6 md:grid-cols-12 md:items-center">
                   <div className="md:col-span-3 lg:col-span-3">
                     <div className="font-mono text-xs font-bold uppercase tracking-wider text-muted">{m.name}</div>
@@ -452,7 +441,6 @@ const Index = () => {
                   </div>
                 </div>
               </div>
-            </Reveal>
           ))}
 
           {/* Footnote pago */}
@@ -475,12 +463,10 @@ const Index = () => {
 
           <div className="mt-20 grid gap-x-20 gap-y-20 md:grid-cols-2">
             {FAQS.map((item, i) => (
-              <Reveal key={item.q} delay={i * 50}>
-                <div>
+                <div key={item.q}>
                   <h3 className="font-heading text-xl italic leading-tight">{item.q}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted">{item.a}</p>
                 </div>
-              </Reveal>
             ))}
           </div>
         </div>
@@ -490,7 +476,7 @@ const Index = () => {
       <section className="py-32 md:py-48" id="founder">
         <div className="container-trama">
           <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-12">
-            Fundador
+            Fundadora
           </div>
           <div className="grid gap-16 md:grid-cols-12 md:items-start">
             {/* Visual Block — Optimized for diverse viewports */}
@@ -526,24 +512,23 @@ const Index = () => {
 
             {/* Copy Block */}
             <div className="md:col-span-7 lg:col-start-6">
-              <Reveal><div className="eyebrow">CÓMO PIENSO</div></Reveal>
-              <Reveal delay={80}>
-                <h2 className="h-section mt-6">
-                  No vendo páginas.
-                  <br />
-                  <span className="italic text-[hsl(var(--accent))]">Vendo criterio.</span>
-                </h2>
-              </Reveal>
-              <div className="mt-10 flex flex-col gap-6">
-                {[
-                  "El diseño no es un adorno, es el lenguaje de tu negocio. Mi trabajo es que cuando un cliente entre a tu web, entienda el valor de lo que hacés antes de ver el precio. Eso no se logra con herramientas genéricas, se logra con criterio.",
-                  "El proceso siempre empieza por la estrategia. Qué tiene que entender el visitante, en qué orden, y con qué palabras. Si el mensaje es flojo, no hay diseño que lo salve.",
-                  "El resultado es un sitio que proyecta seguridad. Construido con código limpio que cualquier profesional puede mantener, para que seas dueño total de tu presencia digital, hoy y dentro de cinco años.",
-                ].map((t, i) => (
-                  <Reveal key={i} delay={140 + (i * 60)}>
-                    <p className="text-base leading-relaxed text-muted max-w-xl">{t}</p>
-                  </Reveal>
-                ))}
+              <div className="trama-card p-2">
+                <div className="trama-card-inner p-8 md:p-12">
+                  <div className="eyebrow mb-6">CÓMO PIENSO</div>
+                  <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-10">
+                    No vendo páginas. <br />
+                    <span className="italic text-[hsl(var(--accent))]">Vendo criterio.</span>
+                  </h2>
+                  <div className="flex flex-col gap-8">
+                    {[
+                      "Trabajo con pocos proyectos a la vez. Mi foco no está en producir sitios rápido, sino en construir presencia digital alineada con el nivel real del negocio.",
+                      "Cada decisión —copy, estructura, diseño y código— responde a una estrategia concreta: qué tiene que entender el visitante y en qué orden.",
+                      "El resultado es un sitio que proyecta autoridad. Construido con código propio, sin plataformas cerradas, sin cuotas mensuales y sin dependencia técnica.",
+                    ].map((t, i) => (
+                      <p key={i} className="text-lg leading-relaxed text-muted max-w-xl animate-in fade-in duration-500">{t}</p>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -558,23 +543,19 @@ const Index = () => {
               Contame qué tenés y qué buscás. El resto lo resolvemos juntos.
             </h2>
           </Reveal>
-          <Reveal delay={120}>
             <p className="mx-auto mt-6 max-w-lg text-lg text-muted leading-relaxed">
               Sin compromiso. Me explicás tu situación en dos líneas y te digo
               concretamente qué se puede hacer.
             </p>
-          </Reveal>
-          <Reveal delay={220}>
             <a
-              href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
+              href={waLink("Hola, vi Trama Studio y quiero solicitar un diagnóstico para mi proyecto.")}
               className="btn-primary-trama large group mt-10"
             >
-              <span>Iniciar conversación</span>
+              <span>Diagnosticar mi caso</span>
               <div className="btn-icon-wrapper">
                 <ArrowUpRight className="w-4 h-4" />
               </div>
             </a>
-          </Reveal>
         </div>
       </section>
 

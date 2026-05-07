@@ -11,7 +11,7 @@ export const Footer = () => {
               Trama Studio
             </h2>
             <p className="mt-4 text-muted max-w-sm">
-              Diseño, copy y código 
+              Hacemos que internet refleje el nivel real de tu negocio. 
             </p>
           </div>
           

@@ -19,6 +19,7 @@ export type Project = {
   };
   solution: string[];
   pullQuote?: { text: string; author?: string };
+  highlights: { title: string; text: string; sub: string }[];
 };
 
 export const projects: Project[] = [
@@ -31,31 +32,43 @@ export const projects: Project[] = [
     format: "Landing de Ventas",
     conversion: "Directo a WhatsApp",
     liveUrl: "https://universobosco.com.ar/",
-    category: "Branding de Culto",
-    result: "80% de stock vendido en 2 semanas.",
+    category: "Identidad Estratégica",
+    result: "Liquidación de stock en 18 días.",
     tagline:
-      "Alfajores de edición limitada. Aplicamos estética oscura para posicionar el producto como objeto de colección.",
+      "De infraestructura estándar a plataforma de autoridad. Optimización del flujo de conversión para edición limitada de 75 unidades.",
     challenge: [
-      "Bosco tenía web. El problema era que era una tienda Tiendanube estándar — idéntica a cientos de otras. Un producto artesanal de edición limitada, con identidad real, presentado en un template genérico con badge de descuento y carrito de compras.",
-      "El dueño lo dijo directo: el sitio no representaba a Bosco.",
+      "Bosco contaba con tracción comercial, pero su infraestructura digital no reflejaba el valor técnico del producto. La dependencia de plataformas estándar generaba una percepción de consumo masivo que entraba en conflicto con el carácter limitado de la marca.",
+      "El diagnóstico estratégico indicó que el sitio debía ser una extensión de la marca. La interfaz se diseñó como una pieza de precisión, no como un catálogo transaccional.",
     ],
     criterion: {
-      intro: "La gastronomía artesanal en Argentina vive en fondos blancos y tipografías redondeadas. Rompimos eso a propósito.",
+      intro: "Implementamos una dirección visual que posiciona al producto como una pieza de valor, rompiendo con los esquemas visuales genéricos del sector.",
       points: [
-        { label: "Fondo casi negro", text: "para que el producto sea lo único que el ojo procesa." },
-        { label: "Lookbook fotográfico", text: "en lugar de grilla de productos: proceso, alfajor, tarjeta numerada. Tres imágenes que cuentan la historia sin texto." },
-        { label: "Tipografía de impacto", text: "para anclar la sensación de objeto de colección, no de alimento perecedero." },
+        { label: "Contraste Absoluto", text: "El uso de negro puro optimiza la percepción cromática del producto y refuerza su posicionamiento nocturno." },
+        { label: "Gestión Directa", text: "Priorizamos el contacto directo vía WhatsApp para eliminar la fricción técnica y cerrar la venta de forma eficiente." },
+        { label: "Rigor Fotográfico", text: "La decisión de compra se apoya en la calidad del registro visual, tratando cada imagen como un documento de valor." },
       ],
     },
     solution: [
-      "Sin carrito. Sin formulario. Sin fricción.",
-      "Construimos un flujo de una sola dirección: el usuario entiende el producto, ve el precio, hace clic y abre WhatsApp con el pedido ya redactado. Lautaro recibe el mensaje y cierra la venta en minutos.",
-      "75 unidades. Edición cerrada. El sitio sigue online como archivo de la Edición 01.",
+      "Eliminación de sistemas de gestión intermedios.",
+      "Construimos un flujo de una sola dirección: el usuario comprende el valor, verifica el precio y ejecuta la acción de compra mediante un canal directo.",
+      "75 unidades. Edición cerrada. El sitio se mantiene como registro de archivo de la Edición 01.",
     ],
     pullQuote: {
-      text: "Era lo que quería. Quedó muy sólida. A dos semanas del lanzamiento, 60 de 75 cajas vendidas.",
+      text: "Buscábamos una comprensión del negocio más allá de la interfaz. El resultado es una estructura sólida y funcional.",
       author: "Lautaro — Bosco Argentina",
     },
+    highlights: [
+      {
+        title: "Conversión Directa",
+        text: "Eliminamos el carrito para que nada interfiera en el proceso de decisión. Un clic y gestión cerrada.",
+        sub: "EFICIENCIA"
+      },
+      {
+        title: "Arquitectura Visual",
+        text: "Tratamiento del producto como pieza de colección. El scroll controlado asegura la percepción del detalle técnico.",
+        sub: "60FPS"
+      }
+    ]
   },
   {
     slug: "estudio-norte",
@@ -69,23 +82,35 @@ export const projects: Project[] = [
     isConcept: true,
     category: "Identidad Corporativa",
     tagline:
-      "Un arquitecto técnico que se presentaba como uno más. El sitio ahora filtra al cliente por criterio antes de que pregunte el precio.",
+      "Arquitectura de autoridad para un gabinete técnico. El sistema prioriza el filtrado estratégico antes del contacto comercial.",
     challenge: [
-      "Francisco tiene un estudio de arquitectura de alto nivel, pero su presencia digital no lo decía. Su sitio anterior era el clásico portfolio de \"renders lindos\" que atraía a mucha gente preguntando cuánto cobraba el metro cuadrado de obra barata.",
-      "El objetivo no era solo diseñar, era filtrar. Necesitaba una web que proyecte tanta solidez y autoridad que el cliente que busca \"lo más barato\" ni se anime a escribir.",
+      "El estudio requería diferenciar su rigor técnico de la oferta genérica del mercado.",
+      "El objetivo estratégico fue construir una barrera de entrada basada en la autoridad profesional. Una interfaz con un nivel de precisión tal que funcione como filtro natural para clientes no alineados.",
     ],
     criterion: {
-      intro: "Para un estudio técnico, la confianza se construye con orden y escala.",
+      intro: "En arquitectura, la confianza se fundamenta en la precisión técnica de la comunicación visual.",
       points: [
-        { label: "Grilla rígida", text: "estructura de 1px que evoca planos técnicos y rigor arquitectónico." },
-        { label: "Espacio negativo", text: "dejar que la obra respire. Si el proyecto es grande, el diseño no necesita gritar." },
-        { label: "Tipografía de autor", text: "uso de Playfair para títulos, elevando la percepción de un estudio \"de firma\"." },
+        { label: "Estética de Documento", text: "Uso de fondo hueso y grilla de 1px. La web se comporta como un plano técnico, proyectando rigor y sobriedad." },
+        { label: "Dato Estructurado", text: "Tipografía monospaciada para información técnica: escalas, fechas y mediciones comunicadas con precisión." },
+        { label: "Neutralidad Visual", text: "Diseño invisible que prioriza la obra. La arquitectura de la información no interfiere con la percepción de calidad." },
       ],
     },
     solution: [
-      "Pasamos de un \"catálogo de fotos\" a una declaración de intenciones. El sitio ahora posiciona a Francisco como un arquitecto que lidera proyectos, no como alguien que solo dibuja planos.",
-      "El resultado es eficiencia: las consultas que llegan ahora tienen un ticket promedio mucho más alto. El diseño hizo el trabajo sucio de filtrado.",
+      "Transición de catálogo visual a declaración de principios técnicos.",
+      "El diseño posiciona la figura del director de obra sobre la ejecución técnica secundaria, automatizando el proceso de filtrado de prospectos.",
     ],
+    highlights: [
+      {
+        title: "Filtro de Autoridad",
+        text: "Interfaz diseñada para proyectar un rigor técnico que atrae perfiles orientados a la excelencia.",
+        sub: "ESTRATEGIA"
+      },
+      {
+        title: "Rigor Matemático",
+        text: "Alineación a una grilla estricta donde cada píxel comunica la precisión de la ejecución arquitectónica.",
+        sub: "PRECISIÓN"
+      }
+    ]
   },
   {
     slug: "clinica-nova",
@@ -99,23 +124,35 @@ export const projects: Project[] = [
     isConcept: true,
     category: "Posicionamiento Premium",
     tagline:
-      "Una clínica que cobra USD 250 por sesión pero tenía una web de USD 20. El sitio ahora justifica el valor real del servicio.",
+      "Arquitectura de valor para medicina estética. Justificación del posicionamiento mediante el rigor visual y la higiene de interfaz.",
     challenge: [
-      "Sebastián lidera una clínica de medicina estética donde los tratamientos no son baratos. El problema era que su web anterior parecía un catálogo de masajes de barrio. No había coherencia entre lo que la paciente pagaba en el consultorio y lo que veía en la pantalla.",
-      "El desafío era eliminar la fricción por precio mediante un diseño que se sienta como una boutique médica de lujo.",
+      "La infraestructura digital no reflejaba la sofisticación técnica de la práctica clínica. Existía una desconexión entre la experiencia física y la percepción online.",
+      "El desafío consistió en alinear la expectativa del paciente con el nivel de la clínica, eliminando la objeción por precio mediante un entorno visual de alta autoridad.",
     ],
     criterion: {
-      intro: "Para salud premium, la clave es el minimalismo quirúrgico: limpieza absoluta.",
+      intro: "En medicina estética, la confianza técnica se proyecta a través de la claridad absoluta del entorno digital.",
       points: [
-        { label: "Aire y blanco", text: "espacios amplios que transmiten higiene, orden y calma." },
-        { label: "Fotografía de experiencia", text: "no mostrar \"clínica\", mostrar \"bienestar\". El paciente se enamora del lugar antes de ir." },
-        { label: "Tipografía serena", text: "uso de serifas finas para los títulos, proyectando elegancia y cuidado personal." },
+        { label: "Higiene de Interfaz", text: "Espacios negativos y blancos puros que transmiten orden quirúrgico y seguridad profesional." },
+        { label: "Proyección de Resultados", text: "Priorizamos la visualización del resultado final para reducir la barrera de entrada y generar confianza previa." },
+        { label: "Tipografía de Precisión", text: "Uso de serifas finas para comunicar cuidado y detalle, reflejando el rigor del consultorio." },
       ],
     },
     solution: [
-      "El nuevo diseño hace que Clínica Nova se perciba al instante como la opción líder. El precio dejó de ser una objeción porque la web ya hizo la preventa de calidad.",
-      "Aumentamos el deseo de compra sin usar una sola palabra de marketing barato. Es diseño que justifica el valor.",
+      "Posicionamiento de la clínica como líder técnico del sector.",
+      "Arquitectura visual diseñada para que el valor percibido justifique la inversión, realizando una preventa basada en la excelencia.",
     ],
+    highlights: [
+      {
+        title: "Higiene Visual",
+        text: "Minimalismo diseñado para proyectar seguridad médica y orden antes de la consulta presencial.",
+        sub: "CONFIANZA"
+      },
+      {
+        title: "Valor Proyectado",
+        text: "Estructura pensada para justificar el posicionamiento premium mediante una estética de alta gama.",
+        sub: "AUTORIDAD"
+      }
+    ]
   },
   {
     slug: "camila-correa",
@@ -129,23 +166,35 @@ export const projects: Project[] = [
     isConcept: true,
     category: "Diseño Editorial",
     tagline:
-      "Psicología clínica de alta complejidad. El sitio genera la confianza necesaria antes de que el paciente envíe el primer mensaje.",
+      "Psicología clínica de alta complejidad. Arquitectura diseñada para establecer autoridad profesional antes del primer contacto.",
     challenge: [
-      "En el rubro de la salud mental, una web genérica destruye el perfil profesional. El desafío para Camila era crear un rincón en internet que se sienta íntimo y profundamente profesional, alejándola por completo de las típicas webs de psicología que parecen manuales de autoayuda.",
-      "Buscábamos generar transferencia antes del primer contacto. Que el paciente sienta que ya conoce a la analista a través de su estética.",
+      "El desafío era crear un entorno digital que respete la profundidad del encuadre analítico, evitando códigos visuales genéricos.",
+      "Buscábamos facilitar la transferencia profesional permitiendo que el paciente perciba el rigor de la práctica mediante una estética editorial sobria.",
     ],
     criterion: {
-      intro: "Diseñamos una experiencia inspirada en libros de arte y revistas editoriales: calidez y rigor.",
+      intro: "Diseñamos una experiencia inspirada en el rigor editorial: calidez humana y precisión técnica.",
       points: [
-        { label: "Estilo literario", text: "tipografías con serifa que invitan a una lectura pausada, transmitiendo paz y escucha." },
-        { label: "Paleta orgánica", text: "tonos crema y papel que se alejan del blanco clínico frío, buscando una conexión más humana." },
-        { label: "Filtro de autoridad", text: "la página es tan refinada que naturalmente atrae a pacientes que valoran un espacio de trabajo serio." },
+        { label: "Legibilidad Profesional", text: "Tipografías con serifa que facilitan la lectura pausada y proyectan un entorno de escucha." },
+        { label: "Paleta Orgánica", text: "Tonos crema y texturas que se alejan de la frialdad clínica, buscando una conexión profesional humana." },
+        { label: "Filtro de Perfil", text: "El refinamiento visual atrae naturalmente a perfiles que valoran un espacio de trabajo serio y estructurado." },
       ],
     },
     solution: [
-      "Más que una página, construimos un espacio magnético. La web no busca convencer a cualquiera, busca conectar con el paciente correcto.",
-      "Cualquier persona que entra siente instantáneamente que está frente a una profesional excepcional. Es un diseño que impone respeto y llena su agenda de pacientes comprometidos.",
+      "Proyección de un entorno de autoridad técnica. El diseño busca filtrar y conectar con el perfil de paciente específico mediante el rigor visual.",
+      "El diseño está estructurado para establecer respeto profesional y facilitar la elección de la analista de forma fundamentada.",
     ],
+    highlights: [
+      {
+        title: "Rigor Editorial",
+        text: "Inspirado en publicaciones técnicas para establecer una conexión profesional sólida desde el primer contacto.",
+        sub: "AUTORIDAD"
+      },
+      {
+        title: "Entorno de Escucha",
+        text: "Arquitectura diseñada para facilitar la introspección y la elección analítica fundamentada.",
+        sub: "TRANSFERENCIA"
+      }
+    ]
   },
 ];
 
