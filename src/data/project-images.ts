@@ -10,4 +10,5 @@ export const projectImages: Record<string, string> = {
   "estudio-norte": norteImg,
   "clinica-nova": novaImg,
   "camila-correa": camilaImg,
+  "joyeria-cuore": "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=2000&auto=format&fit=crop",
 };

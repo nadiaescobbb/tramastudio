@@ -16,6 +16,7 @@ gsap.registerPlugin(ScrollTrigger);
 const HERO_SLIDES = [
   { slug: "bosco", label: "Bosco Argentina" },
   { slug: "estudio-norte", label: "Estudio Norte" },
+  { slug: "joyeria-cuore", label: "Joyería Cuore" },
   { slug: "clinica-nova", label: "Clínica Nova" },
   { slug: "camila-correa", label: "Camila Correa" },
 ];
@@ -221,7 +222,7 @@ const Index = () => {
           <h2 className="h-section max-w-[16ch]">Casos de estudio.</h2>
           
           <div className="mt-20 grid gap-10 md:grid-cols-2">
-            {projects.slice(0, 4).map((project, i) => (
+            {projects.slice(0, 6).map((project, i) => (
               <Link key={project.slug} to={`/proyectos/${project.slug}`} className="trama-card p-2 group block overflow-hidden">
                 <div className="trama-card-inner p-0">
                   <div className="relative aspect-[16/10] overflow-hidden">

@@ -196,6 +196,47 @@ export const projects: Project[] = [
       }
     ]
   },
+  {
+    slug: "joyeria-cuore",
+    number: "05",
+    name: "CUORE",
+    accent: "Joyería.",
+    industry: "Joyas y Relojería de Alta Gama",
+    format: "Catálogo de Autoridad y Taller",
+    conversion: "Consulta de Pieza Personalizada",
+    liveUrl: "#",
+    category: "Identidad Estratégica",
+    tagline:
+      "40 años de trayectoria en Tierra del Fuego. La unión entre la fabricación artesanal y la tecnología láser de precisión.",
+    challenge: [
+      "Traducir 40 años de prestigio físico a una interfaz digital que no pierda la esencia del taller familiar.",
+      "El objetivo es atraer a una clientela más joven sin alienar a los clientes frecuentes, resaltando la capacidad de fabricación propia y el equipamiento tecnológico de última generación.",
+    ],
+    criterion: {
+      intro: "El diseño se apoya en el rigor técnico del taller y la exclusividad del stock permanente.",
+      points: [
+        { label: "Legado y Técnica", text: "Uso de tipografía Lora para evocar la tradición de 40 años y Liberation Sans para los detalles técnicos del taller." },
+        { label: "Catálogo sin Precio", text: "Fomentamos la exclusividad y la conversación directa mediante WhatsApp, eliminando la frialdad del e-commerce tradicional." },
+        { label: "Foco en la Fabricación", text: "Resaltamos el equipamiento láser y el trabajo manual como el verdadero diferencial competitivo." },
+      ],
+    },
+    solution: [
+      "Estructura editorial que prioriza la historia y la capacidad técnica del taller propio.",
+      "Sistema de consulta directa para piezas de alta gama, manteniendo la exclusividad del trato personalizado.",
+    ],
+    highlights: [
+      {
+        title: "Tradición Taller",
+        text: "Fabricación propia de alianzas y reparaciones con tecnología de punta.",
+        sub: "ARTESANÍA"
+      },
+      {
+        title: "Autoridad Regional",
+        text: "La joyería más grande y surtida de la provincia, ahora con presencia digital coherente.",
+        sub: "LEGADO"
+      }
+    ]
+  },
 ];
 
 export const WHATSAPP_BASE = "https://wa.me/5493625142700";
