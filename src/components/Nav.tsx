@@ -10,16 +10,7 @@ export const Nav = () => {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 
-  useEffect(() => {
-    let last = 0;
-    const onScroll = () => {
-      const c = Math.max(0, window.scrollY);
-      setHidden(c > last && c > 120);
-      last = c;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+
 
   return (
     <>

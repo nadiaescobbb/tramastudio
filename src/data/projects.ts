@@ -66,7 +66,7 @@ export const projects: Project[] = [
       {
         title: "Arquitectura Visual",
         text: "Tratamiento del producto como pieza de colección. El scroll controlado asegura la percepción del detalle técnico.",
-        sub: "60FPS"
+        sub: "FLUIDEZ"
       }
     ]
   },
@@ -80,9 +80,9 @@ export const projects: Project[] = [
     conversion: "Filtrado de Leads por Criterio",
     liveUrl: "https://estudio-norte.vercel.app/",
     isConcept: true,
-    category: "Identidad Corporativa",
+    category: "Caso conceptual",
     tagline:
-      "Arquitectura de autoridad para un gabinete técnico. El sistema prioriza el filtrado estratégico antes del contacto comercial.",
+      "Arquitectura de autoridad para un gabinete técnico. Un estudio sobre cómo construir una barrera de entrada basada en el rigor profesional.",
     challenge: [
       "El estudio requería diferenciar su rigor técnico de la oferta genérica del mercado.",
       "El objetivo estratégico fue construir una barrera de entrada basada en la autoridad profesional. Una interfaz con un nivel de precisión tal que funcione como filtro natural para clientes no alineados.",
@@ -122,11 +122,11 @@ export const projects: Project[] = [
     conversion: "Justificación de Ticket Premium",
     liveUrl: "https://clinicanova.vercel.app/",
     isConcept: true,
-    category: "Posicionamiento Premium",
+    category: "Caso conceptual",
     tagline:
       "Arquitectura de valor para medicina estética. Justificación del posicionamiento mediante el rigor visual y la higiene de interfaz.",
     challenge: [
-      "La infraestructura digital no reflejaba la sofisticación técnica de la práctica clínica. Existía una desconexión entre la experiencia física y la percepción online.",
+      "La infraestructura digital no reflejaba la precisión técnica de la práctica clínica. Existía una desconexión entre la experiencia física y la percepción online.",
       "El desafío consistió en alinear la expectativa del paciente con el nivel de la clínica, eliminando la objeción por precio mediante un entorno visual de alta autoridad.",
     ],
     criterion: {
@@ -164,7 +164,7 @@ export const projects: Project[] = [
     conversion: "Generación de Confianza Previa",
     liveUrl: "https://camilacorreapsico.vercel.app/",
     isConcept: true,
-    category: "Diseño Editorial",
+    category: "Caso conceptual",
     tagline:
       "Psicología clínica de alta complejidad. Arquitectura diseñada para establecer autoridad profesional antes del primer contacto.",
     challenge: [

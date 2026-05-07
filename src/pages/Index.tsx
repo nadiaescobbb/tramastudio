@@ -98,34 +98,9 @@ const Index = () => {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
-      // Scrubbing Text Reveal for Problem Section — Desktop Only
-      if (problemText.current) {
-        const words = problemText.current.querySelectorAll(".reveal-word");
-        gsap.fromTo(words, 
-          { opacity: 0.3 },
-          { 
-            opacity: 1, 
-            stagger: 0.1,
-            scrollTrigger: {
-              trigger: problemText.current,
-              start: "top 80%",
-              end: "top 20%",
-              scrub: true,
-            }
-          }
-        );
-      }
 
-      // Pinning for Metodo Section — Desktop Only
-      const st = ScrollTrigger.create({
-        trigger: "#metodo",
-        start: "top 10%",
-        end: "bottom 90%",
-        pin: "#metodo-title",
-        pinSpacing: false,
-        invalidateOnRefresh: true,
-      });
-      return () => st.kill();
+
+
     });
 
     return () => mm.revert();
@@ -136,7 +111,7 @@ const Index = () => {
       <Nav />
 
       {/* ── HERO — split screen ───────────────────────────────────── */}
-      <section className="relative min-h-[100dvh] flex flex-col justify-center pt-32 pb-16 md:pt-40 md:pb-20 overflow-hidden">
+      <section className="relative min-h-[100dvh] flex flex-col justify-center py-32 md:py-48 overflow-hidden">
         {/* Ambient Light Spot */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,hsla(40,20%,90%,0.3)_0%,transparent_70%)] pointer-events-none" />
         
@@ -153,7 +128,7 @@ const Index = () => {
                 <span className="italic text-[hsl(var(--accent))]">del negocio real.</span>
               </h1>
               <p className="mt-6 max-w-md text-sm md:text-base text-muted leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "350ms" }}>
-                Trama Studio es un estudio de diseño y desarrollo web. Trabajamos con negocios cuya presencia digital todavía no refleja el nivel real de lo que hacen.
+                Una web no debería ser una pieza gráfica: debería ser una decisión de posicionamiento. Trabajamos con negocios cuya presencia digital todavía no refleja el nivel real de lo que hacen.
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-6 animate-slide-up opacity-0" style={{ animationDelay: "550ms" }}>
@@ -164,8 +139,7 @@ const Index = () => {
                   </div>
                 </a>
                 <div className="hidden sm:flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted">Cupos limitados / Mayo 2026</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 border-l border-border pl-4">Disponibilidad: Mayo 2026</span>
                 </div>
               </div>
             </div>
@@ -194,10 +168,8 @@ const Index = () => {
           <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
             El Panorama
           </div>
-          <h2 ref={problemText} className="font-heading text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight max-w-[20ch]" style={{ textWrap: "balance" }}>
-            {"Hay negocios muy buenos que online parecen menos de lo que son. Su reputación se construyó por recomendación, pero alguien que entra a su web por primera vez no lo vería.".split(" ").map((word, i) => (
-              <span key={i} className="reveal-word inline-block mr-[0.25em]">{word}</span>
-            ))}
+          <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl leading-[1.1] tracking-tight max-w-[20ch]" style={{ textWrap: "balance" }}>
+            Hay negocios muy buenos que online parecen menos de lo que son. Su reputación se construyó por recomendación, pero alguien que entra a su web por primera vez no lo vería.
           </h2>
 
           <div className="mt-16 grid gap-6 md:grid-cols-12">
@@ -266,7 +238,7 @@ const Index = () => {
                       <span>{project.number} — {project.category}</span>
                       {project.isConcept && (
                         <span className="font-sans text-[9px] lowercase tracking-normal bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] px-2 py-0.5 rounded-full">
-                          (Concepto de autor)
+                          (Caso conceptual)
                         </span>
                       )}
                     </div>
@@ -326,10 +298,10 @@ const Index = () => {
                 </div>
                 <h2 className="font-heading text-5xl md:text-7xl leading-tight tracking-tight" style={{ textWrap: "balance" }}>
                   Método <br />
-                  <span className="italic text-[hsl(var(--accent))]">Trama™</span>
+                  <span className="italic text-[hsl(var(--accent))]">Trama</span>
                 </h2>
                 <p className="mt-10 max-w-sm text-lg text-muted leading-relaxed">
-                  Estrategia: qué entender y en qué orden. Después el copy. El diseño viene al final, como consecuencia de lo que ya está claro.
+                  Todo empieza por entender qué tiene que quedar claro antes de diseñar una sola pantalla. El diseño es una consecuencia, no el origen.
                 </p>
               </div>
             </div>
@@ -366,7 +338,7 @@ const Index = () => {
       <section className="py-32 md:py-48" id="servicios">
         <div className="container-trama">
           <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
-            Capacidades
+            Servicios
           </div>
           <Reveal delay={80}>
             <h2 className="h-section mt-4 max-w-[14ch]">
@@ -381,7 +353,7 @@ const Index = () => {
 
           <div className="mt-16 space-y-px bg-border border-y border-border">
             {PLANS.map((p, i) => (
-                <div key={p.name} className={`group relative py-16 transition-all duration-500 ${p.featured ? 'bg-surface shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] z-10 scale-[1.02] border-x border-border/40' : 'bg-surface/40 hover:bg-surface/60'}`}>
+                <div key={p.name} className={`group relative py-16 transition-all duration-500 ${p.featured ? 'bg-surface shadow-[0_0_50px_-12px_rgba(0,0,0,0.15)] z-10 scale-[1.02] border-x border-border' : 'bg-surface/40 hover:bg-surface/60'}`}>
                   {p.featured && (
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[hsl(var(--accent))] text-white font-mono text-[9px] uppercase tracking-[0.3em] px-4 py-1.5 rounded-full">
                       Recomendado
@@ -516,8 +488,8 @@ const Index = () => {
                 <div className="trama-card-inner p-8 md:p-12">
                   <div className="eyebrow mb-6">CÓMO PIENSO</div>
                   <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-10">
-                    No vendo páginas. <br />
-                    <span className="italic text-[hsl(var(--accent))]">Vendo criterio.</span>
+                    Trato cada sitio como una decisión de posicionamiento, <br />
+                    <span className="italic text-[hsl(var(--accent))]">no como una pieza gráfica.</span>
                   </h2>
                   <div className="flex flex-col gap-8">
                     {[

@@ -62,7 +62,7 @@ const Dossier = () => {
                         rel="noopener noreferrer"
                         className="group inline-flex items-center gap-3 px-4 py-2 bg-[hsl(var(--accent))] text-white text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:bg-foreground transition-colors mt-2"
                       >
-                        {project.isConcept ? "Concepto" : "Visitar Sitio"}
+                        {project.isConcept ? "Caso conceptual" : "Visitar Sitio"}
                         <ArrowUpRight className="w-3 h-3" />
                       </a>
                     ) : (
