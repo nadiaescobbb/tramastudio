@@ -151,7 +151,7 @@ html {
   .reveal {
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 1s var(--ease-trama), transform 1s var(--ease-trama);
+    transition: opacity 700ms var(--ease-trama), transform 700ms var(--ease-trama);
     transition-delay: var(--delay, 0ms);
   }
   .reveal.is-visible {
@@ -176,7 +176,7 @@ html {
 
   /* Button Architecture */
   .btn-primary-trama {
-    @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-[13px] font-semibold text-white transition-all duration-700 active:scale-[0.97] rounded-full;
+    @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-[13px] font-semibold text-white transition-all duration-300 active:scale-[0.97] rounded-full;
   }
   .btn-icon-wrapper {
     @apply flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:bg-white/20 group-hover:translate-x-1;

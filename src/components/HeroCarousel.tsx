@@ -10,8 +10,12 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => {
 
   return (
     <div
-      className="relative mt-8 md:mt-0 aspect-[4/5] md:aspect-[3/4] overflow-hidden rounded-sm animate-slide-up opacity-0 group"
-      style={{ animationDelay: "250ms", maxHeight: "calc(100dvh - 10rem)" }}
+      className="relative mt-8 md:mt-0 aspect-[4/5] md:aspect-[3/4] overflow-hidden animate-slide-up opacity-0 group"
+      style={{ 
+        animationDelay: "250ms", 
+        maxHeight: "calc(100dvh - 10rem)",
+        borderRadius: "var(--radius-outer)"
+      }}
     >
       {slides.map((slide, i) => (
         <img
@@ -21,7 +25,7 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => {
           loading={i === 0 ? "eager" : "lazy"}
           // @ts-ignore - fetchpriority is valid in modern browsers
           fetchpriority={i === 0 ? "high" : "low"}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1400ms]"
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[800ms]"
           style={{ 
             opacity: i === active ? 1 : 0
           }}
@@ -58,11 +62,25 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => {
         </div>
       </div>
 
-      {/* Bottom: progress + label */}
-      <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
-
+      {/* Bottom: label + indicators */}
+      <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 flex flex-col gap-4">
         <div className="font-heading text-lg md:text-2xl leading-tight text-white drop-shadow-md">
           {slides[active].label}
+        </div>
+        
+        {/* Pagination Dots */}
+        <div className="flex gap-1.5">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className="h-1 rounded-full transition-all duration-500"
+              style={{ 
+                width: i === active ? "32px" : "8px",
+                backgroundColor: i === active ? "white" : "rgba(255,255,255,0.3)"
+              }}
+            />
+          ))}
         </div>
       </div>
 
