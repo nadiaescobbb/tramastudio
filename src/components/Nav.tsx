@@ -28,38 +28,39 @@ export const Nav = () => {
       >
         <div className="flex items-center justify-between w-full">
           <Link
-            to="/"
-            className="flex items-center gap-3 group transition-transform duration-500 hover:scale-[1.02]"
+            to="/#trabajos"
+            className="flex items-center gap-3 group transition-transform duration-500"
             onClick={() => setIsOpen(false)}
           >
             {isHome ? (
               <>
                 <Logo size={24} className="text-[hsl(var(--accent))]" />
-                <span className="nav-link-premium">Trama Studio</span>
+                <span className="nav-link">Trama Studio</span>
               </>
             ) : (
-              <span className="nav-link-premium">← Volver</span>
+              <span className="nav-link">← Volver</span>
             )}
           </Link>
 
           {/* Desktop Links */}
           {isHome && (
             <div className="hidden md:flex items-center gap-8">
-              <a href="#trabajos" className="nav-link-premium">Trabajos</a>
-              <a href="#metodo" className="nav-link-premium">Método</a>
-              <a href="#servicios" className="nav-link-premium">Servicios</a>
-              <a href="#faq" className="nav-link-premium">FAQ</a>
+              <a href="#trabajos" className="nav-link">Trabajos</a>
+              <a href="#metodo" className="nav-link">Método</a>
+              <a href="#servicios" className="nav-link">Servicios</a>
+              <a href="#faq" className="nav-link">FAQ</a>
             </div>
           )}
 
           <div className="flex items-center gap-4">
             <a
               href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
-              className="btn-primary-trama group hidden md:inline-flex"
+              className="btn-primary-trama group flex items-center px-4 py-2 md:px-6 md:py-3 text-[10px] md:text-xs relative overflow-hidden"
             >
-              <span>Hablemos</span>
-              <div className="btn-icon-wrapper">
-                <ArrowUpRight className="w-4 h-4" />
+              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <span className="relative z-10">Hablemos</span>
+              <div className="btn-icon-wrapper relative z-10 ml-2">
+                <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4" />
               </div>
             </a>
 
