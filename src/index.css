@@ -354,89 +354,142 @@ html {
     min-height: 560px;
   }
 
+  .hero-marquee-stage {
+    overflow: hidden;
+    border-radius: 28px;
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+  }
+
+  .hero-marquee-stage::before {
+    content: "";
+    position: absolute;
+    inset: 9% 7%;
+    border-radius: 32px;
+    background: rgba(255,255,255,0.32);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04), 0 28px 90px rgba(0,0,0,0.12);
+    backdrop-filter: blur(14px);
+  }
+
+  .hero-marquee-tilt {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(190px, 240px));
+    gap: 18px;
+    top: -130px;
+    right: 4%;
+    bottom: -130px;
+    transform: rotate(-8deg);
+    transform-origin: center;
+  }
+
+  .hero-marquee-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    animation: hero-marquee-up 24s linear infinite;
+    will-change: transform;
+  }
+
+  .hero-marquee-column.is-reverse {
+    animation-name: hero-marquee-down;
+    animation-duration: 28s;
+    transform: translateY(-50%);
+  }
+
+  .hero-marquee-card {
+    position: relative;
+    height: 258px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 22px;
+    background: #111;
+    box-shadow: 0 22px 58px rgba(0,0,0,0.16);
+    transform: rotate(8deg);
+  }
+
+  .hero-marquee-card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    filter: saturate(0.92) contrast(1.02);
+  }
+
+  .hero-marquee-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.12) 44%, rgba(0,0,0,0.74) 100%);
+  }
+
+  .hero-marquee-card-copy {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 18px;
+    color: white;
+  }
+
+  .hero-marquee-card-copy span {
+    display: block;
+    margin-bottom: 7px;
+    color: rgba(255,255,255,0.68);
+    font-family: var(--font-body);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hero-marquee-card-copy strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-marquee-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    height: 112px;
+    pointer-events: none;
+  }
+
+  .hero-marquee-fade-top {
+    top: 0;
+    background: linear-gradient(to bottom, hsl(40 20% 96%), transparent);
+  }
+
+  .hero-marquee-fade-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, hsl(40 20% 96%), transparent);
+  }
+
+  @keyframes hero-marquee-up {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+
+  @keyframes hero-marquee-down {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-marquee-column,
+    .hero-marquee-column.is-reverse {
+      animation: none;
+      transform: translateY(-12%);
+    }
+  }
+
   .hero-preview {
     position: absolute;
     overflow: hidden;
     border: 1px solid rgba(0,0,0,0.06);
     box-shadow: 0 28px 80px rgba(0,0,0,0.14);
-  }
-
-  .hero-preview-light {
-    top: 0;
-    right: 9%;
-    display: grid;
-    width: min(100%, 392px);
-    grid-template-columns: 1fr 138px;
-    gap: 28px;
-    border-radius: 6px;
-    background: rgba(255,255,255,0.72);
-    padding: 30px 30px 38px;
-    backdrop-filter: blur(18px);
-  }
-
-  .hero-preview-light img {
-    height: 176px;
-    width: 138px;
-    border-radius: 2px;
-    object-fit: cover;
-  }
-
-  .hero-preview-title {
-    max-width: 220px;
-    font-family: var(--font-heading);
-    font-size: 32px;
-    line-height: 0.92;
-    letter-spacing: -0.045em;
-  }
-
-  .hero-applied-badge {
-    position: absolute;
-    bottom: -13px;
-    left: 116px;
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.88);
-    padding: 10px 14px;
-    color: #ff7a32;
-    font-size: 10px;
-    font-weight: 800;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  }
-
-  .hero-preview-dark {
-    right: 0;
-    bottom: 22px;
-    width: min(92%, 460px);
-    min-height: 224px;
-    border-radius: 20px;
-    background: #080808;
-    padding: 54px 90px 42px 54px;
-  }
-
-  .hero-preview-dark img {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    opacity: 0.9;
-  }
-
-  .hero-grid-mark {
-    position: absolute;
-    right: 22px;
-    top: 18px;
-    display: grid;
-    grid-template-columns: repeat(3, 10px);
-    gap: 4px;
-  }
-
-  .hero-grid-mark span {
-    height: 10px;
-    width: 10px;
-    border: 2px solid #9bd51f;
   }
 
   /* Navigation Layout */
@@ -520,13 +573,13 @@ html {
       min-height: 500px;
     }
 
-    .hero-preview-light {
-      right: 0;
+    .hero-marquee-tilt {
+      right: -4%;
+      grid-template-columns: repeat(2, minmax(170px, 220px));
     }
 
-    .hero-preview-dark {
-      right: 4%;
-      bottom: 0;
+    .hero-marquee-card {
+      height: 232px;
     }
   }
 
@@ -580,36 +633,46 @@ html {
 
     .hero-visual {
       overflow: hidden;
-      min-height: 430px;
+      min-height: 460px;
     }
 
-    .hero-preview-light {
-      left: 0;
-      right: auto;
-      width: min(100%, 340px);
-      grid-template-columns: 1fr 112px;
-      gap: 18px;
-      padding: 24px;
+    .hero-marquee-stage {
+      margin-inline: -20px;
+      border-radius: 0;
     }
 
-    .hero-preview-light img {
-      height: 144px;
-      width: 112px;
+    .hero-marquee-tilt {
+      top: -108px;
+      right: -54px;
+      bottom: -108px;
+      grid-template-columns: repeat(2, 168px);
+      gap: 14px;
+      transform: rotate(-7deg);
     }
 
-    .hero-preview-title {
-      font-size: 28px;
+    .hero-marquee-column {
+      gap: 14px;
+      animation-duration: 22s;
     }
 
-    .hero-applied-badge {
-      left: 72px;
+    .hero-marquee-column.is-reverse {
+      animation-duration: 25s;
     }
 
-    .hero-preview-dark {
-      right: 0;
-      width: min(100%, 360px);
-      min-height: 206px;
-      padding: 44px 70px 36px 34px;
+    .hero-marquee-card {
+      height: 214px;
+      border-radius: 18px;
+      transform: rotate(7deg);
+    }
+
+    .hero-marquee-card-copy {
+      left: 16px;
+      right: 16px;
+      bottom: 15px;
+    }
+
+    .hero-marquee-card-copy strong {
+      font-size: 24px;
     }
   }
 

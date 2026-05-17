@@ -4,7 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { projects, waLink } from "@/data/projects";
 import { projectImages } from "@/data/project-images";
-import { ArrowUpRight, Copy, Sparkle } from "lucide-react";
+import { ArrowUpRight, Copy } from "lucide-react";
 
 
 
@@ -58,6 +58,20 @@ const FAQS = [
   { q: "¿Trabajás con clientes fuera de Argentina?", a: "Sí. La facturación es en USD y la comunicación es por WhatsApp o llamada según prefieras. Toda la documentación queda en español o inglés." },
 ];
 
+const HERO_MARQUEE_ITEMS = [
+  { slug: "bosco", title: "Bosco", label: "Landing de ventas" },
+  { slug: "estudio-norte", title: "Estudio Norte", label: "Autoridad tecnica" },
+  { slug: "clinica-nova", title: "Clinica Nova", label: "Ticket premium" },
+  { slug: "camila-correa", title: "Camila Correa", label: "Confianza previa" },
+  { slug: "joyeria-cuore", title: "Cuore", label: "Catalogo de autoridad" },
+  { slug: "bosco-proj", title: "Edicion 01", label: "Conversion directa" },
+];
+
+const HERO_MARQUEE_COLUMNS = [
+  [HERO_MARQUEE_ITEMS[0], HERO_MARQUEE_ITEMS[1], HERO_MARQUEE_ITEMS[2]],
+  [HERO_MARQUEE_ITEMS[3], HERO_MARQUEE_ITEMS[4], HERO_MARQUEE_ITEMS[5]],
+];
+
 const Index = () => {
   return (
     <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
@@ -101,38 +115,28 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="hero-visual" aria-hidden="true">
-            <div className="hero-preview hero-preview-light">
-              <div>
-                <p className="hero-preview-title">Menos ruido, más dirección</p>
-                <div className="mt-5 h-2 w-48 rounded-full bg-black/10" />
-                <div className="mt-3 h-2 w-32 rounded-full bg-black/10" />
-                <div className="mt-5 h-9 w-24 rounded-sm bg-black/5" />
-              </div>
-              <img src={projectImages["camila-correa"]} alt="" />
-              <div className="hero-applied-badge">
-                <Sparkle className="h-4 w-4" />
-                Trama aplicada
-              </div>
-            </div>
+          <div className="hero-visual hero-marquee-stage" aria-hidden="true">
+            <div className="hero-marquee-fade hero-marquee-fade-top" />
+            <div className="hero-marquee-fade hero-marquee-fade-bottom" />
 
-            <div className="hero-preview hero-preview-dark">
-              <img src={projectImages["bosco-proj"]} alt="" />
-              <div className="absolute inset-0 bg-black/55" />
-              <div className="relative z-10 max-w-[330px]">
-                <p className="font-heading text-3xl leading-[0.98] tracking-tight text-white md:text-4xl">
-                  Webs que justifican valor, filtran clientes y venden confianza.
-                </p>
-                <div className="mt-7 flex gap-2">
-                  <span className="h-6 w-20 rounded-sm bg-[#cbff2e]" />
-                  <span className="h-6 w-24 rounded-sm border border-white/25" />
+            <div className="hero-marquee-tilt">
+              {HERO_MARQUEE_COLUMNS.map((column, columnIndex) => (
+                <div
+                  key={columnIndex}
+                  className={`hero-marquee-column ${columnIndex === 1 ? "is-reverse" : ""}`}
+                >
+                  {[...column, ...column].map((item, itemIndex) => (
+                    <article className="hero-marquee-card" key={`${item.slug}-${itemIndex}`}>
+                      <img src={projectImages[item.slug]} alt="" />
+                      <div className="hero-marquee-card-overlay" />
+                      <div className="hero-marquee-card-copy">
+                        <span>{item.label}</span>
+                        <strong>{item.title}</strong>
+                      </div>
+                    </article>
+                  ))}
                 </div>
-              </div>
-              <div className="hero-grid-mark">
-                {Array.from({ length: 9 }).map((_, i) => (
-                  <span key={i} />
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </div>
