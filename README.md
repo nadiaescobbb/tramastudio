@@ -1,45 +1,76 @@
-# Trama Studio — Technical Sovereignty & Digital Editorial
+# Trama Studio
 
-Digital interface designed for high-conversion B2B project presentation. Trama Studio serves as a high-authority platform that prioritizes **Strategic Criteria** over generic execution, blending Swiss typographic rigor with advanced interactive storytelling.
+Sitio web para presentar Trama Studio como una práctica de diseño y desarrollo frontend enfocada en marcas, landings y experiencias digitales con intención comercial.
 
-## 01 — Strategic Objective
-The platform is engineered to remove high-friction "design-for-designers" tropes, replacing them with a high-authority, direct, and outcome-oriented communication style. It functions as a precision sales tool that projects business rigor through scannable, transparent, and high-performance content.
-
-## 02 — Design Philosophy: Warm Editorial
-Moving away from the sterile constraints of minimalist-brutalism, Trama Studio implements a **Warm Editorial** system. This approach preserves technical authority while introducing a more sophisticated, premium aesthetic.
-
-- **Core Palette**: Bone White (#FBFBFA), Charcoal (#111111), Pure White (#FFFFFF).
-- **Typography**: 
-  - *Playfair Display*: Large-scale serif hierarchy for editorial weight.
-  - *IBM Plex Mono*: Utilitarian precision for technical metadata and dossiers.
-- **Visual Rhythm**: Asymmetric 12-column grids, intentional whitespace (air), and grain textures for a tactile, high-end feel.
-
-## 03 — Technical Sovereignty (Stack)
-Decisions are driven by performance and precision, ensuring a 60fps experience and robust component architecture.
-
-- **Engine**: React 18 + Vite (High-performance rendering).
-- **Styling**: Tailwind CSS + Hardcoded Design Tokens (Strict consistency).
-- **Motion**: **GSAP + ScrollTrigger** (Custom hardware-accelerated animations, zero reliance on high-latency libraries).
-- **UX Strategy**: Optimized for scannability and CRO, implementing Steve Krug's "Don't Make Me Think" principles.
-
-## 04 — Performance & Rigor
-- **Architecture**: Modular, recursive component structure focused on high-reusability.
-- **Motion Design**: Physics-based transitions and scroll-bound reveals that enhance, rather than distract from, the content.
-- **SEO & Authority**: Semantic HTML5 structure with optimized heading hierarchy for maximum technical clarity.
+El objetivo del proyecto es mostrar una identidad visual propia sin perder claridad: qué se ofrece, cómo se piensa el trabajo y por qué una interfaz puede funcionar como herramienta de negocio.
 
 ---
 
-## Development & Deployment
+## Contexto
+
+Trama Studio necesitaba una presencia digital que se sintiera editorial, precisa y profesional. La página evita una presentación genérica de agencia y ordena el mensaje alrededor de criterio, proceso y resultados.
+
+---
+
+## Mi rol
+
+Dirección visual, diseño UI, desarrollo frontend, estructura narrativa, animaciones, responsive design y optimización de presentación.
+
+---
+
+## Decisiones de diseño y UX
+
+- Sistema visual editorial con alto contraste y tipografía expresiva.
+- Grilla de 12 columnas para sostener una composición flexible.
+- Secciones pensadas para lectura rápida: propuesta, criterio, proyectos y contacto.
+- Animaciones con GSAP y ScrollTrigger para acompañar el contenido sin taparlo.
+- Componentes reutilizables para mantener consistencia en tarjetas, bloques y llamados a la acción.
+
+---
+
+## Stack
+
+- React 18
+- Vite
+- Tailwind CSS
+- GSAP
+- ScrollTrigger
+
+---
+
+## Estructura esperada
+
+```text
+src/
+├── components/
+├── sections/
+├── assets/
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## Qué muestra este proyecto
+
+- Criterio visual aplicado a una marca propia.
+- Manejo de animaciones de scroll en una interfaz real.
+- Capacidad para comunicar servicios sin depender de una landing genérica.
+- Balance entre diseño editorial, performance y estructura frontend.
+
+---
+
+## Desarrollo
 
 ```bash
-# Clone the infrastructure
 git clone https://github.com/nadiaescobbb/tramastudio.git
-
-# Initialize environment
+cd tramastudio
 npm install
-
-# Execute development server
 npm run dev
 ```
 
-*Trama Studio — Built with technical rigor and strategic intent.*
+---
+
+## Autoría
+
+Diseñado y desarrollado por **Nadia Escobar**.
