@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { waLink } from "@/data/projects";
 import { Logo } from "./Logo";
 
@@ -9,68 +9,53 @@ export const Nav = () => {
   const { pathname } = useLocation();
   const isHome = pathname === "/";
 
-
-
   return (
     <>
-      <nav
-        className={`nav-island ${isOpen ? "open" : ""}`}
-      >
-        <div className="flex items-center justify-between w-full">
-          <Link
-            to="/#trabajos"
-            className="flex items-center gap-3 group transition-transform duration-500"
-            onClick={() => setIsOpen(false)}
-          >
-            {isHome ? (
-              <>
-                <Logo size={24} className="text-[hsl(var(--accent))]" />
-                <span className="nav-link">Trama Studio</span>
-              </>
-            ) : (
-              <span className="nav-link">← Volver</span>
-            )}
-          </Link>
+      <nav className="nav-brand-pill">
+        <Link
+          to={isHome ? "/" : "/#trabajos"}
+          className="flex items-center gap-2.5"
+          onClick={() => setIsOpen(false)}
+        >
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black text-white">
+            <Logo size={18} />
+          </span>
+          <span>{isHome ? "Trama Studio" : "Volver"}</span>
+        </Link>
+      </nav>
 
-          {/* Desktop Links */}
-          {isHome && (
-            <div className="hidden md:flex items-center gap-8">
-              <a href="#trabajos" className="nav-link">Trabajos</a>
-              <a href="#metodo" className="nav-link">Método</a>
-              <a href="#servicios" className="nav-link">Servicios</a>
-              <a href="#faq" className="nav-link">FAQ</a>
-            </div>
-          )}
-
-          <div className="flex items-center gap-4">
-            <a
-              href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
-              className="btn-primary-trama group flex items-center px-4 py-2 md:px-6 md:py-3 text-[10px] md:text-xs relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-              <span className="relative z-10">Hablemos</span>
-              <div className="btn-icon-wrapper relative z-10 ml-2">
-                <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4" />
-              </div>
-            </a>
-
-            {/* Hamburger Toggle */}
-            <button 
-              onClick={() => setIsOpen(!isOpen)}
-              className="flex flex-col gap-1.5 p-2 md:hidden"
-            >
-              <div className="hamburger-line line-1" />
-              <div className="hamburger-line line-2" />
-            </button>
+      <nav className={`nav-menu-pill ${isOpen ? "open" : ""}`}>
+        {isHome && (
+          <div className="hidden items-center gap-2 md:flex">
+            <a href="#trabajos" className="nav-menu-link">Trabajos</a>
+            <a href="#metodo" className="nav-menu-link">Metodo</a>
+            <a href="#servicios" className="nav-menu-link">Servicios</a>
+            <a href="#faq" className="nav-menu-link">FAQ</a>
           </div>
-        </div>
+        )}
 
-        {/* Mobile Overlay Content */}
+        <a
+          href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
+          className="nav-menu-cta group"
+        >
+          <span>Hablemos</span>
+          <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className="nav-mobile-toggle md:hidden"
+          aria-label={isOpen ? "Cerrar menu" : "Abrir menu"}
+        >
+          {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+        </button>
+
         {isOpen && (
-          <div className="absolute top-[120%] left-0 w-full bg-surface/95 backdrop-blur-3xl rounded-[2rem] border border-border p-10 flex flex-col gap-8 lg:hidden">
+          <div className="absolute right-0 top-[calc(100%+0.75rem)] w-[calc(100vw-2rem)] max-w-sm rounded-[1.75rem] border border-black/10 bg-white/95 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-2xl md:hidden">
             {[
               { t: "Trabajos", h: "#trabajos" },
-              { t: "Método", h: "#metodo" },
+              { t: "Metodo", h: "#metodo" },
               { t: "Servicios", h: "#servicios" },
               { t: "Contacto", h: "#contacto" },
             ].map((link, i) => (
@@ -84,25 +69,24 @@ export const Nav = () => {
                 {link.t}
               </a>
             ))}
-            <div className="mt-8 pt-8 border-t border-border">
-              <a 
+            <div className="mt-8 border-t border-border pt-8">
+              <a
                 href={waLink("Hola, quiero iniciar un proyecto.")}
                 className="btn-primary-trama group w-full justify-center"
               >
                 <span>Iniciar proyecto</span>
                 <div className="btn-icon-wrapper">
-                  <ArrowUpRight className="w-4 h-4" />
+                  <ArrowUpRight className="h-4 w-4" />
                 </div>
               </a>
             </div>
           </div>
         )}
       </nav>
-      
-      {/* Dimmer Overlay */}
+
       {isOpen && (
-        <div 
-          className="fixed inset-0 z-[90] bg-background/40 backdrop-blur-sm animate-in fade-in duration-700"
+        <div
+          className="fixed inset-0 z-[90] bg-background/30 backdrop-blur-sm animate-in fade-in duration-700 md:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}

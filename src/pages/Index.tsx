@@ -1,20 +1,10 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { HeroCarousel, HeroThumbnails } from "@/components/HeroCarousel";
 import { projects, waLink } from "@/data/projects";
 import { projectImages } from "@/data/project-images";
-import { ArrowUpRight } from "lucide-react";
-
-const HERO_SLIDES = [
-  { slug: "bosco", label: "Bosco Argentina" },
-  { slug: "estudio-norte", label: "Estudio Norte" },
-  { slug: "joyeria-cuore", label: "Joyería Cuore" },
-  { slug: "clinica-nova", label: "Clínica Nova" },
-  { slug: "camila-correa", label: "Camila Correa" },
-];
+import { ArrowUpRight, Copy, Sparkle } from "lucide-react";
 
 
 
@@ -69,73 +59,80 @@ const FAQS = [
 ];
 
 const Index = () => {
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-    const t = setInterval(
-      () => setActiveSlide((p) => (p + 1) % HERO_SLIDES.length),
-      3600
-    );
-    return () => clearInterval(t);
-  }, [isAutoPlaying]);
-
-  const handleManualSlide = (index: number) => {
-    setIsAutoPlaying(false);
-    setActiveSlide(index);
-  };
-
   return (
     <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
       <Nav />
 
-      {/* ── HERO — split screen ───────────────────────────────────── */}
-      <section className="relative min-h-[100dvh] flex flex-col justify-center py-32 md:py-48 overflow-hidden">
-        {/* Ambient Light Spot */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,hsla(40,20%,90%,0.3)_0%,transparent_70%)] pointer-events-none" />
-        
-        <div className="container-trama w-full relative z-10">
-          <div className="grid gap-12 lg:gap-24 md:grid-cols-2 items-center">
-            
-            {/* Left: copy */}
-            <div className="order-1 md:order-1">
-                <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-6">
-                  Criterio - Estrategia - Ejecución
-                </div>
-              <h1 className="font-heading animate-slide-up opacity-0 leading-[1.02] tracking-[-0.04em] text-[36px] md:text-6xl lg:text-8xl" style={{ animationDelay: "150ms", textWrap: "balance" }}>
-                Diseñamos sitios que están a la altura <br />
-                <span className="italic text-[hsl(var(--accent))]">del negocio real.</span>
-              </h1>
-              <p className="mt-6 max-w-md text-sm md:text-base text-muted leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "350ms" }}>
-                Una web no debería ser una pieza gráfica: debería ser una decisión de posicionamiento. Trabajamos con negocios cuya presencia digital todavía no refleja el nivel real de lo que hacen.
-              </p>
+      {/* HERO */}
+      <section className="hero-start relative min-h-[100svh] overflow-hidden">
+        <div className="hero-texture" />
 
-              <div className="mt-8 flex flex-wrap items-center gap-6 animate-slide-up opacity-0" style={{ animationDelay: "550ms" }}>
-                <a href={waLink("Hola, vi Trama Studio y quiero solicitar un diagnóstico para mi proyecto.")} className="btn-primary-trama large group">
-                  <span>Solicitar diagnóstico</span>
-                  <div className="btn-icon-wrapper">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </a>
-                <div className="hidden sm:flex items-center gap-3">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60 border-l border-border pl-4">Disponibilidad: Mayo 2026</span>
-                </div>
+        <div className="container-trama relative z-10 grid min-h-[100svh] items-center gap-10 pb-16 pt-32 md:grid-cols-[0.95fr_1.05fr] md:pb-10 md:pt-24 lg:gap-20">
+          <div className="max-w-[640px]">
+            <h1 className="hero-title animate-slide-up opacity-0" style={{ animationDelay: "80ms" }}>
+              Trama Studio
+            </h1>
+            <p className="hero-subtitle animate-slide-up opacity-0" style={{ animationDelay: "180ms" }}>
+              Diseño y desarrollo web para marcas que necesitan verse tan sólidas como trabajan.
+            </p>
+            <p className="hero-kicker animate-slide-up opacity-0" style={{ animationDelay: "260ms" }}>
+              — Menos plantilla, más criterio comercial
+            </p>
+            <p className="hero-copy animate-slide-up opacity-0" style={{ animationDelay: "340ms" }}>
+              Construimos sitios con estrategia, copy y código propio para que tu presencia digital deje de explicar de menos el valor real de tu negocio.
+            </p>
+
+            <div className="hero-command animate-slide-up opacity-0" style={{ animationDelay: "430ms" }}>
+              <span className="text-white/35">$</span>
+              <code>diagnostico.trama --presencia-digital</code>
+              <span className="ml-auto">COPY</span>
+              <Copy className="h-4 w-4 text-white/60" />
+            </div>
+
+            <div className="mt-4 flex flex-wrap items-center gap-4 animate-slide-up opacity-0" style={{ animationDelay: "520ms" }}>
+              <a href={waLink("Hola, vi Trama Studio y quiero solicitar un diagnóstico para mi proyecto.")} className="hero-primary-cta group">
+                <span>Solicitar diagnóstico</span>
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </a>
+              <div className="flex items-center gap-2 text-xs text-muted">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#ff5a1f]" />
+                <span>Disponibilidad · Mayo 2026</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-visual" aria-hidden="true">
+            <div className="hero-preview hero-preview-light">
+              <div>
+                <p className="hero-preview-title">Menos ruido, más dirección</p>
+                <div className="mt-5 h-2 w-48 rounded-full bg-black/10" />
+                <div className="mt-3 h-2 w-32 rounded-full bg-black/10" />
+                <div className="mt-5 h-9 w-24 rounded-sm bg-black/5" />
+              </div>
+              <img src={projectImages["camila-correa"]} alt="" />
+              <div className="hero-applied-badge">
+                <Sparkle className="h-4 w-4" />
+                Trama aplicada
               </div>
             </div>
 
-            {/* Right: auto-rotating carousel */}
-            <div className="order-2 md:order-2">
-              <HeroCarousel
-                slides={HERO_SLIDES}
-                active={activeSlide}
-                setActive={handleManualSlide}
-              />
-              <HeroThumbnails
-                slides={HERO_SLIDES}
-                active={activeSlide}
-                setActive={handleManualSlide}
-              />
+            <div className="hero-preview hero-preview-dark">
+              <img src={projectImages["bosco-proj"]} alt="" />
+              <div className="absolute inset-0 bg-black/55" />
+              <div className="relative z-10 max-w-[330px]">
+                <p className="font-heading text-3xl leading-[0.98] tracking-tight text-white md:text-4xl">
+                  Webs que justifican valor, filtran clientes y venden confianza.
+                </p>
+                <div className="mt-7 flex gap-2">
+                  <span className="h-6 w-20 rounded-sm bg-[#cbff2e]" />
+                  <span className="h-6 w-24 rounded-sm border border-white/25" />
+                </div>
+              </div>
+              <div className="hero-grid-mark">
+                {Array.from({ length: 9 }).map((_, i) => (
+                  <span key={i} />
+                ))}
+              </div>
             </div>
           </div>
         </div>
