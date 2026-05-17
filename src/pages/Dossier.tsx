@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { projects, waLink } from "@/data/projects";
 import { projectImages } from "@/data/project-images";
-import { ArrowUpRight, ArrowRight, CornerDownRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import NotFound from "./NotFound";
 
 const Dossier = () => {
@@ -224,7 +224,7 @@ const Dossier = () => {
       <section className="relative min-h-[60vh] lg:h-screen flex flex-col overflow-hidden bg-black border-t border-white/10 group">
         <img 
           src={projectImages[next.slug]} 
-          className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-all duration-[1500ms] ease-out"
+          className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-all duration-1000 ease-out"
           alt="Next Project"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />

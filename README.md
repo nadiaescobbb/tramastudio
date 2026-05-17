@@ -23,7 +23,7 @@ Dirección visual, diseño UI, desarrollo frontend, estructura narrativa, animac
 - Sistema visual editorial con alto contraste y tipografía expresiva.
 - Grilla de 12 columnas para sostener una composición flexible.
 - Secciones pensadas para lectura rápida: propuesta, criterio, proyectos y contacto.
-- Animaciones con GSAP y ScrollTrigger para acompañar el contenido sin taparlo.
+- Animaciones de entrada y transiciones suaves para acompañar el contenido sin taparlo.
 - Componentes reutilizables para mantener consistencia en tarjetas, bloques y llamados a la acción.
 
 ---
@@ -33,8 +33,7 @@ Dirección visual, diseño UI, desarrollo frontend, estructura narrativa, animac
 - React 18
 - Vite
 - Tailwind CSS
-- GSAP
-- ScrollTrigger
+- React Router
 
 ---
 
@@ -43,10 +42,12 @@ Dirección visual, diseño UI, desarrollo frontend, estructura narrativa, animac
 ```text
 src/
 ├── components/
-├── sections/
+├── data/
+├── hooks/
+├── pages/
 ├── assets/
-├── App.jsx
-└── main.jsx
+├── App.tsx
+└── main.tsx
 ```
 
 ---

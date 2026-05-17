@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { Nav } from "@/components/Nav";
@@ -7,11 +7,6 @@ import { HeroCarousel, HeroThumbnails } from "@/components/HeroCarousel";
 import { projects, waLink } from "@/data/projects";
 import { projectImages } from "@/data/project-images";
 import { ArrowUpRight } from "lucide-react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const HERO_SLIDES = [
   { slug: "bosco", label: "Bosco Argentina" },
@@ -75,10 +70,7 @@ const FAQS = [
 
 const Index = () => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const container = useRef(null);
-  const problemText = useRef(null);
-
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   useEffect(() => {
     if (!isAutoPlaying) return;
@@ -94,21 +86,8 @@ const Index = () => {
     setActiveSlide(index);
   };
 
-  useGSAP(() => {
-    // Responsive Motion Logic
-    const mm = gsap.matchMedia();
-
-    mm.add("(min-width: 768px)", () => {
-
-
-
-    });
-
-    return () => mm.revert();
-  }, { scope: container });
-
   return (
-    <div ref={container} className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
       <Nav />
 
       {/* ── HERO — split screen ───────────────────────────────────── */}

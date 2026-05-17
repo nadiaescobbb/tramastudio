@@ -23,9 +23,8 @@ export const HeroCarousel = ({ slides, active, setActive }: Props) => {
           src={projectImages[slide.slug]}
           alt={slide.label}
           loading={i === 0 ? "eager" : "lazy"}
-          // @ts-ignore - fetchpriority is valid in modern browsers
-          fetchpriority={i === 0 ? "high" : "low"}
-          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-[800ms]"
+          fetchPriority={i === 0 ? "high" : "low"}
+          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
           style={{ 
             opacity: i === active ? 1 : 0
           }}

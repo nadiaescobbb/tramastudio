@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { waLink } from "@/data/projects";
 import { Logo } from "./Logo";
 
 export const Nav = () => {
-  const [hidden, setHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === "/";
@@ -15,7 +14,7 @@ export const Nav = () => {
   return (
     <>
       <nav
-        className={`nav-island ${hidden && !isOpen ? "-translate-y-32" : ""} ${isOpen ? "open" : ""}`}
+        className={`nav-island ${isOpen ? "open" : ""}`}
       >
         <div className="flex items-center justify-between w-full">
           <Link
