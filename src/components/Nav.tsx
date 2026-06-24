@@ -20,7 +20,7 @@ export const Nav = () => {
           <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black text-white">
             <Logo size={18} />
           </span>
-          <span>{isHome ? "Trama Studio" : "Volver"}</span>
+          <span>{isHome ? "HeyTrama" : "Volver"}</span>
         </Link>
       </nav>
 
@@ -35,7 +35,7 @@ export const Nav = () => {
         )}
 
         <a
-          href={waLink("Hola, vi Trama Studio y quiero contarte sobre mi proyecto.")}
+          href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")}
           className="nav-menu-cta group"
         >
           <span>Hablemos</span>

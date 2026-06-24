@@ -17,7 +17,7 @@ const Dossier = () => {
     if (!project) return;
 
     setSeo({
-      title: `${project.name} ${project.accent} — Proyecto de Trama Studio`,
+      title: `${project.name} ${project.accent} — Proyecto de HeyTrama`,
       description: project.tagline,
       path: `/proyectos/${project.slug}`,
     });

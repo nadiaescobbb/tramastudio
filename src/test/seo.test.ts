@@ -4,7 +4,7 @@ import { setSeo } from "@/lib/seo";
 describe("setSeo", () => {
   beforeEach(() => {
     document.head.innerHTML = `
-      <title>Trama Studio</title>
+      <title>HeyTrama</title>
       <meta name="description" content="default" />
       <link rel="canonical" href="/" />
       <meta property="og:title" content="og:default" />

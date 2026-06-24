@@ -5,7 +5,7 @@ export const Footer = () => {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 items-end">
           <div className="lg:col-span-2">
             <h2 className="font-heading text-4xl md:text-6xl leading-none tracking-tight">
-              Trama Studio
+              HeyTrama
             </h2>
             <p className="mt-4 text-muted max-w-sm">Diseño y desarrollo web.</p>
             <p className="mt-1 text-muted max-w-sm">
@@ -21,7 +21,7 @@ export const Footer = () => {
         </div>
 
         <div className="mt-24 flex flex-wrap items-center justify-between gap-6 border-t border-border pt-8 font-mono text-[10px] uppercase tracking-widest text-muted">
-          <div>© {new Date().getFullYear()} Trama Studio</div>
+          <div>© {new Date().getFullYear()} HeyTrama</div>
           <span>Argentina</span>
         </div>
       </div>

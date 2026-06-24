@@ -17,7 +17,7 @@ export const ContactForm = () => {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ name, email, message, _subject: "Nuevo contacto desde Trama Studio" }),
+        body: JSON.stringify({ name, email, message, _subject: "Nuevo contacto desde HeyTrama" }),
       });
 
       if (res.ok) {

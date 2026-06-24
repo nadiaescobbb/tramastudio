@@ -1,6 +1,6 @@
-# Trama Studio
+# HeyTrama
 
-Sitio web para presentar Trama Studio como una práctica de diseño y desarrollo frontend enfocada en marcas, landings y experiencias digitales con intención comercial.
+Sitio web para presentar HeyTrama como una práctica de diseño y desarrollo frontend enfocada en marcas, landings y experiencias digitales con intención comercial.
 
 El objetivo del proyecto es mostrar una identidad visual propia sin perder claridad: qué se ofrece, cómo se piensa el trabajo y por qué una interfaz puede funcionar como herramienta de negocio.
 
@@ -8,7 +8,7 @@ El objetivo del proyecto es mostrar una identidad visual propia sin perder clari
 
 ## Contexto
 
-Trama Studio necesitaba una presencia digital que se sintiera editorial, precisa y profesional. La página evita una presentación genérica de agencia y ordena el mensaje alrededor de criterio, proce[...]
+HeyTrama necesitaba una presencia digital que se sintiera editorial, precisa y profesional. La página evita una presentación genérica de agencia y ordena el mensaje alrededor de criterio, proceso y resultados, permitiendo captar clientes que valoran la calidad técnica y el diseño bien pensado.rrollo frontend, estructura narrativa, animaciones, responsive design y optimización de presentación.
 
 ---
 

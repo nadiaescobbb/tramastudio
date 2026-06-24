@@ -16,7 +16,7 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 MAPPING_FILE="$REPO_ROOT/.commit-history-rewrite.md"
 
 echo "============================================"
-echo " Trama Studio — Commit History Rewrite"
+echo " HeyTrama — Commit History Rewrite"
 echo "============================================"
 echo ""
 

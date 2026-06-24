@@ -12,7 +12,7 @@ const renderNav = () => render(
 describe("Nav", () => {
   it("renders brand name on home", () => {
     renderNav();
-    expect(screen.getByText("Trama Studio")).toBeInTheDocument();
+    expect(screen.getByText("HeyTrama")).toBeInTheDocument();
   });
 
   it("renders Volver on non-home route", () => {

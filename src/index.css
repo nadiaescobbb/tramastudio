@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 /*
-  TRAMA STUDIO — Design System v5 (React)
+  Design Tokens
   Rules: 60/30/10 · Dual Typography · Spacing rule of 8
 */
 
@@ -48,9 +48,9 @@ html {
     --ring: 0 0% 7%;
 
     /* Typography */
-    --font-heading: 'Playfair Display', Georgia, serif;
-    --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --font-heading: 'Fraunces', "Iowan Old Style", serif;
+    --font-body: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'Space Mono', "Courier New", monospace;
 
     /* Motion Tokens */
     --ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
@@ -103,11 +103,13 @@ html {
   }
 
   /* Typography Styles */
-  .font-heading { font-family: var(--font-heading); }
+  .font-heading { font-family: var(--font-heading); font-optical-sizing: auto; font-variation-settings: "SOFT" 0, "WONK" 0; }
   .font-mono { font-family: var(--font-mono); }
 
   .h-section {
     font-family: var(--font-heading);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -115,6 +117,8 @@ html {
   }
   .h-card {
     font-family: var(--font-heading);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
     font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -237,6 +241,8 @@ html {
     overflow: hidden;
     color: #242424;
     font-family: var(--font-heading);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
     font-size: clamp(22px, 2vw, 30px);
     font-weight: 400;
     letter-spacing: -0.04em;
@@ -312,6 +318,8 @@ html {
 
   .hero-title {
     font-family: var(--font-heading);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
     font-size: clamp(36px, 4.5vw, 72px);
     font-weight: 400;
     letter-spacing: -0.04em;
@@ -461,6 +469,8 @@ html {
   .hero-marquee-card-copy strong {
     display: block;
     font-family: var(--font-heading);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
     font-size: 42px;
     font-weight: 400;
     line-height: 0.98;

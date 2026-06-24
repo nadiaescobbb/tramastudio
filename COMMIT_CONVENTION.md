@@ -1,4 +1,4 @@
-# Conventional Commits — Trama Studio
+# Conventional Commits — HeyTrama
 
 ## Formato
 
