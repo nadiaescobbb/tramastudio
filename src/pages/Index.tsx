@@ -11,7 +11,7 @@ const STEPS = [
   { n: "01", t: "Entender", d: "Antes de diseñar, preguntamos qué le impide al negocio venderse mejor hoy." },
   { n: "02", t: "Comunicar", d: "La estrategia se traduce en jerarquía: qué tiene que entender el usuario primero, segundo y último. Recién ahí se le da forma visual." },
   { n: "03", t: "Construir", d: "El código pone a prueba esa decisión: si carga rápido, si funciona en cualquier pantalla, si no se rompe cuando el negocio crece." },
-  { n: "04", t: "Acompañar", d: "" },
+  { n: "04", t: "Acompañar", d: "El trabajo no termina con la publicación: se mide qué funciona, se corrige lo que no, y el sitio se actualiza a medida que el negocio cambia." },
 ];
 
 const FAQS = [
@@ -69,12 +69,12 @@ const Index = () => {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-7">
               <Reveal delay={100}>
-                <div className="overflow-hidden rounded-2xl border border-border bg-white">
+                <div className="overflow-hidden rounded-2xl border border-border bg-white aspect-[16/10] flex items-center justify-center">
                   <img
                     src="/cuorehome.jpg"
                     alt="Caso Cuore"
                     loading="lazy"
-                    className="w-full h-auto aspect-[4/3] object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
               </Reveal>
