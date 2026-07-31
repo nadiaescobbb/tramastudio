@@ -240,7 +240,7 @@ const Dossier = () => {
       <section className="py-20 md:py-32 bg-background text-center border-t border-border/40">
         <Reveal>
           <Link 
-            to="/#trabajos" 
+            to="/#casos" 
             className="inline-flex items-center gap-4 px-8 py-4 border border-border rounded-full text-[11px] lg:text-xs font-bold uppercase tracking-[0.3em] text-foreground hover:bg-surface hover:border-[hsl(var(--accent))] transition-all duration-300 group"
           >
             <ArrowRight className="w-4 h-4 rotate-180 transition-transform group-hover:-translate-x-2" />

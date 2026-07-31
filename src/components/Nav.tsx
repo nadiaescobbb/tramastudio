@@ -27,9 +27,9 @@ export const Nav = () => {
       <nav className={`nav-menu-pill ${isOpen ? "open" : ""}`}>
         {isHome && (
           <div className="hidden items-center gap-2 md:flex">
-            <a href="#trabajos" className="nav-menu-link">Trabajos</a>
+            <a href="#casos" className="nav-menu-link">Casos</a>
             <a href="#proceso" className="nav-menu-link">Proceso</a>
-            <a href="#servicios" className="nav-menu-link">Servicios</a>
+            <a href="#estudio" className="nav-menu-link">Estudio</a>
             <a href="#preguntas" className="nav-menu-link">Preguntas</a>
           </div>
         )}
@@ -54,9 +54,9 @@ export const Nav = () => {
         {isOpen && (
           <div className="absolute right-0 top-[calc(100%+0.75rem)] w-[calc(100vw-2rem)] max-w-sm rounded-[1.75rem] border border-black/10 bg-white/95 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-2xl md:hidden">
             {[
-              { t: "Trabajos", h: "#trabajos" },
+              { t: "Casos", h: "#casos" },
               { t: "Proceso", h: "#proceso" },
-              { t: "Servicios", h: "#servicios" },
+              { t: "Estudio", h: "#estudio" },
               { t: "Contacto", h: "#contacto" },
             ].map((link, i) => (
               <a
