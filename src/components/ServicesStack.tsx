@@ -9,6 +9,7 @@ interface ServiceItem {
   bgColor: string;
   textColor: string;
   ctaText: string;
+  tagline: string;
   description: string;
 }
 
@@ -18,50 +19,60 @@ const services: ServiceItem[] = [
     titleBold: "UI UX ",
     titleItalic: "Design",
     category: "Diseño UI / UX",
-    bgColor: "bg-[#4585c5]",
+    bgColor: "bg-[#12151C]",
     textColor: "text-white",
     ctaText: "Explorar UI/UX Design",
-    description: "Diseño de interfaces intuitivas, sistemas de diseño escalables y experiencias navegables pensadas para convertir usuarios en clientes.",
+    tagline: "Cuando la interfaz es lo único que alguien conoce de vos antes de decidir.",
+    description:
+      "Nadie lee tu proceso interno ni tu stack. Decide con lo que ve. Diseñamos esa superficie para que no le pida al usuario más esfuerzo del que la decisión de compra ya requiere.",
   },
   {
     number: "(02)",
     titleBold: "Mobile App ",
     titleItalic: "Design",
     category: "Mobile Apps",
-    bgColor: "bg-[#111111]",
+    bgColor: "bg-[#0A0A0A]",
     textColor: "text-white",
     ctaText: "Explorar Mobile App Design",
-    description: "Interfaces móviles iOS y Android optimizadas para interacción táctil, rendimiento continuo y estética refinada.",
+    tagline: "El pulgar no perdona lo que el mouse disimula.",
+    description:
+      "En mobile no hay margen para que la interfaz distraiga. Cada pantalla se construye para que interactuar no compita con decidir.",
   },
   {
     number: "(03)",
     titleBold: "MVP ",
     titleItalic: "Design",
     category: "Lanzamiento de MVPs",
-    bgColor: "bg-[#6035db]",
+    bgColor: "bg-[#161320]",
     textColor: "text-white",
     ctaText: "Explorar MVP Design",
-    description: "Lanzamiento rápido de productos mínimos viables en 4 a 8 semanas para validar hipótesis de negocio con usuarios reales.",
+    tagline: "Antes de construir todo, hay que saber si hace falta construir algo.",
+    description:
+      "Un MVP no es una versión chica del producto final: es la pregunta más barata que podés hacerle a un usuario real. Lo armamos para validar la decisión de negocio, no para impresionar.",
   },
   {
     number: "(04)",
     titleBold: "Full Stack ",
     titleItalic: "Development",
     category: "Desarrollo Full Stack",
-    bgColor: "bg-[#0c1221]",
+    bgColor: "bg-[#111111]",
     textColor: "text-white",
     ctaText: "Explorar Full Stack Dev",
-    description: "Código frontend y backend robusto en React, Next.js, Node.js y plataformas cloud optimizadas para máxima velocidad.",
+    tagline: "Lo que no se ve también decide si el negocio funciona.",
+    description:
+      "Un frontend prolijo sobre una base frágil se nota tarde — cuando el negocio ya depende de él. Construimos la base para que sostenga la decisión, no solo la pantalla.",
   },
   {
     number: "(05)",
     titleBold: "Custom Web ",
     titleItalic: "App",
     category: "Web Apps a Medida",
-    bgColor: "bg-[#e52b2b]",
+    bgColor: "bg-[#6B2E2A]",
     textColor: "text-white",
     ctaText: "Explorar Custom Web Apps",
-    description: "Plataformas digitales avanzadas y herramientas de software a medida adaptadas a las necesidades específicas de tu empresa.",
+    tagline: "Cuando el problema no entra en una plantilla, tampoco debería entrar la solución.",
+    description:
+      "Hay negocios cuyo proceso interno es la ventaja competitiva. Ahí no vendemos una plantilla con tu logo — construimos la herramienta a la medida de cómo tu negocio realmente decide y opera.",
   },
 ];
 
@@ -101,7 +112,7 @@ export function ServicesStack() {
             </div>
 
             {/* Central Content */}
-            <div className="my-auto text-center space-y-8 max-w-5xl mx-auto w-full pt-8 pb-12 z-10">
+            <div className="my-auto text-center space-y-8 max-w-4xl mx-auto w-full pt-8 pb-12 z-10">
               <h3 className="font-heading text-5xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none drop-shadow-lg">
                 {service.titleBold}
                 <span className="font-serif italic font-normal opacity-90 ml-2">
@@ -109,18 +120,21 @@ export function ServicesStack() {
                 </span>
               </h3>
 
-              <p className="text-white/80 font-sans text-base md:text-xl max-w-2xl mx-auto leading-relaxed">
+              {/* Tagline Tensión (Frase en Serif Itálica) */}
+              <p className="font-serif italic text-white/95 text-xl md:text-3xl max-w-3xl mx-auto leading-tight font-normal">
+                "{service.tagline}"
+              </p>
+
+              {/* Resolution Description (Resolución Sans-Serif) */}
+              <p className="text-white/80 font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 {service.description}
               </p>
 
-              {/* Graphical Card Mockup Box */}
-              <div className="mx-auto max-w-3xl rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl overflow-hidden aspect-[16/9] flex items-center justify-center p-8 relative group">
+              {/* Graphical Card CTA Box */}
+              <div className="mx-auto max-w-2xl rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl overflow-hidden p-6 md:p-8 relative group mt-8">
                 <div className="text-center space-y-4">
                   <span className="font-mono text-xs uppercase tracking-widest text-white/60 block">
                     {service.category}
-                  </span>
-                  <span className="font-heading font-bold text-white text-3xl md:text-5xl block">
-                    {service.titleBold} {service.titleItalic}
                   </span>
                   <a
                     href={waLink(`Hola, quiero iniciar un proyecto de ${service.category}.`)}
