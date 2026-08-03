@@ -27,9 +27,9 @@ const projectGradients: Record<
     glow: "bg-[#a293f5]/20",
   },
   "camila-correa": {
-    bg: "bg-gradient-to-br from-[#381e16] via-[#593023] to-[#140a07]",
-    accent: "text-[#db9276]",
-    glow: "bg-[#db9276]/20",
+    bg: "bg-gradient-to-br from-[#2A2620] via-[#3D3730] to-[#14120F]",
+    accent: "text-[#D4C5B9]",
+    glow: "bg-[#D4C5B9]/15",
   },
 };
 
