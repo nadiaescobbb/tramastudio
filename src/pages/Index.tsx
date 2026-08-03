@@ -63,7 +63,7 @@ const Index = () => {
       {/* ── METODOLOGÍA ─────────────────────────────────────────── */}
       <Metodologia />
 
-      {/* ── SERVICIOS STACKED (Estilo Orbix) ─────────────────────── */}
+      {/* ── SERVICIOS STACKED ────────────────────────────────────── */}
       <ServicesStack />
 
       {/* ── EL ESTUDIO ─────────────────────────────────────────── */}

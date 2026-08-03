@@ -37,7 +37,7 @@ const Dossier = () => {
     <div className="dossier-page relative min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-[hsl(var(--accent))] selection:text-white">
       <Nav />
 
-      {/* ── 1. HEADER SECTION (Orbix PXGEN Style) ─────────────────────────────────── */}
+      {/* ── 1. HEADER SECTION ────────────────────────────────────────────────── */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-16 bg-background">
         <div className="container-trama px-6 md:px-12 lg:px-16">
           {/* Top Title Bar */}
