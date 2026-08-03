@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import { waLink } from "@/data/projects";
 import Metodologia from "@/components/Metodologia";
+import { FeaturedCaseStudies } from "@/components/FeaturedCaseStudies";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 
@@ -55,73 +56,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── CASO CUORE ─────────────────────────────────────────── */}
-      <section className="py-24 md:py-36 bg-surface/50 border-y border-border" id="casos">
-        <div className="container-trama">
-          <Reveal>
-            <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-8">
-              Caso de Estudio
-            </div>
-            <h2 className="h-section max-w-3xl mb-16">
-              Transformamos una marca de joyería en una <span className="italic text-[hsl(var(--accent))]">experiencia digital premium</span>.
-            </h2>
-          </Reveal>
-
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
-            <div className="lg:col-span-7">
-              <Reveal delay={100}>
-                <div className="overflow-hidden rounded-2xl border border-border bg-white aspect-[16/10] flex items-center justify-center">
-                  <img
-                    src="/cuorehome.avif"
-                    alt="Caso Cuore"
-                    loading="lazy"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </Reveal>
-            </div>
-
-            <div className="lg:col-span-5 flex flex-col gap-10 lg:pl-8">
-              <Reveal delay={200}>
-                <div>
-                  <h3 className="font-mono text-xs uppercase tracking-widest text-muted mb-3">El Problema</h3>
-                  <p className="text-base text-foreground leading-relaxed">
-                    Cuore necesitaba evolucionar de una tienda tradicional a una plataforma digital que reflejara la exclusividad de sus piezas, optimizando a su vez la experiencia de compra para piezas de alto valor.
-                  </p>
-                </div>
-              </Reveal>
-
-              <Reveal delay={300}>
-                <div>
-                  <h3 className="font-mono text-xs uppercase tracking-widest text-muted mb-3">El Proceso</h3>
-                  <p className="text-base text-foreground leading-relaxed">
-                    Auditoría de UX, reestructuración del catálogo para facilitar la navegación y diseño de una interfaz minimalista que ceda el protagonismo al producto.
-                  </p>
-                </div>
-              </Reveal>
-
-              <Reveal delay={400}>
-                <div>
-                  <h3 className="font-mono text-xs uppercase tracking-widest text-muted mb-3">La Solución & Resultado</h3>
-                  <p className="text-base text-foreground leading-relaxed">
-                    Un producto digital funcional, veloz e inmersivo. El nuevo sistema visual y la arquitectura frontend permitieron escalar el catálogo sin perder la sensación boutique.
-                  </p>
-                </div>
-              </Reveal>
-
-              <Reveal delay={500}>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {['UX', 'UI', 'Frontend', 'Arquitectura', 'Performance'].map(tag => (
-                    <span key={tag} className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider border border-border rounded-full text-muted">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ── PROYECTOS DESTACADOS ───────────────────────────────── */}
+      <FeaturedCaseStudies />
 
       {/* ── METODOLOGÍA ─────────────────────────────────────────── */}
       <Metodologia />
@@ -201,22 +137,11 @@ const Index = () => {
             Contanos qué querés construir y analizaremos la mejor forma de abordarlo desde el diseño y la tecnología.
           </p>
 
-          <div className="mx-auto mt-14 grid max-w-3xl gap-10 md:grid-cols-2 md:gap-14">
-            <div>
-              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted mb-5">Iniciar conversación</p>
-              <ContactForm />
-            </div>
-            <div className="flex flex-col items-start">
-              <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted mb-5">O escribinos directo</p>
-              <a
-                href={waLink("Hola, quiero contarles sobre mi proyecto.")}
-                className="btn-primary-trama group"
-              >
-                <span>WhatsApp</span>
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </a>
-              <p className="mt-3 text-xs text-muted">Respuesta en menos de 24 h</p>
-            </div>
+          <div className="mx-auto mt-14 max-w-xl">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted mb-5 text-center">
+              Iniciar conversación
+            </p>
+            <ContactForm />
           </div>
         </div>
       </section>

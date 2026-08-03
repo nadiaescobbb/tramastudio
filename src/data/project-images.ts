@@ -3,7 +3,6 @@ import boscoProjImg from "@/assets/bosco-proj.jpeg";
 import norteImg from "@/assets/estudionortepordada.avif";
 import novaImg from "@/assets/proj-nova.jpg";
 import camilaImg from "@/assets/proj-camila.jpg";
-import cuoreImg from "@/assets/cuoreportada.avif";
 
 export const projectImages: Record<string, string> = {
   bosco: boscoImg,
@@ -11,5 +10,5 @@ export const projectImages: Record<string, string> = {
   "estudio-norte": norteImg,
   "clinica-nova": novaImg,
   "camila-correa": camilaImg,
-  "joyeria-cuore": cuoreImg,
+  "joyeria-cuore": "/cuorehome.avif",
 };

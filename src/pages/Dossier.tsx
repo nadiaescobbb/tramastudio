@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
@@ -10,14 +10,18 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import NotFound from "./NotFound";
 
 const Dossier = () => {
-  const { slug } = useParams<{ slug: string }>();
-  const project = projects.find((p) => p.slug === slug);
+  const { slug: paramSlug } = useParams<{ slug: string }>();
+  const location = useLocation();
+  const pathSlug = location.pathname.split("/").filter(Boolean)[1];
+  const slug = paramSlug || pathSlug;
+  const targetSlug = slug || "joyeria-cuore";
+  const project = projects.find((p) => p.slug === targetSlug);
 
   useEffect(() => {
     if (!project) return;
 
     setSeo({
-      title: `${project.name} ${project.accent} — Proyecto de HeyTrama`,
+      title: `${project.name} ${project.accent} — Caso de Estudio HeyTrama`,
       description: project.tagline,
       path: `/proyectos/${project.slug}`,
     });
@@ -25,276 +29,346 @@ const Dossier = () => {
 
   if (!project) return <NotFound />;
 
-  const idx = projects.findIndex((p) => p.slug === slug);
+  const idx = projects.findIndex((p) => p.slug === targetSlug);
   const next = projects[(idx + 1) % projects.length];
+  const image = projectImages[project.slug];
 
   return (
-    <div className="dossier-page relative min-h-screen overflow-x-hidden bg-background selection:bg-[hsl(var(--accent))] selection:text-white">
+    <div className="dossier-page relative min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-[hsl(var(--accent))] selection:text-white">
       <Nav />
 
-      {/* ── HERO DOSSIER — Split Architectural ───────────────────────────────────── */}
-      <section className="relative lg:min-h-screen flex flex-col pt-32 lg:pt-0 overflow-hidden">
-        <div className="flex-1 grid lg:grid-cols-12 lg:min-h-screen">
-          
-          {/* Left: Content */}
-          <div className="min-w-0 overflow-hidden lg:col-span-5 flex flex-col justify-center p-6 md:p-12 lg:p-20 lg:pt-32 border-b lg:border-b-0 lg:border-r border-border/60 bg-surface/30 relative">
-            {/* Subtle texture */}  
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-              style={{
-                backgroundImage: `url(${projectImages[project.slug]})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
-            <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-12 h-[1px] bg-[hsl(var(--accent))]" />
-                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))]">
-                  Proyecto {project.number}
+      {/* ── 1. HEADER SECTION (Orbix PXGEN Style) ─────────────────────────────────── */}
+      <section className="pt-32 pb-12 md:pt-40 md:pb-16 bg-background">
+        <div className="container-trama px-6 md:px-12 lg:px-16">
+          {/* Top Title Bar */}
+          <div className="flex flex-row items-baseline justify-between mb-8 md:mb-12">
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight text-foreground">
+              {project.name}
+              {project.accent && (
+                <span className="font-serif italic font-normal text-[hsl(var(--accent))] ml-3 md:ml-6">
+                  {project.accent}
                 </span>
-              </div>
+              )}
+            </h1>
 
-              <h1 className="max-w-[calc(100vw-48px)] font-heading text-[clamp(52px,16vw,88px)] md:max-w-none md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.05em] text-foreground">
-                {project.name}
-                <br />
-                <span className="italic text-[hsl(var(--accent))]">{project.accent}</span>
-              </h1>
-
-              <p className="mt-8 lg:mt-10 max-w-[calc(100vw-48px)] md:max-w-sm text-base md:text-lg lg:text-xl text-muted leading-relaxed lg:leading-[1.6] [overflow-wrap:anywhere]">
-                {project.tagline}
-              </p>
-
-            {/* Metadata Grid */}
-            <div className="mt-12 lg:mt-16 grid grid-cols-1 gap-y-7 border-t border-border/60 pt-10 sm:grid-cols-2 lg:gap-x-12 lg:gap-y-10 lg:pt-12">
-              {[
-                { label: "Industria", value: project.industry },
-                { label: "Formato", value: project.format },
-                { label: "Conversión", value: project.conversion },
-                ...(project.result ? [{ label: "Resultado", value: project.result }] : []),
-                { label: "Live", value: project.liveUrl ?? "No publicado", isLink: Boolean(project.liveUrl) },
-              ].map((item, i) => (
-                  <div key={item.label} className="flex flex-col gap-2 lg:gap-3">
-                    <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-muted-foreground/60 flex items-center gap-2">
-                      <div className="w-1 h-1 rounded-full bg-[hsl(var(--accent))]/40" />
-                      {item.label}
-                    </span>
-                    {item.isLink ? (
-                      <a
-                        href={item.value}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group inline-flex items-center gap-3 px-4 py-2 bg-[hsl(var(--accent))] text-white text-[10px] lg:text-xs font-bold uppercase tracking-widest hover:bg-foreground transition-colors mt-2"
-                      >
-                        Visitar sitio
-                        <ArrowUpRight className="w-3 h-3" />
-                      </a>
-                    ) : (
-                      <span className="text-[10px] lg:text-sm font-bold text-foreground/90 uppercase tracking-tight [overflow-wrap:anywhere]">{item.value}</span>
-                    )}
-                  </div>
-              ))}
-            </div>
-          </div>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full font-mono text-xs font-semibold hover:bg-black/90 transition-all shadow-md group shrink-0"
+              >
+                <span>Visitar Sitio</span>
+                <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+            )}
           </div>
 
-          {/* Right: Immersive Image */}
-          <div className="lg:col-span-7 relative h-[50vh] lg:h-auto overflow-hidden bg-surface">
+          {/* Hero Full-bleed Cover Image */}
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-xl aspect-[16/9] md:aspect-[21/9] relative group">
             <img
-              src={projectImages[project.slug]}
-              alt={project.name}
+              src={image}
+              alt={`Caso de estudio ${project.name}`}
               loading="eager"
               decoding="async"
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 scale-110 lg:scale-100"
+              className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
           </div>
         </div>
       </section>
 
-      {/* ── NARRATIVA — Editorial ───────────────────────────────────── */}
-      <section className="py-20 md:py-48 bg-surface/20 border-y border-border/40 overflow-hidden relative">
-        {/* Ambient background */}
-        <div 
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{
-            backgroundImage: `url(${projectImages[project.slug]})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <div className="container-trama relative z-10">
-          <div className="space-y-32 lg:space-y-48">
-
-            {/* Contexto */}
-            <Reveal>
-              <div className="max-w-2xl">
-                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))] mb-6 lg:mb-8">
-                  El Contexto
-                </div>
-                <div className="flex flex-col gap-6 text-base md:text-lg text-muted leading-relaxed">
-                  {project.challenge.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Image */}
-            <div className="-mx-6 md:-mx-12 lg:-mx-16">
-              <div className="trama-card p-2 overflow-hidden rounded-none md:rounded-2xl">
-                <div className="trama-card-inner p-0">
-                  <img 
-                    src={projectImages[project.slug]} 
-                    className="w-full aspect-[21/9] object-cover" 
-                    alt={`Vista del proyecto ${project.name}`} 
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Decisión */}
-            <Reveal>
-              <div className="max-w-2xl">
-                <div className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))] mb-6 lg:mb-8">
-                  La Decisión
-                </div>
-                <p className="text-base md:text-lg text-muted leading-relaxed">
-                  {project.criterion.intro}
-                </p>
-                {project.criterion.points.length > 0 && (
-                <div className="mt-8 flex flex-col gap-8">
-                  {project.criterion.points.map((pt, i) => (
-                    <div key={pt.label}>
-                      <h3 className="font-heading text-lg md:text-xl mb-2">{pt.label}</h3>
-                      <p className="text-base text-muted leading-relaxed">{pt.text}</p>
-                    </div>
-                  ))}
-                </div>
-                )}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ── CRITERIO — Large Scale Quote ───────────────────────────────────── */}
-      {project.pullQuote && (
-        <section className="py-16 md:py-24 bg-background overflow-hidden">
-          <div className="container-trama">
-            <Reveal>
-              <div className="max-w-5xl mx-auto text-center">
-                <div className="flex flex-col items-center mb-12">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-[hsl(var(--accent))]/50 mb-6">
-                    ( FEEDBACK )
-                  </span>
-                  <div className="w-px h-16 bg-gradient-to-b from-transparent to-[hsl(var(--accent))]" />
-                </div>
-                <blockquote className="font-heading text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] tracking-[-0.04em] text-foreground" style={{ textWrap: "balance" }}>
-                  "{project.pullQuote.text}"
-                </blockquote>
-                {project.pullQuote.author && (
-                  <div className="mt-16 flex items-center justify-center gap-6">
-                    <div className="h-[1px] w-12 bg-border" />
-                    <cite className="font-mono text-[11px] uppercase tracking-[0.3em] text-[hsl(var(--accent))] not-italic">
-                      {project.pullQuote.author}
-                    </cite>
-                    <div className="h-[1px] w-12 bg-border" />
-                  </div>
-                )}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-      )}
-
-      {/* ── RESULTADO ──────────────────────────────────────── */}
-      <section className="py-32 md:py-48 bg-surface/30 border-t border-border relative overflow-hidden">
-        {/* Ambient background */}
-        <div 
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{
-            backgroundImage: `url(${projectImages[project.slug]})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-        <div className="container-trama relative z-10">
-          <Reveal>
-            <div className="max-w-2xl">
-              <div className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-[hsl(var(--accent))] mb-6 lg:mb-8">
-                El Resultado
-              </div>
-              <div className="flex flex-col gap-6 text-base md:text-lg text-muted leading-relaxed">
-                {project.solution.map((s, i) => (
-                  <p key={i}>{s}</p>
+      {/* ── 2. SUMMARY & METADATA SPECS GRID ────────────────────────────────────── */}
+      <section className="py-16 md:py-24 border-b border-border bg-surface/30">
+        <div className="container-trama px-6 md:px-12 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Tagline & Challenge intro */}
+            <div className="lg:col-span-7 space-y-6">
+              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                Proyecto {project.number} · {project.category}
+              </span>
+              <h2 className="font-heading text-2xl md:text-4xl text-foreground font-medium leading-tight">
+                {project.tagline}
+              </h2>
+              <div className="space-y-4 text-muted text-base md:text-lg leading-relaxed pt-2">
+                {project.challenge.map((paragraph, i) => (
+                  <p key={i}>{paragraph}</p>
                 ))}
               </div>
             </div>
+
+            {/* Metadata Specs Table */}
+            <div className="lg:col-span-5 bg-background rounded-2xl p-8 border border-border shadow-sm space-y-6">
+              <h3 className="font-mono text-xs uppercase tracking-widest text-muted font-bold pb-4 border-b border-border">
+                Ficha Técnica
+              </h3>
+              <div className="grid grid-cols-2 gap-6">
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
+                    Cliente / Marca
+                  </span>
+                  <span className="font-heading font-semibold text-foreground text-sm">
+                    {project.name}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
+                    Industria
+                  </span>
+                  <span className="font-heading font-semibold text-foreground text-sm">
+                    {project.industry}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
+                    Formato
+                  </span>
+                  <span className="font-heading font-semibold text-foreground text-sm">
+                    {project.format}
+                  </span>
+                </div>
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
+                    Objetivo
+                  </span>
+                  <span className="font-heading font-semibold text-foreground text-sm">
+                    {project.conversion}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 3. CENTERED PULLQUOTE / STRATEGY STATEMENT ───────────────────────────── */}
+      <section className="py-24 md:py-36 bg-background">
+        <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-4xl mx-auto">
+          <Reveal>
+            <p className="font-heading text-2xl md:text-4xl lg:text-5xl text-foreground font-normal leading-relaxed tracking-tight">
+              "{project.criterion.intro}"
+            </p>
           </Reveal>
         </div>
       </section>
 
-      {/* ── BACK TO PROJECTS — Exit Point ───────────────────────────────────── */}
-      <section className="py-20 md:py-32 bg-background text-center border-t border-border/40">
-        <Reveal>
-          <Link 
-            to="/#casos" 
-            className="inline-flex items-center gap-4 px-8 py-4 border border-border rounded-full text-[11px] lg:text-xs font-bold uppercase tracking-[0.3em] text-foreground hover:bg-surface hover:border-[hsl(var(--accent))] transition-all duration-300 group"
-          >
-            <ArrowRight className="w-4 h-4 rotate-180 transition-transform group-hover:-translate-x-2" />
-            <span>Ver todos los proyectos</span>
-          </Link>
-        </Reveal>
+      {/* ── 4. SHOWCASE GALLERY 1 (Full-width & Grid Cards) ────────────────────────── */}
+      <section className="py-12 bg-background">
+        <div className="container-trama px-6 md:px-12 lg:px-16 space-y-12">
+          {/* Main Showcase Hero */}
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-xl aspect-[16/9]">
+            <img
+              src={image}
+              alt={`Captura ${project.name}`}
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* 2-Column Side-by-Side Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-md aspect-[4/3]">
+              <img
+                src={image}
+                alt="Detalle de interfaz"
+                loading="lazy"
+                className="w-full h-full object-cover scale-105"
+              />
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-md aspect-[4/3]">
+              <img
+                src={image}
+                alt="Experiencia responsive"
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* ── SIGUIENTE PROYECTO — Immersive Transition ────────────────────────── */}
-      <section className="relative min-h-[60vh] lg:h-screen flex flex-col overflow-hidden bg-black border-t border-white/10 group">
-        <img 
-          src={projectImages[next.slug]} 
+      {/* ── 5. OVERVIEW / CRITERIA SECTION (01. OVERVIEW) ────────────────────────── */}
+      <section className="py-24 md:py-36 bg-surface/30 border-y border-border">
+        <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-4">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+                01. OVERVIEW & CRITERIO
+              </span>
+            </div>
+            <div className="md:col-span-8 space-y-6">
+              <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+                Diseñar para comunicar con jerarquía y precisión.
+              </h3>
+              <p className="text-muted text-base md:text-lg leading-relaxed">
+                Cada elemento de la pantalla responde a una prioridad de negocio: ordenar la oferta, responder las objeciones clave del usuario y guiarlo directamente hacia la acción.
+              </p>
+            </div>
+          </div>
+
+          {/* Criteria Points Breakdown */}
+          {project.criterion.points.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8">
+              {project.criterion.points.map((point) => (
+                <div
+                  key={point.label}
+                  className="bg-background rounded-2xl p-8 border border-border shadow-sm space-y-3"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] flex items-center justify-center font-mono text-xs font-bold mb-4">
+                    ✓
+                  </div>
+                  <h4 className="font-heading text-xl font-bold text-foreground">
+                    {point.label}
+                  </h4>
+                  <p className="text-muted text-sm leading-relaxed">
+                    {point.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Dark Showcase Banner Card (Whyte / Dark Theme style) */}
+          <div className="overflow-hidden rounded-2xl bg-[#090909] text-white p-8 md:p-16 relative shadow-2xl">
+            <div className="relative z-10 max-w-2xl space-y-6">
+              <span className="font-mono text-xs uppercase tracking-widest text-white/50">
+                PROCESO EDITORIAL & FRONTEND
+              </span>
+              <blockquote className="font-heading text-3xl md:text-5xl font-medium tracking-tight leading-tight">
+                "{project.pullQuote?.text || project.tagline}"
+              </blockquote>
+              {project.pullQuote?.author && (
+                <p className="font-mono text-xs uppercase tracking-widest text-[hsl(var(--accent))]">
+                  — {project.pullQuote.author}
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. DESIGN SYSTEM & PERFORMANCE (02. DESIGN SYSTEM) ───────────────────── */}
+      <section className="py-24 md:py-36 bg-background">
+        <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-4">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+                02. SISTEMA Y PERFORMANCE
+              </span>
+            </div>
+            <div className="md:col-span-8 space-y-4">
+              <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+                Arquitectura limpia y velocidad de carga.
+              </h3>
+              <p className="text-muted text-base md:text-lg leading-relaxed">
+                Desarrollo en React y Vite optimizado para que las imágenes vuelen, la interfaz sea fluida y la experiencia responda de forma impecable en mobile.
+              </p>
+            </div>
+          </div>
+
+          {/* Color & Spec Swatches Showcase */}
+          <div className="bg-surface/50 rounded-2xl p-8 border border-border grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="space-y-2">
+              <div className="h-16 rounded-xl bg-foreground border border-border" />
+              <span className="font-mono text-xs font-semibold text-foreground block">#090909</span>
+              <span className="font-mono text-[10px] text-muted uppercase">Contraste Alto</span>
+            </div>
+            <div className="space-y-2">
+              <div className="h-16 rounded-xl bg-white border border-border" />
+              <span className="font-mono text-xs font-semibold text-foreground block">#FFFFFF</span>
+              <span className="font-mono text-[10px] text-muted uppercase">Superficie Limpia</span>
+            </div>
+            <div className="space-y-2">
+              <div className="h-16 rounded-xl bg-[hsl(var(--accent))] border border-border" />
+              <span className="font-mono text-xs font-semibold text-foreground block">ACCENT</span>
+              <span className="font-mono text-[10px] text-muted uppercase">Acento Editorial</span>
+            </div>
+            <div className="space-y-2">
+              <div className="h-16 rounded-xl bg-surface border border-border flex items-center justify-center font-mono text-xs font-bold text-foreground">
+                100 / 100
+              </div>
+              <span className="font-mono text-xs font-semibold text-foreground block">PERFORMANCE</span>
+              <span className="font-mono text-[10px] text-muted uppercase">Score Vite</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. RESULTADO E IMPACTO (03. IMPACT) ─────────────────────────────────── */}
+      <section className="py-24 md:py-36 bg-surface/30 border-t border-border">
+        <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div className="md:col-span-4">
+              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+                03. RESULTADO
+              </span>
+            </div>
+            <div className="md:col-span-8 space-y-6">
+              <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+                Una herramienta de negocio que genera confianza.
+              </h3>
+              <div className="space-y-4 text-muted text-base md:text-lg leading-relaxed">
+                {project.solution.map((sol, i) => (
+                  <p key={i}>{sol}</p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8. SIGUIENTE PROYECTO BANNER (Immersive Transition) ────────────────────── */}
+      <section className="relative min-h-[50vh] flex flex-col overflow-hidden bg-black text-white group">
+        <img
+          src={projectImages[next.slug]}
           className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-all duration-1000 ease-out"
-          alt={`Vista previa del proyecto ${next.name}`}
+          alt={`Siguiente proyecto ${next.name}`}
           loading="lazy"
-          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
-        
-        <div className="relative flex-1 flex flex-col items-center justify-center text-center p-6 lg:p-8">
-            <div className="font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.5em] text-white/50 mb-8 lg:mb-10">
-              Siguiente Proyecto
-            </div>
-            <Link to={`/proyectos/${next.slug}`} className="block">
-              <h2 className="font-heading text-4xl md:text-8xl lg:text-[10rem] text-white leading-none tracking-[-0.06em] hover:text-[hsl(var(--accent))] transition-colors duration-500">
-                {next.name}
-                <span className="italic text-[hsl(var(--accent))] ml-2 lg:ml-4">{next.accent}</span>
-              </h2>
-            </Link>
-            <Link to={`/proyectos/${next.slug}`} className="mt-12 lg:mt-16 inline-flex items-center gap-4 text-white/80 font-sans text-xs font-semibold uppercase tracking-[0.3em] hover:gap-8 transition-all duration-500">
-              <span>Descubrir el proceso</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+
+        <div className="relative flex-1 flex flex-col items-center justify-center text-center p-8 z-10 my-16">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/60 mb-6">
+            Siguiente Proyecto
+          </span>
+          <Link to={`/proyectos/${next.slug}`}>
+            <h2 className="font-heading text-5xl md:text-8xl font-bold text-white tracking-tight hover:text-[hsl(var(--accent))] transition-colors">
+              {next.name}
+              {next.accent && (
+                <span className="font-serif italic font-normal text-[hsl(var(--accent))] ml-4">
+                  {next.accent}
+                </span>
+              )}
+            </h2>
+          </Link>
+          <Link
+            to={`/proyectos/${next.slug}`}
+            className="mt-8 inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full font-mono text-xs font-bold hover:bg-white/90 transition-all shadow-lg"
+          >
+            <span>Ver Proyecto</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
 
-      {/* ── FINAL CTA — Minimalist ─────────────────────────────────────────── */}
-      <section className="py-32 md:py-48 bg-surface/10">
-        <div className="container-narrow text-center">
-          <Reveal>
-            <h2 className="font-heading text-3xl md:text-5xl tracking-tight leading-[1.1]">
-              ¿Hay algo en tu negocio que <br />
-              <span className="italic text-[hsl(var(--accent))]">todavía no se está viendo?</span>
-            </h2>
-            <p className="mt-10 max-w-md mx-auto text-muted text-lg">
-              Hablemos. Podemos encontrar una mejor forma de mostrarlo online.
-            </p>
+      {/* ── FINAL CONVERSATION CTA ──────────────────────────────────────────────── */}
+      <section className="py-24 md:py-36 bg-background">
+        <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-3xl mx-auto space-y-8">
+          <h2 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight">
+            ¿Querés construir una presencia digital con este nivel de <span className="font-serif italic font-normal text-[hsl(var(--accent))]">criterio y detalle</span>?
+          </h2>
+          <p className="text-muted text-base md:text-lg">
+            Hablemos sobre tu proyecto y definamos la mejor estrategia visual y tecnológica.
+          </p>
+          <div>
             <a
-              href={waLink(`Hola, vi el caso de ${project.name} y quiero hablar de mi negocio.`)}
-              className="btn-primary-trama large mt-12 inline-flex"
+              href={waLink(`Hola, vi el caso de ${project.name} y quiero hablar de mi proyecto.`)}
+              className="inline-flex items-center gap-3 bg-[hsl(var(--accent))] text-white px-8 py-4 rounded-full font-mono text-xs font-bold uppercase tracking-wider hover:bg-foreground transition-colors shadow-lg"
             >
-              Iniciar conversación
+              <span>Iniciar Conversación</span>
+              <ArrowUpRight className="h-4 w-4" />
             </a>
-          </Reveal>
+          </div>
         </div>
       </section>
 
@@ -304,4 +378,3 @@ const Dossier = () => {
 };
 
 export default Dossier;
-

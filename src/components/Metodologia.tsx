@@ -1,93 +1,143 @@
 import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
-    title: "Entender",
-    text: "Antes de diseñar, preguntamos qué le impide al negocio venderse mejor hoy.",
+    number: "PASO 01",
+    italicTitle: "Entender",
+    title: "Definir el objetivo del negocio",
+    text: "Antes de diseñar, preguntamos qué le impide al negocio venderse mejor hoy y cuáles son las prioridades reales.",
   },
   {
-    number: "02",
-    title: "Comunicar",
+    number: "PASO 02",
+    italicTitle: "Comunicar",
+    title: "Estructurar la jerarquía visual",
     text: "La estrategia se traduce en jerarquía: qué tiene que entender el usuario primero, segundo y último. Recién ahí se le da forma visual.",
   },
   {
-    number: "03",
-    title: "Construir",
+    number: "PASO 03",
+    italicTitle: "Construir",
+    title: "Desarrollo frontend de alta performance",
     text: "El código pone a prueba esa decisión: si carga rápido, si funciona en cualquier pantalla, si no se rompe cuando el negocio crece.",
   },
   {
-    number: "04",
-    title: "Acompañar",
+    number: "PASO 04",
+    italicTitle: "Acompañar",
+    title: "Medición y evolución continua",
     text: "El trabajo no termina con la publicación: se mide qué funciona y qué no, y el sitio se actualiza a medida que el negocio cambia.",
   },
 ];
 
 export default function Metodologia() {
-  const [active, setActive] = useState(0);
-  const refs = useRef<(HTMLDivElement | null)[]>([]);
+  const [activeStep, setActiveStep] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const totalHeight = rect.height;
+      const currentScroll = windowHeight / 2 - rect.top;
+      const progress = Math.min(Math.max(currentScroll / totalHeight, 0), 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const index = refs.current.findIndex((el) => el === entry.target);
-            if (index !== -1) setActive(index);
+            const index = stepRefs.current.findIndex((el) => el === entry.target);
+            if (index !== -1) setActiveStep(index);
           }
         });
       },
-      { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
+      { rootMargin: "-30% 0px -30% 0px", threshold: 0 }
     );
 
-    refs.current.forEach((el) => el && observer.observe(el));
+    stepRefs.current.forEach((el) => el && observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="relative z-10 bg-background py-24 md:py-36 pb-36 md:pb-52" id="proceso">
-      <div className="container-trama px-6 md:px-12 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
-          {/* Sticky Left Column */}
-          <div className="hidden md:block md:col-span-5 lg:col-span-5 sticky top-36 self-start z-10 pl-4 lg:pl-8">
-            <p className="text-xs tracking-widest uppercase text-charcoal/50 mb-6 font-mono">
-              Nuestro proceso
-            </p>
-            <ul className="space-y-4">
-              {steps.map((step, i) => (
-                <li
-                  key={step.number}
-                  className={`text-3xl font-serif transition-opacity duration-300 ${
-                    i === active ? "opacity-100" : "opacity-30"
-                  }`}
-                >
-                  <span className="font-mono text-sm mr-3 align-middle">
-                    {step.number}
-                  </span>
-                  {step.title}
-                </li>
-              ))}
-            </ul>
-          </div>
+    <section ref={sectionRef} className="relative z-10 bg-background py-24 md:py-36 overflow-hidden" id="proceso">
+      {/* Section Header */}
+      <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-4xl mx-auto mb-20 md:mb-28">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#e52b2b]/30 bg-[#e52b2b]/5 text-[#e52b2b] font-mono text-xs font-semibold uppercase tracking-widest mb-6">
+          Nuestro Proceso
+        </div>
+        <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6">
+          Una forma más ágil de <span className="font-serif italic text-[#e52b2b] font-normal">diseñar y construir</span> experiencias.
+        </h2>
+        <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+          Simplificamos la creación de sitios y productos digitales combinando estrategia, diseño UX/UI y desarrollo en un flujo eficiente centrado en resultados.
+        </p>
+      </div>
 
-          {/* Right Column Scrolling Steps */}
-          <div className="md:col-span-7 lg:col-span-6 lg:col-start-7 space-y-[22vh]">
-            {steps.map((step, i) => (
+      {/* Timeline Section */}
+      <div className="container-trama px-6 md:px-12 lg:px-16 relative">
+        {/* Central Red Vertical Line (Desktop) - Exactly centered at Col 5 midpoint (37.5%) */}
+        <div className="hidden md:block absolute left-[37.5%] top-6 bottom-6 w-[2.5px] bg-gray-200 -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0">
+          <div
+            className="w-full bg-[#e52b2b] transition-all duration-150 ease-out"
+            style={{ height: `${scrollProgress * 100}%` }}
+          />
+        </div>
+
+        <div className="space-y-24 md:space-y-36 relative z-10">
+          {steps.map((step, i) => {
+            const isActive = i <= activeStep;
+            return (
               <div
                 key={step.number}
-                ref={(el) => (refs.current[i] = el)}
-                className="max-w-md"
+                ref={(el) => (stepRefs.current[i] = el)}
+                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center"
               >
-                <p className="md:hidden font-mono text-sm text-charcoal/50 mb-2">
-                  {step.number}
-                </p>
-                <h3 className="text-2xl font-serif italic mb-4">{step.title}</h3>
-                <p className="text-base text-charcoal/70 leading-relaxed">
-                  {step.text}
-                </p>
+                {/* Left Side (4 Cols) */}
+                <div className="md:col-span-4 flex flex-col md:items-end text-left md:text-right">
+                  <span className="inline-block font-mono text-xs font-semibold tracking-wider text-muted/70 uppercase mb-2">
+                    {step.number}
+                  </span>
+                  <h3 className="font-serif italic text-4xl md:text-5xl text-foreground tracking-tight">
+                    {step.italicTitle}
+                  </h3>
+                </div>
+
+                {/* Center Node Column (1 Col: Col 5) - Naturally centered on Col 5 midpoint */}
+                <div className="hidden md:flex md:col-span-1 items-center justify-center">
+                  {isActive ? (
+                    <div className="relative flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-[#e52b2b] text-white flex items-center justify-center shadow-md relative z-10 ring-4 ring-[#e52b2b]/25">
+                        <ChevronDown className="h-4 w-4 stroke-[3] text-white" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-white border-2 border-gray-300 text-[#e52b2b]/60 flex items-center justify-center shadow-sm relative z-10">
+                      <ChevronDown className="h-3.5 w-3.5 stroke-[2.5]" />
+                    </div>
+                  )}
+                </div>
+
+                {/* Right Side (7 Cols) */}
+                <div className="md:col-span-7 space-y-3">
+                  <h4 className="font-heading text-2xl md:text-3xl text-foreground tracking-tight">
+                    {step.title}
+                  </h4>
+                  <p className="text-muted text-base md:text-lg leading-relaxed max-w-xl">
+                    {step.text}
+                  </p>
+                </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </div>
     </section>

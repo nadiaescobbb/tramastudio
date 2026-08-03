@@ -5,6 +5,10 @@ export const useReveal = <T extends HTMLElement = HTMLDivElement>() => {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      el.classList.add("is-visible");
+      return;
+    }
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
