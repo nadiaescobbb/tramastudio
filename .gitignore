@@ -7,21 +7,36 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Environment & Build outputs
+.env
+.env.local
+.env.*.local
+*.local
 node_modules
 dist
 dist-ssr
-*.local
+coverage
+.vercel
+.cache
+*.tsbuildinfo
 
-# Editor directories and files
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor & Tooling directories
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 .agents/
+.cursor/
+.codex/
+.claude/
+.windsurf/
 skills-lock.json
- 
