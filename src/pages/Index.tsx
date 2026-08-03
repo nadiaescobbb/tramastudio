@@ -90,7 +90,7 @@ const Index = () => {
             <div className="md:col-span-7 lg:col-start-6">
               <Reveal delay={150}>
                 <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-8">
-                  Pensar cómo funciona y <span className="italic text-[hsl(var(--accent))]">construir la tecnología detrás</span>.
+                  Pensamos primero cómo decide tu cliente, <span className="italic text-[hsl(var(--accent))]">después cómo construir la tecnología para que esa decisión no se pierda en el camino</span>.
                 </h2>
                 <div className="flex flex-col gap-6">
                   <p className="text-lg leading-relaxed text-muted max-w-xl">
