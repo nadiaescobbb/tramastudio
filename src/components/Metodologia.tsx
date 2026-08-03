@@ -37,7 +37,7 @@ export default function Metodologia() {
           }
         });
       },
-      { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+      { rootMargin: "-35% 0px -35% 0px", threshold: 0 }
     );
 
     refs.current.forEach((el) => el && observer.observe(el));
@@ -45,8 +45,8 @@ export default function Metodologia() {
   }, []);
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 gap-12 py-24 px-6 md:px-16" id="proceso">
-      <div className="hidden md:block sticky top-32 self-start">
+    <section className="grid grid-cols-1 md:grid-cols-2 gap-12 py-24 md:py-32 px-6 md:px-16" id="proceso">
+      <div className="hidden md:block sticky top-40 self-start z-10">
         <p className="text-xs tracking-widest uppercase text-charcoal/50 mb-6 font-mono">
           Nuestro proceso
         </p>
@@ -67,7 +67,7 @@ export default function Metodologia() {
         </ul>
       </div>
 
-      <div className="space-y-[40vh] md:space-y-[60vh]">
+      <div className="space-y-[20vh]">
         {steps.map((step, i) => (
           <div
             key={step.number}
