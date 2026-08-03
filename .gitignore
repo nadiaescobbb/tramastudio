@@ -40,3 +40,6 @@ desktop.ini
 .claude/
 .windsurf/
 skills-lock.json
+
+# Internal documentation
+docs/
