@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { waLink } from "@/data/projects";
 import Metodologia from "@/components/Metodologia";
 import { FeaturedCaseStudies } from "@/components/FeaturedCaseStudies";
+import { ServicesStack } from "@/components/ServicesStack";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 
@@ -31,7 +32,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-clip">
       <Nav />
 
       {/* HERO */}
@@ -61,6 +62,9 @@ const Index = () => {
 
       {/* ── METODOLOGÍA ─────────────────────────────────────────── */}
       <Metodologia />
+
+      {/* ── SERVICIOS STACKED (Estilo Orbix) ─────────────────────── */}
+      <ServicesStack />
 
       {/* ── EL ESTUDIO ─────────────────────────────────────────── */}
       <section className="relative z-20 py-24 md:py-36 bg-background border-t border-border" id="estudio">
