@@ -67,7 +67,7 @@ const Index = () => {
       <ServicesStack />
 
       {/* ── EL ESTUDIO ─────────────────────────────────────────── */}
-      <section className="relative z-20 py-24 md:py-36 bg-background border-t border-border" id="estudio">
+      <section className="relative z-20 py-24 md:py-36 bg-background border-t border-border scroll-mt-36" id="estudio">
         <div className="container-trama">
           <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-12">
             El Estudio

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
 
 const steps = [
   {
@@ -68,7 +67,11 @@ export default function Metodologia() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative z-10 bg-background py-24 md:py-36 overflow-hidden" id="proceso">
+    <section
+      ref={sectionRef}
+      className="relative z-10 bg-background py-24 md:py-36 overflow-hidden scroll-mt-36"
+      id="proceso"
+    >
       {/* Section Header */}
       <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-4xl mx-auto mb-20 md:mb-28">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#6B2E2A]/30 bg-[#6B2E2A]/5 text-[#8A3F38] font-mono text-xs font-semibold uppercase tracking-widest mb-6">
@@ -84,11 +87,15 @@ export default function Metodologia() {
 
       {/* Timeline Section */}
       <div className="container-trama px-6 md:px-12 lg:px-16 relative">
-        {/* Central Vertical Connector Line (1.5px Width) */}
+        {/* Central Vertical Connector Line (1.5px Width with Real Fade Gradient) */}
         <div className="hidden md:block absolute left-[37.5%] top-6 bottom-6 w-[1.5px] bg-[#D8D5D0] -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0">
           <div
-            className="w-full bg-[#6B2E2A] transition-all duration-150 ease-out"
-            style={{ height: `${scrollProgress * 100}%` }}
+            className="w-full transition-all duration-150 ease-out"
+            style={{
+              height: `${scrollProgress * 100}%`,
+              background:
+                "linear-gradient(to bottom, #6B2E2A 0%, rgba(107, 46, 42, 0.75) 75%, rgba(107, 46, 42, 0.2) 100%)",
+            }}
           />
         </div>
 
@@ -114,24 +121,20 @@ export default function Metodologia() {
                   </h3>
                 </div>
 
-                {/* Center Node Indicator (1 Col: Col 5) - Consistent 4 points of exact same size */}
+                {/* Center Node Indicator (1 Col: Col 5) - Consistent 4 points with Halo Glow */}
                 <div className="hidden md:flex md:col-span-1 items-center justify-center">
-                  {isCurrent && (
-                    <div className="w-7 h-7 rounded-full bg-[#6B2E2A] text-white flex items-center justify-center shadow-md relative z-10 ring-4 ring-[#6B2E2A]/25">
-                      <ChevronDown className="h-3.5 w-3.5 stroke-[2.5] text-white" />
-                    </div>
-                  )}
-
-                  {isVisited && (
-                    <div className="w-7 h-7 rounded-full bg-[#6B2E2A] text-white flex items-center justify-center shadow-sm relative z-10">
-                      <ChevronDown className="h-3.5 w-3.5 stroke-[2.5] text-white" />
+                  {(isCurrent || isVisited) && (
+                    <div className="relative flex items-center justify-center">
+                      {/* Soft Halo Glow Outer Ring */}
+                      <div className="absolute w-8 h-8 rounded-full bg-[#6B2E2A]/20 blur-[1px] pointer-events-none" />
+                      <div className="w-6 h-6 rounded-full bg-[#6B2E2A] text-white flex items-center justify-center shadow-md relative z-10">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white block" />
+                      </div>
                     </div>
                   )}
 
                   {isPending && (
-                    <div className="w-7 h-7 rounded-full bg-white border-2 border-[#D8D5D0] text-[#6B2E2A]/40 flex items-center justify-center relative z-10">
-                      <ChevronDown className="h-3 w-3 stroke-[2]" />
-                    </div>
+                    <div className="w-6 h-6 rounded-full bg-background border-[1.5px] border-[#D8D5D0] flex items-center justify-center relative z-10" />
                   )}
                 </div>
 
