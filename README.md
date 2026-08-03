@@ -10,7 +10,7 @@ El objetivo del proyecto es mostrar una identidad visual propia sin perder clari
 
 ## Contexto
 
-HeyTrama necesitaba una presencia digital que se sintiera editorial, precisa y profesional. La página evita una presentación genérica de agencia y ordena el mensaje alrededor de criterio, proceso y resultados, permitiendo captar clientes que valoran la calidad técnica y el diseño bien pensado.rrollo frontend, estructura narrativa, animaciones, responsive design y optimización de presentación.
+HeyTrama necesitaba una presencia digital que se sintiera editorial, precisa y profesional. La página evita una presentación genérica de agencia y ordena el mensaje alrededor de criterio, proceso y resultados, permitiendo captar clientes que valoran la calidad técnica y el diseño bien pensado.
 
 ---
 
@@ -63,7 +63,7 @@ src/
 
 ---
 
-## Desarrollo
+## Desarrollo local
 
 ```bash
 git clone https://github.com/nadiaescobbb/tramastudio.git
@@ -76,4 +76,5 @@ npm run dev
 
 ## Autoría
 
-Diseñado y desarrollado por **Nadia Escobar**.
+Nadia Escobar — founder de HeyTrama.
+[heytrama.com](https://www.heytrama.com) · [LinkedIn](https://www.linkedin.com/in/nadiaescobbb/) · [nadiaescobbb@gmail.com](mailto:nadiaescobbb@gmail.com)
