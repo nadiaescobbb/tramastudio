@@ -71,11 +71,11 @@ export default function Metodologia() {
     <section ref={sectionRef} className="relative z-10 bg-background py-24 md:py-36 overflow-hidden" id="proceso">
       {/* Section Header */}
       <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-4xl mx-auto mb-20 md:mb-28">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#e52b2b]/30 bg-[#e52b2b]/5 text-[#e52b2b] font-mono text-xs font-semibold uppercase tracking-widest mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#6B2E2A]/30 bg-[#6B2E2A]/5 text-[#8A3F38] font-mono text-xs font-semibold uppercase tracking-widest mb-6">
           Nuestro Proceso
         </div>
         <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6">
-          Una forma más ágil de <span className="font-serif italic text-[#e52b2b] font-normal">diseñar y construir</span> experiencias.
+          Una forma más ágil de <span className="font-serif italic text-[#8A3F38] font-normal">diseñar y construir</span> experiencias.
         </h2>
         <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
           Simplificamos la creación de sitios y productos digitales combinando estrategia, diseño UX/UI y desarrollo en un flujo eficiente centrado en resultados.
@@ -84,17 +84,20 @@ export default function Metodologia() {
 
       {/* Timeline Section */}
       <div className="container-trama px-6 md:px-12 lg:px-16 relative">
-        {/* Central Red Vertical Line (Desktop) - Exactly centered at Col 5 midpoint (37.5%) */}
-        <div className="hidden md:block absolute left-[37.5%] top-6 bottom-6 w-[2.5px] bg-gray-200 -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0">
+        {/* Central Vertical Connector Line (1.5px Width) */}
+        <div className="hidden md:block absolute left-[37.5%] top-6 bottom-6 w-[1.5px] bg-[#D8D5D0] -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0">
           <div
-            className="w-full bg-[#e52b2b] transition-all duration-150 ease-out"
+            className="w-full bg-[#6B2E2A] transition-all duration-150 ease-out"
             style={{ height: `${scrollProgress * 100}%` }}
           />
         </div>
 
         <div className="space-y-24 md:space-y-36 relative z-10">
           {steps.map((step, i) => {
-            const isActive = i <= activeStep;
+            const isCurrent = i === activeStep;
+            const isVisited = i < activeStep;
+            const isPending = i > activeStep;
+
             return (
               <div
                 key={step.number}
@@ -111,17 +114,23 @@ export default function Metodologia() {
                   </h3>
                 </div>
 
-                {/* Center Node Column (1 Col: Col 5) - Naturally centered on Col 5 midpoint */}
+                {/* Center Node Indicator (1 Col: Col 5) - Consistent 4 points of exact same size */}
                 <div className="hidden md:flex md:col-span-1 items-center justify-center">
-                  {isActive ? (
-                    <div className="relative flex items-center justify-center">
-                      <div className="w-8 h-8 rounded-full bg-[#e52b2b] text-white flex items-center justify-center shadow-md relative z-10 ring-4 ring-[#e52b2b]/25">
-                        <ChevronDown className="h-4 w-4 stroke-[3] text-white" />
-                      </div>
+                  {isCurrent && (
+                    <div className="w-7 h-7 rounded-full bg-[#6B2E2A] text-white flex items-center justify-center shadow-md relative z-10 ring-4 ring-[#6B2E2A]/25">
+                      <ChevronDown className="h-3.5 w-3.5 stroke-[2.5] text-white" />
                     </div>
-                  ) : (
-                    <div className="w-8 h-8 rounded-full bg-white border-2 border-gray-300 text-[#e52b2b]/60 flex items-center justify-center shadow-sm relative z-10">
-                      <ChevronDown className="h-3.5 w-3.5 stroke-[2.5]" />
+                  )}
+
+                  {isVisited && (
+                    <div className="w-7 h-7 rounded-full bg-[#6B2E2A] text-white flex items-center justify-center shadow-sm relative z-10">
+                      <ChevronDown className="h-3.5 w-3.5 stroke-[2.5] text-white" />
+                    </div>
+                  )}
+
+                  {isPending && (
+                    <div className="w-7 h-7 rounded-full bg-white border-2 border-[#D8D5D0] text-[#6B2E2A]/40 flex items-center justify-center relative z-10">
+                      <ChevronDown className="h-3 w-3 stroke-[2]" />
                     </div>
                   )}
                 </div>
