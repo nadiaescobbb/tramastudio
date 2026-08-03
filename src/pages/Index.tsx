@@ -71,7 +71,7 @@ const Index = () => {
               <Reveal delay={100}>
                 <div className="overflow-hidden rounded-2xl border border-border bg-white aspect-[16/10] flex items-center justify-center">
                   <img
-                    src="/cuorehome.jpg"
+                    src="/cuorehome.avif"
                     alt="Caso Cuore"
                     loading="lazy"
                     className="w-full h-full object-contain"
