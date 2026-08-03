@@ -1,3 +1,5 @@
+[![CI](https://github.com/nadiaescobbb/tramastudio/actions/workflows/ci.yml/badge.svg)](https://github.com/nadiaescobbb/tramastudio/actions/workflows/ci.yml)
+
 # HeyTrama
 
 Sitio web para presentar HeyTrama como una práctica de diseño y desarrollo frontend enfocada en marcas, landings y experiencias digitales con intención comercial.
