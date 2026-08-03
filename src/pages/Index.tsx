@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import { waLink } from "@/data/projects";
+import Metodologia from "@/components/Metodologia";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 
@@ -123,37 +124,7 @@ const Index = () => {
       </section>
 
       {/* ── METODOLOGÍA ─────────────────────────────────────────── */}
-      <section className="bg-background py-24 md:py-36" id="proceso">
-        <div className="container-trama px-8 md:px-12 lg:px-16">
-          <Reveal>
-            <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-12 text-center">
-              Metodología
-            </div>
-          </Reveal>
-
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {STEPS.map((s, i) => (
-              <Reveal key={s.n} delay={i * 100}>
-                <div className="trama-card p-1.5 h-full">
-                  <div className="trama-card-inner p-6 md:p-8 flex flex-col justify-start h-full">
-                    <div className="font-mono text-2xl font-light text-[hsl(var(--accent))]/20 mb-6">
-                      {s.n}
-                    </div>
-                    <h3 className="font-heading text-2xl mb-4 tracking-tight">
-                      {s.t}
-                    </h3>
-                    {s.d && (
-                      <p className="text-sm leading-relaxed text-tertiary">
-                        {s.d}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Metodologia />
 
       {/* ── EL ESTUDIO ─────────────────────────────────────────── */}
       <section className="py-24 md:py-36 bg-surface/40" id="estudio">
