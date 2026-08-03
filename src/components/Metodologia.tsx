@@ -45,44 +45,50 @@ export default function Metodologia() {
   }, []);
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 gap-12 py-24 md:py-32 px-6 md:px-16" id="proceso">
-      <div className="hidden md:block sticky top-40 self-start z-10">
-        <p className="text-xs tracking-widest uppercase text-charcoal/50 mb-6 font-mono">
-          Nuestro proceso
-        </p>
-        <ul className="space-y-4">
-          {steps.map((step, i) => (
-            <li
-              key={step.number}
-              className={`text-3xl font-serif transition-opacity duration-300 ${
-                i === active ? "opacity-100" : "opacity-30"
-              }`}
-            >
-              <span className="font-mono text-sm mr-3 align-middle">
-                {step.number}
-              </span>
-              {step.title}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="space-y-[20vh]">
-        {steps.map((step, i) => (
-          <div
-            key={step.number}
-            ref={(el) => (refs.current[i] = el)}
-            className="max-w-md"
-          >
-            <p className="md:hidden font-mono text-sm text-charcoal/50 mb-2">
-              {step.number}
+    <section className="relative z-10 bg-background py-24 md:py-36 pb-36 md:pb-52" id="proceso">
+      <div className="container-trama px-6 md:px-12 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          {/* Sticky Left Column */}
+          <div className="hidden md:block md:col-span-5 lg:col-span-5 sticky top-36 self-start z-10 pl-4 lg:pl-8">
+            <p className="text-xs tracking-widest uppercase text-charcoal/50 mb-6 font-mono">
+              Nuestro proceso
             </p>
-            <h3 className="text-2xl font-serif italic mb-4">{step.title}</h3>
-            <p className="text-base text-charcoal/70 leading-relaxed">
-              {step.text}
-            </p>
+            <ul className="space-y-4">
+              {steps.map((step, i) => (
+                <li
+                  key={step.number}
+                  className={`text-3xl font-serif transition-opacity duration-300 ${
+                    i === active ? "opacity-100" : "opacity-30"
+                  }`}
+                >
+                  <span className="font-mono text-sm mr-3 align-middle">
+                    {step.number}
+                  </span>
+                  {step.title}
+                </li>
+              ))}
+            </ul>
           </div>
-        ))}
+
+          {/* Right Column Scrolling Steps */}
+          <div className="md:col-span-7 lg:col-span-6 lg:col-start-7 space-y-[22vh]">
+            {steps.map((step, i) => (
+              <div
+                key={step.number}
+                ref={(el) => (refs.current[i] = el)}
+                className="max-w-md"
+              >
+                <p className="md:hidden font-mono text-sm text-charcoal/50 mb-2">
+                  {step.number}
+                </p>
+                <h3 className="text-2xl font-serif italic mb-4">{step.title}</h3>
+                <p className="text-base text-charcoal/70 leading-relaxed">
+                  {step.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
