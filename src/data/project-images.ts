@@ -1,9 +1,9 @@
 import boscoImg from "@/assets/boscohero.jpeg";
 import boscoProjImg from "@/assets/bosco-proj.jpeg";
-import norteImg from "@/assets/estudionortepordada.png";
+import norteImg from "@/assets/estudionortepordada.avif";
 import novaImg from "@/assets/proj-nova.jpg";
 import camilaImg from "@/assets/proj-camila.jpg";
-import cuoreImg from "@/assets/cuoreportada.png";
+import cuoreImg from "@/assets/cuoreportada.avif";
 
 export const projectImages: Record<string, string> = {
   bosco: boscoImg,
