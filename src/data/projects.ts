@@ -196,8 +196,7 @@ export const projects: Project[] = [
     tagline:
       "40 años de trayectoria en Tierra del Fuego. La unión entre la fabricación artesanal y la tecnología láser de precisión.",
     challenge: [
-      "Traducir 40 años de trayectoria a una web clara sin perder la esencia del taller familiar.",
-      "El objetivo es acercar la marca a una clientela más joven, mostrando fabricación propia, reparación y stock sin convertir la experiencia en un e-commerce frío.",
+      "El taller tenía 40 años de trayectoria y confianza construida en el local físico, pero ninguna presencia digital que la reflejara. Sin web propia, esa historia y esa confianza no llegaban a una clientela más joven que busca y decide online.",
     ],
     criterion: {
       intro: "El diseño se apoya en la historia del taller, la consulta directa y la confianza que ya existe en el local físico.",
@@ -208,8 +207,7 @@ export const projects: Project[] = [
       ],
     },
     solution: [
-      "Estructura editorial que prioriza la historia y la capacidad técnica del taller propio.",
-      "Sistema de consulta directa para piezas de alta gama, manteniendo la exclusividad del trato personalizado.",
+      "Diseñamos una web que traduce esa trayectoria sin perder la esencia del taller familiar — mostrando fabricación propia, reparación y stock, sin caer en la frialdad de un e-commerce genérico.",
     ],
     pullQuote: {
       text: "Combinar 40 años de oficio con tecnología de precisión exigía una interfaz sin frialdad comercial: la consulta directa por WhatsApp preserva el trato personalizado de taller mientras la web exhibe la solidez del proceso.",

@@ -86,18 +86,42 @@ const Dossier = () => {
       <section className="py-16 md:py-24 border-b border-border bg-surface/30">
         <div className="container-trama px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Tagline & Challenge intro */}
-            <div className="lg:col-span-7 space-y-6">
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] block">
-                Proyecto {project.number} · {project.category}
-              </span>
-              <h2 className="font-heading text-2xl md:text-4xl text-foreground font-medium leading-tight">
-                {project.tagline}
-              </h2>
-              <div className="space-y-4 text-muted text-base md:text-lg leading-relaxed pt-2">
-                {project.challenge.map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
+            {/* Tagline & 2-Column Challenge / Solution Breakdown */}
+            <div className="lg:col-span-7 space-y-8">
+              <div className="space-y-4">
+                <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                  Proyecto {project.number} · {project.category}
+                </span>
+                <h2 className="font-heading text-2xl md:text-4xl text-foreground font-medium leading-tight">
+                  {project.tagline}
+                </h2>
+              </div>
+
+              {/* 2-Column Side-by-Side Grid (EL DESAFÍO / NUESTRA SOLUCIÓN) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start pt-2">
+                {/* Column 1: EL DESAFÍO */}
+                <div className="space-y-3">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                    EL DESAFÍO
+                  </span>
+                  <div className="space-y-3 text-muted text-base md:text-lg leading-relaxed">
+                    {project.challenge.map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Column 2: NUESTRA SOLUCIÓN */}
+                <div className="space-y-3">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                    NUESTRA SOLUCIÓN
+                  </span>
+                  <div className="space-y-3 text-muted text-base md:text-lg leading-relaxed">
+                    {project.solution.map((paragraph, i) => (
+                      <p key={i}>{paragraph}</p>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
