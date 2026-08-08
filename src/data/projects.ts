@@ -19,6 +19,9 @@ export type Project = {
   };
   solution: string[];
   pullQuote?: { text: string; author?: string };
+  designSystem?: {
+    swatches: { color: string; hex: string; label: string }[];
+  };
 };
 
 export const projects: Project[] = [
@@ -49,6 +52,14 @@ export const projects: Project[] = [
       text: "Buscábamos una comprensión del negocio más allá de la interfaz. El resultado es una estructura sólida y funcional.",
       author: "Lautaro — Bosco Argentina",
     },
+    designSystem: {
+      swatches: [
+        { color: "#331B10", hex: "#331B10", label: "Marrón Cacao" },
+        { color: "#FBFBFA", hex: "#FBFBFA", label: "Superficie Marfil" },
+        { color: "#ED955A", hex: "#ED955A", label: "Acento Caramelo" },
+        { color: "score", hex: "100 / 100", label: "Performance Score" },
+      ],
+    },
   },
   {
     slug: "estudio-norte",
@@ -78,6 +89,14 @@ export const projects: Project[] = [
     pullQuote: {
       text: "Diferenciarnos en arquitectura B2B no significaba mostrar más renders, sino explicar nuestro proceso proyectual con claridad para atraer clientes verdaderamente alineados con nuestro criterio técnico.",
       author: "Estudio Norte — Arquitectura B2B",
+    },
+    designSystem: {
+      swatches: [
+        { color: "#0C211B", hex: "#0C211B", label: "Verde Esmeralda" },
+        { color: "#F8F9F8", hex: "#F8F9F8", label: "Fondo Blanco" },
+        { color: "#5EC49E", hex: "#5EC49E", label: "Acento Plano" },
+        { color: "score", hex: "100 / 100", label: "Performance Score" },
+      ],
     },
   },
   {
@@ -113,6 +132,14 @@ export const projects: Project[] = [
       text: "En salud estética, la interfaz no busca convencer de forma agresiva: una tipografía equilibrada y una jerarquía limpia inspiran la calma y confianza previa que el paciente necesita para agendar su consulta.",
       author: "Dirección Médica — Clínica Nova",
     },
+    designSystem: {
+      swatches: [
+        { color: "#191638", hex: "#191638", label: "Índigo Clínico" },
+        { color: "#FAFAFF", hex: "#FAFAFF", label: "Blanco Limpio" },
+        { color: "#A293F5", hex: "#A293F5", label: "Acento Suave" },
+        { color: "score", hex: "100 / 100", label: "Performance Score" },
+      ],
+    },
   },
   {
     slug: "camila-correa",
@@ -147,6 +174,14 @@ export const projects: Project[] = [
       text: "Una presencia digital en psicoanálisis debe ofrecer una pausa: la lectura tranquila y los bloques de texto contenidos transmiten la seriedad y resguardo del encuadre profesional.",
       author: "Lic. Camila Correa — Psicoanálisis Clínico",
     },
+    designSystem: {
+      swatches: [
+        { color: "#2A2620", hex: "#2A2620", label: "Carbón Sobrio" },
+        { color: "#FBF9F6", hex: "#FBF9F6", label: "Superficie Crema" },
+        { color: "#D4C5B9", hex: "#D4C5B9", label: "Taupe Cálido" },
+        { color: "score", hex: "100 / 100", label: "Performance Score" },
+      ],
+    },
   },
   {
     slug: "joyeria-cuore",
@@ -179,6 +214,14 @@ export const projects: Project[] = [
     pullQuote: {
       text: "Combinar 40 años de oficio con tecnología de precisión exigía una interfaz sin frialdad comercial: la consulta directa por WhatsApp preserva el trato personalizado de taller mientras la web exhibe la solidez del proceso.",
       author: "Taller Cuore — Río Grande, Tierra del Fuego",
+    },
+    designSystem: {
+      swatches: [
+        { color: "#3E2718", hex: "#3E2718", label: "Chocolate Taller" },
+        { color: "#F7F5F0", hex: "#F7F5F0", label: "Superficie Crema" },
+        { color: "#B89368", hex: "#B89368", label: "Oro & Relojería" },
+        { color: "score", hex: "100 / 100", label: "Performance Score" },
+      ],
     },
   },
 ];

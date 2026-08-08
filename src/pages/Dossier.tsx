@@ -272,28 +272,41 @@ const Dossier = () => {
 
           {/* Color & Spec Swatches Showcase */}
           <div className="bg-surface/50 rounded-2xl p-8 border border-border grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="space-y-2">
-              <div className="h-16 rounded-xl bg-foreground border border-border" />
-              <span className="font-mono text-xs font-semibold text-foreground block">#090909</span>
-              <span className="font-mono text-[10px] text-muted uppercase">Contraste Alto</span>
-            </div>
-            <div className="space-y-2">
-              <div className="h-16 rounded-xl bg-white border border-border" />
-              <span className="font-mono text-xs font-semibold text-foreground block">#FFFFFF</span>
-              <span className="font-mono text-[10px] text-muted uppercase">Superficie Limpia</span>
-            </div>
-            <div className="space-y-2">
-              <div className="h-16 rounded-xl bg-[hsl(var(--accent))] border border-border" />
-              <span className="font-mono text-xs font-semibold text-foreground block">ACCENT</span>
-              <span className="font-mono text-[10px] text-muted uppercase">Acento Editorial</span>
-            </div>
-            <div className="space-y-2">
-              <div className="h-16 rounded-xl bg-surface border border-border flex items-center justify-center font-mono text-xs font-bold text-foreground">
-                100 / 100
-              </div>
-              <span className="font-mono text-xs font-semibold text-foreground block">PERFORMANCE</span>
-              <span className="font-mono text-[10px] text-muted uppercase">Score Vite</span>
-            </div>
+            {(
+              project.designSystem?.swatches || [
+                { color: "#090909", hex: "#090909", label: "Contraste Alto" },
+                { color: "#FFFFFF", hex: "#FFFFFF", label: "Superficie Limpia" },
+                { color: "accent", hex: "ACCENT", label: "Acento Editorial" },
+                { color: "score", hex: "100 / 100", label: "Score Vite" },
+              ]
+            ).map((swatch, idx) => {
+              const isScore = swatch.color === "score";
+              const isAccent = swatch.color === "accent";
+
+              return (
+                <div key={idx} className="space-y-2">
+                  <div
+                    className="h-16 rounded-xl border border-border flex items-center justify-center font-mono text-xs font-bold shadow-sm"
+                    style={{
+                      backgroundColor: isScore
+                        ? "hsl(var(--surface))"
+                        : isAccent
+                        ? "hsl(var(--accent))"
+                        : swatch.color,
+                      color: isAccent ? "#FFFFFF" : isScore ? "hsl(var(--foreground))" : undefined,
+                    }}
+                  >
+                    {isScore && swatch.hex}
+                  </div>
+                  <span className="font-mono text-xs font-semibold text-foreground block">
+                    {swatch.hex}
+                  </span>
+                  <span className="font-mono text-[10px] text-muted uppercase">
+                    {swatch.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
