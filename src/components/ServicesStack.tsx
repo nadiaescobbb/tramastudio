@@ -98,55 +98,44 @@ export function ServicesStack() {
       {/* Mobile Stacked Sticky Cards Layout (Visible on Mobile only: block md:hidden) */}
       <div className="block md:hidden relative px-4 pb-20">
         {services.map((service, index) => (
-          <div
+          <a
             key={`mobile-${service.number}`}
-            className={`sticky top-20 min-h-[75vh] w-full ${service.bgColor} ${service.textColor} rounded-3xl p-6 border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.35)] flex flex-col justify-between mb-8 overflow-hidden`}
+            href={waLink(`Hola, quiero consultar sobre el servicio de ${service.category}.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`sticky top-20 block w-full ${service.bgColor} ${service.textColor} rounded-2xl p-6 border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.35)] mb-16 overflow-hidden group transition-transform active:scale-[0.98]`}
             style={{ zIndex: index + 1 }}
           >
-            {/* Top Bar */}
-            <div className="flex items-center justify-between font-mono text-xs text-white/70">
-              <span className="font-bold text-sm">{service.number}</span>
-              <a
-                href={waLink(`Hola, quiero consultar sobre el servicio de ${service.category}.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center active:bg-white/20 transition-colors"
-              >
-                <ArrowUpRight className="w-4 h-4 text-white" />
-              </a>
+            {/* Top Bar: Number & Arrow */}
+            <div className="flex items-center justify-between font-mono text-xs text-white/70 mb-5">
+              <span className="font-bold">{service.number}</span>
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <ArrowUpRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </div>
             </div>
 
-            {/* Central Content */}
-            <div className="my-auto py-6 space-y-4 text-center">
-              <h3 className="font-heading text-4xl font-bold tracking-tight text-white leading-none">
-                {service.titleBold}
-                <span className="font-serif italic font-normal text-white/90 block mt-1">
-                  {service.titleItalic}
-                </span>
-              </h3>
+            {/* Main Title */}
+            <h3 className="font-heading text-3xl font-bold tracking-tight text-white mb-3 leading-tight">
+              {service.titleBold}
+              <span className="font-serif italic font-normal text-white/90 ml-1.5">
+                {service.titleItalic}
+              </span>
+            </h3>
 
-              {/* Mobile Single-Line Copy */}
-              <p className="text-white/80 font-sans text-sm md:text-base max-w-xs mx-auto leading-relaxed">
-                {service.mobileDescription}
-              </p>
+            {/* Mobile Single-Line Copy */}
+            <p className="text-white/80 font-sans text-sm leading-relaxed mb-6">
+              {service.mobileDescription}
+            </p>
 
-              <a
-                href={waLink(`Hola, quiero cotizar ${service.category}.`)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-black px-5 py-2.5 rounded-full font-mono text-xs font-bold shadow-lg mt-4 active:scale-95 transition-transform"
-              >
-                <span>Cotizar Servicio</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-
-            {/* Bottom Counter Bar */}
+            {/* Footer Bar */}
             <div className="flex items-center justify-between pt-4 border-t border-white/10 font-mono text-xs text-white/60">
               <span>{service.category}</span>
-              <span>0{index + 1} / 0{services.length}</span>
+              <span className="text-white font-semibold flex items-center gap-1 group-hover:underline">
+                <span>Cotizar</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
 
