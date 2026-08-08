@@ -75,6 +75,10 @@ export const projects: Project[] = [
       "Pasamos de un catálogo visual a una presentación más clara del proceso y del criterio de trabajo.",
       "El sitio ayuda a que la consulta llegue con más contexto: qué tipo de obra busca, qué valora y por qué el estudio puede ser una buena opción.",
     ],
+    pullQuote: {
+      text: "Diferenciarnos en arquitectura B2B no significaba mostrar más renders, sino explicar nuestro proceso proyectual con claridad para atraer clientes verdaderamente alineados con nuestro criterio técnico.",
+      author: "Estudio Norte — Arquitectura B2B",
+    },
   },
   {
     slug: "clinica-nova",
@@ -105,6 +109,10 @@ export const projects: Project[] = [
       "El sitio presenta tratamientos, enfoque y próximo paso de forma ordenada.",
       "La idea es que la persona llegue a la consulta con menos dudas y una percepción más clara del nivel de atención.",
     ],
+    pullQuote: {
+      text: "En salud estética, la interfaz no busca convencer de forma agresiva: una tipografía equilibrada y una jerarquía limpia inspiran la calma y confianza previa que el paciente necesita para agendar su consulta.",
+      author: "Dirección Médica — Clínica Nova",
+    },
   },
   {
     slug: "camila-correa",
@@ -135,6 +143,10 @@ export const projects: Project[] = [
       "El sitio ordena presentación, enfoque y contacto sin convertir un tema sensible en un embudo agresivo.",
       "La estética acompaña la confianza, pero la decisión se sostiene en claridad y tono profesional.",
     ],
+    pullQuote: {
+      text: "Una presencia digital en psicoanálisis debe ofrecer una pausa: la lectura tranquila y los bloques de texto contenidos transmiten la seriedad y resguardo del encuadre profesional.",
+      author: "Lic. Camila Correa — Psicoanálisis Clínico",
+    },
   },
   {
     slug: "joyeria-cuore",
@@ -164,6 +176,10 @@ export const projects: Project[] = [
       "Estructura editorial que prioriza la historia y la capacidad técnica del taller propio.",
       "Sistema de consulta directa para piezas de alta gama, manteniendo la exclusividad del trato personalizado.",
     ],
+    pullQuote: {
+      text: "Combinar 40 años de oficio con tecnología de precisión exigía una interfaz sin frialdad comercial: la consulta directa por WhatsApp preserva el trato personalizado de taller mientras la web exhibe la solidez del proceso.",
+      author: "Taller Cuore — Río Grande, Tierra del Fuego",
+    },
   },
 ];
 
