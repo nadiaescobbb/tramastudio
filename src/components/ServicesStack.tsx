@@ -11,6 +11,7 @@ interface ServiceItem {
   ctaText: string;
   tagline: string;
   description: string;
+  mobileDescription: string;
 }
 
 const services: ServiceItem[] = [
@@ -25,6 +26,7 @@ const services: ServiceItem[] = [
     tagline: "Cuando la interfaz es lo único que alguien conoce de vos antes de decidir.",
     description:
       "Nadie lee tu proceso interno ni tu stack. Decide con lo que ve. Diseñamos esa superficie para que no le pida al usuario más esfuerzo del que la decisión de compra ya requiere.",
+    mobileDescription: "Interfaces claras que no le piden al usuario más esfuerzo del que ya tiene que dar.",
   },
   {
     number: "(02)",
@@ -37,6 +39,7 @@ const services: ServiceItem[] = [
     tagline: "El pulgar no perdona lo que el mouse disimula.",
     description:
       "En mobile no hay margen para que la interfaz distraiga. Cada pantalla se construye para que interactuar no compita con decidir.",
+    mobileDescription: "Pantallas pensadas para que el pulgar no compita con la decisión.",
   },
   {
     number: "(03)",
@@ -49,6 +52,7 @@ const services: ServiceItem[] = [
     tagline: "Antes de construir todo, hay que saber si hace falta construir algo.",
     description:
       "Un MVP no es una versión chica del producto final: es la pregunta más barata que podés hacerle a un usuario real. Lo armamos para validar la decisión de negocio, no para impresionar.",
+    mobileDescription: "La versión más barata de validar si vale la pena construir el resto.",
   },
   {
     number: "(04)",
@@ -61,6 +65,7 @@ const services: ServiceItem[] = [
     tagline: "Lo que no se ve también decide si el negocio funciona.",
     description:
       "Un frontend prolijo sobre una base frágil se nota tarde — cuando el negocio ya depende de él. Construimos la base para que sostenga la decisión, no solo la pantalla.",
+    mobileDescription: "La base técnica que sostiene la decisión, no solo la pantalla.",
   },
   {
     number: "(05)",
@@ -73,6 +78,7 @@ const services: ServiceItem[] = [
     tagline: "Cuando el problema no entra en una plantilla, tampoco debería entrar la solución.",
     description:
       "Hay negocios cuyo proceso interno es la ventaja competitiva. Ahí no vendemos una plantilla con tu logo — construimos la herramienta a la medida de cómo tu negocio realmente decide y opera.",
+    mobileDescription: "Herramientas a medida cuando el negocio no entra en una plantilla.",
   },
 ];
 
@@ -80,7 +86,7 @@ export function ServicesStack() {
   return (
     <section className="relative bg-background" id="servicios">
       {/* Section Header */}
-      <div className="py-20 bg-background text-center container-trama px-6 md:px-12 lg:px-16">
+      <div className="py-14 md:py-20 bg-background text-center container-trama px-6 md:px-12 lg:px-16">
         <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] mb-4 block">
           Nuestras Soluciones
         </span>
@@ -89,8 +95,51 @@ export function ServicesStack() {
         </h2>
       </div>
 
-      {/* Sticky Stacked Cards Container */}
-      <div className="relative">
+      {/* Mobile Stack Layout (Visible on Mobile only: block md:hidden) */}
+      <div className="block md:hidden space-y-4 px-4 pb-12">
+        {services.map((service) => (
+          <a
+            key={`mobile-${service.number}`}
+            href={waLink(`Hola, quiero consultar sobre el servicio de ${service.category}.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`block w-full ${service.bgColor} ${service.textColor} rounded-2xl p-6 border border-white/10 shadow-xl relative overflow-hidden group transition-transform active:scale-[0.98]`}
+          >
+            {/* Top Bar: Number & Arrow */}
+            <div className="flex items-center justify-between font-mono text-xs text-white/70 mb-5">
+              <span className="font-bold">{service.number}</span>
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <ArrowUpRight className="w-4 h-4 text-white transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </div>
+            </div>
+
+            {/* Main Title */}
+            <h3 className="font-heading text-3xl font-bold tracking-tight text-white mb-3 leading-tight">
+              {service.titleBold}
+              <span className="font-serif italic font-normal text-white/90 ml-1.5">
+                {service.titleItalic}
+              </span>
+            </h3>
+
+            {/* Mobile Single-Line Copy */}
+            <p className="text-white/80 font-sans text-sm leading-relaxed mb-6">
+              {service.mobileDescription}
+            </p>
+
+            {/* Footer Bar */}
+            <div className="flex items-center justify-between pt-4 border-t border-white/10 font-mono text-xs text-white/60">
+              <span>{service.category}</span>
+              <span className="text-white font-semibold flex items-center gap-1 group-hover:underline">
+                <span>Cotizar</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* Desktop Sticky Stacked Cards Container (Visible on Tablet/Desktop: hidden md:block) */}
+      <div className="hidden md:block relative">
         {services.map((service, index) => (
           <div
             key={service.number}
