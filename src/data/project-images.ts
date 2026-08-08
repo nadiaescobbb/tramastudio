@@ -12,3 +12,24 @@ export const projectImages: Record<string, string> = {
   "camila-correa": camilaImg,
   "joyeria-cuore": "/cuorehome.avif",
 };
+
+export const projectGalleries: Record<string, string[]> = {
+  "joyeria-cuore": [
+    "/cuore-hero-taller.png",
+    "/cuore-alianzas-reparaciones.png",
+    "/cuore-catalogo.png",
+  ],
+  bosco: [
+    boscoProjImg,
+    boscoImg,
+  ],
+  "estudio-norte": [
+    norteImg,
+  ],
+  "clinica-nova": [
+    novaImg,
+  ],
+  "camila-correa": [
+    camilaImg,
+  ],
+};

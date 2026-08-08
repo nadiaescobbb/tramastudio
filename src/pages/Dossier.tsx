@@ -4,7 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { projects, waLink } from "@/data/projects";
-import { projectImages } from "@/data/project-images";
+import { projectImages, projectGalleries } from "@/data/project-images";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import NotFound from "./NotFound";
@@ -32,6 +32,10 @@ const Dossier = () => {
   const idx = projects.findIndex((p) => p.slug === targetSlug);
   const next = projects[(idx + 1) % projects.length];
   const image = projectImages[project.slug];
+  const gallery = projectGalleries[project.slug] || [image, image, image];
+  const galleryHero = gallery[0] || image;
+  const galleryLeft = gallery[1] || gallery[0] || image;
+  const galleryRight = gallery[2] || gallery[0] || image;
 
   return (
     <div className="dossier-page relative min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-[hsl(var(--accent))] selection:text-white">
@@ -156,10 +160,10 @@ const Dossier = () => {
       <section className="py-12 bg-background">
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-12">
           {/* Main Showcase Hero */}
-          <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-xl aspect-[16/9]">
+          <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-xl aspect-[16/9] md:aspect-[21/9]">
             <img
-              src={image}
-              alt={`Captura ${project.name}`}
+              src={galleryHero}
+              alt={`Captura ${project.name} - Presentación`}
               loading="lazy"
               className="w-full h-full object-cover"
             />
@@ -167,18 +171,18 @@ const Dossier = () => {
 
           {/* 2-Column Side-by-Side Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-md aspect-[4/3]">
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-md aspect-[4/3] md:aspect-[16/10]">
               <img
-                src={image}
-                alt="Detalle de interfaz"
+                src={galleryLeft}
+                alt={`Captura ${project.name} - Servicios y Alianzas`}
                 loading="lazy"
-                className="w-full h-full object-cover scale-105"
+                className="w-full h-full object-cover"
               />
             </div>
-            <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-md aspect-[4/3]">
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-md aspect-[4/3] md:aspect-[16/10]">
               <img
-                src={image}
-                alt="Experiencia responsive"
+                src={galleryRight}
+                alt={`Captura ${project.name} - Catálogo de Joyas`}
                 loading="lazy"
                 className="w-full h-full object-cover"
               />
