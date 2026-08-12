@@ -69,7 +69,7 @@ const Index = () => {
       <ServicesStack />
 
       {/* ── EL ESTUDIO ─────────────────────────────────────────── */}
-      <section className="relative z-20 py-24 md:py-36 bg-background border-t border-border scroll-mt-36" id="estudio">
+      <section className="relative z-20 py-24 md:py-36 bg-background scroll-mt-36" id="estudio">
         <div className="container-trama">
           <div className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] mb-12">
             EL ESTUDIO
@@ -112,7 +112,7 @@ const Index = () => {
       </section>
 
       {/* ── PREGUNTAS FRECUENTES ───────────────────────────────── */}
-      <section className="bg-surface/10 py-24 md:py-36 border-y border-border" id="preguntas">
+      <section className="bg-surface/10 py-24 md:py-36" id="preguntas">
         <div className="container-narrow">
           <Reveal>
             <div className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
@@ -128,7 +128,7 @@ const Index = () => {
           <div className="grid gap-12">
             {FAQS.map((item, i) => (
               <Reveal key={item.q} delay={i * 100}>
-                <div className="border-b border-border pb-8">
+                <div className="pb-8">
                   <h3 className="font-heading text-2xl tracking-tight mb-4 text-foreground font-medium">{item.q}</h3>
                   <p className="text-base md:text-lg leading-relaxed text-muted max-w-2xl">{item.a}</p>
                 </div>

@@ -83,7 +83,7 @@ const Dossier = () => {
       </section>
 
       {/* ── 2. SUMMARY & METADATA SPECS GRID ────────────────────────────────────── */}
-      <section className="py-16 md:py-24 border-b border-border bg-surface/30">
+      <section className="py-16 md:py-24 bg-surface/30">
         <div className="container-trama px-6 md:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Tagline & 2-Column Challenge / Solution Breakdown */}
@@ -216,7 +216,7 @@ const Dossier = () => {
       </section>
 
       {/* ── 5. OVERVIEW / CRITERIA SECTION (01. OVERVIEW) ────────────────────────── */}
-      <section className="py-24 md:py-36 bg-surface/30 border-y border-border">
+      <section className="py-24 md:py-36 bg-surface/30">
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-4">
@@ -336,7 +336,7 @@ const Dossier = () => {
       </section>
 
       {/* ── 7. RESULTADO E IMPACTO (03. IMPACT) ─────────────────────────────────── */}
-      <section className="py-24 md:py-36 bg-surface/30 border-t border-border">
+      <section className="py-24 md:py-36 bg-surface/30">
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-4">
