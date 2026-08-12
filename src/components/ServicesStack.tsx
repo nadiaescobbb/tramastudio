@@ -3,82 +3,71 @@ import { waLink } from "@/data/projects";
 
 interface ServiceItem {
   number: string;
+  stepCount: string;
   titleBold: string;
   titleItalic: string;
   category: string;
   bgColor: string;
   textColor: string;
-  ctaText: string;
   tagline: string;
-  description: string;
-  mobileDescription: string;
+  ctaLabel: string;
 }
 
 const services: ServiceItem[] = [
   {
     number: "(01)",
+    stepCount: "01 / 05",
     titleBold: "UI UX ",
     titleItalic: "Design",
     category: "Diseño UI / UX",
     bgColor: "bg-[#12151C]",
     textColor: "text-white",
-    ctaText: "Explorar UI/UX Design",
-    tagline: "Cuando la interfaz es lo único que alguien conoce de vos antes de decidir.",
-    description:
-      "Nadie lee tu proceso interno ni tu stack. Decide con lo que ve. Diseñamos esa superficie para que no le pida al usuario más esfuerzo del que la decisión de compra ya requiere.",
-    mobileDescription: "Interfaces claras que no le piden al usuario más esfuerzo del que ya tiene que dar.",
+    tagline: "Nadie lee tu proceso interno. Decide con lo que ve.",
+    ctaLabel: "Diseño UI / UX — Cotizar Servicio",
   },
   {
     number: "(02)",
+    stepCount: "02 / 05",
     titleBold: "Mobile App ",
     titleItalic: "Design",
     category: "Mobile Apps",
     bgColor: "bg-[#0A0A0A]",
     textColor: "text-white",
-    ctaText: "Explorar Mobile App Design",
     tagline: "El pulgar no perdona lo que el mouse disimula.",
-    description:
-      "En mobile no hay margen para que la interfaz distraiga. Cada pantalla se construye para que interactuar no compita con decidir.",
-    mobileDescription: "Pantallas pensadas para que el pulgar no compita con la decisión.",
+    ctaLabel: "Mobile Apps — Cotizar Servicio",
   },
   {
     number: "(03)",
+    stepCount: "03 / 05",
     titleBold: "MVP ",
     titleItalic: "Design",
     category: "Lanzamiento de MVPs",
     bgColor: "bg-[#161320]",
     textColor: "text-white",
-    ctaText: "Explorar MVP Design",
-    tagline: "Antes de construir todo, hay que saber si hace falta construir algo.",
-    description:
-      "Un MVP no es una versión chica del producto final: es la pregunta más barata que podés hacerle a un usuario real. Lo armamos para validar la decisión de negocio, no para impresionar.",
-    mobileDescription: "La versión más barata de validar si vale la pena construir el resto.",
+    tagline: "Antes de construir todo, hay que saber si hace falta construirlo.",
+    ctaLabel: "Lanzamiento de MVPs — Cotizar Servicio",
   },
   {
     number: "(04)",
+    stepCount: "04 / 05",
     titleBold: "Full Stack ",
     titleItalic: "Development",
     category: "Desarrollo Full Stack",
     bgColor: "bg-[#111111]",
     textColor: "text-white",
-    ctaText: "Explorar Full Stack Dev",
     tagline: "Lo que no se ve también decide si el negocio funciona.",
-    description:
-      "Un frontend prolijo sobre una base frágil se nota tarde — cuando el negocio ya depende de él. Construimos la base para que sostenga la decisión, no solo la pantalla.",
-    mobileDescription: "La base técnica que sostiene la decisión, no solo la pantalla.",
+    ctaLabel: "Desarrollo Full Stack — Cotizar Servicio",
   },
   {
     number: "(05)",
+    stepCount: "05 / 05",
     titleBold: "Custom Web ",
     titleItalic: "App",
     category: "Web Apps a Medida",
     bgColor: "bg-[#6B2E2A]",
     textColor: "text-white",
-    ctaText: "Explorar Custom Web Apps",
-    tagline: "Cuando el problema no entra en una plantilla, tampoco debería entrar la solución.",
-    description:
-      "Hay negocios cuyo proceso interno es la ventaja competitiva. Ahí no vendemos una plantilla con tu logo — construimos la herramienta a la medida de cómo tu negocio realmente decide y opera.",
-    mobileDescription: "Herramientas a medida cuando el negocio no entra en una plantilla.",
+    tagline: "Cuando el problema no entra en una plantilla, tampoco debería la solución.",
+    ctaLabel: "Web Apps a Medida — Cotizar Servicio",
   },
 ];
 
@@ -125,18 +114,15 @@ export function ServicesStack() {
               </span>
             </h3>
 
-            {/* Mobile Single-Line Copy */}
-            <p className="text-white/80 font-sans text-sm leading-relaxed mb-6">
-              {service.mobileDescription}
+            {/* Mobile Quote Tagline */}
+            <p className="font-serif italic text-white/90 text-base leading-relaxed mb-6">
+              "{service.tagline}"
             </p>
 
             {/* Footer Bar */}
-            <div className="flex items-center justify-between pt-4 border-t border-white/10 font-mono text-xs text-white/60">
-              <span>{service.category}</span>
-              <span className="text-white font-semibold flex items-center gap-1 group-hover:underline">
-                <span>Cotizar</span>
-                <ArrowUpRight className="w-3 h-3" />
-              </span>
+            <div className="flex items-center justify-between pt-4 border-t border-white/10 font-mono text-xs text-white/80">
+              <span className="font-semibold text-white">{service.ctaLabel}</span>
+              <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
             </div>
           </a>
         ))}
@@ -159,7 +145,7 @@ export function ServicesStack() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 hover:underline group cursor-pointer"
               >
-                <span>{service.ctaText}</span>
+                <span>{service.ctaLabel}</span>
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </div>
@@ -173,39 +159,30 @@ export function ServicesStack() {
                 </span>
               </h3>
 
-              {/* Tagline Tensión (Frase en Serif Itálica) */}
-              <p className="font-serif italic text-white/95 text-xl md:text-3xl max-w-3xl mx-auto leading-tight font-normal">
+              {/* Quote Tagline (Frase recortada e impactante en Serif Itálica) */}
+              <p className="font-serif italic text-white/95 text-2xl md:text-4xl max-w-3xl mx-auto leading-tight font-normal pt-2">
                 "{service.tagline}"
               </p>
 
-              {/* Resolution Description (Resolución Sans-Serif) */}
-              <p className="text-white/80 font-sans text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                {service.description}
-              </p>
-
               {/* Graphical Card CTA Box */}
-              <div className="mx-auto max-w-2xl rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl overflow-hidden p-6 md:p-8 relative group mt-8">
+              <div className="mx-auto max-w-xl rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-2xl overflow-hidden p-6 relative group mt-8">
                 <div className="text-center space-y-4">
-                  <span className="font-mono text-xs uppercase tracking-widest text-white/60 block">
-                    {service.category}
-                  </span>
                   <a
                     href={waLink(`Hola, quiero iniciar un proyecto de ${service.category}.`)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-mono text-xs font-bold shadow-lg hover:bg-white/90 transition-all"
                   >
-                    <span>Cotizar Servicio</span>
+                    <span>{service.ctaLabel}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
             </div>
 
-            {/* Bottom Counter Bar */}
-            <div className="flex justify-between items-center font-mono text-xs opacity-60 z-10">
-              <span>HeyTrama Studio</span>
-              <span>0{index + 1} / 0{services.length}</span>
+            {/* Bottom Counter Bar (Solo número de navegación, sin HeyTrama Studio repetido) */}
+            <div className="flex justify-end items-center font-mono text-xs opacity-60 z-10">
+              <span>{service.stepCount}</span>
             </div>
           </div>
         ))}

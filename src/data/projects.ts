@@ -70,8 +70,8 @@ export const projects: Project[] = [
     format: "Sitio institucional",
     conversion: "Consultas más alineadas",
     liveUrl: "https://estudio-norte.vercel.app/",
-    isConcept: false,
-    category: "Caso real",
+    isConcept: true,
+    category: "Ejercicio de diseño",
     tagline:
       "Un estudio de arquitectura que necesita explicar cómo trabaja y atraer consultas más alineadas.",
     challenge: [
