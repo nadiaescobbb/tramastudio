@@ -109,7 +109,7 @@ export function FeaturedCaseStudies() {
   };
 
   return (
-    <section className="py-24 md:py-36 bg-background border-b border-border" id="casos">
+    <section className="py-24 md:py-36 bg-background" id="casos">
       <div className="container-trama px-6 md:px-12 lg:px-16">
         {/* Section Header */}
         <div className="flex flex-row items-center justify-between mb-12 md:mb-16">
