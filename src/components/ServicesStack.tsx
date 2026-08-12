@@ -93,6 +93,9 @@ export function ServicesStack() {
         <h2 className="font-heading text-4xl md:text-6xl font-bold tracking-tight text-foreground">
           Servicios <span className="font-serif italic font-normal text-[hsl(var(--accent))]">Especializados</span>
         </h2>
+        <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-6">
+          Cada formato exige algo distinto — una pantalla de 6 pulgadas no es una web, un MVP no es un producto terminado. Lo que no cambia es el criterio: que cada decisión de diseño o código exista para resolver algo, no para llenar espacio.
+        </p>
       </div>
 
       {/* Mobile Stacked Sticky Cards Layout (Visible on Mobile only: block md:hidden) */}

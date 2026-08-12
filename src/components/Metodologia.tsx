@@ -10,8 +10,8 @@ const steps = [
   {
     number: "PASO 02",
     italicTitle: "Comunicar",
-    title: "Estructurar la jerarquía visual",
-    text: "La estrategia se traduce en jerarquía: qué tiene que entender el usuario primero, segundo y último. Recién ahí se le da forma visual.",
+    title: "Ordenar qué ve el usuario primero",
+    text: "La estrategia define qué tiene que entender el usuario primero, segundo y último. El diseño visual viene después de esa decisión, no antes.",
   },
   {
     number: "PASO 03",
@@ -22,7 +22,7 @@ const steps = [
   {
     number: "PASO 04",
     italicTitle: "Acompañar",
-    title: "Medición y evolución continua",
+    title: "Medir y ajustar",
     text: "El trabajo no termina con la publicación: se mide qué funciona y qué no, y el sitio se actualiza a medida que el negocio cambia.",
   },
 ];
@@ -78,10 +78,10 @@ export default function Metodologia() {
           Nuestro Proceso
         </div>
         <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6">
-          Una forma más ágil de <span className="font-serif italic text-[#8A3F38] font-normal">diseñar y construir</span> experiencias.
+          Una forma de <span className="font-serif italic text-[#8A3F38] font-normal">diseñar y construir</span> sin perder de vista para qué sirve.
         </h2>
         <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          Simplificamos la creación de sitios y productos digitales combinando estrategia, diseño UX/UI y desarrollo en un flujo eficiente centrado en resultados.
+          Unimos estrategia, diseño y desarrollo en un solo proceso — no tres etapas separadas que alguien tiene que coordinar.
         </p>
       </div>
 

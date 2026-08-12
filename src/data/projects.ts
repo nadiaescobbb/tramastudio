@@ -109,9 +109,9 @@ export const projects: Project[] = [
     conversion: "Confianza antes de reservar",
     liveUrl: "https://clinicanova.vercel.app/",
     isConcept: true,
-    category: "Caso conceptual",
+    category: "Ejercicio de diseño",
     tagline:
-      "Caso conceptual para una clínica estética que necesita transmitir cuidado, claridad y confianza antes de la consulta.",
+      "Landing para una clínica estética. El objetivo era que la persona llegue a la consulta ya sabiendo qué tratamiento busca, en vez de preguntarlo todo en el primer mensaje.",
     challenge: [
       "La web tenía que acompañar una decisión sensible: elegir una clínica no depende solo del precio, sino de la confianza que transmite.",
       "El desafío fue mostrar tratamientos, criterio profesional y resultados sin caer en un tono frío o exagerado.",
@@ -151,9 +151,9 @@ export const projects: Project[] = [
     conversion: "Generación de Confianza Previa",
     liveUrl: "https://camilacorreapsico.vercel.app/",
     isConcept: true,
-    category: "Caso conceptual",
+    category: "Ejercicio de diseño",
     tagline:
-      "Caso conceptual para una profesional de salud mental que necesita transmitir seriedad, cuidado y confianza antes del primer contacto.",
+      "Sitio para una profesional de salud mental. El desafío era que alguien eligiera escribirle a ella y no a otra opción de la lista de resultados, sin depender de una foto o una frase de efecto.",
     challenge: [
       "La web tenía que evitar dos extremos: verse demasiado clínica o demasiado liviana.",
       "El objetivo fue construir una presentación sobria, clara y humana para que la persona entienda el encuadre antes de escribir.",

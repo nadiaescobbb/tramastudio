@@ -10,24 +10,26 @@ import { ServicesStack } from "@/components/ServicesStack";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 
-const STEPS = [
-  { n: "01", t: "Entender", d: "Antes de diseñar, preguntamos qué le impide al negocio venderse mejor hoy." },
-  { n: "02", t: "Comunicar", d: "La estrategia se traduce en jerarquía: qué tiene que entender el usuario primero, segundo y último. Recién ahí se le da forma visual." },
-  { n: "03", t: "Construir", d: "El código pone a prueba esa decisión: si carga rápido, si funciona en cualquier pantalla, si no se rompe cuando el negocio crece." },
-  { n: "04", t: "Acompañar", d: "El trabajo no termina con la publicación: se mide qué funciona, se corrige lo que no, y el sitio se actualiza a medida que el negocio cambia." },
-];
-
 const FAQS = [
-  { q: "¿Qué tipo de proyectos hacen?", a: "Nos enfocamos en diseñar y desarrollar productos digitales a medida. Desde plataformas y aplicaciones hasta ecosistemas web complejos para marcas que necesitan más que una simple presencia online." },
-  { q: "¿Cómo trabajan?", a: "Cada proyecto comienza con una fase de inmersión en el negocio. No diseñamos sin estrategia ni desarrollamos sin diseño previo. Trabajamos por etapas iterativas, manteniendo al cliente involucrado en las decisiones clave." },
-  { q: "¿Con quién trabajan?", a: "Con PyMEs, profesionales, consultoras y marcas que entienden que su presencia digital es un activo estratégico y necesitan un partner tecnológico para escalarlo." },
+  {
+    q: "¿Qué tipo de proyectos hacen?",
+    a: "Diseñamos y desarrollamos productos digitales a medida — desde landings hasta plataformas más complejas — para marcas que necesitan que su sitio haga algo más que existir.",
+  },
+  {
+    q: "¿Cómo trabajan?",
+    a: "Cada proyecto comienza con una fase de inmersión en el negocio. No diseñamos sin estrategia ni desarrollamos sin diseño previo. Trabajamos por etapas iterativas, manteniendo al cliente involucrado en las decisiones clave.",
+  },
+  {
+    q: "¿Con quién trabajan?",
+    a: "Con PyMEs, profesionales y consultoras que ya entendieron que su sitio influye en si alguien les compra o no, y buscan que ese sitio funcione en serio.",
+  },
 ];
 
 const Index = () => {
   useEffect(() => {
     setSeo({
-      title: "HeyTrama — Estudio de Producto Digital.",
-      description: "Diseñamos y desarrollamos productos digitales que conectan negocios con personas. Estrategia, diseño UX/UI y desarrollo frontend.",
+      title: "HeyTrama — Diseño y Desarrollo de Productos Digitales",
+      description: "Diseñamos productos digitales que ayudan a decidir, no solo a mirar. Estrategia, UI/UX, desarrollo full stack y web apps a medida.",
     });
   }, []);
 
@@ -41,15 +43,15 @@ const Index = () => {
         <div className="container-trama relative z-10">
           <div className="max-w-4xl">
             <h1 className="hero-title animate-slide-up opacity-0" style={{ animationDelay: "80ms" }}>
-              Diseñamos y desarrollamos productos digitales <br />
-              <span className="italic">que conectan negocios con personas.</span>
+              Diseñamos productos digitales que ayudan a decidir, <br />
+              <span className="italic font-normal">no solo a mirar.</span>
             </h1>
             <p className="mt-8 text-xl text-muted max-w-2xl leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "320ms" }}>
-              Antes de diseñar, entendemos qué necesita resolver el producto. Desde la estrategia hasta el código: convertimos ideas y procesos en experiencias digitales funcionales.
+              Un producto puede verse bien y aun así no vender: eso pasa cuando el diseño no está pensado para la decisión que tiene que resolver. Por eso primero entendemos qué necesita saber o sentir alguien antes de comprar — y recién ahí construimos, del código a la interfaz.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4 animate-slide-up opacity-0" style={{ animationDelay: "520ms" }}>
-              <a href={waLink("Hola, quiero contarles sobre mi proyecto.")} className="hero-primary-cta group">
-                <span>Contanos qué querés construir</span>
+              <a href={waLink("Hola, estoy pensando en un proyecto y me gustaría consultarles.")} className="hero-primary-cta group">
+                <span>Contanos en qué estás pensando</span>
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </a>
             </div>
@@ -60,7 +62,7 @@ const Index = () => {
       {/* ── PROYECTOS DESTACADOS ───────────────────────────────── */}
       <FeaturedCaseStudies />
 
-      {/* ── METODOLOGÍA ─────────────────────────────────────────── */}
+      {/* ── METODOLOGÍA / NUESTRO PROCESO ─────────────────────── */}
       <Metodologia />
 
       {/* ── SERVICIOS STACKED ────────────────────────────────────── */}
@@ -69,16 +71,16 @@ const Index = () => {
       {/* ── EL ESTUDIO ─────────────────────────────────────────── */}
       <section className="relative z-20 py-24 md:py-36 bg-background border-t border-border scroll-mt-36" id="estudio">
         <div className="container-trama">
-          <div className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[hsl(var(--accent))] mb-12">
-            El Estudio
+          <div className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] mb-12">
+            EL ESTUDIO
           </div>
           <div className="grid gap-16 md:grid-cols-12 md:items-center">
             <div className="md:col-span-5 lg:col-span-4">
               <Reveal>
-                <div className="aspect-[4/5] w-full overflow-hidden rounded-sm border border-border bg-surface relative">
+                <div className="aspect-[4/5] w-full overflow-hidden rounded-sm border border-border bg-surface relative shadow-md">
                   <img
                     src="/founder-nadia.avif"
-                    alt="Nadia Escobio, Directora de HeyTrama"
+                    alt="Nadia Escobio — Directora de HeyTrama"
                     className="founder-portrait absolute inset-0 h-full w-full object-cover grayscale opacity-90"
                     loading="lazy"
                   />
@@ -89,15 +91,18 @@ const Index = () => {
 
             <div className="md:col-span-7 lg:col-start-6">
               <Reveal delay={150}>
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))] block mb-4">
+                  Nadia Escobio — Directora de HeyTrama
+                </span>
                 <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-8">
                   Pensamos primero cómo decide tu cliente, <span className="italic text-[hsl(var(--accent))]">después cómo construir la tecnología para que esa decisión no se pierda en el camino</span>.
                 </h2>
                 <div className="flex flex-col gap-6">
                   <p className="text-lg leading-relaxed text-muted max-w-xl">
-                    HeyTrama nace de la unión entre el diseño estratégico y el desarrollo frontend. Somos un estudio independiente dedicado a crear productos digitales que no solo se ven bien, sino que rinden a nivel técnico y de negocio.
+                    HeyTrama nace de la unión entre diseño estratégico y desarrollo frontend: un mismo criterio aplicado a cada etapa, no dos disciplinas trabajando por separado.
                   </p>
                   <p className="text-lg leading-relaxed text-muted max-w-xl">
-                    Dirigido por Nadia, el estudio asegura un acompañamiento cercano y experto en cada etapa del proceso, garantizando que la visión estratégica original no se pierda durante la implementación tecnológica.
+                    Nadia dirige cada proyecto de punta a punta — de la primera conversación al código en producción — para que nada se pierda en la traducción de una etapa a la siguiente.
                   </p>
                 </div>
               </Reveal>
@@ -106,10 +111,14 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── FAQ ─────────────────────────────────────────────────── */}
+      {/* ── PREGUNTAS FRECUENTES ───────────────────────────────── */}
       <section className="bg-surface/10 py-24 md:py-36 border-y border-border" id="preguntas">
         <div className="container-narrow">
-          <Reveal><div className="eyebrow">PREGUNTAS FRECUENTES</div></Reveal>
+          <Reveal>
+            <div className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+              PREGUNTAS FRECUENTES
+            </div>
+          </Reveal>
           <Reveal delay={80}>
             <h2 className="h-section mt-4 mb-16">
               Antes de <span className="italic text-[hsl(var(--accent))]">empezar</span>.
@@ -120,7 +129,7 @@ const Index = () => {
             {FAQS.map((item, i) => (
               <Reveal key={item.q} delay={i * 100}>
                 <div className="border-b border-border pb-8">
-                  <h3 className="font-heading text-2xl tracking-tight mb-4">{item.q}</h3>
+                  <h3 className="font-heading text-2xl tracking-tight mb-4 text-foreground font-medium">{item.q}</h3>
                   <p className="text-base md:text-lg leading-relaxed text-muted max-w-2xl">{item.a}</p>
                 </div>
               </Reveal>
@@ -138,12 +147,12 @@ const Index = () => {
             </h2>
           </Reveal>
           <p className="mx-auto mt-6 max-w-lg text-center text-lg text-muted leading-relaxed">
-            Contanos qué querés construir y analizaremos la mejor forma de abordarlo desde el diseño y la tecnología.
+            Contanos en qué estás pensando y vemos juntos la mejor forma de resolverlo, desde el diseño y la tecnología.
           </p>
 
           <div className="mx-auto mt-14 max-w-xl">
             <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted mb-5 text-center">
-              Iniciar conversación
+              INICIAR CONVERSACIÓN
             </p>
             <ContactForm />
           </div>
