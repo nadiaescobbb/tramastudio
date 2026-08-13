@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const steps = [
   {
@@ -51,7 +52,7 @@ export default function Metodologia() {
       const totalHeight = rect.height;
       const currentScroll = windowHeight / 2 - rect.top;
       const progress = Math.min(Math.max(currentScroll / totalHeight, 0), 1);
-      
+
       setScrollProgress(progress);
 
       // Single source of truth: derive activeStep directly from scrollProgress
@@ -103,7 +104,7 @@ export default function Metodologia() {
 
       {/* Timeline Section */}
       <div className="container-trama px-6 md:px-12 lg:px-16 relative">
-        {/* Central Vertical Connector Line (Aligned to center of col 5: 4.5 / 12 = 37.5%) */}
+        {/* Central Vertical Connector Line (z-0: Behind node circles, exact X-axis at 4.5/12 = 37.5%) */}
         <div
           className="hidden md:block absolute top-6 bottom-6 w-[1.5px] bg-[#D8D5D0] -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0"
           style={{ left: "calc((4.5 / 12) * 100%)" }}
@@ -127,7 +128,7 @@ export default function Metodologia() {
             return (
               <div
                 key={step.number}
-                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center"
+                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center relative"
               >
                 {/* Left Side (4 Cols) */}
                 <div className="md:col-span-4 flex flex-col md:items-end text-left md:text-right">
@@ -139,20 +140,28 @@ export default function Metodologia() {
                   </h3>
                 </div>
 
-                {/* Center Node Indicator (1 Col: Col 5) - Consistent 4 points with Halo Glow */}
-                <div className="hidden md:flex md:col-span-1 items-center justify-center">
+                {/* Grid Spacer (1 Col: Col 5) */}
+                <div className="hidden md:block md:col-span-1" />
+
+                {/* Node Indicator Mounted Absolutely on Vertical Line (z-10: In front of line, centered at 4.5/12) */}
+                <div
+                  className="hidden md:flex absolute -translate-x-1/2 items-center justify-center z-10 pointer-events-none"
+                  style={{ left: "calc((4.5 / 12) * 100%)" }}
+                >
                   {(isCurrent || isVisited) && (
                     <div className="relative flex items-center justify-center">
                       {/* Soft Halo Glow Outer Ring */}
                       <div className="absolute w-8 h-8 rounded-full bg-[#6B2E2A]/20 blur-[1px] pointer-events-none" />
                       <div className="w-6 h-6 rounded-full bg-[#6B2E2A] text-white flex items-center justify-center shadow-md relative z-10">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white block" />
+                        <ChevronDown className="w-3.5 h-3.5 text-white" strokeWidth={1.8} />
                       </div>
                     </div>
                   )}
 
                   {isPending && (
-                    <div className="w-6 h-6 rounded-full bg-background border-[1.5px] border-[#D8D5D0] flex items-center justify-center relative z-10" />
+                    <div className="w-6 h-6 rounded-full bg-background border-[1.5px] border-[#D8D5D0] text-[#D8D5D0] flex items-center justify-center relative z-10">
+                      <ChevronDown className="w-3.5 h-3.5 text-[#D8D5D0]" strokeWidth={1.8} />
+                    </div>
                   )}
                 </div>
 
