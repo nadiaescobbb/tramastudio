@@ -145,7 +145,7 @@ export default function Metodologia() {
 
                 {/* Node Indicator Mounted Absolutely on Vertical Line (z-10: In front of line, centered at 4.5/12) */}
                 <div
-                  className="hidden md:flex absolute -translate-x-1/2 items-center justify-center z-10 pointer-events-none"
+                  className="hidden md:flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center z-10 pointer-events-none"
                   style={{ left: "calc((4.5 / 12) * 100%)" }}
                 >
                   {(isCurrent || isVisited) && (
