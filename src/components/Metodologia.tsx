@@ -30,40 +30,56 @@ const steps = [
 export default function Metodologia() {
   const [activeStep, setActiveStep] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const rafIdRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    // Check prefers-reduced-motion accessibility preference
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) {
+      setReducedMotion(true);
+      setScrollProgress(1);
+      setActiveStep(steps.length - 1);
+      return;
+    }
+
+    const updateScroll = () => {
       if (!sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const totalHeight = rect.height;
       const currentScroll = windowHeight / 2 - rect.top;
       const progress = Math.min(Math.max(currentScroll / totalHeight, 0), 1);
+      
       setScrollProgress(progress);
+
+      // Single source of truth: derive activeStep directly from scrollProgress
+      const currentStep = Math.min(
+        Math.floor(progress * steps.length),
+        steps.length - 1
+      );
+      setActiveStep(currentStep);
+    };
+
+    // Throttled scroll listener using requestAnimationFrame to prevent reflow jank
+    const handleScroll = () => {
+      if (rafIdRef.current !== null) return;
+      rafIdRef.current = requestAnimationFrame(() => {
+        rafIdRef.current = null;
+        updateScroll();
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    updateScroll();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = stepRefs.current.findIndex((el) => el === entry.target);
-            if (index !== -1) setActiveStep(index);
-          }
-        });
-      },
-      { rootMargin: "-30% 0px -30% 0px", threshold: 0 }
-    );
-
-    stepRefs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafIdRef.current !== null) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+    };
   }, []);
 
   return (
@@ -87,10 +103,13 @@ export default function Metodologia() {
 
       {/* Timeline Section */}
       <div className="container-trama px-6 md:px-12 lg:px-16 relative">
-        {/* Central Vertical Connector Line (1.5px Width with Real Fade Gradient) */}
-        <div className="hidden md:block absolute left-[37.5%] top-6 bottom-6 w-[1.5px] bg-[#D8D5D0] -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0">
+        {/* Central Vertical Connector Line (Aligned to center of col 5: 4.5 / 12 = 37.5%) */}
+        <div
+          className="hidden md:block absolute top-6 bottom-6 w-[1.5px] bg-[#D8D5D0] -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0"
+          style={{ left: "calc((4.5 / 12) * 100%)" }}
+        >
           <div
-            className="w-full transition-all duration-150 ease-out"
+            className={`w-full ${reducedMotion ? "" : "transition-all duration-150 ease-out"}`}
             style={{
               height: `${scrollProgress * 100}%`,
               background:
@@ -108,7 +127,6 @@ export default function Metodologia() {
             return (
               <div
                 key={step.number}
-                ref={(el) => (stepRefs.current[i] = el)}
                 className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center"
               >
                 {/* Left Side (4 Cols) */}
