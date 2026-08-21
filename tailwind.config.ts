@@ -49,6 +49,16 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         tertiary: "hsl(var(--text-tertiary))",
+        editorial: {
+          DEFAULT: "hsl(var(--editorial-accent))",
+        },
+        "studio-dark": {
+          bg: "hsl(var(--studio-dark-bg))",
+          card: "hsl(var(--studio-dark-card))",
+          border: "hsl(var(--studio-dark-border))",
+          text: "hsl(var(--studio-dark-text))",
+          muted: "hsl(var(--studio-dark-muted))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

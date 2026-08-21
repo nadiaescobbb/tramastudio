@@ -89,7 +89,7 @@ export const ContactForm = () => {
           onChange={(e) => setName(e.target.value)}
           required
           placeholder="Tu nombre y apellido"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-[hsl(var(--accent))] placeholder:text-muted/50"
+          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted/50"
         />
       </div>
 
@@ -104,7 +104,7 @@ export const ContactForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="tu@email.com"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-[hsl(var(--accent))] placeholder:text-muted/50"
+          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted/50"
         />
       </div>
 
@@ -123,7 +123,7 @@ export const ContactForm = () => {
                 onClick={() => setService(item)}
                 className={`px-4 py-2 rounded-full font-mono text-xs font-semibold transition-all duration-200 cursor-pointer border ${
                   isSelected
-                    ? "bg-[#111111] text-white border-[#111111] shadow-sm"
+                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
                     : "bg-background text-muted border-border hover:border-foreground/30 hover:text-foreground"
                 }`}
               >
@@ -149,7 +149,7 @@ export const ContactForm = () => {
                 onClick={() => setBudget(item)}
                 className={`px-4 py-2 rounded-full font-mono text-xs font-semibold transition-all duration-200 cursor-pointer border ${
                   isSelected
-                    ? "bg-[#111111] text-white border-[#111111] shadow-sm"
+                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
                     : "bg-background text-muted border-border hover:border-foreground/30 hover:text-foreground"
                 }`}
               >
@@ -170,7 +170,7 @@ export const ContactForm = () => {
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           placeholder="Contanos sobre tus objetivos, plazos o cualquier detalle relevante..."
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-[hsl(var(--accent))] resize-none placeholder:text-muted/50"
+          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary resize-none placeholder:text-muted/50"
         />
       </div>
 

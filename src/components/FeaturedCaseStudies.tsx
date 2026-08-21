@@ -2,35 +2,10 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { projects } from "@/data/projects";
 
-const projectGradients: Record<
-  string,
-  { bg: string; accent: string; glow: string }
-> = {
-  "joyeria-cuore": {
-    bg: "bg-gradient-to-br from-[#2a1715] via-[#4a2622] to-[#120807]",
-    accent: "text-[#e8b49b]",
-    glow: "bg-[#e8b49b]/20",
-  },
-  "estudio-norte": {
-    bg: "bg-gradient-to-br from-[#0c211b] via-[#1a3e32] to-[#06110d]",
-    accent: "text-[#5ec49e]",
-    glow: "bg-[#5ec49e]/20",
-  },
-  bosco: {
-    bg: "bg-gradient-to-br from-[#331b10] via-[#572d1a] to-[#120803]",
-    accent: "text-[#ed955a]",
-    glow: "bg-[#ed955a]/20",
-  },
-  "clinica-nova": {
-    bg: "bg-gradient-to-br from-[#191638] via-[#2f275e] to-[#090817]",
-    accent: "text-[#a293f5]",
-    glow: "bg-[#a293f5]/20",
-  },
-  "camila-correa": {
-    bg: "bg-gradient-to-br from-[#2A2620] via-[#3D3730] to-[#14120F]",
-    accent: "text-[#D4C5B9]",
-    glow: "bg-[#D4C5B9]/15",
-  },
+const studioDarkStyle = {
+  bg: "bg-gradient-to-br from-[#161514] via-[#1c1b19] to-[#0f0e0d]",
+  accent: "text-[hsl(var(--editorial-accent))]",
+  glow: "bg-[hsl(var(--editorial-accent))]/15",
 };
 
 export function FeaturedCaseStudies() {
@@ -45,31 +20,25 @@ export function FeaturedCaseStudies() {
     aspectClass: string,
     isWide: boolean = false
   ) => {
-    const style = projectGradients[project.slug] || {
-      bg: "bg-gradient-to-br from-slate-900 to-black",
-      accent: "text-white",
-      glow: "bg-white/10",
-    };
-
     return (
       <Link to={`/proyectos/${project.slug}`} className="group block">
         <div
-          className={`relative overflow-hidden rounded-2xl ${style.bg} mb-3 border border-white/10 shadow-xl ${aspectClass} transition-all duration-500 group-hover:border-white/20`}
+          className={`relative overflow-hidden rounded-2xl ${studioDarkStyle.bg} mb-3 border border-[hsl(var(--studio-dark-border))] shadow-xl ${aspectClass} transition-all duration-500 group-hover:border-white/20`}
         >
           {/* Subtle Ambient Radial Glow */}
           <div
-            className={`absolute -top-12 -right-12 w-48 h-48 rounded-full ${style.glow} blur-3xl group-hover:scale-150 transition-transform duration-700 pointer-events-none`}
+            className={`absolute -top-12 -right-12 w-48 h-48 rounded-full ${studioDarkStyle.glow} blur-3xl group-hover:scale-150 transition-transform duration-700 pointer-events-none`}
           />
 
           {/* Normal State: Centered Minimalist Typography */}
           <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group-hover:opacity-0 transition-opacity duration-300">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/50 mb-2">
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--studio-dark-muted))] mb-2">
               {project.category}
             </span>
-            <h4 className="font-heading font-bold text-white text-2xl md:text-3xl tracking-tight drop-shadow-md">
+            <h4 className="font-heading font-bold text-[hsl(var(--studio-dark-text))] text-2xl md:text-3xl tracking-tight drop-shadow-md">
               {project.name}
               {project.accent && (
-                <span className={`font-serif italic font-normal ml-2 ${style.accent}`}>
+                <span className={`font-serif italic font-normal ml-2 ${studioDarkStyle.accent}`}>
                   {project.accent}
                 </span>
               )}
@@ -77,12 +46,12 @@ export function FeaturedCaseStudies() {
           </div>
 
           {/* Hover State: Glassmorphism Blur Overlay with Details */}
-          <div className="absolute inset-0 bg-black/75 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
+          <div className="absolute inset-0 bg-[#0d0c0c]/85 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div>
-              <span className={`font-mono text-[10px] font-bold uppercase tracking-widest ${style.accent} mb-2 block`}>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-2 block">
                 Caso de Estudio
               </span>
-              <p className="text-white/95 text-sm md:text-base font-sans leading-relaxed max-w-md">
+              <p className="text-[hsl(var(--studio-dark-text))] text-sm md:text-base font-sans leading-relaxed max-w-md">
                 {project.tagline}
               </p>
             </div>
@@ -97,7 +66,7 @@ export function FeaturedCaseStudies() {
 
         {/* Card Title & Format Below Box */}
         <div>
-          <h3 className="font-heading text-lg font-bold text-foreground tracking-tight group-hover:text-[hsl(var(--accent))] transition-colors">
+          <h3 className="font-heading text-lg font-bold text-foreground tracking-tight group-hover:text-[hsl(var(--editorial-accent))] transition-colors">
             {project.name} {project.accent}
           </h3>
           <p className="font-mono text-xs text-muted font-medium mt-0.5">

@@ -15,37 +15,47 @@ html {
 
 @layer base {
   :root {
-    /* Color Palette */
-    --background: 40 20% 98%;    /* #FBFBFA - Bone/Off-White */
-    --foreground: 0 0% 7%;        /* #111111 - Charcoal */
-    --surface: 0 0% 100%;        /* #FFFFFF - Pure White */
+    /* Base Warm Paper / Canvas Editorial */
+    --background: 40 20% 98%;        /* #FBFBFA — Canvas principal */
+    --foreground: 40 10% 8%;         /* #141312 — Texto principal tinta profunda */
+    --surface: 0 0% 100%;            /* Pure White */
     
-    --accent: 0 0% 7%;           /* Black for primary CTA */
-    --accent-foreground: 0 0% 100%;
-    
-    --border: 0 0% 92%;          /* #EAEAEA - Ultra-light gray */
-    --border-strong: 0 0% 85%;
-    
-    --muted: 0 0% 33%;           /* #555555 - Darker for better contrast */
-    --muted-foreground: 0 0% 33%;
-    
-    --radius: 12px;              /* Base radius for containers */
+    /* Superficies Secundarias y Bordes */
+    --border: 40 12% 88%;            /* Borde sutil */
+    --border-strong: 40 10% 78%;     /* Borde activo */
+    --muted: 40 8% 40%;              /* Texto secundario de lectura */
+    --muted-foreground: 40 8% 40%;
+    --card: 0 0% 100%;
+    --card-foreground: 40 10% 8%;
+
+    /* Acción Primaria e Identidad */
+    --primary: 40 10% 8%;            /* Negro cálido para CTAs principales */
+    --primary-foreground: 40 20% 98%;
+    --accent: 40 10% 8%;
+    --accent-foreground: 40 20% 98%;
+
+    /* Acento Editorial Único Controlado */
+    --editorial-accent: 15 65% 45%;  /* Terracota para énfasis sutiles de texto */
+
+    /* Tokens Oscuros Unificados (Services Stack y Cards Dark) */
+    --studio-dark-bg: 40 10% 7%;     /* #131211 — Negro cálido unificado */
+    --studio-dark-card: 40 8% 11%;   /* #1D1C1A — Elevación suave */
+    --studio-dark-border: 40 6% 18%; /* #302E2B — Delimitación */
+    --studio-dark-text: 40 15% 94%;  /* Texto de alto contraste sobre oscuro */
+    --studio-dark-muted: 40 6% 60%;  /* Texto secundario sobre oscuro */
+
+    --secondary: 40 10% 95%;
+    --secondary-foreground: 40 10% 8%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --input: 40 12% 88%;
+    --ring: 40 10% 8%;
+
+    --radius: 12px;                  /* Base radius for containers */
     
     /* Shadows */
     --shadow-standard: 0 4px 20px -2px hsla(40, 10%, 10%, 0.05), 
                        0 2px 10px -2px hsla(40, 10%, 10%, 0.03);
-    
-    /* UI Aliases */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
-    --primary: 0 0% 7%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 95%;
-    --secondary-foreground: 0 0% 7%;
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --input: 0 0% 92%;
-    --ring: 0 0% 7%;
 
     /* Typography */
     --font-heading: 'Fraunces', "Iowan Old Style", serif;
@@ -68,7 +78,7 @@ html {
     --hero-cream-dark: 38 18% 92%;  /* hero background gradient end */
 
     /* Text Scale */
-    --text-tertiary: 0 0% 27%;      /* #444444 — between foreground and muted */
+    --text-tertiary: 40 8% 27%;      /* #444444 — between foreground and muted */
   }
 
 

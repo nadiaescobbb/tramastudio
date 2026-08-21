@@ -91,11 +91,11 @@ export default function Metodologia() {
     >
       {/* Section Header */}
       <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-4xl mx-auto mb-20 md:mb-28">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#6B2E2A]/30 bg-[#6B2E2A]/5 text-[#8A3F38] font-mono text-xs font-semibold uppercase tracking-widest mb-6">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[hsl(var(--editorial-accent))]/30 bg-[hsl(var(--editorial-accent))]/5 text-[hsl(var(--editorial-accent))] font-mono text-xs font-semibold uppercase tracking-widest mb-6">
           Nuestro Proceso
         </div>
         <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6">
-          Una forma de <span className="font-serif italic text-[#8A3F38] font-normal">diseñar y construir</span> sin perder de vista para qué sirve.
+          Una forma de <span className="font-serif italic text-[hsl(var(--editorial-accent))] font-normal">diseñar y construir</span> sin perder de vista para qué sirve.
         </h2>
         <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
           Unimos estrategia, diseño y desarrollo en un solo proceso — no tres etapas separadas que alguien tiene que coordinar.
@@ -106,7 +106,7 @@ export default function Metodologia() {
       <div className="container-trama px-6 md:px-12 lg:px-16 relative">
         {/* Central Vertical Connector Line (z-0: Behind node circles, exact X-axis at 4.5/12 = 37.5%) */}
         <div
-          className="hidden md:block absolute top-6 bottom-6 w-[1.5px] bg-[#D8D5D0] -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0"
+          className="hidden md:block absolute top-6 bottom-6 w-[1.5px] bg-border -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0"
           style={{ left: "calc((4.5 / 12) * 100%)" }}
         >
           <div
@@ -114,7 +114,7 @@ export default function Metodologia() {
             style={{
               height: `${scrollProgress * 100}%`,
               background:
-                "linear-gradient(to bottom, #6B2E2A 0%, rgba(107, 46, 42, 0.75) 75%, rgba(107, 46, 42, 0.2) 100%)",
+                "linear-gradient(to bottom, hsl(var(--editorial-accent)) 0%, hsla(15, 65%, 45%, 0.75) 75%, hsla(15, 65%, 45%, 0.2) 100%)",
             }}
           />
         </div>
@@ -151,16 +151,16 @@ export default function Metodologia() {
                   {(isCurrent || isVisited) && (
                     <div className="relative flex items-center justify-center">
                       {/* Soft Halo Glow Outer Ring */}
-                      <div className="absolute w-8 h-8 rounded-full bg-[#6B2E2A]/20 blur-[1px] pointer-events-none" />
-                      <div className="w-6 h-6 rounded-full bg-[#6B2E2A] text-white flex items-center justify-center shadow-md relative z-10">
+                      <div className="absolute w-8 h-8 rounded-full bg-[hsl(var(--editorial-accent))]/20 blur-[1px] pointer-events-none" />
+                      <div className="w-6 h-6 rounded-full bg-[hsl(var(--editorial-accent))] text-white flex items-center justify-center shadow-md relative z-10">
                         <ChevronDown className="w-3.5 h-3.5 text-white" strokeWidth={1.8} />
                       </div>
                     </div>
                   )}
 
                   {isPending && (
-                    <div className="w-6 h-6 rounded-full bg-background border-[1.5px] border-[#D8D5D0] text-[#D8D5D0] flex items-center justify-center relative z-10">
-                      <ChevronDown className="w-3.5 h-3.5 text-[#D8D5D0]" strokeWidth={1.8} />
+                    <div className="w-6 h-6 rounded-full bg-background border-[1.5px] border-border text-muted-foreground flex items-center justify-center relative z-10">
+                      <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" strokeWidth={1.8} />
                     </div>
                   )}
                 </div>
