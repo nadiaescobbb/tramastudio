@@ -1,6 +1,6 @@
 export const projectImages: Record<string, string> = {
   famvar: "/famvarhome.avif",
-  "joyeria-cuore": "/cuorehome.avif",
+  "joyeria-cuore": "/cuore-home.avif",
 };
 
 export const projectGalleries: Record<string, string[]> = {
@@ -10,8 +10,9 @@ export const projectGalleries: Record<string, string[]> = {
     "/famvar-fundas.avif",
   ],
   "joyeria-cuore": [
-    "/cuore-hero-taller.png",
-    "/cuore-alianzas-reparaciones.png",
-    "/cuore-catalogo.png",
+    "/cuore-home.avif",
+    "/cuore-catalogo.avif",
+    "/cuore-catalogo-2.avif",
+    "/cuore-relojes.avif",
   ],
 };

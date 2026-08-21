@@ -36,6 +36,7 @@ const Dossier = () => {
   const galleryHero = gallery[0] || image;
   const galleryLeft = gallery[1] || gallery[0] || image;
   const galleryRight = gallery[2] || gallery[0] || image;
+  const galleryExtra = gallery[3];
 
   return (
     <div className="dossier-page relative min-h-screen overflow-x-hidden bg-background text-foreground selection:bg-[hsl(var(--accent))] selection:text-white">
@@ -212,6 +213,17 @@ const Dossier = () => {
               />
             </div>
           </div>
+
+          {galleryExtra && (
+            <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-xl aspect-[16/9] md:aspect-[21/9]">
+              <img
+                src={galleryExtra}
+                alt={`Captura ${project.name} - Detalle Adicional`}
+                loading="lazy"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
         </div>
       </section>
 
