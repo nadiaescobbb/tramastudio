@@ -84,7 +84,7 @@ const Index = () => {
                 <div className="aspect-[4/5] w-full overflow-hidden rounded-sm border border-border bg-surface relative shadow-md">
                   <img
                     src="/founder-nadia.avif"
-                    alt="Nadia Escobio — Directora de HeyTrama"
+                    alt="Nadia Escobar — founder HeyTrama"
                     className="founder-portrait absolute inset-0 h-full w-full object-cover grayscale opacity-90"
                     loading="lazy"
                   />
@@ -96,7 +96,7 @@ const Index = () => {
             <div className="md:col-span-7 lg:col-start-6">
               <Reveal delay={150}>
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))] block mb-4">
-                  Nadia Escobio — Directora de HeyTrama
+                  Nadia Escobar — founder HeyTrama
                 </span>
                 <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-8">
                   Pensamos primero cómo decide tu cliente, <span className="italic text-[hsl(var(--accent))]">después cómo construir la tecnología para que esa decisión no se pierda en el camino</span>.
