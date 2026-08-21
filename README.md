@@ -106,5 +106,5 @@ npm run build
 ## ✉️ Autoría & Contacto
 
 **Nadia Escobar** — Founder de HeyTrama.  
-[heytrama.com](https://www.heytrama.com) · [LinkedIn](https://www.linkedin.com/in/nadiaescobbb/) · [nadiaescobbb@gmail.com](mailto:nadiaescobbb@gmail.com)
+[heytrama.com](https://www.heytrama.com) · [LinkedIn](https://www.linkedin.com/in/nadiaescobbb/) · [tramapriv@gmail.com](mailto:tramapriv@gmail.com)
 

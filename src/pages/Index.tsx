@@ -162,10 +162,10 @@ const Index = () => {
                   <p className="text-muted">
                     Email directo:{" "}
                     <a
-                      href="mailto:hola@tramastudio.com"
+                      href="mailto:tramapriv@gmail.com"
                       className="text-foreground underline font-semibold hover:text-[hsl(var(--editorial-accent))] transition-colors"
                     >
-                      hola@tramastudio.com
+                      tramapriv@gmail.com
                     </a>
                   </p>
                   <p className="text-muted">

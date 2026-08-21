@@ -15,7 +15,7 @@ export const Footer = () => {
 
           <div className="flex flex-col gap-3">
             <a href="https://wa.me/5493625142700" className="hover:text-[hsl(var(--accent))] transition-colors w-fit">WhatsApp</a>
-            <a href="mailto:hola@tramastudio.com" className="hover:text-[hsl(var(--accent))] transition-colors w-fit">Email</a>
+            <a href="mailto:tramapriv@gmail.com" className="hover:text-[hsl(var(--accent))] transition-colors w-fit">Email</a>
             <a href="https://instagram.com/trama.sstudio" target="_blank" rel="noopener noreferrer" className="hover:text-[hsl(var(--accent))] transition-colors w-fit">Instagram</a>
           </div>
         </div>
