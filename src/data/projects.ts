@@ -69,7 +69,7 @@ export const projects: Project[] = [
     slug: "joyeria-cuore",
     number: "02",
     name: "CUORE",
-    accent: "Joyería.",
+    accent: "Joyería y Relojería.",
     industry: "Joyas y Relojería de Alta Gama",
     format: "Catálogo y taller",
     conversion: "Consulta de Pieza Personalizada",
