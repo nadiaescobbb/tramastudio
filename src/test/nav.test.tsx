@@ -17,7 +17,7 @@ describe("Nav", () => {
 
   it("renders Volver on non-home route", () => {
     render(
-      <MemoryRouter initialEntries={["/proyectos/bosco"]}>
+      <MemoryRouter initialEntries={["/proyectos/famvar"]}>
         <Nav />
       </MemoryRouter>
     );

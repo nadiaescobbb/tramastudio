@@ -28,9 +28,9 @@ describe("setSeo", () => {
   });
 
   it("sets canonical URL", () => {
-    setSeo({ title: "X", description: "X", path: "/proyectos/bosco" });
+    setSeo({ title: "X", description: "X", path: "/proyectos/famvar" });
     const canonical = document.querySelector('link[rel="canonical"]');
-    expect(canonical?.getAttribute("href")).toBe("https://tramastudio.vercel.app/proyectos/bosco");
+    expect(canonical?.getAttribute("href")).toBe("https://tramastudio.vercel.app/proyectos/famvar");
   });
 
   it("sets OG tags", () => {

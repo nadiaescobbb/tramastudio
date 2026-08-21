@@ -9,16 +9,12 @@ const studioDarkStyle = {
 };
 
 export function FeaturedCaseStudies() {
-  const pCuore = projects.find((p) => p.slug === "joyeria-cuore") || projects[4];
-  const pNorte = projects.find((p) => p.slug === "estudio-norte") || projects[1];
-  const pBosco = projects.find((p) => p.slug === "bosco") || projects[0];
-  const pNova = projects.find((p) => p.slug === "clinica-nova") || projects[2];
-  const pCamila = projects.find((p) => p.slug === "camila-correa") || projects[3];
+  const pFamvar = projects.find((p) => p.slug === "famvar") || projects[0];
+  const pCuore = projects.find((p) => p.slug === "joyeria-cuore") || projects[1];
 
   const renderGradientCard = (
     project: typeof pCuore,
-    aspectClass: string,
-    isWide: boolean = false
+    aspectClass: string
   ) => {
     return (
       <Link to={`/proyectos/${project.slug}`} className="group block">
@@ -95,21 +91,10 @@ export function FeaturedCaseStudies() {
           </Link>
         </div>
 
-        {/* Row 1: 3 Grid Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {renderGradientCard(pCuore, "aspect-[4/3.4]")}
-          {renderGradientCard(pNorte, "aspect-[4/3.4]")}
-          {renderGradientCard(pBosco, "aspect-[4/3.4]")}
-        </div>
-
-        {/* Row 2: Asymmetric Layout (5 cols + 7 cols) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-5">
-            {renderGradientCard(pNova, "aspect-[1/1]")}
-          </div>
-          <div className="md:col-span-7">
-            {renderGradientCard(pCamila, "aspect-[16/9] md:aspect-[1.5/1]", true)}
-          </div>
+        {/* Grid 2 Columns: FAMVAR & CUORE */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {renderGradientCard(pFamvar, "aspect-[4/3]")}
+          {renderGradientCard(pCuore, "aspect-[4/3]")}
         </div>
       </div>
     </section>
