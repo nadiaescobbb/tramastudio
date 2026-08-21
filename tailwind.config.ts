@@ -12,6 +12,17 @@ export default {
       screens: { "2xl": "1100px" },
     },
     extend: {
+      fontSize: {
+        micro: ['0.6875rem', { lineHeight: '1rem', letterSpacing: '0.05em' }],
+        tag: ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.08em' }],
+        btn: ['0.8125rem', { lineHeight: '1.25rem' }],
+        subtle: ['0.875rem', { lineHeight: '1.25rem' }],
+        body: ['1rem', { lineHeight: '1.6' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.6' }],
+        h3: ['1.25rem', { lineHeight: '1.4' }],
+        h2: ['1.875rem', { lineHeight: '1.2' }],
+        h1: ['2.75rem', { lineHeight: '1.1' }],
+      },
       fontFamily: {
         heading: ["Fraunces", "Iowan Old Style", "serif"],
         mono: ["Space Mono", "Courier New", "monospace"],

@@ -80,7 +80,7 @@ export const ContactForm = () => {
     <form onSubmit={handleSubmit} className="space-y-8 bg-surface/50 p-6 md:p-8 rounded-2xl border border-border shadow-sm">
       {/* 1. Nombre Completo */}
       <div className="space-y-1.5">
-        <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted block">
+        <label className="font-mono text-micro uppercase tracking-wider text-muted block">
           Nombre completo *
         </label>
         <input
@@ -95,7 +95,7 @@ export const ContactForm = () => {
 
       {/* 2. Email */}
       <div className="space-y-1.5">
-        <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted block">
+        <label className="font-mono text-micro uppercase tracking-wider text-muted block">
           Email de contacto *
         </label>
         <input
@@ -110,7 +110,7 @@ export const ContactForm = () => {
 
       {/* 3. Tipo de Servicio (Chips de Selección Única) */}
       <div className="space-y-3">
-        <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted block">
+        <label className="font-mono text-micro uppercase tracking-wider text-muted block">
           Tipo de servicio *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -121,7 +121,7 @@ export const ContactForm = () => {
                 type="button"
                 key={item}
                 onClick={() => setService(item)}
-                className={`px-4 py-2 rounded-full font-mono text-xs font-semibold transition-all duration-200 cursor-pointer border ${
+                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-200 cursor-pointer border ${
                   isSelected
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
                     : "bg-background text-muted border-border hover:border-foreground/30 hover:text-foreground"
@@ -136,7 +136,7 @@ export const ContactForm = () => {
 
       {/* 4. Presupuesto Estimado (Chips de Selección Única) */}
       <div className="space-y-3">
-        <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted block">
+        <label className="font-mono text-micro uppercase tracking-wider text-muted block">
           Presupuesto estimado *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -147,7 +147,7 @@ export const ContactForm = () => {
                 type="button"
                 key={item}
                 onClick={() => setBudget(item)}
-                className={`px-4 py-2 rounded-full font-mono text-xs font-semibold transition-all duration-200 cursor-pointer border ${
+                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-200 cursor-pointer border ${
                   isSelected
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
                     : "bg-background text-muted border-border hover:border-foreground/30 hover:text-foreground"
@@ -162,7 +162,7 @@ export const ContactForm = () => {
 
       {/* 5. Detalle del Proyecto */}
       <div className="space-y-1.5">
-        <label className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted block">
+        <label className="font-mono text-micro uppercase tracking-wider text-muted block">
           Detalle del proyecto
         </label>
         <textarea
@@ -191,7 +191,7 @@ export const ContactForm = () => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="btn-primary-trama group w-full justify-center py-3.5"
+        className="btn-primary-trama group w-full justify-center py-3.5 font-mono text-btn font-semibold tracking-wide"
       >
         <span>Enviar consulta</span>
         <div className="btn-icon-wrapper">

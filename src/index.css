@@ -354,9 +354,10 @@ html {
     padding: 0 28px;
     color: white;
     font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     box-shadow: 0 18px 38px rgba(0,0,0,0.24);
     transition: transform 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard);
   }

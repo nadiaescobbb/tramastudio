@@ -132,10 +132,10 @@ export default function Metodologia() {
               >
                 {/* Left Side (4 Cols) */}
                 <div className="md:col-span-4 flex flex-col md:items-end text-left md:text-right">
-                  <span className="inline-block font-mono text-xs font-semibold tracking-wider text-muted/70 uppercase mb-2">
+                  <span className="inline-block font-mono text-micro font-medium uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-2">
                     {step.number}
                   </span>
-                  <h3 className="font-serif italic text-4xl md:text-5xl text-foreground tracking-tight">
+                  <h3 className="font-serif italic text-2xl md:text-3xl font-normal text-foreground tracking-tight">
                     {step.italicTitle}
                   </h3>
                 </div>
@@ -170,7 +170,7 @@ export default function Metodologia() {
                   <h4 className="font-heading text-2xl md:text-3xl text-foreground tracking-tight">
                     {step.title}
                   </h4>
-                  <p className="text-muted text-base md:text-lg leading-relaxed max-w-xl">
+                  <p className="font-sans text-subtle md:text-body text-muted leading-relaxed max-w-xl">
                     {step.text}
                   </p>
                 </div>

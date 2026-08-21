@@ -46,7 +46,7 @@ const Index = () => {
               Diseñamos productos digitales que ayudan a decidir, <br />
               <span className="italic font-normal">no solo a mirar.</span>
             </h1>
-            <p className="mt-8 text-xl text-muted max-w-2xl leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "320ms" }}>
+            <p className="mt-8 text-base md:text-lg font-normal text-muted max-w-2xl leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "320ms" }}>
               Un producto puede verse bien y aun así no vender: eso pasa cuando el diseño no está pensado para la decisión que tiene que resolver. Por eso primero entendemos qué necesita saber o sentir alguien antes de comprar — y recién ahí construimos, del código a la interfaz.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-4 animate-slide-up opacity-0" style={{ animationDelay: "520ms" }}>

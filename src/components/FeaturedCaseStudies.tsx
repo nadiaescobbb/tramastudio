@@ -28,10 +28,10 @@ export function FeaturedCaseStudies() {
 
           {/* Normal State: Centered Minimalist Typography */}
           <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group-hover:opacity-0 transition-opacity duration-300">
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-[hsl(var(--studio-dark-muted))] mb-2">
+            <span className="font-mono text-micro uppercase tracking-wider text-[hsl(var(--studio-dark-muted))] mb-2">
               {project.category}
             </span>
-            <h4 className="font-heading font-bold text-[hsl(var(--studio-dark-text))] text-2xl md:text-3xl tracking-tight drop-shadow-md">
+            <h4 className="font-heading font-normal text-[hsl(var(--studio-dark-text))] text-xl md:text-2xl tracking-tight drop-shadow-md">
               {project.name}
               {project.accent && (
                 <span className={`font-serif italic font-normal ml-2 ${studioDarkStyle.accent}`}>
@@ -44,7 +44,7 @@ export function FeaturedCaseStudies() {
           {/* Hover State: Glassmorphism Blur Overlay with Details */}
           <div className="absolute inset-0 bg-[#0d0c0c]/85 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div>
-              <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-2 block">
+              <span className="font-mono text-micro uppercase tracking-wider text-[hsl(var(--editorial-accent))] mb-2 block">
                 Caso de Estudio
               </span>
               <p className="text-[hsl(var(--studio-dark-text))] text-sm md:text-base font-sans leading-relaxed max-w-md">

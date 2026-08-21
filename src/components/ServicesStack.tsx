@@ -152,7 +152,7 @@ export function ServicesStack() {
 
             {/* Central Content */}
             <div className="my-auto text-center space-y-8 max-w-4xl mx-auto w-full pt-8 pb-12 z-10">
-              <h3 className="font-heading text-5xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none drop-shadow-lg text-[hsl(var(--studio-dark-text))]">
+              <h3 className="font-heading font-normal text-4xl md:text-6xl lg:text-7xl tracking-tight leading-none drop-shadow-lg text-[hsl(var(--studio-dark-text))]">
                 {service.titleBold}
                 <span className="font-serif italic font-normal text-[hsl(var(--studio-dark-text))]/90 ml-2">
                   {service.titleItalic}
@@ -160,7 +160,7 @@ export function ServicesStack() {
               </h3>
 
               {/* Quote Tagline (Frase recortada e impactante en Serif Itálica) */}
-              <p className="font-serif italic text-[hsl(var(--studio-dark-muted))] text-2xl md:text-4xl max-w-3xl mx-auto leading-tight font-normal pt-2">
+              <p className="font-serif italic text-lg md:text-xl text-[hsl(var(--studio-dark-muted))] max-w-3xl mx-auto leading-relaxed font-normal pt-2">
                 "{service.tagline}"
               </p>
 
