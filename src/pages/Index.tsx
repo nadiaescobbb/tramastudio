@@ -41,19 +41,23 @@ const Index = () => {
       <section className="hero-start relative min-h-dvh flex items-center pt-24 pb-16">
         <div className="hero-texture" />
         <div className="container-trama relative z-10">
-          <div className="max-w-4xl">
-            <h1 className="hero-title animate-slide-up opacity-0" style={{ animationDelay: "80ms" }}>
-              Diseñamos productos digitales que ayudan a decidir, <br />
-              <span className="italic font-normal">no solo a mirar.</span>
-            </h1>
-            <p className="mt-8 text-base md:text-lg font-normal text-muted max-w-2xl leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "320ms" }}>
-              Un producto puede verse bien y aun así no vender: eso pasa cuando el diseño no está pensado para la decisión que tiene que resolver. Por eso primero entendemos qué necesita saber o sentir alguien antes de comprar — y recién ahí construimos, del código a la interfaz.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-4 animate-slide-up opacity-0" style={{ animationDelay: "520ms" }}>
-              <a href={waLink("Hola, estoy pensando en un proyecto y me gustaría consultarles.")} className="hero-primary-cta group">
-                <span>Contanos en qué estás pensando</span>
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-              </a>
+          <div className="grid grid-cols-12 gap-6 lg:gap-8 items-center">
+            <div className="col-span-12 lg:col-span-11 xl:col-span-10">
+              <h1 className="hero-title animate-slide-up opacity-0" style={{ animationDelay: "80ms" }}>
+                Diseñamos productos digitales que ayudan a decidir, <br />
+                <span className="italic font-normal">no solo a mirar.</span>
+              </h1>
+            </div>
+            <div className="col-span-12 lg:col-span-8 col-start-1 mt-8">
+              <p className="text-base md:text-lg font-normal text-muted max-w-2xl leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "320ms" }}>
+                Un producto puede verse bien y aun así no vender: eso pasa cuando el diseño no está pensado para la decisión que tiene que resolver. Por eso primero entendemos qué necesita saber o sentir alguien antes de comprar — y recién ahí construimos, del código a la interfaz.
+              </p>
+              <div className="mt-10 flex flex-wrap items-center gap-4 animate-slide-up opacity-0" style={{ animationDelay: "520ms" }}>
+                <a href={waLink("Hola, estoy pensando en un proyecto y me gustaría consultarles.")} className="hero-primary-cta group">
+                  <span>Contanos en qué estás pensando</span>
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -141,20 +145,50 @@ const Index = () => {
       {/* ── CONTACTO ─────────────────────────────────────────────── */}
       <section className="py-24 md:py-32" id="contacto">
         <div className="container-trama">
-          <Reveal>
-            <h2 className="h-section max-w-[20ch] text-center mx-auto" style={{ textWrap: "balance" }}>
-              Hablemos de tu proyecto.
-            </h2>
-          </Reveal>
-          <p className="mx-auto mt-6 max-w-lg text-center text-lg text-muted leading-relaxed">
-            Contanos en qué estás pensando y vemos juntos la mejor forma de resolverlo, desde el diseño y la tecnología.
-          </p>
+          <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Columna Izquierda (Contexto y contacto directo) */}
+            <div className="col-span-12 lg:col-span-5 space-y-6">
+              <Reveal>
+                <span className="font-mono text-micro uppercase tracking-wider text-[hsl(var(--editorial-accent))] block mb-4">
+                  CONTACTO
+                </span>
+                <h2 className="h-section leading-tight">
+                  Hablemos de tu proyecto.
+                </h2>
+                <p className="text-base md:text-lg text-muted leading-relaxed max-w-md mt-6">
+                  Contanos en qué estás pensando y vemos juntos la mejor forma de resolverlo, desde el diseño y la tecnología.
+                </p>
+                <div className="pt-6 space-y-3 font-mono text-subtle border-t border-border mt-8">
+                  <p className="text-muted">
+                    Email directo:{" "}
+                    <a
+                      href="mailto:hola@tramastudio.com"
+                      className="text-foreground underline font-semibold hover:text-[hsl(var(--editorial-accent))] transition-colors"
+                    >
+                      hola@tramastudio.com
+                    </a>
+                  </p>
+                  <p className="text-muted">
+                    WhatsApp:{" "}
+                    <a
+                      href="https://wa.me/5493625142700"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-foreground underline font-semibold hover:text-[hsl(var(--editorial-accent))] transition-colors"
+                    >
+                      +54 9 362 514-2700
+                    </a>
+                  </p>
+                </div>
+              </Reveal>
+            </div>
 
-          <div className="mx-auto mt-14 max-w-xl">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-widest text-muted mb-5 text-center">
-              INICIAR CONVERSACIÓN
-            </p>
-            <ContactForm />
+            {/* Columna Derecha (Formulario) */}
+            <div className="col-span-12 lg:col-span-7">
+              <Reveal delay={150}>
+                <ContactForm />
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>

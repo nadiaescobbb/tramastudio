@@ -165,7 +165,7 @@ export function ServicesStack() {
               </p>
 
               {/* Graphical Card CTA Box */}
-              <div className="mx-auto max-w-xl rounded-2xl border border-[hsl(var(--studio-dark-border))] bg-[hsl(var(--studio-dark-card))] backdrop-blur-md shadow-2xl overflow-hidden p-6 relative group mt-8">
+              <div className="mx-auto w-full max-w-4xl rounded-2xl border border-[hsl(var(--studio-dark-border))] bg-[hsl(var(--studio-dark-card))] backdrop-blur-md shadow-2xl overflow-hidden p-6 relative group mt-8">
                 <div className="text-center space-y-4">
                   <a
                     href={waLink(`Hola, quiero iniciar un proyecto de ${service.category}.`)}
