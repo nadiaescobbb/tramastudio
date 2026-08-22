@@ -1,110 +1,111 @@
-[![CI](https://github.com/nadiaescobbb/tramastudio/actions/workflows/ci.yml/badge.svg)](https://github.com/nadiaescobbb/tramastudio/actions/workflows/ci.yml)
+# 🏛️ HeyTrama — Estudio de Productos Digitales & Frontend
 
-# HeyTrama — Estudio de Productos Digitales & Desarrollo Frontend
+> Práctica independiente de diseño de producto y desarrollo frontend enfocada en marcas, landings y experiencias digitales con alta intención comercial.
 
-Sitio web oficial de **HeyTrama**, práctica independiente de diseño de producto y desarrollo frontend enfocada en marcas, landings y experiencias digitales con alta intención comercial.
-
-El objetivo del proyecto es transmitir una identidad visual propia (*Swiss Minimal / Editorial Canvas*) sin perder claridad estratégica: qué se ofrece, cómo se piensa el negocio y por qué la tecnología y la interfaz son herramientas clave para la decisión de compra.
-
----
-
-## 📌 Contexto & Enfoque
-
-HeyTrama evita el formato genérico de agencia de marketing. Ordena su mensaje alrededor de **criterio de diseño, proceso técnico y resultados de negocio**, captando clientes que valoran la calidad en el detalle visual y el rendimiento frontend.
+[![React](https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v3-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Husky](https://img.shields.io/badge/Husky-Git_Hooks-black?style=flat-square&logo=git)](https://typicode.github.io/husky/)
+[![Live Site](https://img.shields.io/badge/Live-heytrama.com-111111?style=flat-square&logo=safari&logoColor=white)](https://heytrama.com)
 
 ---
 
-## 👤 Rol & Dirección
+## 📌 Enfoque & Propósito
 
-**Nadia Escobar** — Dirección de Producto, Diseño UI/UX, Desarrollo Frontend (React/TypeScript), Arquitectura CSS, Animaciones y Redacción Narrativa.
+HeyTrama plantea una alternativa al formato genérico de agencia de marketing: articula su propuesta alrededor de **criterio visual, arquitectura frontend y rendimiento**. 
 
----
-
-## 🎨 Sistema de UI & Arquitectura de Color
-
-El sistema visual implementa los principios de **Refactoring UI** mediante tokens HSL desacoplados en `src/index.css` y `tailwind.config.ts`:
-
-- **Warm Paper Canvas**: `--background: 40 20% 98%` (`#FBFBFA`) y `--foreground: 40 10% 8%` (`#141312`).
-- **Terracota Editorial Accent**: `--editorial-accent: 15 65% 45%` utilizado para énfasis sutiles de texto.
-- **Atmósfera Oscura Unificada (`--studio-dark-*`)**: Bloques oscuros en tarjetas de casos de estudio y servicios apilados (`#131211`), garantizando contraste WCAG AA.
-- **Tipografía Dual & Mono**: Combinación de *Fraunces* (Serif), *Hanken Grotesk* (Sans) y *Space Mono* (Monospace).
+El objetivo del sitio es proyectar una identidad propia (**Swiss Minimal / Editorial Canvas**) sin perder claridad comercial: comunicar qué se construye, cómo se piensa el producto y por qué las decisiones de ingeniería impactan directamente en la conversión.
 
 ---
 
-## 📁 Casos de Estudio Destacados
+## 🎨 Sistema de UI & Arquitectura de Diseño
 
-1. **FAMVAR** — *Catálogo Digital & E-Commerce*
-   - Plataforma web para exhibición de tecnología (iPhone, Samsung) y bazar importado. Estructurada con fichas técnicas y conversión directa a WhatsApp.
-2. **CUORE** — *Joyería y Relojería de Alta Gama*
-   - Sitio para un taller con 40 años de trayectoria en Tierra del Fuego. Traduce el oficio artesanal y la tecnología de precisión láser al entorno digital.
+El sistema visual implementa principios de *Refactoring UI* mediante **tokens HSL desacoplados** configurados en `src/index.css` y `tailwind.config.ts`:
+
+| Token / Layer | Valor HSL / Hex | Aplicación |
+| :--- | :--- | :--- |
+| **Warm Paper Canvas** | `40 20% 98%` (`#FBFBFA`) | Superficie base con fondo cálido y tipografía en contraste neutro. |
+| **Editorial Accent** | `15 65% 45%` (Terracota) | Énfasis sutiles de texto, llamados a la acción y bordes activos. |
+| **Studio Dark** | `40 10% 8%` (`#131211`) | Bloques oscuros en tarjetas de servicios y casos de estudio (WCAG AA). |
+| **Tipografía Editorial** | *Fraunces* + *Hanken Grotesk* + *Space Mono* | Jerarquía mixta entre elegancia editorial y precisión técnica monospaciada. |
 
 ---
 
-## 🛠️ Stack Tecnológico
+## 💼 Casos de Estudio Integrados
 
-| Tecnología | Rol / Función |
+* **[FAMVAR](https://github.com/nadiaescobbb)** — Catálogo digital y plataforma e-commerce para tecnología y bazar importado, optimizada con fichas técnicas dinámicas y conversión a WhatsApp.
+* **[CUORE](https://github.com/nadiaescobbb/cuore-joyeria)** — Experiencia web para joyería y relojería de alta gama, con animaciones nativas sin dependencias y diseño editorial.
+
+---
+
+## 🛠️ Stack Tecnológico & Tooling
+
+| Tecnología | Rol en el Proyecto |
 | :--- | :--- |
-| **React 18** | UI Framework declarativo |
-| **TypeScript** | Tipado estático estricto |
-| **Vite** | Bundler & Dev Server |
-| **Tailwind CSS v3** | Utility-first CSS & Tokens HSL |
-| **React Router v6** | Enrutamiento SPA |
-| **Vitest & Testing Library** | Pruebas unitarias y de integración |
-| **Lucide Icons** | Iconografía vectorial |
-| **Husky & Commitlint** | Pre-commit hooks & Linting de commits |
+| **React 18** | UI Framework declarativo y arquitectura de componentes |
+| **TypeScript** | Tipado estático estricto para datasets, props y contratos |
+| **Tailwind CSS v3** | Sistema de utilidades y mapeo de tokens HSL |
+| **React Router v6** | Enrutamiento SPA con vistas dedicadas (`/`, `/dossier`) |
+| **Vite & Vitest** | Entorno de desarrollo rápido y suite de pruebas unitarias |
+| **Husky & Commitlint** | Pre-commit hooks para validación de commits y control de calidad |
 
 ---
 
-## 📂 Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
 ```text
 tramastudio/
-├── .github/workflows/          # CI/CD Workflows (GitHub Actions)
-├── .husky/                     # Git Hooks (Vitest & Commitlint)
-├── public/                     # Assets estáticos (Imágenes AVIF/PNG & Favicons)
-├── src/
+├── ⚙️ .husky/                  # Git Hooks (Vitest & Commitlint)
+├── 🌐 public/                  # Assets estáticos y favicons
+├── 💻 src/
 │   ├── assets/                 # Recursos gráficos locales
-│   ├── components/             # Componentes de UI (Nav, Footer, ServicesStack, Metodologia, ContactForm)
-│   ├── data/                   # Datasets estáticos (projects.ts, project-images.ts)
-│   ├── hooks/                  # Custom Hooks (use-reveal.ts)
-│   ├── lib/                    # Utilidades de SEO y helpers (seo.ts, utils.ts)
-│   ├── pages/                  # Pantallas principales (Index.tsx, Dossier.tsx, NotFound.tsx)
-│   ├── test/                   # Suite de pruebas unitarias (Vitest)
+│   ├── components/             # Componentes UI (Nav, ServicesStack, Metodologia, ContactForm)
+│   ├── data/                   # Datasets tipados (projects.ts, project-images.ts)
+│   ├── hooks/                  # Custom Hooks (use-reveal.ts para scroll reveal nativo)
+│   ├── lib/                    # Helpers y utilidades de SEO (seo.ts, utils.ts)
+│   ├── pages/                  # Vistas principales (Index.tsx, Dossier.tsx, NotFound.tsx)
+│   ├── test/                   # Pruebas unitarias con Vitest & Testing Library
 │   ├── index.css               # Design Tokens HSL & Utility Classes
-│   ├── App.tsx                 # Contenedor de Rutas
-│   └── main.tsx                # Punto de entrada Vite
-├── eslint.config.js            # Configuración de Linter
-├── tailwind.config.ts          # Extensión de tema Tailwind
-├── vite.config.ts              # Configuración de Vite
-└── vitest.config.ts            # Configuración del Test Runner
+│   ├── App.tsx                 # Configuración del Router
+│   └── main.tsx                # Entry point
+├── 🔧 tailwind.config.ts       # Extensión de tokens y tipografías
+├── ⚡ vite.config.ts           # Configuración del bundler
+└── 🧪 vitest.config.ts         # Configuración del test runner
+
 ```
 
 ---
 
-## 💻 Desarrollo Local
+## 🚀 Desarrollo Local
+
+### 1. Clonar e instalar dependencias
 
 ```bash
-# 1. Clonar el repositorio
-git clone https://github.com/nadiaescobbb/tramastudio.git
+git clone [https://github.com/nadiaescobbb/tramastudio.git](https://github.com/nadiaescobbb/tramastudio.git)
 cd tramastudio
-
-# 2. Instalar dependencias
 npm install
 
-# 3. Iniciar servidor de desarrollo
+```
+
+### 2. Comandos de desarrollo
+
+```bash
+# Iniciar servidor local
 npm run dev
 
-# 4. Ejecutar tests unitarios
+# Ejecutar suite de tests
 npm test
 
-# 5. Compilar para producción
+# Compilación para producción
 npm run build
+
 ```
 
 ---
 
-## ✉️ Autoría & Contacto
+## 📬 Contacto & Créditos
 
-**Nadia Escobar** — Founder de HeyTrama.  
-[heytrama.com](https://www.heytrama.com) · [LinkedIn](https://www.linkedin.com/in/nadiaescobbb/) · [nadiaescobbb@gmail.com](mailto:nadiaescobbb@gmail.com)
+**Nadia Escobar** — Dirección de Producto, Diseño UI/UX & Desarrollo Frontend.
 
+[Sitio Web](https://heytrama.com) · [LinkedIn](https://www.linkedin.com/in/nadia-escobar-2b6095265) · [Email](https://www.google.com/search?q=mailto%3Anadiaescobbb%40gmail.com)
