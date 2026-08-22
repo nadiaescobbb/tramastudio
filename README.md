@@ -1,111 +1,79 @@
-# 🏛️ HeyTrama — Estudio de Productos Digitales & Frontend
+# heytrama
 
-> Práctica independiente de diseño de producto y desarrollo frontend enfocada en marcas, landings y experiencias digitales con alta intención comercial.
+Estudio independiente de diseño de producto y desarrollo frontend.
 
-[![React](https://img.shields.io/badge/React_18-20232A?style=flat-square&logo=react&logoColor=61DAFB)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v3-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Husky](https://img.shields.io/badge/Husky-Git_Hooks-black?style=flat-square&logo=git)](https://typicode.github.io/husky/)
-[![Live Site](https://img.shields.io/badge/Live-heytrama.com-111111?style=flat-square&logo=safari&logoColor=white)](https://heytrama.com)
+[Sitio](#) · [LinkedIn](#) · [Email](#)
 
----
+## Qué hace heytrama
 
-## 📌 Enfoque & Propósito
+heytrama no vende sitios web: diseña y construye herramientas digitales que ayudan a comunicar mejor y facilitar una decisión de compra. La tecnología es el medio, no el producto — cada decisión, de un color a un patrón de arquitectura, tiene que reducir fricción, organizar información o generar confianza. Si una decisión no cumple esa función, no entra al proyecto.
 
-HeyTrama plantea una alternativa al formato genérico de agencia de marketing: articula su propuesta alrededor de **criterio visual, arquitectura frontend y rendimiento**. 
+El proceso se ordena en cuatro etapas: entender el negocio antes de proponer nada, comunicar la propuesta con la misma claridad que se le va a pedir al producto final, construirlo con un stack que prioriza mantenibilidad sobre complejidad innecesaria, y acompañar después del lanzamiento en vez de entregar y desaparecer.
 
-El objetivo del sitio es proyectar una identidad propia (**Swiss Minimal / Editorial Canvas**) sin perder claridad comercial: comunicar qué se construye, cómo se piensa el producto y por qué las decisiones de ingeniería impactan directamente en la conversión.
+## Sistema de diseño
 
----
+La identidad visual usa tokens HSL desacoplados, definidos en `src/index.css` y extendidos en `tailwind.config.ts`.
 
-## 🎨 Sistema de UI & Arquitectura de Diseño
+| Token | Valor | Uso |
+|---|---|---|
+| Warm Paper Canvas | `40 20% 98%` (#FBFBFA) | Superficie base |
+| Editorial Accent | `15 65% 45%` (terracota) | Énfasis de texto, CTAs, bordes activos |
+| Studio Dark | `40 10% 8%` (#131211) | Bloques oscuros en tarjetas y casos de estudio |
 
-El sistema visual implementa principios de *Refactoring UI* mediante **tokens HSL desacoplados** configurados en `src/index.css` y `tailwind.config.ts`:
+Tipografía: Fraunces para títulos editoriales, Hanken Grotesk para cuerpo, Space Mono para el detalle técnico — la misma lógica mixta entre elegancia editorial y precisión que se aplica al resto del sistema.
 
-| Token / Layer | Valor HSL / Hex | Aplicación |
-| :--- | :--- | :--- |
-| **Warm Paper Canvas** | `40 20% 98%` (`#FBFBFA`) | Superficie base con fondo cálido y tipografía en contraste neutro. |
-| **Editorial Accent** | `15 65% 45%` (Terracota) | Énfasis sutiles de texto, llamados a la acción y bordes activos. |
-| **Studio Dark** | `40 10% 8%` (`#131211`) | Bloques oscuros en tarjetas de servicios y casos de estudio (WCAG AA). |
-| **Tipografía Editorial** | *Fraunces* + *Hanken Grotesk* + *Space Mono* | Jerarquía mixta entre elegancia editorial y precisión técnica monospaciada. |
+## Casos
 
----
+**Cuore** — landing de conversión para un taller de joyería y relojería, con animaciones nativas sin dependencias externas y arquitectura pensada para derivar consultas a WhatsApp con contexto precargado. Cliente real.
 
-## 💼 Casos de Estudio Integrados
+**FlowBoard** — dashboard de operaciones de revenue construido como pieza técnica de portfolio: patrón `Result<T>`, branded types, tests con Vitest y Playwright, repositorio público. No es trabajo de cliente — es la evidencia de cómo se piensa una capa de datos cuando el proyecto lo permite sin restricción comercial.
 
-* **[FAMVAR](https://github.com/nadiaescobbb)** — Catálogo digital y plataforma e-commerce para tecnología y bazar importado, optimizada con fichas técnicas dinámicas y conversión a WhatsApp.
-* **[CUORE](https://github.com/nadiaescobbb/cuore-joyeria)** — Experiencia web para joyería y relojería de alta gama, con animaciones nativas sin dependencias y diseño editorial.
+**FAMVAR** — catálogo digital para un negocio familiar de tecnología y bazar importado, con fichas técnicas dinámicas y conversión a WhatsApp. Es un proyecto propio, no un caso de cliente pago, y se muestra como tal: es donde se prueban patrones (como la conversión a WhatsApp que después se reutilizó en Cuore) antes de ofrecerlos a un cliente.
 
----
+## Stack
 
-## 🛠️ Stack Tecnológico & Tooling
+| Tecnología | Rol |
+|---|---|
+| React 18 | UI y arquitectura de componentes |
+| TypeScript | Tipado estático para datasets, props y contratos |
+| Tailwind CSS v3 | Utilidades y mapeo de tokens HSL |
+| React Router v6 | Rutas `/` y `/dossier` |
+| Vite + Vitest | Entorno de desarrollo y tests unitarios |
+| Husky + Commitlint | Validación de commits |
 
-| Tecnología | Rol en el Proyecto |
-| :--- | :--- |
-| **React 18** | UI Framework declarativo y arquitectura de componentes |
-| **TypeScript** | Tipado estático estricto para datasets, props y contratos |
-| **Tailwind CSS v3** | Sistema de utilidades y mapeo de tokens HSL |
-| **React Router v6** | Enrutamiento SPA con vistas dedicadas (`/`, `/dossier`) |
-| **Vite & Vitest** | Entorno de desarrollo rápido y suite de pruebas unitarias |
-| **Husky & Commitlint** | Pre-commit hooks para validación de commits y control de calidad |
-
----
-
-## 📁 Estructura del Proyecto
-
-```text
-tramastudio/
-├── ⚙️ .husky/                  # Git Hooks (Vitest & Commitlint)
-├── 🌐 public/                  # Assets estáticos y favicons
-├── 💻 src/
-│   ├── assets/                 # Recursos gráficos locales
-│   ├── components/             # Componentes UI (Nav, ServicesStack, Metodologia, ContactForm)
-│   ├── data/                   # Datasets tipados (projects.ts, project-images.ts)
-│   ├── hooks/                  # Custom Hooks (use-reveal.ts para scroll reveal nativo)
-│   ├── lib/                    # Helpers y utilidades de SEO (seo.ts, utils.ts)
-│   ├── pages/                  # Vistas principales (Index.tsx, Dossier.tsx, NotFound.tsx)
-│   ├── test/                   # Pruebas unitarias con Vitest & Testing Library
-│   ├── index.css               # Design Tokens HSL & Utility Classes
-│   ├── App.tsx                 # Configuración del Router
-│   └── main.tsx                # Entry point
-├── 🔧 tailwind.config.ts       # Extensión de tokens y tipografías
-├── ⚡ vite.config.ts           # Configuración del bundler
-└── 🧪 vitest.config.ts         # Configuración del test runner
+## Estructura
 
 ```
+tramastudio/
+├── .husky/                  # Git hooks (Vitest, Commitlint)
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/           # Nav, ServicesStack, Metodologia, ContactForm
+│   ├── data/                 # projects.ts, project-images.ts
+│   ├── hooks/                 # use-reveal.ts
+│   ├── lib/                   # seo.ts, utils.ts
+│   ├── pages/                 # Index.tsx, Dossier.tsx, NotFound.tsx
+│   ├── test/
+│   ├── index.css
+│   ├── App.tsx
+│   └── main.tsx
+├── tailwind.config.ts
+├── vite.config.ts
+└── vitest.config.ts
+```
 
----
-
-## 🚀 Desarrollo Local
-
-### 1. Clonar e instalar dependencias
+## Desarrollo local
 
 ```bash
-git clone [https://github.com/nadiaescobbb/tramastudio.git](https://github.com/nadiaescobbb/tramastudio.git)
+git clone https://github.com/nadiaescobbb/tramastudio.git
 cd tramastudio
 npm install
-
-```
-
-### 2. Comandos de desarrollo
-
-```bash
-# Iniciar servidor local
 npm run dev
-
-# Ejecutar suite de tests
 npm test
-
-# Compilación para producción
 npm run build
-
 ```
 
----
+## Créditos
 
-## 📬 Contacto & Créditos
-
-**Nadia Escobar** — Dirección de Producto, Diseño UI/UX & Desarrollo Frontend.
-
-[Sitio Web](https://heytrama.com) · [LinkedIn](https://www.linkedin.com/in/nadia-escobar-2b6095265) · [Email](https://www.google.com/search?q=mailto%3Anadiaescobbb%40gmail.com)
+Nadia Escobar — dirección de producto, diseño UI/UX y desarrollo frontend.
