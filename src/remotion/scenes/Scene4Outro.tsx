@@ -3,6 +3,7 @@ import {
   useVideoConfig,
   spring,
   Img,
+  staticFile,
 } from "remotion";
 
 export const Scene4Outro = () => {
@@ -66,7 +67,7 @@ export const Scene4Outro = () => {
         <div className="flex items-center justify-center gap-3 pt-2">
           <div className="w-10 h-10 rounded-full overflow-hidden border border-white/20 shadow-md">
             <Img
-              src="/founder-nadia.avif"
+              src={staticFile("/founder-nadia.avif")}
               alt="Nadia Escobar"
               className="w-full h-full object-cover grayscale"
             />

@@ -4,6 +4,7 @@ import {
   interpolate,
   spring,
   Img,
+  staticFile,
 } from "remotion";
 
 export const Scene1Hook = () => {
@@ -142,7 +143,7 @@ export const Scene1Hook = () => {
         </div>
         <div className="overflow-hidden rounded-xl aspect-[21/9] border border-white/10 relative">
           <Img
-            src="/famvarhome.avif"
+            src={staticFile("/famvarhome.avif")}
             alt="HeyTrama Showcase"
             className="w-full h-full object-cover"
           />

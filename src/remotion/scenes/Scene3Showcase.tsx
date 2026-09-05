@@ -4,6 +4,7 @@ import {
   interpolate,
   spring,
   Img,
+  staticFile,
 } from "remotion";
 
 export const Scene3Showcase = () => {
@@ -105,7 +106,7 @@ export const Scene3Showcase = () => {
           {/* Browser Content */}
           <div className="overflow-hidden rounded-2xl border border-white/10 aspect-[21/9] relative shadow-2xl">
             <Img
-              src="/famvarhome.avif"
+              src={staticFile("/famvarhome.avif")}
               alt="FAMVAR E-Commerce"
               style={{ transform: `scale(${famvarImgScale})` }}
               className="w-full h-full object-cover transition-transform"
@@ -156,7 +157,7 @@ export const Scene3Showcase = () => {
           {/* Browser Content */}
           <div className="overflow-hidden rounded-2xl border border-white/10 aspect-[21/9] relative shadow-2xl">
             <Img
-              src="/cuore-home.avif"
+              src={staticFile("/cuore-home.avif")}
               alt="CUORE Joyería y Relojería"
               style={{ transform: `scale(${cuoreImgScale})` }}
               className="w-full h-full object-cover transition-transform"
