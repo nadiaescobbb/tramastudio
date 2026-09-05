@@ -121,10 +121,10 @@ export const ContactForm = () => {
                 type="button"
                 key={item}
                 onClick={() => setService(item)}
-                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-200 cursor-pointer border ${
+                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
                   isSelected
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-background text-muted border-border hover:border-foreground/30 hover:text-foreground"
+                    : "bg-background text-muted border-border hover:border-foreground/40 hover:text-foreground hover:-translate-y-0.5"
                 }`}
               >
                 {item}
@@ -147,10 +147,10 @@ export const ContactForm = () => {
                 type="button"
                 key={item}
                 onClick={() => setBudget(item)}
-                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-200 cursor-pointer border ${
+                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
                   isSelected
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-background text-muted border-border hover:border-foreground/30 hover:text-foreground"
+                    : "bg-background text-muted border-border hover:border-foreground/40 hover:text-foreground hover:-translate-y-0.5"
                 }`}
               >
                 {item}
