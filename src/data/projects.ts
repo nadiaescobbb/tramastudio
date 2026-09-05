@@ -33,7 +33,7 @@ export const projects: Project[] = [
     industry: "Tecnología & E-Commerce",
     format: "Catálogo Digital",
     conversion: "Consulta Directa por WhatsApp",
-    category: "Caso real",
+    category: "Proyecto",
     isConcept: false,
     tagline:
       "Catálogo web moderno y estructurado para exhibición de tecnología, accesorios importados y bazar de alta gama.",
@@ -73,7 +73,7 @@ export const projects: Project[] = [
     industry: "Joyas y Relojería de Alta Gama",
     format: "Catálogo y taller",
     conversion: "Consulta de Pieza Personalizada",
-    category: "Caso real",
+    category: "Proyecto",
     isConcept: false,
     tagline:
       "40 años de trayectoria en Tierra del Fuego. La unión entre la fabricación artesanal y la tecnología láser de precisión.",

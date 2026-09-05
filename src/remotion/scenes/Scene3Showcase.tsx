@@ -71,7 +71,7 @@ export const Scene3Showcase = () => {
       <div className="w-full max-w-6xl flex items-center justify-between z-10">
         <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-[hsl(var(--studio-dark-muted))]">
           <span className="w-2.5 h-2.5 rounded-full bg-[hsl(var(--editorial-accent))] shadow-[0_0_12px_hsl(var(--editorial-accent))]" />
-          Casos Reales en Producción
+          Proyectos en Producción
         </div>
         <div className="px-4 py-1.5 rounded-full bg-[hsl(var(--studio-dark-card))] border border-[hsl(var(--studio-dark-border))] text-xs font-mono text-[hsl(var(--studio-dark-text))]">
           Proyectos Reales

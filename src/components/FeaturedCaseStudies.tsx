@@ -45,7 +45,7 @@ export function FeaturedCaseStudies() {
           <div className="absolute inset-0 bg-[#0d0c0c]/85 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div>
               <span className="font-mono text-micro uppercase tracking-wider text-[hsl(var(--editorial-accent))] mb-2 block">
-                Caso de Estudio
+                Proyecto
               </span>
               <p className="text-[hsl(var(--studio-dark-text))] text-sm md:text-base font-sans leading-relaxed max-w-md">
                 {project.tagline}

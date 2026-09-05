@@ -21,7 +21,7 @@ const Dossier = () => {
     if (!project) return;
 
     setSeo({
-      title: `${project.name} ${project.accent} — Caso de Estudio HeyTrama`,
+      title: `${project.name} ${project.accent} — Proyecto HeyTrama`,
       description: project.tagline,
       path: `/proyectos/${project.slug}`,
     });
@@ -73,7 +73,7 @@ const Dossier = () => {
           <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-xl aspect-[16/9] md:aspect-[21/9] relative group">
             <img
               src={image}
-              alt={`Caso de estudio ${project.name}`}
+              alt={`Proyecto ${project.name}`}
               loading="eager"
               decoding="async"
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -415,7 +415,7 @@ const Dossier = () => {
           </p>
           <div>
             <a
-              href={waLink(`Hola, vi el caso de ${project.name} y quiero hablar de mi proyecto.`)}
+              href={waLink(`Hola, vi el proyecto de ${project.name} y quiero hablar de mi proyecto.`)}
               className="inline-flex items-center gap-3 bg-[hsl(var(--accent))] text-white px-8 py-4 rounded-full font-mono text-xs font-bold uppercase tracking-wider hover:bg-foreground transition-colors shadow-lg"
             >
               <span>Iniciar Conversación</span>
