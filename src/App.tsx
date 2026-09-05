@@ -1,5 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
 import Index from "./pages/Index.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
@@ -7,8 +7,29 @@ import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 const Dossier = lazy(() => import("./pages/Dossier.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+const GoogleAnalyticsTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("config", "G-WX7ELP1JQF", {
+        page_path: location.pathname + location.search,
+      });
+    }
+  }, [location]);
+
+  return null;
+};
+
 const App = () => (
   <BrowserRouter>
+    <GoogleAnalyticsTracker />
     <ScrollToTop />
     <FloatingWhatsApp />
     <Routes>
