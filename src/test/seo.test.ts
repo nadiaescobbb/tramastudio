@@ -30,14 +30,14 @@ describe("setSeo", () => {
   it("sets canonical URL", () => {
     setSeo({ title: "X", description: "X", path: "/proyectos/famvar" });
     const canonical = document.querySelector('link[rel="canonical"]');
-    expect(canonical?.getAttribute("href")).toBe("https://tramastudio.vercel.app/proyectos/famvar");
+    expect(canonical?.getAttribute("href")).toBe("https://www.heytrama.com/proyectos/famvar");
   });
 
   it("sets OG tags", () => {
     setSeo({ title: "OG Title", description: "OG Desc", path: "/test" });
     expect(document.querySelector('meta[property="og:title"]')?.getAttribute("content")).toBe("OG Title");
     expect(document.querySelector('meta[property="og:description"]')?.getAttribute("content")).toBe("OG Desc");
-    expect(document.querySelector('meta[property="og:url"]')?.getAttribute("content")).toBe("https://tramastudio.vercel.app/test");
+    expect(document.querySelector('meta[property="og:url"]')?.getAttribute("content")).toBe("https://www.heytrama.com/test");
   });
 
   it("sets Twitter tags", () => {
@@ -48,7 +48,7 @@ describe("setSeo", () => {
 
   it("uses default image when none provided", () => {
     setSeo({ title: "X", description: "X" });
-    expect(document.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe("https://tramastudio.vercel.app/og-trama.png");
+    expect(document.querySelector('meta[property="og:image"]')?.getAttribute("content")).toBe("https://www.heytrama.com/og-trama.png");
   });
 
   it("uses custom image when provided", () => {
@@ -58,6 +58,6 @@ describe("setSeo", () => {
 
   it("defaults path to /", () => {
     setSeo({ title: "X", description: "X" });
-    expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe("https://tramastudio.vercel.app/");
+    expect(document.querySelector('link[rel="canonical"]')?.getAttribute("href")).toBe("https://www.heytrama.com/");
   });
 });

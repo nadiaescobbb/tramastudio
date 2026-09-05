@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://tramastudio.vercel.app/sitemap.xml
+Sitemap: https://www.heytrama.com/sitemap.xml

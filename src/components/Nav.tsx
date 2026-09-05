@@ -27,9 +27,9 @@ export const Nav = () => {
       <nav className={`nav-menu-pill ${isOpen ? "open" : ""}`}>
         {isHome && (
           <div className="hidden items-center gap-2 md:flex">
-            <a href="#casos" className="nav-menu-link">Casos</a>
-            <a href="#proceso" className="nav-menu-link">Proceso</a>
-            <a href="#estudio" className="nav-menu-link">Estudio</a>
+            <a href="#casos" className="nav-menu-link">Proyectos</a>
+            <a href="#proceso" className="nav-menu-link">Cómo trabajamos</a>
+            <a href="#estudio" className="nav-menu-link">HeyTrama</a>
             <a href="#preguntas" className="nav-menu-link">Preguntas</a>
           </div>
         )}
@@ -38,7 +38,7 @@ export const Nav = () => {
           href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")}
           className="nav-menu-cta group"
         >
-          <span>Hablemos</span>
+          <span>Contar mi proyecto</span>
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </a>
 
@@ -54,10 +54,10 @@ export const Nav = () => {
         {isOpen && (
           <div className="absolute right-0 top-[calc(100%+0.75rem)] w-[calc(100vw-2rem)] max-w-sm rounded-[1.75rem] border border-black/10 bg-white/95 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-2xl md:hidden">
             {[
-              { t: "Casos", h: "#casos" },
-              { t: "Proceso", h: "#proceso" },
-              { t: "Estudio", h: "#estudio" },
-              { t: "Contacto", h: "#contacto" },
+              { t: "Proyectos", h: "#casos" },
+              { t: "Cómo trabajamos", h: "#proceso" },
+              { t: "HeyTrama", h: "#estudio" },
+              { t: "Preguntas", h: "#preguntas" },
             ].map((link, i) => (
               <a
                 key={link.t}
@@ -71,10 +71,10 @@ export const Nav = () => {
             ))}
             <div className="mt-8 border-t border-border pt-8">
               <a
-                href={waLink("Hola, quiero iniciar un proyecto.")}
+                href={waLink("Hola, quiero contarte sobre mi proyecto.")}
                 className="btn-primary-trama group w-full justify-center"
               >
-                <span>Iniciar proyecto</span>
+                <span>Contar mi proyecto</span>
                 <div className="btn-icon-wrapper">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>

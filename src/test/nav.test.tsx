@@ -12,7 +12,7 @@ const renderNav = () => render(
 describe("Nav", () => {
   it("renders brand name on home", () => {
     renderNav();
-    expect(screen.getByText("HeyTrama")).toBeInTheDocument();
+    expect(screen.getAllByText("HeyTrama").length).toBeGreaterThan(0);
   });
 
   it("renders Volver on non-home route", () => {
@@ -24,8 +24,8 @@ describe("Nav", () => {
     expect(screen.getByText("Volver")).toBeInTheDocument();
   });
 
-  it("renders Hablemos CTA", () => {
+  it("renders Contar mi proyecto CTA", () => {
     renderNav();
-    expect(screen.getByText("Hablemos")).toBeInTheDocument();
+    expect(screen.getAllByText("Contar mi proyecto").length).toBeGreaterThan(0);
   });
 });

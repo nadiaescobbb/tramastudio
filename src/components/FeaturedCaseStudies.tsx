@@ -45,7 +45,7 @@ export function FeaturedCaseStudies() {
           <div className="absolute inset-0 bg-[#0d0c0c]/85 backdrop-blur-md p-6 md:p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-300">
             <div>
               <span className="font-mono text-micro uppercase tracking-wider text-[hsl(var(--editorial-accent))] mb-2 block">
-                Proyecto
+                {project.category}
               </span>
               <p className="text-[hsl(var(--studio-dark-text))] text-sm md:text-base font-sans leading-relaxed max-w-md">
                 {project.tagline}
@@ -65,7 +65,7 @@ export function FeaturedCaseStudies() {
           <h3 className="font-heading text-lg font-bold text-foreground tracking-tight group-hover:text-[hsl(var(--editorial-accent))] transition-colors">
             {project.name} {project.accent}
           </h3>
-          <p className="font-mono text-xs text-muted font-medium mt-0.5">
+          <p className="font-mono text-xs text-foreground font-medium mt-0.5">
             {project.format}
           </p>
         </div>
@@ -74,19 +74,25 @@ export function FeaturedCaseStudies() {
   };
 
   return (
-    <section className="py-24 md:py-36 bg-background" id="casos">
+    <section className="pt-16 md:pt-24 pb-10 md:pb-14 bg-background" id="casos">
       <div className="container-trama px-6 md:px-12 lg:px-16">
         {/* Section Header */}
-        <div className="flex flex-row items-center justify-between mb-12 md:mb-16">
-          <h2 className="font-heading text-4xl md:text-6xl tracking-tight leading-none text-foreground">
-            Proyectos <span className="font-serif italic font-normal">Destacados</span>
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+          <div className="max-w-2xl space-y-4">
+            <h2 className="font-heading text-4xl md:text-6xl tracking-tight leading-tight text-foreground">
+              Proyectos que llevamos <br className="hidden sm:inline" />
+              <span className="font-serif italic font-normal">de la idea a algo real.</span>
+            </h2>
+            <p className="text-foreground text-base md:text-lg leading-relaxed">
+              Cada proyecto parte de una necesidad distinta. Diseñamos y construimos la solución según lo que el negocio necesita hacer, no según una plantilla.
+            </p>
+          </div>
 
           <Link
             to="/#casos"
-            className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full font-mono text-xs font-semibold hover:bg-black/90 transition-all shadow-md group"
+            className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full font-mono text-xs font-semibold hover:bg-black/90 transition-all shadow-md group shrink-0 w-fit"
           >
-            <span>Ver Todos</span>
+            <span>Ver todos los proyectos</span>
             <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>

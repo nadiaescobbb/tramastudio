@@ -1,184 +1,110 @@
-import { useEffect, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { Reveal } from "@/components/Reveal";
+import { ArrowUpRight } from "lucide-react";
 
 const steps = [
   {
-    number: "PASO 01",
-    italicTitle: "Entender",
-    title: "Definir el objetivo del negocio",
-    text: "Antes de diseñar, preguntamos qué le impide al negocio venderse mejor hoy y cuáles son las prioridades reales.",
+    number: "01",
+    label: "PASO 01",
+    concept: "Entender",
+    title: "Definir qué tiene que resolver el producto.",
+    text: "Nos metemos en el negocio, el problema y las necesidades de las personas que van a usarlo. Antes de diseñar, necesitamos saber qué estamos intentando resolver y por qué.",
   },
   {
-    number: "PASO 02",
-    italicTitle: "Comunicar",
-    title: "Ordenar qué ve el usuario primero",
-    text: "La estrategia define qué tiene que entender el usuario primero, segundo y último. El diseño visual viene después de esa decisión, no antes.",
+    number: "02",
+    label: "PASO 02",
+    concept: "Estructurar",
+    title: "Ordenar la experiencia antes de construirla.",
+    text: "Definimos qué necesita encontrar, entender y hacer el usuario. Organizamos la información, los contenidos y los recorridos antes de convertirlos en pantallas.",
   },
   {
-    number: "PASO 03",
-    italicTitle: "Construir",
-    title: "Desarrollo frontend de alta performance",
-    text: "El código pone a prueba esa decisión: si carga rápido, si funciona en cualquier pantalla, si no se rompe cuando el negocio crece.",
+    number: "03",
+    label: "PASO 03",
+    concept: "Construir",
+    title: "Convertir la idea en un producto que funciona.",
+    text: "Diseñamos la interfaz y desarrollamos el producto para que sea rápido, claro y confiable en el uso real.",
   },
   {
-    number: "PASO 04",
-    italicTitle: "Acompañar",
-    title: "Medir y ajustar",
-    text: "El trabajo no termina con la publicación: se mide qué funciona y qué no, y el sitio se actualiza a medida que el negocio cambia.",
+    number: "04",
+    label: "PASO 04",
+    concept: "Evolucionar",
+    title: "Publicar es el comienzo, no el final.",
+    text: "Observamos cómo funciona el producto una vez que está en uso y hacemos los ajustes necesarios a medida que aparecen nuevas necesidades.",
   },
 ];
 
 export default function Metodologia() {
-  const [activeStep, setActiveStep] = useState(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const rafIdRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    // Check prefers-reduced-motion accessibility preference
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mediaQuery.matches) {
-      setReducedMotion(true);
-      setScrollProgress(1);
-      setActiveStep(steps.length - 1);
-      return;
-    }
-
-    const updateScroll = () => {
-      if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const totalHeight = rect.height;
-      const currentScroll = windowHeight / 2 - rect.top;
-      const progress = Math.min(Math.max(currentScroll / totalHeight, 0), 1);
-
-      setScrollProgress(progress);
-
-      // Single source of truth: derive activeStep directly from scrollProgress
-      const currentStep = Math.min(
-        Math.floor(progress * steps.length),
-        steps.length - 1
-      );
-      setActiveStep(currentStep);
-    };
-
-    // Throttled scroll listener using requestAnimationFrame to prevent reflow jank
-    const handleScroll = () => {
-      if (rafIdRef.current !== null) return;
-      rafIdRef.current = requestAnimationFrame(() => {
-        rafIdRef.current = null;
-        updateScroll();
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    updateScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (rafIdRef.current !== null) {
-        cancelAnimationFrame(rafIdRef.current);
-      }
-    };
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative z-10 bg-background py-24 md:py-36 overflow-hidden scroll-mt-36"
-      id="proceso"
-    >
-      {/* Section Header */}
-      <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-4xl mx-auto mb-20 md:mb-28">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[hsl(var(--editorial-accent))]/30 bg-[hsl(var(--editorial-accent))]/5 text-[hsl(var(--editorial-accent))] font-mono text-xs font-semibold uppercase tracking-widest mb-6">
-          Nuestro Proceso
-        </div>
-        <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl tracking-tight leading-[1.08] mb-6">
-          Una forma de <span className="font-serif italic text-[hsl(var(--editorial-accent))] font-normal">diseñar y construir</span> sin perder de vista para qué sirve.
-        </h2>
-        <p className="text-muted text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
-          Unimos estrategia, diseño y desarrollo en un solo proceso — no tres etapas separadas que alguien tiene que coordinar.
-        </p>
-      </div>
+    <section className="relative z-10 bg-background pt-10 md:pt-16 pb-20 md:pb-28 scroll-mt-36" id="proceso">
+      <div className="container-trama px-6 md:px-12 lg:px-16">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+          <Reveal>
+            <div>
+              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-4 block">
+                NUESTRO PROCESO
+              </span>
+              <h2 className="font-heading text-3xl md:text-5xl tracking-tight leading-snug text-slate-900 max-w-lg">
+                Pensamos primero qué tiene que <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))]">resolver</span>. Después, cómo construirlo.
+              </h2>
+            </div>
+          </Reveal>
 
-      {/* Timeline Section */}
-      <div className="container-trama px-6 md:px-12 lg:px-16 relative">
-        {/* Central Vertical Connector Line (z-0: Behind node circles, exact X-axis at 4.5/12 = 37.5%) */}
-        <div
-          className="hidden md:block absolute top-6 bottom-6 w-[1.5px] bg-border -translate-x-1/2 rounded-full overflow-hidden pointer-events-none z-0"
-          style={{ left: "calc((4.5 / 12) * 100%)" }}
-        >
-          <div
-            className={`w-full ${reducedMotion ? "" : "transition-all duration-150 ease-out"}`}
-            style={{
-              height: `${scrollProgress * 100}%`,
-              background:
-                "linear-gradient(to bottom, hsl(var(--editorial-accent)) 0%, hsla(15, 65%, 45%, 0.75) 75%, hsla(15, 65%, 45%, 0.2) 100%)",
-            }}
-          />
+          <Reveal delay={100}>
+            <p className="text-xs md:text-sm text-slate-900 max-w-md leading-relaxed font-sans md:text-right">
+              No empezamos por la pantalla ni por el código. Primero entendemos el problema, después ordenamos la solución y finalmente la construimos. Así evitamos desarrollar cosas que no hacen falta y tomar decisiones solo porque “se ven bien”.
+            </p>
+          </Reveal>
         </div>
 
-        <div className="space-y-24 md:space-y-36 relative z-10">
-          {steps.map((step, i) => {
-            const isCurrent = i === activeStep;
-            const isVisited = i < activeStep;
-            const isPending = i > activeStep;
+        {/* Process Flow Cards Row (Tanj Style: Warm light cards with bottom glow on hover) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {steps.map((step, idx) => (
+            <Reveal key={step.number} delay={idx * 100}>
+              <div className="group relative h-full min-h-[340px] md:min-h-[380px] flex flex-col justify-between p-6 md:p-7 rounded-3xl bg-[#f4f3ef] border border-black/5 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden cursor-pointer">
+                
+                {/* Bottom Terracotta Hover Glow Effect */}
+                <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[hsl(var(--editorial-accent))] via-[hsl(var(--editorial-accent))]/75 via-45% to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none rounded-b-3xl" />
 
-            return (
-              <div
-                key={step.number}
-                className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-center relative"
-              >
-                {/* Left Side (4 Cols) */}
-                <div className="md:col-span-4 flex flex-col md:items-end text-left md:text-right">
-                  <span className="inline-block font-mono text-micro font-medium uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-2">
-                    {step.number}
-                  </span>
-                  <h3 className="font-serif italic text-2xl md:text-3xl font-normal text-foreground tracking-tight">
-                    {step.italicTitle}
-                  </h3>
-                </div>
+                {/* Top Card Content */}
+                <div className="relative z-10 space-y-3">
+                  {/* Step Label & Number */}
+                  <div className="flex items-center justify-between font-mono text-xs text-slate-900/60">
+                    <span className="font-bold tracking-widest text-[hsl(var(--editorial-accent))] group-hover:text-foreground/80 transition-colors">
+                      {step.label}
+                    </span>
+                    <span className="font-bold text-sm text-slate-900/60 group-hover:text-foreground/60 transition-colors">
+                      {step.number}
+                    </span>
+                  </div>
 
-                {/* Grid Spacer (1 Col: Col 5) */}
-                <div className="hidden md:block md:col-span-1" />
-
-                {/* Node Indicator Mounted Absolutely on Vertical Line (z-10: In front of line, centered at 4.5/12) */}
-                <div
-                  className="hidden md:flex absolute top-1/2 -translate-x-1/2 -translate-y-1/2 items-center justify-center z-10 pointer-events-none"
-                  style={{ left: "calc((4.5 / 12) * 100%)" }}
-                >
-                  {(isCurrent || isVisited) && (
-                    <div className="relative flex items-center justify-center">
-                      {/* Soft Halo Glow Outer Ring */}
-                      <div className="absolute w-8 h-8 rounded-full bg-[hsl(var(--editorial-accent))]/20 blur-[1px] pointer-events-none" />
-                      <div className="w-6 h-6 rounded-full bg-[hsl(var(--editorial-accent))] text-white flex items-center justify-center shadow-md relative z-10">
-                        <ChevronDown className="w-3.5 h-3.5 text-white" strokeWidth={1.8} />
-                      </div>
-                    </div>
-                  )}
-
-                  {isPending && (
-                    <div className="w-6 h-6 rounded-full bg-background border-[1.5px] border-border text-muted-foreground flex items-center justify-center relative z-10">
-                      <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" strokeWidth={1.8} />
-                    </div>
-                  )}
-                </div>
-
-                {/* Right Side (7 Cols) */}
-                <div className="md:col-span-7 space-y-3">
-                  <h4 className="font-heading text-2xl md:text-3xl text-foreground tracking-tight">
+                  {/* Headline: Serif Concept & Bold Title */}
+                  <h3 className="font-heading text-lg md:text-xl font-medium text-slate-900 tracking-tight leading-snug">
+                    <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))] block mb-1">
+                      {step.concept}
+                    </span>
                     {step.title}
-                  </h4>
-                  <p className="font-sans text-subtle md:text-body text-muted leading-relaxed max-w-xl">
+                  </h3>
+
+                  {/* Body Text */}
+                  <p className="font-sans text-xs md:text-sm text-slate-900 leading-relaxed font-normal">
                     {step.text}
                   </p>
                 </div>
+
+                {/* Bottom Card Footer Tag: Lights up on Hover */}
+                <div className="relative z-10 flex items-center justify-between font-mono text-xs text-slate-900 group-hover:text-white transition-colors duration-300">
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold tracking-wider uppercase text-[10px]">HeyTrama</span>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
               </div>
-            );
-          })}
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
+
