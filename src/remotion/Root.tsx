@@ -1,4 +1,4 @@
-import { Composition } from "remotion";
+import { Composition, registerRoot } from "remotion";
 import { LaunchVideo } from "./LaunchVideo";
 import "../index.css";
 
@@ -16,3 +16,5 @@ export const RemotionRoot = () => {
     </>
   );
 };
+
+registerRoot(RemotionRoot);

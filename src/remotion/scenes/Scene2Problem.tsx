@@ -9,109 +9,122 @@ export const Scene2Problem = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Entrance spring
-  const enterSpring = spring({
+  // Header spring
+  const headerSpring = spring({
     frame,
     fps,
     config: { damping: 14, stiffness: 90 },
   });
 
-  // Fade out towards frame 180 (scene relative length 180 frames)
+  // Fade out towards frame 180
   const fadeOut = interpolate(frame, [160, 180], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Code to UI Morph progress
-  const codeProgress = interpolate(frame, [10, 80], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  // Card slide up delays
+  // Card slide up springs
   const card1Spring = spring({
-    frame: frame - 40,
+    frame: frame - 20,
     fps,
-    config: { damping: 12, stiffness: 100 },
+    config: { damping: 12, stiffness: 90 },
   });
   const card2Spring = spring({
-    frame: frame - 60,
+    frame: frame - 45,
     fps,
-    config: { damping: 12, stiffness: 100 },
+    config: { damping: 12, stiffness: 90 },
   });
   const card3Spring = spring({
-    frame: frame - 80,
+    frame: frame - 70,
     fps,
-    config: { damping: 12, stiffness: 100 },
+    config: { damping: 12, stiffness: 90 },
   });
+
+  // Typing effect length
+  const typingCharCount = Math.floor(interpolate(frame, [10, 90], [0, 85]));
+  const fullCodeText = `<DigitalProduct focus="conversion" architecture="swiss-minimal" designSystem="hsl-tokens" />`;
+  const visibleCodeText = fullCodeText.slice(0, typingCharCount);
 
   return (
     <div
       style={{ opacity: fadeOut }}
-      className="w-full h-full bg-[#0F0E0D] text-white flex flex-col items-center justify-center relative p-16 font-sans overflow-hidden select-none"
+      className="w-full h-full bg-[#0B0A0A] text-white flex flex-col items-center justify-between p-16 font-sans overflow-hidden select-none relative"
     >
-      {/* Background radial glow */}
-      <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-[hsl(15,65%,45%)]/10 blur-[100px] pointer-events-none" />
+      {/* Background Animated Grid Texture */}
+      <div
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+        }}
+        className="absolute inset-0 pointer-events-none opacity-50"
+      />
+
+      {/* Radial Lights */}
+      <div className="absolute top-1/4 -right-32 w-[600px] h-[600px] rounded-full bg-[hsl(15,65%,45%)]/15 blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] rounded-full bg-[hsl(38,70%,55%)]/10 blur-[130px] pointer-events-none" />
 
       {/* Header */}
       <div
         style={{
-          transform: `translateY(${(1 - enterSpring) * 20}px)`,
-          opacity: enterSpring,
+          transform: `translateY(${(1 - headerSpring) * 20}px)`,
+          opacity: headerSpring,
         }}
-        className="text-center space-y-3 mb-12"
+        className="text-center space-y-3 z-10"
       >
-        <span className="font-mono text-xs uppercase tracking-[0.25em] text-[hsl(15,65%,55%)] font-semibold">
+        <span className="font-mono text-xs uppercase tracking-[0.25em] text-[hsl(15,65%,55%)] font-semibold bg-[hsl(15,65%,45%)]/10 px-4 py-1.5 rounded-full border border-[hsl(15,65%,45%)]/30">
           Proceso & Criterio Directo
         </span>
-        <h2 className="font-heading text-4xl md:text-5xl font-normal tracking-tight">
+        <h2 className="font-heading text-4xl md:text-6xl font-normal tracking-tight pt-2">
           De la estrategia al código, <span className="font-serif italic text-gray-300">sin intermediarios</span>.
         </h2>
       </div>
 
-      {/* Code to UI Split Container */}
-      <div className="grid grid-cols-12 gap-8 w-full max-w-5xl items-center">
-        {/* Left: Code Snippet Card */}
-        <div
-          style={{
-            opacity: interpolate(codeProgress, [0, 0.5], [1, 0.4]),
-            transform: `scale(${1 - codeProgress * 0.05})`,
-          }}
-          className="col-span-6 bg-[#141312] border border-[#262422] rounded-2xl p-6 font-mono text-xs text-gray-300 shadow-2xl space-y-2 relative overflow-hidden"
-        >
-          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#262422]">
-            <span className="w-3 h-3 rounded-full bg-red-500/80" />
-            <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
-            <span className="w-3 h-3 rounded-full bg-green-500/80" />
-            <span className="text-[10px] text-gray-500 ml-2">App.tsx — React / Tailwind</span>
+      {/* Main Split Grid */}
+      <div className="grid grid-cols-12 gap-8 w-full max-w-6xl items-center z-10 my-auto">
+        {/* Left: Code IDE Editor Window */}
+        <div className="col-span-6 bg-[#121110] border border-white/15 rounded-2xl p-6 shadow-2xl space-y-4 backdrop-blur-xl relative overflow-hidden">
+          <div className="flex items-center justify-between pb-3 border-b border-white/10">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-red-500/80" />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/80" />
+              <span className="w-3 h-3 rounded-full bg-green-500/80" />
+            </div>
+            <span className="text-xs font-mono text-gray-400">Architecture.tsx</span>
           </div>
-          <p className="text-purple-400">const<span className="text-white"> Studio </span>=<span className="text-blue-400"> () =&gt; </span>&#123;</p>
-          <p className="pl-4 text-gray-400">// Identidad visual + Frontend de alta precisión</p>
-          <p className="pl-4 text-purple-400">return <span className="text-yellow-300">&lt;DigitalProduct</span></p>
-          <p className="pl-8 text-blue-300">focus=<span className="text-green-300">"conversion"</span></p>
-          <p className="pl-8 text-blue-300">architecture=<span className="text-green-300">"swiss-minimal"</span></p>
-          <p className="pl-4 text-yellow-300">/&gt;</p>
-          <p className="text-purple-400">&#125;;</p>
+
+          <div className="font-mono text-sm leading-relaxed space-y-2 min-h-[180px]">
+            <p className="text-purple-400">
+              export const <span className="text-blue-300">ProductArchitecture</span> = () =&gt; &#123;
+            </p>
+            <p className="pl-4 text-gray-400">// 1. Criterio comercial antes que adorno</p>
+            <p className="pl-4 text-gray-400">// 2. Frontend React 18 + Tailwind CSS</p>
+            <div className="pl-4 text-yellow-300 pt-2 font-bold break-all">
+              {visibleCodeText}
+              <span className="inline-block w-2 h-4 bg-[hsl(15,65%,55%)] ml-1 animate-pulse" />
+            </div>
+            <p className="text-purple-400 pt-2">&#125;;</p>
+          </div>
         </div>
 
-        {/* Right: Rendered Precision UI Cards */}
+        {/* Right: Rendered Precision Feature Cards */}
         <div className="col-span-6 space-y-4">
           <div
             style={{
               transform: `translateY(${(1 - Math.max(0, card1Spring)) * 30}px)`,
               opacity: Math.max(0, card1Spring),
             }}
-            className="p-5 rounded-xl bg-[#1A1918] border border-[#2E2C2A] shadow-xl flex items-center justify-between"
+            className="p-5 rounded-2xl bg-[#161514] border border-white/15 shadow-xl flex items-center justify-between backdrop-blur-xl"
           >
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[hsl(15,65%,55%)] block mb-1">
-                01. Estrategia
+            <div className="space-y-1">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[hsl(15,65%,55%)] block">
+                01. Estrategia & Copy
               </span>
-              <h4 className="font-heading text-lg font-normal">Jerarquía Comercial Limpia</h4>
+              <h4 className="font-heading text-xl font-normal">Jerarquía Comercial Limpia</h4>
+              <p className="text-xs text-gray-400">Mensajes estructurados para la decisión de compra.</p>
             </div>
-            <span className="w-8 h-8 rounded-full bg-[hsl(15,65%,45%)]/20 text-[hsl(15,65%,55%)] flex items-center justify-center font-mono text-xs font-bold">
+            <div className="w-10 h-10 rounded-full bg-[hsl(15,65%,45%)]/20 border border-[hsl(15,65%,45%)]/40 text-[hsl(15,65%,55%)] flex items-center justify-center font-mono text-sm font-bold shadow-md">
               ✓
-            </span>
+            </div>
           </div>
 
           <div
@@ -119,17 +132,18 @@ export const Scene2Problem = () => {
               transform: `translateY(${(1 - Math.max(0, card2Spring)) * 30}px)`,
               opacity: Math.max(0, card2Spring),
             }}
-            className="p-5 rounded-xl bg-[#1A1918] border border-[#2E2C2A] shadow-xl flex items-center justify-between"
+            className="p-5 rounded-2xl bg-[#161514] border border-white/15 shadow-xl flex items-center justify-between backdrop-blur-xl"
           >
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[hsl(15,65%,55%)] block mb-1">
+            <div className="space-y-1">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[hsl(15,65%,55%)] block">
                 02. Diseño UI/UX
               </span>
-              <h4 className="font-heading text-lg font-normal">Tokens HSL & Tipografía Expresiva</h4>
+              <h4 className="font-heading text-xl font-normal">Tokens HSL & Tipografía Suiza</h4>
+              <p className="text-xs text-gray-400">Sistema visual consistente con alto contraste WCAG AA.</p>
             </div>
-            <span className="w-8 h-8 rounded-full bg-[hsl(15,65%,45%)]/20 text-[hsl(15,65%,55%)] flex items-center justify-center font-mono text-xs font-bold">
+            <div className="w-10 h-10 rounded-full bg-[hsl(15,65%,45%)]/20 border border-[hsl(15,65%,45%)]/40 text-[hsl(15,65%,55%)] flex items-center justify-center font-mono text-sm font-bold shadow-md">
               ✓
-            </span>
+            </div>
           </div>
 
           <div
@@ -137,17 +151,18 @@ export const Scene2Problem = () => {
               transform: `translateY(${(1 - Math.max(0, card3Spring)) * 30}px)`,
               opacity: Math.max(0, card3Spring),
             }}
-            className="p-5 rounded-xl bg-[#1A1918] border border-[#2E2C2A] shadow-xl flex items-center justify-between"
+            className="p-5 rounded-2xl bg-[#161514] border border-white/15 shadow-xl flex items-center justify-between backdrop-blur-xl"
           >
-            <div>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[hsl(15,65%,55%)] block mb-1">
-                03. Frontend Real
+            <div className="space-y-1">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[hsl(15,65%,55%)] block">
+                03. Desarrollo Frontend
               </span>
-              <h4 className="font-heading text-lg font-normal">React + Vite + Tailwind CSS</h4>
+              <h4 className="font-heading text-xl font-normal">React + Vite + Animations</h4>
+              <p className="text-xs text-gray-400">Código optimizado con 100/100 en rendimiento.</p>
             </div>
-            <span className="w-8 h-8 rounded-full bg-[hsl(15,65%,45%)]/20 text-[hsl(15,65%,55%)] flex items-center justify-center font-mono text-xs font-bold">
+            <div className="w-10 h-10 rounded-full bg-[hsl(15,65%,45%)]/20 border border-[hsl(15,65%,45%)]/40 text-[hsl(15,65%,55%)] flex items-center justify-center font-mono text-sm font-bold shadow-md">
               ✓
-            </span>
+            </div>
           </div>
         </div>
       </div>
