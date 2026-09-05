@@ -11,14 +11,19 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "remotion:preview": "remotion preview src/remotion/Root.tsx",
+    "remotion:render": "remotion render src/remotion/Root.tsx HeyTramaLaunchVideo out/launch-video.mp4"
   },
   "dependencies": {
+    "@remotion/cli": "^4.0.520",
+    "@remotion/player": "^4.0.520",
     "clsx": "^2.1.1",
     "lucide-react": "^0.462.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.1",
+    "remotion": "^4.0.520",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
