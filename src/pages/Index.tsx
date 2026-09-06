@@ -7,7 +7,7 @@ import { waLink } from "@/data/projects";
 import Metodologia from "@/components/Metodologia";
 import { FeaturedCaseStudies } from "@/components/FeaturedCaseStudies";
 import { ServicesStack } from "@/components/ServicesStack";
-import { HeroOrbitGraphic } from "@/components/HeroOrbitGraphic";
+import { MiniBrowserCard, MiniSoftwareCard, MiniMobileCard } from "@/components/HeroInlineUiGraphic";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 
@@ -55,44 +55,35 @@ const Index = () => {
     <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-clip">
       <Nav />
 
-      {/* HERO (Orbit Split Layout) */}
-      <section className="hero-start relative min-h-dvh flex items-center pt-24 pb-16">
+      {/* HERO (Spacious Single Pantallazo Layout) */}
+      <section className="hero-start relative min-h-[100dvh] flex flex-col justify-center items-center pt-28 md:pt-36 lg:pt-44 pb-16 md:pb-20 overflow-hidden">
         <div className="hero-texture" />
-        <div className="container-trama relative z-10 w-full">
-          <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left Column: Headline, Subheadline & CTAs */}
-            <div className="col-span-12 lg:col-span-6 space-y-8 lg:space-y-10 pr-0 lg:pr-4">
-              <h1 className="font-heading text-3xl sm:text-4xl lg:text-[2.85rem] font-semibold tracking-tight leading-[1.2] text-slate-900 animate-slide-up opacity-0" style={{ animationDelay: "80ms" }}>
-                Convertimos ideas y necesidades de negocio <br className="hidden sm:inline" />
-                <span className="block font-serif italic font-normal text-[hsl(var(--editorial-accent))] mt-2">
-                  en productos digitales que funcionan.
-                </span>
-              </h1>
+        <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
+          {/* Centered Large H1 with Inline Icons closely hugging text */}
+          <h1
+            className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground animate-slide-up opacity-0"
+            style={{ animationDelay: "80ms" }}
+          >
+            Estudio de producto <MiniBrowserCard /> enfocado en construir sitios, <MiniSoftwareCard /> software y <MiniMobileCard /> aplicaciones digitales.
+          </h1>
 
-              <div className="space-y-3">
-                <p className="text-sm sm:text-base font-normal text-foreground max-w-lg leading-relaxed animate-slide-up opacity-0" style={{ animationDelay: "320ms" }}>
-                  Desde una primera idea hasta una herramienta lista para usar: entendemos qué necesitás resolver, diseñamos cómo debería funcionar y construimos la solución.
-                </p>
-              </div>
+          {/* Centered CTAs Row with Generous Spacing */}
+          <div
+            className="pt-10 sm:pt-14 md:pt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-6 animate-slide-up opacity-0"
+            style={{ animationDelay: "320ms" }}
+          >
+            <a href={waLink("Hola, quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">
+              <span>Contar mi proyecto</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
 
-              {/* CTAs */}
-              <div className="pt-2 flex flex-wrap items-center gap-4 animate-slide-up opacity-0" style={{ animationDelay: "520ms" }}>
-                <a href={waLink("Hola, quiero contarte sobre mi proyecto.")} className="hero-primary-cta group">
-                  <span>Contar mi proyecto</span>
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </a>
-
-                <a href="#casos" className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-border bg-surface/80 text-foreground font-mono text-xs font-semibold hover:bg-surface hover:border-foreground/40 transition-all group shadow-sm">
-                  <span>Ver proyectos</span>
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column: Interactive Orbit Graphic System */}
-            <div className="col-span-12 lg:col-span-6 mt-8 lg:mt-0 animate-slide-up opacity-0" style={{ animationDelay: "400ms" }}>
-              <HeroOrbitGraphic />
-            </div>
+            <a
+              href="#casos"
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-border bg-white/80 text-foreground font-mono text-xs sm:text-sm font-semibold hover:bg-white hover:border-foreground/40 transition-all group shadow-md backdrop-blur-md"
+            >
+              <span>Ver proyectos</span>
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
           </div>
         </div>
       </section>

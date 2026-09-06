@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { waLink } from "@/data/projects";
@@ -6,8 +6,22 @@ import { Logo } from "./Logo";
 
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -36,7 +50,7 @@ export const Nav = () => {
 
         <a
           href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")}
-          className="nav-menu-cta group"
+          className={`nav-menu-cta group ${!isScrolled && isHome ? "unscrolled" : ""}`}
         >
           <span>Contar mi proyecto</span>
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
