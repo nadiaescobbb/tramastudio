@@ -7,7 +7,7 @@ import { waLink } from "@/data/projects";
 import Metodologia from "@/components/Metodologia";
 import { FeaturedCaseStudies } from "@/components/FeaturedCaseStudies";
 import { ServicesStack } from "@/components/ServicesStack";
-import { MiniBrowserCard, MiniSoftwareCard, MiniMobileCard } from "@/components/HeroInlineUiGraphic";
+import { AsciiHandsHero } from "@/components/AsciiHandsHero";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 
@@ -63,23 +63,12 @@ const Index = () => {
       {/* HERO (Strict 100dvh Fit Without Scroll) */}
       <section className="hero-start relative h-[100dvh] max-h-[100dvh] flex flex-col justify-center items-center pt-20 sm:pt-24 pb-8 sm:pb-12 overflow-hidden">
         <div className="hero-texture" />
+        <AsciiHandsHero />
         <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
           {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
           <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
             <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
-              Estudio de producto
-            </span>{" "}
-            <MiniBrowserCard delay="450ms" />{" "}
-            <span className="inline-block animate-reading-text" style={{ animationDelay: "800ms" }}>
-              enfocado en construir sitios,
-            </span>{" "}
-            <MiniSoftwareCard delay="1150ms" />{" "}
-            <span className="inline-block animate-reading-text" style={{ animationDelay: "1500ms" }}>
-              software y
-            </span>{" "}
-            <MiniMobileCard delay="1850ms" />{" "}
-            <span className="inline-block animate-reading-text" style={{ animationDelay: "2150ms" }}>
-              aplicaciones digitales.
+              Estudio de producto enfocado en construir sitios, software y aplicaciones digitales.
             </span>
           </h1>
 
@@ -111,59 +100,6 @@ const Index = () => {
 
       {/* ── SERVICIOS STACKED ────────────────────────────────────── */}
       <ServicesStack />
-
-      {/* ── EL ESTUDIO ─────────────────────────────────────────── */}
-      <section className="relative z-20 py-20 md:py-28 bg-background scroll-mt-36" id="estudio">
-        <div className="container-trama">
-          <div className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-12">
-            EL ESTUDIO
-          </div>
-          <div className="grid gap-16 md:grid-cols-12 md:items-center">
-            <div className="md:col-span-5 lg:col-span-4">
-              <Reveal>
-                <div className="aspect-[4/5] w-full overflow-hidden rounded-2xl border border-border bg-surface relative shadow-lg">
-                  <img
-                    src="/founder-nadia.avif"
-                    alt="Nadia Escobar — founder HeyTrama"
-                    className="founder-portrait absolute inset-0 h-full w-full object-cover grayscale opacity-90"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-                </div>
-              </Reveal>
-            </div>
-
-            <div className="md:col-span-7 lg:col-start-6">
-              <Reveal delay={150}>
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--editorial-accent))] block mb-4">
-                  Nadia Escobar — founder HeyTrama
-                </span>
-                <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-tight tracking-tight mb-8">
-                  Pensamos primero cómo debería funcionar. <br className="hidden md:inline" />
-                  <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))]">Después, cómo hacerlo realidad.</span>
-                </h2>
-                <div className="flex flex-col gap-6">
-                  <p className="text-base md:text-lg leading-relaxed text-foreground max-w-xl">
-                    HeyTrama nace de unir dos partes que muchas veces se trabajan por separado: entender cómo debería funcionar un producto y tener la capacidad de construirlo.
-                  </p>
-                  <p className="text-base md:text-lg leading-relaxed text-foreground max-w-xl">
-                    Nadia dirige cada proyecto de punta a punta —desde la primera conversación hasta el producto funcionando— para que la idea no se pierda entre diseñadores, desarrolladores y decisiones de negocio.
-                  </p>
-                </div>
-                <div className="pt-8">
-                  <a
-                    href={waLink("Hola Nadia, me gustaría conocer más sobre HeyTrama y consultar por un proyecto.")}
-                    className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-full font-mono text-xs font-bold shadow-md hover:bg-[hsl(var(--editorial-accent))] hover:text-white transition-all group"
-                  >
-                    <span>Conocer HeyTrama</span>
-                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── PREGUNTAS FRECUENTES ───────────────────────────────── */}
       <section className="bg-surface/10 py-20 md:py-28" id="preguntas">

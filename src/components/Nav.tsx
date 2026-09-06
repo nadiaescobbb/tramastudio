@@ -43,7 +43,7 @@ export const Nav = () => {
           <div className="hidden items-center gap-2 md:flex">
             <a href="#casos" className="nav-menu-link">Proyectos</a>
             <a href="#proceso" className="nav-menu-link">Cómo trabajamos</a>
-            <a href="#estudio" className="nav-menu-link">HeyTrama</a>
+            <a href="#servicios" className="nav-menu-link">Servicios</a>
             <a href="#preguntas" className="nav-menu-link">Preguntas</a>
           </div>
         )}
@@ -70,7 +70,7 @@ export const Nav = () => {
             {[
               { t: "Proyectos", h: "#casos" },
               { t: "Cómo trabajamos", h: "#proceso" },
-              { t: "HeyTrama", h: "#estudio" },
+              { t: "Servicios", h: "#servicios" },
               { t: "Preguntas", h: "#preguntas" },
             ].map((link, i) => (
               <a
