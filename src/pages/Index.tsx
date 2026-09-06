@@ -55,22 +55,33 @@ const Index = () => {
     <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-clip">
       <Nav />
 
-      {/* HERO (Spacious Single Pantallazo Layout) */}
-      <section className="hero-start relative min-h-[100dvh] flex flex-col justify-center items-center pt-28 md:pt-36 lg:pt-44 pb-16 md:pb-20 overflow-hidden">
+      {/* HERO (Strict 100dvh Fit Without Scroll) */}
+      <section className="hero-start relative h-[100dvh] max-h-[100dvh] flex flex-col justify-center items-center pt-20 sm:pt-24 pb-8 sm:pb-12 overflow-hidden">
         <div className="hero-texture" />
         <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
-          {/* Centered Large H1 with Inline Icons closely hugging text */}
-          <h1
-            className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground animate-slide-up opacity-0"
-            style={{ animationDelay: "80ms" }}
-          >
-            Estudio de producto <MiniBrowserCard /> enfocado en construir sitios, <MiniSoftwareCard /> software y <MiniMobileCard /> aplicaciones digitales.
+          {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
+          <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
+            <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
+              Estudio de producto
+            </span>{" "}
+            <MiniBrowserCard delay="450ms" />{" "}
+            <span className="inline-block animate-reading-text" style={{ animationDelay: "800ms" }}>
+              enfocado en construir sitios,
+            </span>{" "}
+            <MiniSoftwareCard delay="1150ms" />{" "}
+            <span className="inline-block animate-reading-text" style={{ animationDelay: "1500ms" }}>
+              software y
+            </span>{" "}
+            <MiniMobileCard delay="1850ms" />{" "}
+            <span className="inline-block animate-reading-text" style={{ animationDelay: "2150ms" }}>
+              aplicaciones digitales.
+            </span>
           </h1>
 
-          {/* Centered CTAs Row with Generous Spacing */}
+          {/* Centered CTAs Row */}
           <div
-            className="pt-10 sm:pt-14 md:pt-16 flex flex-wrap items-center justify-center gap-4 sm:gap-6 animate-slide-up opacity-0"
-            style={{ animationDelay: "320ms" }}
+            className="pt-8 sm:pt-12 md:pt-14 flex flex-wrap items-center justify-center gap-4 sm:gap-6 animate-reading-text"
+            style={{ animationDelay: "2450ms" }}
           >
             <a href={waLink("Hola, quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">
               <span>Contar mi proyecto</span>
@@ -79,10 +90,9 @@ const Index = () => {
 
             <a
               href="#casos"
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-border bg-white/80 text-foreground font-mono text-xs sm:text-sm font-semibold hover:bg-white hover:border-foreground/40 transition-all group shadow-md backdrop-blur-md"
+              className="font-mono text-xs sm:text-sm font-semibold text-foreground/80 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
             >
-              <span>Ver proyectos</span>
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              Ver proyectos
             </a>
           </div>
         </div>
