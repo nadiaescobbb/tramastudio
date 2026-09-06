@@ -60,7 +60,7 @@ const Index = () => {
         <div className="hero-texture" />
         <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
           {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
-          <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
+          <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
             <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
               Estudio de producto
             </span>{" "}
@@ -90,7 +90,7 @@ const Index = () => {
 
             <a
               href="#casos"
-              className="font-mono text-xs sm:text-sm font-semibold text-foreground/80 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
+              className="hidden sm:inline-block font-mono text-xs sm:text-sm font-semibold text-foreground/80 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
             >
               Ver proyectos
             </a>
