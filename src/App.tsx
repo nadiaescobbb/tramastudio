@@ -9,7 +9,7 @@ const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
+    gtag?: (...args: unknown[]) => void;
   }
 }
 
