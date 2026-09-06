@@ -1,175 +1,220 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { waLink } from "@/data/projects";
 
 interface ServiceItem {
-  stepCount: string;
+  step: string;
   title: string;
   description: string;
-  text: string;
-  tagline: string;
-  ctaLabel: string;
+  gridSpan: string;
+  gradientBg: string;
+  visualType: "stacked-cards" | "interactive-sphere" | "frontend-structure" | "app-window" | "strategy-sphere";
 }
 
 const services: ServiceItem[] = [
   {
-    stepCount: "01 / 05",
-    title: "Una idea nueva",
-    description: "Convertimos una idea en una primera versión que se pueda probar.",
-    text: "Si tenés una idea que querés convertir en producto, podemos ayudarte a definir qué vale la pena construir primero y llevarla a una versión funcional.",
-    tagline: "Antes de construir todo, hay que saber qué vale la pena construir.",
-    ctaLabel: "Quiero convertir mi idea en algo real",
+    step: "01",
+    title: "Sitios web & Landing Pages",
+    description: "Sitios pensados para comunicar con claridad, construir confianza y convertir visitas en oportunidades.",
+    gridSpan: "col-span-12 md:col-span-6 lg:col-span-4",
+    gradientBg: "from-[#111111]/[0.04] via-[#111111]/[0.02] to-transparent",
+    visualType: "stacked-cards",
   },
   {
-    stepCount: "02 / 05",
-    title: "Una herramienta para tu negocio",
-    description: "Construimos software cuando las herramientas que ya existen no alcanzan.",
-    text: "Creamos sistemas y aplicaciones para resolver procesos específicos de tu negocio cuando las herramientas disponibles ya no encajan con lo que necesitás.",
-    tagline: "Cuando el problema no entra en una plantilla, tampoco debería la solución.",
-    ctaLabel: "Necesito una herramienta para mi negocio",
+    step: "02",
+    title: "Rediseño UX/UI",
+    description: "Revisamos lo que ya tenés, detectamos qué genera fricción y rediseñamos la experiencia para hacerla más simple y efectiva.",
+    gridSpan: "col-span-12 md:col-span-6 lg:col-span-4",
+    gradientBg: "from-[#111111]/[0.03] via-[#111111]/[0.01] to-transparent",
+    visualType: "interactive-sphere",
   },
   {
-    stepCount: "03 / 05",
-    title: "Un producto que tiene que ser más fácil de usar",
-    description: "Diseñamos experiencias digitales claras y fáciles de entender.",
-    text: "Si tu producto ya existe pero resulta difícil de usar, revisamos cómo funciona y rediseñamos la experiencia para hacerla más simple.",
-    tagline: "Nadie lee tu proceso interno. Decide con lo que ve.",
-    ctaLabel: "Quiero mejorar mi producto",
+    step: "03",
+    title: "Desarrollo Frontend a medida",
+    description: "Convertimos una experiencia diseñada en una interfaz rápida, responsive y lista para producción.",
+    gridSpan: "col-span-12 md:col-span-12 lg:col-span-4",
+    gradientBg: "from-[#111111]/[0.04] via-[#111111]/[0.02] to-transparent",
+    visualType: "frontend-structure",
   },
   {
-    stepCount: "04 / 05",
-    title: "Un producto que necesita crecer",
-    description: "Desarrollamos y mejoramos el software que sostiene tu producto.",
-    text: "Construimos nuevas funcionalidades, conectamos servicios y mejoramos la base técnica para que el producto pueda seguir creciendo sin convertirse en un problema.",
-    tagline: "Lo que no se ve también decide si el producto funciona.",
-    ctaLabel: "Quiero hacer crecer mi producto",
+    step: "04",
+    title: "Web Apps & Catálogos",
+    description: "Desarrollamos herramientas digitales para mostrar, gestionar o vender productos y servicios: catálogos, sistemas de turnos, dashboards y otras experiencias interactivas.",
+    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6",
+    gradientBg: "from-[#111111]/[0.03] via-[#111111]/[0.01] to-transparent",
+    visualType: "app-window",
   },
   {
-    stepCount: "05 / 05",
-    title: "Algo que todavía no entra en una categoría",
-    description: "No todo necesita tener un nombre antes de empezar.",
-    text: "Si tenés un problema o una idea que querés convertir en algo digital y todavía no sabés exactamente qué necesitás, podemos empezar por ahí.",
-    tagline: "Primero entendemos el problema. Después decidimos qué construir.",
-    ctaLabel: "Todavía no sé qué necesito",
+    step: "05",
+    title: "Estrategia & MVPs",
+    description: "De una idea inicial a un producto validable. Definimos qué construir primero, diseñamos la experiencia y desarrollamos una primera versión funcional.",
+    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6",
+    gradientBg: "from-[#111111]/[0.04] via-[#111111]/[0.02] to-transparent",
+    visualType: "strategy-sphere",
   },
 ];
 
+function Card3DVisual({ type }: { type: ServiceItem["visualType"] }) {
+  if (type === "stacked-cards") {
+    return (
+      <div className="absolute -right-8 -bottom-8 w-64 h-64 pointer-events-none opacity-85 group-hover:scale-105 transition-transform duration-500">
+        <div className="relative w-full h-full">
+          {[
+            "bg-[#111111]/10 border-[#111111]/20",
+            "bg-[#111111]/15 border-[#111111]/25",
+            "bg-[#111111]/20 border-[#111111]/30",
+            "bg-[#111111]/30 border-[#111111]/40",
+            "bg-[#111111]/50 border-[#111111]/60",
+            "bg-[#111111]/80 border-[#111111]",
+          ].map((styleClass, i) => (
+            <div
+              key={i}
+              className={`absolute rounded-xl border backdrop-blur-md shadow-md ${styleClass}`}
+              style={{
+                width: "70px",
+                height: "140px",
+                right: `${i * 22 + 20}px`,
+                bottom: `${i * 10 + 10}px`,
+                transform: "rotate(-25deg) skewY(-10deg)",
+                zIndex: 6 - i,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "interactive-sphere") {
+    return (
+      <div className="absolute -right-4 -bottom-4 w-60 h-60 pointer-events-none opacity-85 group-hover:scale-105 transition-transform duration-500">
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-[#111111]/20 via-[#111111]/40 to-[#111111]/80 backdrop-blur-2xl border border-[#111111]/30 shadow-2xl relative z-10 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-[#FBFBFA]/40 blur-md" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "frontend-structure") {
+    return (
+      <div className="absolute -right-4 -bottom-6 w-60 h-64 pointer-events-none opacity-85 group-hover:scale-105 transition-transform duration-500">
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="w-40 h-48 rounded-3xl bg-gradient-to-tr from-[#111111]/10 via-[#111111]/30 to-[#111111]/70 backdrop-blur-xl border border-[#111111]/30 shadow-2xl relative z-10 transform rotate-6">
+            <div className="w-20 h-16 rounded-t-full border-4 border-[#111111]/40 mx-auto -mt-8 bg-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#FBFBFA]/20 to-transparent rounded-3xl" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "app-window") {
+    return (
+      <div className="absolute -right-8 -bottom-8 w-64 h-52 pointer-events-none opacity-85 group-hover:scale-105 transition-transform duration-500">
+        <div className="relative w-full h-full">
+          <div className="w-56 h-44 rounded-2xl bg-gradient-to-br from-[#FBFBFA] via-[#FBFBFA]/90 to-[#111111]/10 backdrop-blur-xl border border-[#111111]/20 shadow-2xl p-4 relative z-10 transform -rotate-6">
+            <div className="flex gap-2 mb-4">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#111111]/40" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#111111]/25" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#111111]/15" />
+            </div>
+            <div className="font-mono font-bold text-2xl text-[#111111]/30 select-none">APP</div>
+            <div className="space-y-2 mt-2">
+              <div className="w-32 h-2.5 rounded bg-[#111111]/15" />
+              <div className="w-24 h-2.5 rounded bg-[#111111]/10" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === "strategy-sphere") {
+    return (
+      <div className="absolute -right-4 -bottom-4 w-60 h-56 pointer-events-none opacity-85 group-hover:scale-105 transition-transform duration-500">
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="w-28 h-28 rounded-full bg-gradient-to-tr from-[#111111]/30 via-[#111111]/50 to-[#111111]/80 backdrop-blur-2xl border border-[#111111]/40 shadow-2xl relative z-10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-[#FBFBFA]/50 blur-md" />
+          </div>
+          <div className="absolute bottom-2 right-0 w-52 h-20 rounded-[50%] bg-gradient-to-r from-[#111111]/20 via-[#111111]/10 to-transparent blur-md transform -rotate-6" />
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 export function ServicesStack() {
   return (
-    <section className="relative bg-background" id="servicios">
-      {/* Section Header */}
-      <div className="py-14 md:py-20 bg-background text-center container-trama px-6 md:px-12 lg:px-16">
-        <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-4 block">
-          NUESTRAS SOLUCIONES
-        </span>
-        <h2 className="font-heading text-4xl md:text-6xl font-bold tracking-tight text-foreground">
-          ¿Qué necesitás <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))]">construir</span>?
-        </h2>
-        <p className="text-foreground text-base md:text-lg leading-relaxed max-w-2xl mx-auto mt-6">
-          No todos los proyectos empiezan en el mismo lugar. A veces hay una idea que todavía hay que probar. Otras veces existe un problema que necesita una herramienta propia. <br className="hidden md:inline" />
-          Trabajamos sobre lo que realmente necesitás, desde la primera definición hasta el producto funcionando.
-        </p>
-      </div>
-
-      {/* Mobile Stacked Cards Layout (Visible on Mobile only: block md:hidden) */}
-      <div className="block md:hidden relative px-4 pb-20 space-y-8">
-        {services.map((service, index) => (
-          <div
-            key={`mobile-${service.stepCount}`}
-            className="w-full bg-[hsl(var(--studio-dark-bg))] text-[hsl(var(--studio-dark-text))] rounded-2xl p-6 border border-[hsl(var(--studio-dark-border))] shadow-xl overflow-hidden space-y-6"
-          >
-            {/* Top Bar (Single stepCount indicator) */}
-            <div className="flex items-center justify-end font-mono text-xs text-[hsl(var(--studio-dark-muted))]">
-              <span className="font-bold">{service.stepCount}</span>
-            </div>
-
-            {/* Title & Subheadline */}
-            <div className="space-y-2">
-              <h3 className="font-heading text-2xl font-bold tracking-tight text-[hsl(var(--studio-dark-text))]">
-                {service.title}
-              </h3>
-              <p className="text-sm font-medium text-[hsl(var(--editorial-accent))]">
-                {service.description}
-              </p>
-            </div>
-
-            {/* Main Text */}
-            <p className="text-xs text-[hsl(var(--studio-dark-muted))] leading-relaxed">
-              {service.text}
-            </p>
-
-            {/* Quote Tagline */}
-            <p className="font-serif italic text-sm text-[hsl(var(--studio-dark-text))]/90 border-l-2 border-[hsl(var(--editorial-accent))] pl-3 py-1">
-              "{service.tagline}"
-            </p>
-
-            {/* CTA Button */}
-            <a
-              href={waLink(`Hola, quiero consultar sobre: ${service.title}.`)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-between w-full bg-white text-black px-5 py-3 rounded-full font-mono text-xs font-bold shadow-md active:scale-98 transition-all"
-            >
-              <span>{service.ctaLabel}</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
+    <section className="relative py-20 md:py-32 overflow-hidden bg-[#FBFBFA]" id="servicios">
+      <div className="container-trama relative z-10 px-6 md:px-12 lg:px-16">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-16 md:mb-20">
+          <div>
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#111111]/70 block mb-3">
+              SERVICIOS
+            </span>
+            <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#111111] leading-[1.05]">
+              Productos digitales <br />
+              <span className="font-serif italic font-normal text-[#111111]">
+                que tienen sentido.
+              </span>
+            </h2>
           </div>
-        ))}
-      </div>
 
-      {/* Desktop Sticky Stacked Cards Container (Visible on Tablet/Desktop: hidden md:block) */}
-      <div className="hidden md:block relative">
-        {services.map((service, index) => (
-          <div
-            key={service.stepCount}
-            className="sticky top-0 min-h-screen w-full bg-[hsl(var(--studio-dark-bg))] text-[hsl(var(--studio-dark-text))] flex flex-col justify-between p-8 md:p-12 lg:p-16 shadow-2xl transition-all duration-300 overflow-hidden border-t border-[hsl(var(--studio-dark-border))]"
-            style={{ zIndex: index + 1 }}
-          >
-            {/* Header Bar (Single stepCount indicator) */}
-            <div className="flex flex-row items-center justify-end w-full font-mono text-xs font-semibold tracking-widest text-[hsl(var(--studio-dark-muted))] z-10">
-              <span className="text-sm font-bold">{service.stepCount}</span>
-            </div>
+          <p className="max-w-sm font-sans text-[#111111]/80 text-sm md:text-base leading-relaxed md:pt-10">
+            Primero ordenamos lo que tu negocio necesita. Después diseñamos cómo mostrarlo y construimos la experiencia.
+          </p>
+        </div>
 
-            {/* Central Content */}
-            <div className="my-auto text-center space-y-6 max-w-3xl mx-auto w-full pt-6 pb-10 z-10">
-              <h3 className="font-heading font-bold text-3xl md:text-5xl tracking-tight leading-tight text-[hsl(var(--studio-dark-text))]">
-                {service.title}
-              </h3>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-12 gap-6 lg:gap-8">
+          {services.map((service) => (
+            <div
+              key={service.step}
+              className={`${service.gridSpan} relative group overflow-hidden rounded-[2rem] p-8 md:p-10 border border-[#111111]/15 bg-[#FBFBFA] backdrop-blur-xl shadow-sm hover:shadow-xl hover:border-[#111111]/30 transition-all duration-500 flex flex-col justify-between min-h-[360px]`}
+            >
+              {/* Soft Monochromatic Gradient backdrop */}
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${service.gradientBg} opacity-60 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}
+              />
 
-              <p className="text-lg md:text-xl font-medium text-[hsl(var(--editorial-accent))] leading-snug">
-                {service.description}
-              </p>
+              {/* 3D Visual Illustration */}
+              <Card3DVisual type={service.visualType} />
 
-              <p className="text-sm md:text-base text-[hsl(var(--studio-dark-muted))] leading-relaxed max-w-2xl mx-auto font-sans">
-                {service.text}
-              </p>
+              {/* Step Number & Content */}
+              <div className="relative z-10">
+                <span className="font-mono text-xs font-bold text-[#111111]/60 block mb-4">
+                  {service.step}
+                </span>
 
-              {/* Quote Tagline */}
-              <p className="font-serif italic text-lg md:text-xl text-[hsl(var(--studio-dark-text))]/90 max-w-2xl mx-auto leading-relaxed pt-2">
-                "{service.tagline}"
-              </p>
+                <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-[#111111] max-w-[80%] leading-snug mb-3">
+                  {service.title}
+                </h3>
 
-              {/* Graphical Card CTA Box */}
-              <div className="mx-auto w-full max-w-md pt-4">
+                <p className="font-sans text-xs md:text-sm text-[#111111]/75 max-w-[75%] leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Bottom Action Button */}
+              <div className="relative z-10 pt-4">
                 <a
                   href={waLink(`Hola, quiero consultar sobre: ${service.title}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-white text-black px-6 py-3.5 rounded-full font-mono text-xs font-bold shadow-lg hover:bg-white/90 transition-all group"
+                  aria-label={service.title}
+                  className="w-11 h-11 rounded-full bg-[#111111] text-[#FBFBFA] flex items-center justify-center shadow-md hover:scale-110 transition-transform duration-300"
                 >
-                  <span>{service.ctaLabel}</span>
-                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowRight className="w-5 h-5 text-[#FBFBFA]" />
                 </a>
               </div>
             </div>
-
-            {/* Bottom Counter Bar */}
-            <div className="flex justify-end items-center font-mono text-xs text-[hsl(var(--studio-dark-muted))] z-10">
-              <span className="uppercase font-bold tracking-widest">{service.title}</span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-

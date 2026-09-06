@@ -49,6 +49,11 @@ const Index = () => {
         "Convertimos ideas y necesidades de negocio en productos digitales que funcionan.",
       path: "/",
     });
+
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+    window.scrollTo(0, 0);
   }, []);
 
   return (

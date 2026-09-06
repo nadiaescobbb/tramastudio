@@ -83,9 +83,6 @@ export function FeaturedCaseStudies() {
               Proyectos que llevamos <br className="hidden sm:inline" />
               <span className="font-serif italic font-normal">de la idea a algo real.</span>
             </h2>
-            <p className="text-foreground text-base md:text-lg leading-relaxed">
-              Cada proyecto parte de una necesidad distinta. Diseñamos y construimos la solución según lo que el negocio necesita hacer, no según una plantilla.
-            </p>
           </div>
 
           <Link

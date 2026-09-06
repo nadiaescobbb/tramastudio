@@ -1,15 +1,15 @@
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 import { waLink } from "@/data/projects";
 
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/tramapriv@gmail.com";
+const FORM_ENDPOINT = "https://formsubmit.co/ajax/hola@heytrama.com";
 
 const SERVICES_OPTIONS = [
-  "Una idea nueva",
-  "Una aplicación o plataforma",
-  "Una herramienta para mi negocio",
-  "Mejorar un producto existente",
-  "Todavía no lo sé",
+  "Sitios web & Landing Pages",
+  "Rediseño UX/UI",
+  "Desarrollo Frontend a medida",
+  "Web Apps & Catálogos",
+  "Estrategia & MVPs",
 ];
 
 const BUDGET_OPTIONS = [
@@ -23,7 +23,7 @@ const BUDGET_OPTIONS = [
 export const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [service, setService] = useState("Una idea nueva");
+  const [service, setService] = useState("Sitios web & Landing Pages");
   const [budget, setBudget] = useState("USD 500 – 1.500");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
@@ -50,10 +50,10 @@ export const ContactForm = () => {
       if (res.ok) {
         setSent(true);
       } else {
-        setError("No se pudo enviar por email. Abrir directamente en WhatsApp.");
+        setError("No se pudo enviar por email. Podés abrirlo directamente por WhatsApp.");
       }
     } catch {
-      setError("Error de conexión. Abrir directamente en WhatsApp.");
+      setError("Error de conexión. Podés abrirlo directamente por WhatsApp.");
     }
   };
 
@@ -63,14 +63,14 @@ export const ContactForm = () => {
 
   if (sent) {
     return (
-      <div className="text-center space-y-4 py-8 bg-surface rounded-2xl border border-border p-8 shadow-sm">
-        <div className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center mx-auto text-xl font-bold">
-          ✓
+      <div className="text-center space-y-4 py-10 bg-surface rounded-2xl border border-border p-8 shadow-sm">
+        <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center mx-auto text-xl font-bold shadow-md">
+          <Check className="w-6 h-6" />
         </div>
         <h4 className="font-heading text-2xl font-semibold text-foreground">
           Proyecto enviado con éxito
         </h4>
-        <p className="text-muted text-sm max-w-md mx-auto leading-relaxed">
+        <p className="text-muted-foreground text-sm max-w-md mx-auto leading-relaxed font-sans">
           Gracias {name}. Nadia revisará tu proyecto para <strong className="text-foreground">{service}</strong> ({budget}) y te responderá a la brevedad.
         </p>
       </div>
@@ -90,7 +90,7 @@ export const ContactForm = () => {
           onChange={(e) => setName(e.target.value)}
           required
           placeholder="Tu nombre y apellido"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted/50"
+          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
         />
       </div>
 
@@ -105,11 +105,11 @@ export const ContactForm = () => {
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="tu@email.com"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted/50"
+          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
         />
       </div>
 
-      {/* 3. Tipo de Proyecto / ¿Qué querés construir? */}
+      {/* 3. Tipo de Servicio / ¿Qué querés construir? */}
       <div className="space-y-3">
         <label className="font-mono text-micro uppercase tracking-wider text-foreground font-semibold block">
           ¿Qué querés construir? *
@@ -171,18 +171,18 @@ export const ContactForm = () => {
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           placeholder="¿Qué querés construir, qué problema querés resolver o qué te gustaría mejorar?"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary resize-none placeholder:text-muted/50"
+          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary resize-none placeholder:text-muted-foreground/50"
         />
       </div>
 
       {error && (
         <div className="space-y-2 pt-2">
-          <p className="text-xs text-red-500 font-mono">{error}</p>
+          <p className="text-xs text-[hsl(var(--editorial-accent))] font-mono font-medium">{error}</p>
           <a
             href={whatsappMessage}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold underline text-foreground"
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold underline text-foreground hover:text-[hsl(var(--editorial-accent))] transition-colors"
           >
             <span>Enviar directamente por WhatsApp ↗</span>
           </a>
@@ -202,4 +202,3 @@ export const ContactForm = () => {
     </form>
   );
 };
-
