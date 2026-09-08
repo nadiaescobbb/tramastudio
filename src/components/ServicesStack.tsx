@@ -114,10 +114,10 @@ function AsciiDotWaveCanvas({ isDark = false }: { isDark?: boolean }) {
 
 export function ServicesStack() {
   return (
-    <section className="relative pt-12 md:pt-16 pb-20 md:pb-28 overflow-hidden bg-[#FBFBFA]" id="servicios">
+    <section className="relative pt-16 md:pt-24 pb-20 md:pb-28 overflow-hidden bg-[#FBFBFA]" id="servicios">
       <div className="container-trama relative z-10 px-6 md:px-12 lg:px-16">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-12">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-16 md:mb-20">
           <div>
             <span className="font-sans text-xs font-semibold uppercase tracking-widest text-[#111111]/70 block mb-3">
               SERVICIOS

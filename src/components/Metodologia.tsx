@@ -37,10 +37,10 @@ export default function Metodologia() {
   const [activeStep, setActiveStep] = useState<string>("01");
 
   return (
-    <section className="relative z-10 bg-background pt-12 md:pt-16 pb-12 md:pb-16 border-b border-border/40 scroll-mt-36" id="proceso">
+    <section className="relative z-10 bg-background pt-16 md:pt-24 pb-16 md:pb-24 border-b border-border/40 scroll-mt-36" id="proceso">
       <div className="container-trama px-6 md:px-12 lg:px-16">
-        {/* Header de la sección: H2 principal de lectura directa */}
-        <div className="mb-12 md:mb-16">
+        {/* Header de la sección: H2 principal con espacio editorial amplio */}
+        <div className="mb-16 md:mb-20">
           <Reveal>
             <h2 className="font-heading text-3xl md:text-5xl tracking-tight leading-snug text-slate-900 max-w-2xl">
               Pensamos primero qué tiene que <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))]">resolver</span>. Después, cómo construirlo.
@@ -48,8 +48,8 @@ export default function Metodologia() {
           </Reveal>
         </div>
 
-        {/* Layout Desktop (≥768px): Réplica exacta de la referencia con bordes superiores horizontales, sin ceros iniciales (1, 2, 3, 4) y sin líneas verticales */}
-        <div className="hidden md:flex flex-row items-start gap-8 lg:gap-12">
+        {/* Layout Desktop (≥768px): Réplica exacta de la referencia con bordes superiores horizontales y espaciado holgado */}
+        <div className="hidden md:flex flex-row items-start gap-10 lg:gap-14">
           {steps.map((step) => {
             const isActive = activeStep === step.number;
             // Remover el cero inicial para mostrar dígitos individuales (1, 2, 3, 4) como en la referencia
@@ -63,7 +63,7 @@ export default function Metodologia() {
                 tabIndex={0}
                 aria-expanded={isActive}
                 aria-label={`Paso ${displayNumber}: ${step.concept}`}
-                className={`group relative transition-all duration-500 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] border-t-2 pt-6 lg:pt-8 focus:outline-none ${
+                className={`group relative transition-all duration-500 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] border-t-2 pt-8 lg:pt-10 focus:outline-none ${
                   isActive
                     ? "border-[hsl(var(--editorial-accent))] flex-[2.4]"
                     : "border-slate-200 group-hover:border-[hsl(var(--editorial-accent))]/50 flex-1"
