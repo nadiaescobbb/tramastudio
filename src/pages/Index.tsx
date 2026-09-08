@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { Nav } from "@/components/Nav";
@@ -25,8 +25,8 @@ const FAQS = [
   },
   {
     q: "¿Ustedes diseñan y desarrollan?",
-    boldPrefix: "Sí.",
-    a: "Diseñamos la experiencia y la interfaz y también construimos el producto. Eso permite que las decisiones de diseño y desarrollo se tomen como parte de un mismo proceso.",
+    boldPrefix: "Sí, por lo general las dos cosas juntas.",
+    a: "Diseñar y construir en el mismo proceso evita que se pierda algo en el traspaso entre quien pensó la interfaz y quien la programó. Si ya tenés un diseño resuelto y necesitás solo la construcción, también podemos entrar únicamente en esa etapa.",
   },
   {
     q: "¿Trabajan con empresas o también con emprendedores?",
@@ -42,6 +42,9 @@ const FAQS = [
 ];
 
 const Index = () => {
+  // Estado para gestionar de forma determinista qué item del acordeón de FAQS está desplegado
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   useEffect(() => {
     setSeo({
       title: "HeyTrama — Productos Digitales y Software a Medida",
@@ -118,23 +121,77 @@ const Index = () => {
             </h2>
           </Reveal>
 
-          <div className="grid gap-10">
-            {FAQS.map((item, i) => (
-              <Reveal key={item.q} delay={i * 80}>
-                <div className="pb-8 border-b border-border/40 last:border-0">
-                  <h3 className="font-heading text-2xl tracking-tight mb-3 text-foreground font-medium">{item.q}</h3>
-                  <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl font-light">
-                    {item.boldPrefix && (
-                      // Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa
-                      <span className="text-foreground font-medium block mb-1">
-                        {item.boldPrefix}
-                      </span>
-                    )}
-                    {item.a}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+          {/* Acordeón numerado interactivo con semántica y atributos de accesibilidad WCAG */}
+          <div className="divide-y divide-border/40 border-t border-border/40">
+            {FAQS.map((item, i) => {
+              const isOpen = openFaq === i;
+              const triggerId = `faq-trigger-${i}`;
+              const contentId = `faq-content-${i}`;
+              const formattedIndex = `[${String(i + 1).padStart(2, "0")}]`;
+
+              return (
+                <Reveal key={item.q} delay={i * 80}>
+                  <div className="border-b border-border/40 last:border-0">
+                    {/* Botón trigger del acordeón con id y atributos de accesibilidad */}
+                    <button
+                      id={triggerId}
+                      type="button"
+                      aria-expanded={isOpen}
+                      aria-controls={contentId}
+                      onClick={() => setOpenFaq(isOpen ? null : i)}
+                      className="w-full flex items-center justify-between py-6 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] rounded-sm transition-colors"
+                    >
+                      <div className="flex items-center gap-4 md:gap-6">
+                        {/* Índice numerado en formato [01], [02], etc. */}
+                        <span className="font-mono text-sm text-foreground/50 flex-shrink-0">
+                          {formattedIndex}
+                        </span>
+
+                        {/* Pregunta con cambio de color al estar abierta */}
+                        <h3
+                          className={`font-heading text-xl md:text-2xl tracking-tight font-medium transition-colors duration-300 ${
+                            isOpen
+                              ? "text-[hsl(var(--editorial-accent))]"
+                              : "text-foreground group-hover:text-[hsl(var(--editorial-accent))]"
+                          }`}
+                        >
+                          {item.q}
+                        </h3>
+                      </div>
+
+                      {/* Flecha con rotación de 45 grados en estado abierto */}
+                      <ArrowUpRight
+                        className="h-5 w-5 transition-transform duration-300 flex-shrink-0 ml-4 text-foreground/70 group-hover:text-[hsl(var(--editorial-accent))]"
+                        style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
+                      />
+                    </button>
+
+                    {/* Contenido expansible del acordeón con transición de altura por grid CSS */}
+                    <div
+                      id={contentId}
+                      role="region"
+                      aria-labelledby={triggerId}
+                      className="grid transition-[grid-template-rows,opacity] duration-300 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))]"
+                      style={{
+                        gridTemplateRows: isOpen ? "1fr" : "0fr",
+                        opacity: isOpen ? 1 : 0,
+                      }}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl font-light pt-1 pb-6 pl-10 md:pl-16">
+                          {item.boldPrefix && (
+                            <span className="text-foreground font-medium block mb-1">
+                              {item.boldPrefix}
+                            </span>
+                          )}
+                          {item.a}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
