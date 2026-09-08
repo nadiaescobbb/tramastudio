@@ -25,8 +25,8 @@ export default {
       },
       fontFamily: {
         heading: ["Fraunces", "Iowan Old Style", "serif"],
-        mono: ["Space Mono", "Courier New", "monospace"],
-        sans: ["Hanken Grotesk", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["Orlean", "Courier New", "monospace"],
+        sans: ["Aventa", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

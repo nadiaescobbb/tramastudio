@@ -90,7 +90,7 @@ const Dossier = () => {
             {/* Tagline & 2-Column Challenge / Solution Breakdown */}
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] block">
                   Proyecto {project.number} · {project.category}
                 </span>
                 <h2 className="font-heading text-2xl md:text-4xl text-foreground font-medium leading-tight">
@@ -292,7 +292,7 @@ const Dossier = () => {
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-4">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+              <span className="font-sans text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
                 02. SISTEMA Y PERFORMANCE
               </span>
             </div>
@@ -300,7 +300,7 @@ const Dossier = () => {
               <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
                 Arquitectura limpia y velocidad de carga.
               </h3>
-              <p className="text-muted text-base md:text-lg leading-relaxed">
+              <p className="text-muted text-base md:text-lg leading-relaxed font-light">
                 Desarrollo en React y Vite optimizado para que las imágenes vuelen, la interfaz sea fluida y la experiencia responda de forma impecable en mobile.
               </p>
             </div>
@@ -337,7 +337,7 @@ const Dossier = () => {
                   <span className="font-mono text-xs font-semibold text-foreground block">
                     {swatch.hex}
                   </span>
-                  <span className="font-mono text-[10px] text-muted uppercase">
+                  <span className="font-sans text-[10px] text-muted uppercase font-medium">
                     {swatch.label}
                   </span>
                 </div>
@@ -352,7 +352,7 @@ const Dossier = () => {
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-4">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+              <span className="font-sans text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
                 03. RESULTADO
               </span>
             </div>
@@ -360,7 +360,7 @@ const Dossier = () => {
               <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
                 Una herramienta de negocio que genera confianza.
               </h3>
-              <div className="space-y-4 text-muted text-base md:text-lg leading-relaxed">
+              <div className="space-y-4 text-muted text-base md:text-lg leading-relaxed font-light">
                 {project.solution.map((sol, i) => (
                   <p key={i}>{sol}</p>
                 ))}
@@ -381,7 +381,7 @@ const Dossier = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
 
         <div className="relative flex-1 flex flex-col items-center justify-center text-center p-8 z-10 my-16">
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-white/60 mb-6">
+          <span className="font-sans text-xs font-bold uppercase tracking-widest text-white/60 mb-6">
             Siguiente Proyecto
           </span>
           <Link to={`/proyectos/${next.slug}`}>
@@ -396,7 +396,7 @@ const Dossier = () => {
           </Link>
           <Link
             to={`/proyectos/${next.slug}`}
-            className="mt-8 inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full font-mono text-xs font-bold hover:bg-white/90 transition-all shadow-lg"
+            className="mt-8 inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full font-sans text-xs font-bold hover:bg-white/90 transition-all shadow-lg"
           >
             <span>Ver Proyecto</span>
             <ArrowRight className="h-4 w-4" />
@@ -410,13 +410,13 @@ const Dossier = () => {
           <h2 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight">
             ¿Querés construir una presencia digital con este nivel de <span className="font-serif italic font-normal text-[hsl(var(--accent))]">criterio y detalle</span>?
           </h2>
-          <p className="text-muted text-base md:text-lg">
+          <p className="text-muted text-base md:text-lg font-light">
             Hablemos sobre tu proyecto y definamos la mejor estrategia visual y tecnológica.
           </p>
           <div>
             <a
               href={waLink(`Hola, vi el proyecto de ${project.name} y quiero hablar de mi proyecto.`)}
-              className="inline-flex items-center gap-3 bg-[hsl(var(--accent))] text-white px-8 py-4 rounded-full font-mono text-xs font-bold uppercase tracking-wider hover:bg-foreground transition-colors shadow-lg"
+              className="inline-flex items-center gap-3 bg-[hsl(var(--accent))] text-white px-8 py-4 rounded-full font-sans text-xs font-bold uppercase tracking-wider hover:bg-foreground transition-colors shadow-lg"
             >
               <span>Iniciar Conversación</span>
               <ArrowUpRight className="h-4 w-4" />

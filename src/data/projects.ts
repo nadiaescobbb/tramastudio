@@ -10,6 +10,7 @@ export type Project = {
   isConcept?: boolean; // Para diferenciar proyectos reales de conceptos de autor
   tagline: string;
   category: string;
+  tags?: string[];
   result?: string; // Social proof or outcome
   // Hero del dossier
   challenge: string[];
@@ -34,6 +35,7 @@ export const projects: Project[] = [
     format: "Catálogo + tienda online",
     conversion: "Consulta Directa por WhatsApp",
     category: "E-Commerce",
+    tags: ["Sitios web", "Web Apps", "Frontend", "MVPs"],
     isConcept: false,
     tagline:
       "Una experiencia digital para una marca con una oferta amplia de productos importados. El desafío: ordenar el catálogo y facilitar la exploración sin perder variedad.",
@@ -74,6 +76,7 @@ export const projects: Project[] = [
     format: "Catálogo + experiencia digital",
     conversion: "Consulta de Pieza Personalizada",
     category: "Joyería y relojería",
+    tags: ["Sitios web", "Landing Pages", "Rediseño UX/UI", "Frontend"],
     isConcept: false,
     tagline:
       "Una nueva experiencia digital para una joyería con 40 años de trayectoria, combinando su identidad artesanal con una forma más clara de mostrar sus productos.",
@@ -109,3 +112,4 @@ export const projects: Project[] = [
 export const WHATSAPP_BASE = "https://wa.me/5493625142700";
 export const waLink = (text: string) =>
   `${WHATSAPP_BASE}?text=${encodeURIComponent(text)}`;
+

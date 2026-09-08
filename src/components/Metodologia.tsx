@@ -1,5 +1,5 @@
+import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import { ArrowUpRight } from "lucide-react";
 
 const steps = [
   {
@@ -33,78 +33,144 @@ const steps = [
 ];
 
 export default function Metodologia() {
-  return (
-    <section className="relative z-10 bg-background pt-10 md:pt-16 pb-20 md:pb-28 scroll-mt-36" id="proceso">
-      <div className="container-trama px-6 md:px-12 lg:px-16">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
-          <Reveal>
-            <div>
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-[hsl(var(--editorial-accent))] mb-4 block">
-                NUESTRO PROCESO
-              </span>
-              <h2 className="font-heading text-3xl md:text-5xl tracking-tight leading-snug text-slate-900 max-w-lg">
-                Pensamos primero qué tiene que <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))]">resolver</span>. Después, cómo construirlo.
-              </h2>
-            </div>
-          </Reveal>
+  // El primer paso ("01" - Entender) se encuentra activo por defecto para mantener la vista completa al ingresar
+  const [activeStep, setActiveStep] = useState<string>("01");
 
-          <Reveal delay={100}>
-            <p className="text-xs md:text-sm text-slate-900 max-w-md leading-relaxed font-sans md:text-right">
-              No empezamos por la pantalla ni por el código. Primero entendemos el problema, después ordenamos la solución y finalmente la construimos. Así evitamos desarrollar cosas que no hacen falta y tomar decisiones solo porque “se ven bien”.
-            </p>
+  return (
+    <section className="relative z-10 bg-background pt-12 md:pt-16 pb-12 md:pb-16 border-b border-border/40 scroll-mt-36" id="proceso">
+      <div className="container-trama px-6 md:px-12 lg:px-16">
+        {/* Header de la sección: H2 principal de lectura directa */}
+        <div className="mb-12 md:mb-16">
+          <Reveal>
+            <h2 className="font-heading text-3xl md:text-5xl tracking-tight leading-snug text-slate-900 max-w-2xl">
+              Pensamos primero qué tiene que <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))]">resolver</span>. Después, cómo construirlo.
+            </h2>
           </Reveal>
         </div>
 
-        {/* Process Flow Cards Row (Tanj Style: Warm light cards with bottom glow on hover) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          {steps.map((step, idx) => (
-            <Reveal key={step.number} delay={idx * 100}>
-              <div className="group relative h-full min-h-[340px] md:min-h-[380px] flex flex-col justify-between p-6 md:p-7 rounded-3xl bg-[#f4f3ef] border border-black/5 shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden cursor-pointer">
-                
-                {/* Bottom Terracotta Hover Glow Effect */}
-                <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[hsl(var(--editorial-accent))] via-[hsl(var(--editorial-accent))]/75 via-45% to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none rounded-b-3xl" />
+        {/* Layout Desktop (≥768px): Réplica exacta de la referencia con bordes superiores horizontales, sin ceros iniciales (1, 2, 3, 4) y sin líneas verticales */}
+        <div className="hidden md:flex flex-row items-start gap-8 lg:gap-12">
+          {steps.map((step) => {
+            const isActive = activeStep === step.number;
+            // Remover el cero inicial para mostrar dígitos individuales (1, 2, 3, 4) como en la referencia
+            const displayNumber = step.number.replace(/^0/, "");
 
-                {/* Top Card Content */}
-                <div className="relative z-10 space-y-3">
-                  {/* Step Label & Number */}
-                  <div className="flex items-center justify-between font-mono text-xs text-slate-900/60">
-                    <span className="font-bold tracking-widest text-[hsl(var(--editorial-accent))] group-hover:text-foreground/80 transition-colors">
-                      {step.label}
-                    </span>
-                    <span className="font-bold text-sm text-slate-900/60 group-hover:text-foreground/60 transition-colors">
-                      {step.number}
-                    </span>
-                  </div>
+            return (
+              <div
+                key={step.number}
+                onMouseEnter={() => setActiveStep(step.number)}
+                onFocus={() => setActiveStep(step.number)}
+                tabIndex={0}
+                aria-expanded={isActive}
+                aria-label={`Paso ${displayNumber}: ${step.concept}`}
+                className={`group relative transition-all duration-500 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] border-t-2 pt-6 lg:pt-8 focus:outline-none ${
+                  isActive
+                    ? "border-[hsl(var(--editorial-accent))] flex-[2.4]"
+                    : "border-slate-200 group-hover:border-[hsl(var(--editorial-accent))]/50 flex-1"
+                }`}
+              >
+                <div className="flex items-start gap-5 lg:gap-7">
+                  {/* Número grande en fuente Orlean (font-mono font-medium) para evitar negrita sintética y mantener consistencia con los tokens del sitio */}
+                  <span
+                    className={`font-mono font-medium text-7xl lg:text-8xl xl:text-9xl tracking-tighter transition-colors duration-300 select-none leading-none ${
+                      isActive
+                        ? "text-[hsl(var(--editorial-accent))]"
+                        : "text-slate-300 group-hover:text-[hsl(var(--editorial-accent))]/70"
+                    }`}
+                  >
+                    {displayNumber}
+                  </span>
 
-                  {/* Headline: Serif Concept & Bold Title */}
-                  <h3 className="font-heading text-lg md:text-xl font-medium text-slate-900 tracking-tight leading-snug">
-                    <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))] block mb-1">
+                  {/* Contenido expansible inline: Mantiene un ancho estable (w-full) para evitar que max-w-0 fuerce el texto a word-wrap de 0px e infle la altura del layout */}
+                  <div
+                    className={`transition-all duration-500 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] overflow-hidden w-full ${
+                      isActive
+                        ? "opacity-100 max-h-96 translate-x-0"
+                        : "opacity-0 max-h-0 -translate-x-2 pointer-events-none"
+                    }`}
+                  >
+                    <span className="font-serif italic font-normal text-lg md:text-xl text-[hsl(var(--editorial-accent))] block mb-1">
                       {step.concept}
                     </span>
-                    {step.title}
-                  </h3>
-
-                  {/* Body Text */}
-                  <p className="font-sans text-xs md:text-sm text-slate-900 leading-relaxed font-normal">
-                    {step.text}
-                  </p>
-                </div>
-
-                {/* Bottom Card Footer Tag: Lights up on Hover */}
-                <div className="relative z-10 flex items-center justify-between font-mono text-xs text-slate-900 group-hover:text-white transition-colors duration-300">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold tracking-wider uppercase text-[10px]">HeyTrama</span>
+                    <h3 className="font-heading text-lg md:text-xl text-slate-900 font-medium tracking-tight leading-snug mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="font-sans text-xs md:text-sm text-slate-600 leading-relaxed">
+                      {step.text}
+                    </p>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
-            </Reveal>
-          ))}
+            );
+          })}
+        </div>
+
+        {/* Layout Mobile (<768px): Acordeón vertical en dígitos simples con font-mono font-medium */}
+        <div className="flex md:hidden flex-col divide-y divide-border border-t border-border">
+          {steps.map((step) => {
+            const isOpen = activeStep === step.number;
+            const displayNumber = step.number.replace(/^0/, "");
+            const contentId = `proceso-step-content-${step.number}`;
+            const triggerId = `proceso-step-trigger-${step.number}`;
+
+            return (
+              <div key={step.number} className="py-4">
+                <button
+                  id={triggerId}
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={contentId}
+                  onClick={() => setActiveStep(isOpen ? "" : step.number)}
+                  className="w-full flex items-center justify-between py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] rounded-sm transition-colors"
+                >
+                  <div className="flex items-baseline gap-4">
+                    <span
+                      className={`font-mono text-3xl font-medium tracking-tighter transition-colors duration-300 ${
+                        isOpen
+                          ? "text-[hsl(var(--editorial-accent))]"
+                          : "text-slate-300"
+                      }`}
+                    >
+                      {displayNumber}
+                    </span>
+                    <span
+                      className={`font-serif italic font-normal text-xl transition-colors duration-300 ${
+                        isOpen
+                          ? "text-[hsl(var(--editorial-accent))]"
+                          : "text-slate-900"
+                      }`}
+                    >
+                      {step.concept}
+                    </span>
+                  </div>
+
+                  <span className="font-mono text-lg text-slate-400 pl-2 select-none">
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
+
+                <div
+                  id={contentId}
+                  role="region"
+                  aria-labelledby={triggerId}
+                  className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] ${
+                    isOpen ? "grid-rows-[1fr] opacity-100 pt-3 pb-2" : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden space-y-2 pl-10">
+                    <h3 className="font-heading text-base font-medium text-slate-900 tracking-tight leading-snug">
+                      {step.title}
+                    </h3>
+                    <p className="font-sans text-xs text-slate-600 leading-relaxed font-normal">
+                      {step.text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
-
-

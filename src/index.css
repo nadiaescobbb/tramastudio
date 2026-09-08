@@ -1,5 +1,37 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&display=swap');
+
+@font-face {
+  font-family: 'Aventa';
+  src: url('/fonts/Aventa-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aventa';
+  src: url('/fonts/Aventa-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/Orlean-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orlean';
+  src: url('/fonts/Orlean-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -53,7 +85,10 @@ html {
     --input: 40 12% 88%;
     --ring: 40 10% 8%;
 
-    --radius: 12px;                  /* Base radius for containers */
+    /* Escala de radios de 3 pasos consolidada por tamaño */
+    --radius-sm: 12px;   /* Inputs, botones chicos, elementos de navegación */
+    --radius-md: 20px;   /* Cards internas, contenido anidado */
+    --radius-lg: 32px;   /* Cards exteriores, contenedores principales */
     
     /* Shadows */
     --shadow-standard: 0 4px 20px -2px hsla(40, 10%, 10%, 0.05), 
@@ -61,8 +96,8 @@ html {
 
     /* Typography */
     --font-heading: 'Fraunces', "Iowan Old Style", serif;
-    --font-body: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
-    --font-mono: 'Space Mono', "Courier New", monospace;
+    --font-body: 'Aventa', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'Orlean', "Courier New", monospace;
 
     /* Motion Tokens */
     --ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
@@ -71,8 +106,6 @@ html {
 
     /* Layout */
     --section-py: clamp(64px, 10vw, 128px);
-    --radius-outer: 32px;
-    --radius-inner: calc(32px - 8px);
 
     /* Hero Gradient Tokens */
     --hero-warm: 38 14% 63%;        /* rgba(177, 164, 145) — warm sand accent */
@@ -171,19 +204,22 @@ html {
     @apply relative border transition-all duration-700 overflow-hidden;
     background: hsl(var(--surface));
     border-color: hsl(var(--border));
-    border-radius: var(--radius-outer);
+    /* Usar la variable de radio grande consolidada --radius-lg */
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-standard);
   }
   .trama-card-inner {
     @apply relative h-full w-full border border-white/5;
     background: hsl(var(--surface));
-    border-radius: var(--radius-inner);
+    /* Usar la variable de radio medio consolidada --radius-md */
+    border-radius: var(--radius-md);
     box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
   }
 
   /* Button Architecture */
   .btn-primary-trama {
-    @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-[13px] font-semibold text-white transition-all duration-300 active:scale-[0.97] rounded-full;
+    /* Reemplazar font-semibold por font-medium para no depender de negrita sintética al no contar con peso 600 en Aventa */
+    @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-[13px] font-medium text-white transition-all duration-300 active:scale-[0.97] rounded-full;
   }
   .btn-icon-wrapper {
     @apply flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:bg-white/20 group-hover:translate-x-1;
@@ -673,3 +709,244 @@ html {
   opacity: 0.2;
   will-change: opacity, transform, filter;
 }
+
+/* Projects Hero Reference Styling */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #000000;
+  padding-top: 140px;
+  padding-bottom: 60px;
+}
+
+.hero__blur-1 {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero__ellipse-small-center-blur {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(800px, 95vw);
+  height: auto;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero__blur-4 {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero__ellipse-big-fade-black {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1600px;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+.hero-grid {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__heading {
+  font-family: var(--font-body);
+  font-size: clamp(3.5rem, 12vw, 9.5rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+  user-select: none;
+}
+
+/* Projects Component & Grid Reference Styling */
+.projects {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px 120px 24px;
+  background-color: #000000;
+}
+
+.projects-selectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 56px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cta-2.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.cta-2.btn:hover {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+.cta-2.btn.--is-active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.btn__text {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-text-p {
+  margin: 0;
+  line-height: 1;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 48px 40px;
+}
+
+@media (min-width: 768px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.project-grid__item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-grid__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 400ms ease, transform 400ms ease;
+}
+
+.project-grid__item:hover .project-grid__image-wrapper {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.project-grid__image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-grid__item:hover .project-grid__image-wrapper img {
+  transform: scale(1.04);
+}
+
+.project-grid__service {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.project-grid__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.project-grid__link-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  transition: color 300ms ease;
+}
+
+.project-grid__item:hover .project-grid__link-text {
+  color: hsl(var(--editorial-accent));
+}
+
+.project-grid__link-arrow-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-grid__item:hover .project-grid__link-arrow-wrapper {
+  transform: translate(3px, -3px);
+}
+
+

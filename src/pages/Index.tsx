@@ -1,11 +1,11 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { ContactForm } from "@/components/ContactForm";
 import { waLink } from "@/data/projects";
 import Metodologia from "@/components/Metodologia";
-import { FeaturedCaseStudies } from "@/components/FeaturedCaseStudies";
 import { ServicesStack } from "@/components/ServicesStack";
 import { AsciiHandsHero } from "@/components/AsciiHandsHero";
 import { setSeo } from "@/lib/seo";
@@ -15,7 +15,8 @@ const FAQS = [
   {
     q: "¿Qué tipo de proyectos hacen?",
     boldPrefix: "",
-    a: "Trabajamos en aplicaciones, plataformas, sistemas, herramientas para empresas y nuevos productos digitales. También podemos intervenir sobre un producto que ya existe y necesita mejorar.",
+    // Precisar el alcance concreto de desarrollo a medida delimitando lo que sí hacemos y lo que no
+    a: "Diseñamos y desarrollamos software a medida, aplicaciones web y productos digitales desde cero o en etapa de rediseño. No hacemos plantillas prehechas ni servicios de marketing digital aislado.",
   },
   {
     q: "¿Tengo que tener definida la idea?",
@@ -30,7 +31,8 @@ const FAQS = [
   {
     q: "¿Trabajan con empresas o también con emprendedores?",
     boldPrefix: "Con ambos.",
-    a: "Trabajamos con personas que tienen una idea que quieren convertir en producto y con empresas que necesitan construir o mejorar herramientas digitales para su negocio.",
+    // Explicar el valor y método diferenciado según el tipo de cliente (emprendedor vs empresa) en lugar de repetir la pregunta
+    a: "Para emprendedores nos enfocamos en validar rápido la idea inicial y construir un producto mínimo funcional. Para empresas intervenimos sobre flujos existentes, optimizando la arquitectura y la experiencia sin interrumpir la operación.",
   },
   {
     q: "¿Qué pasa si no sé cuánto cuesta mi proyecto?",
@@ -60,15 +62,16 @@ const Index = () => {
     <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-clip">
       <Nav />
 
-      {/* HERO (Strict 100dvh Fit Without Scroll) */}
-      <section className="hero-start relative h-[100dvh] max-h-[100dvh] flex flex-col justify-center items-center pt-20 sm:pt-24 pb-8 sm:pb-12 overflow-hidden">
+      {/* Usar min-h-[100dvh] sin overflow-hidden en el contenedor de la sección para evitar el recorte accidental de texto y CTAs en pantallas móviles pequeñas */}
+      <section className="hero-start relative min-h-[100dvh] flex flex-col justify-center items-center pt-20 sm:pt-24 pb-8 sm:pb-12">
         <div className="hero-texture" />
         <AsciiHandsHero />
         <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
           {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
           <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
+            {/* Actualizar el H1 con el titular enfocado en resolución directa de problemas y software */}
             <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
-              Estudio de producto enfocado en construir sitios, software y aplicaciones digitales.
+              Estudio de producto: entendemos el problema y construimos el software que lo resuelve.
             </span>
           </h1>
 
@@ -77,23 +80,22 @@ const Index = () => {
             className="pt-8 sm:pt-12 md:pt-14 flex flex-wrap items-center justify-center gap-4 sm:gap-6 animate-reading-text"
             style={{ animationDelay: "2450ms" }}
           >
-            <a href={waLink("Hola, quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">
+            {/* Unificar mensaje de WhatsApp mediante waLink() para mantener consistencia en todos los puntos de contacto del sitio */}
+            <a href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">
               <span>Contar mi proyecto</span>
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
-            <a
-              href="#casos"
-              className="hidden sm:inline-block font-mono text-xs sm:text-sm font-semibold text-foreground/80 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
+            {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+            <Link
+              to="/proyectos"
+              className="hidden sm:inline-block font-sans text-xs sm:text-sm font-medium text-foreground/80 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
             >
               Ver proyectos
-            </a>
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* ── PROYECTOS DESTACADOS ───────────────────────────────── */}
-      <FeaturedCaseStudies />
 
       {/* ── METODOLOGÍA / NUESTRO PROCESO ─────────────────────── */}
       <Metodologia />
@@ -105,7 +107,8 @@ const Index = () => {
       <section className="bg-surface/10 py-20 md:py-28" id="preguntas">
         <div className="container-narrow px-6">
           <Reveal>
-            <div className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--editorial-accent))]">
+            {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+            <div className="font-sans text-xs font-medium uppercase tracking-widest text-[hsl(var(--editorial-accent))]">
               PREGUNTAS FRECUENTES
             </div>
           </Reveal>
@@ -120,9 +123,10 @@ const Index = () => {
               <Reveal key={item.q} delay={i * 80}>
                 <div className="pb-8 border-b border-border/40 last:border-0">
                   <h3 className="font-heading text-2xl tracking-tight mb-3 text-foreground font-medium">{item.q}</h3>
-                  <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl">
+                  <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl font-light">
                     {item.boldPrefix && (
-                      <span className="text-foreground font-semibold block mb-1">
+                      // Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa
+                      <span className="text-foreground font-medium block mb-1">
                         {item.boldPrefix}
                       </span>
                     )}
@@ -142,33 +146,36 @@ const Index = () => {
             {/* Columna Izquierda (Contexto y contacto directo) */}
             <div className="col-span-12 lg:col-span-5 space-y-6">
               <Reveal>
-                <span className="font-mono text-micro uppercase tracking-wider text-[hsl(var(--editorial-accent))] block mb-4">
+                {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+                <span className="font-sans text-micro uppercase tracking-wider text-[hsl(var(--editorial-accent))] font-medium block mb-4">
                   CONTACTO
                 </span>
                 <h2 className="h-section leading-tight">
                   Contanos qué querés construir.
                 </h2>
-                <p className="text-base md:text-lg text-foreground leading-relaxed max-w-md mt-6">
-                  <strong className="text-foreground block mb-2">No hace falta que tengas todo resuelto.</strong>
-                  Contanos qué querés hacer, qué problema estás intentando resolver o qué te gustaría mejorar y vemos cuál es la mejor forma de llevarlo a algo real.
+                {/* Acotar la introducción de contacto eliminando el texto redundante de la FAQ de presupuestos */}
+                <p className="text-base md:text-lg text-foreground leading-relaxed max-w-md mt-6 font-light">
+                  Contanos qué querés hacer o qué problema necesitás resolver y definamos juntos la mejor forma de llevarlo a algo real.
                 </p>
-                <div className="pt-6 space-y-3 font-mono text-subtle border-t border-border mt-8">
+                <div className="pt-6 space-y-3 font-sans text-subtle border-t border-border mt-8">
                   <p className="text-foreground font-medium">
                     Email directo:{" "}
+                    {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
                     <a
                       href="mailto:hola@heytrama.com"
-                      className="text-foreground underline font-semibold hover:text-[hsl(var(--editorial-accent))] transition-colors"
+                      className="text-foreground underline font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
                     >
                       hola@heytrama.com
                     </a>
                   </p>
                   <p className="text-foreground font-medium">
                     WhatsApp:{" "}
+                    {/* Unificar mensaje de WhatsApp mediante waLink() para mantener consistencia en todos los puntos de contacto del sitio */}
                     <a
-                      href="https://wa.me/5493625142700"
+                      href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-foreground underline font-semibold hover:text-[hsl(var(--editorial-accent))] transition-colors"
+                      className="text-foreground underline font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
                     >
                       +54 9 362 514-2700
                     </a>
@@ -193,3 +200,4 @@ const Index = () => {
 };
 
 export default Index;
+

@@ -4,6 +4,7 @@ import Index from "./pages/Index.tsx";
 import ScrollToTop from "./components/ScrollToTop";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 
+const Projects = lazy(() => import("./pages/Projects.tsx"));
 const Dossier = lazy(() => import("./pages/Dossier.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
@@ -44,7 +45,7 @@ const App = () => (
               </div>
             }
           >
-            <Dossier />
+            <Projects />
           </Suspense>
         }
       />

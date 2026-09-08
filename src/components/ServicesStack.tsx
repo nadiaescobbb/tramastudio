@@ -22,7 +22,6 @@ const services: ServiceItem[] = [
     title: "Rediseño UX/UI",
     description: "Revisamos lo que ya tenés, detectamos qué genera fricción y rediseñamos la experiencia para hacerla más simple y efectiva.",
     gridSpan: "col-span-12 md:col-span-6 lg:col-span-4",
-    isDark: true,
   },
   {
     step: "03",
@@ -115,12 +114,12 @@ function AsciiDotWaveCanvas({ isDark = false }: { isDark?: boolean }) {
 
 export function ServicesStack() {
   return (
-    <section className="relative py-20 md:py-32 overflow-hidden bg-[#FBFBFA]" id="servicios">
+    <section className="relative pt-12 md:pt-16 pb-20 md:pb-28 overflow-hidden bg-[#FBFBFA]" id="servicios">
       <div className="container-trama relative z-10 px-6 md:px-12 lg:px-16">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-16 md:mb-20">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-10 md:mb-12">
           <div>
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#111111]/70 block mb-3">
+            <span className="font-sans text-xs font-semibold uppercase tracking-widest text-[#111111]/70 block mb-3">
               SERVICIOS
             </span>
             <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#111111] leading-[1.05]">

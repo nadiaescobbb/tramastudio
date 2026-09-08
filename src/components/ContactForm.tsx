@@ -81,7 +81,7 @@ export const ContactForm = () => {
     <form onSubmit={handleSubmit} className="space-y-8 bg-surface/50 p-6 md:p-8 rounded-2xl border border-border shadow-sm">
       {/* 1. Nombre Completo */}
       <div className="space-y-1.5">
-        <label className="font-mono text-micro uppercase tracking-wider text-foreground font-semibold block">
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
           Nombre completo *
         </label>
         <input
@@ -96,7 +96,7 @@ export const ContactForm = () => {
 
       {/* 2. Email */}
       <div className="space-y-1.5">
-        <label className="font-mono text-micro uppercase tracking-wider text-foreground font-semibold block">
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
           Email de contacto *
         </label>
         <input
@@ -111,7 +111,7 @@ export const ContactForm = () => {
 
       {/* 3. Tipo de Servicio / ¿Qué querés construir? */}
       <div className="space-y-3">
-        <label className="font-mono text-micro uppercase tracking-wider text-foreground font-semibold block">
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
           ¿Qué querés construir? *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -122,7 +122,7 @@ export const ContactForm = () => {
                 type="button"
                 key={item}
                 onClick={() => setService(item)}
-                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
+                className={`px-3.5 py-1.5 rounded-full font-sans text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
                   isSelected
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
                     : "bg-background text-foreground font-medium border-border hover:border-foreground/40 hover:text-foreground hover:-translate-y-0.5"
@@ -137,7 +137,7 @@ export const ContactForm = () => {
 
       {/* 4. Presupuesto Estimado */}
       <div className="space-y-3">
-        <label className="font-mono text-micro uppercase tracking-wider text-foreground font-semibold block">
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
           Presupuesto estimado *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -148,7 +148,7 @@ export const ContactForm = () => {
                 type="button"
                 key={item}
                 onClick={() => setBudget(item)}
-                className={`px-3.5 py-1.5 rounded-full font-mono text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
+                className={`px-3.5 py-1.5 rounded-full font-sans text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
                   isSelected
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
                     : "bg-background text-foreground font-medium border-border hover:border-foreground/40 hover:text-foreground hover:-translate-y-0.5"
@@ -163,7 +163,7 @@ export const ContactForm = () => {
 
       {/* 5. Detalle del Proyecto */}
       <div className="space-y-1.5">
-        <label className="font-mono text-micro uppercase tracking-wider text-foreground font-semibold block">
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
           Contanos un poco más
         </label>
         <textarea
@@ -177,12 +177,12 @@ export const ContactForm = () => {
 
       {error && (
         <div className="space-y-2 pt-2">
-          <p className="text-xs text-[hsl(var(--editorial-accent))] font-mono font-medium">{error}</p>
+          <p className="text-xs text-[hsl(var(--editorial-accent))] font-sans font-medium">{error}</p>
           <a
             href={whatsappMessage}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-bold underline text-foreground hover:text-[hsl(var(--editorial-accent))] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-sans font-bold underline text-foreground hover:text-[hsl(var(--editorial-accent))] transition-colors"
           >
             <span>Enviar directamente por WhatsApp ↗</span>
           </a>
@@ -192,7 +192,7 @@ export const ContactForm = () => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="btn-primary-trama group w-full justify-center py-3.5 font-mono text-btn font-semibold tracking-wide"
+        className="btn-primary-trama group w-full justify-center py-3.5 font-sans text-btn font-semibold tracking-wide"
       >
         <span>Enviar proyecto</span>
         <div className="btn-icon-wrapper">

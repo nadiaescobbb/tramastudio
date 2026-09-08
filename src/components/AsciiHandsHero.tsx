@@ -2,6 +2,10 @@ import { useEffect, useRef } from "react";
 
 export function AsciiHandsHero() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  // Posición objetivo del cursor registrada por eventos de mouse
+  const mouseTargetRef = useRef<{ x: number; y: number } | null>(null);
+  // Posición amortiguada del cursor con inercia para suavizar la física de la perturbación
+  const smoothMouseRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,206 +16,162 @@ export function AsciiHandsHero() {
     let animationFrameId: number;
     let resizeTimeout: NodeJS.Timeout;
 
-    const CELL_SIZE = 9; // Grid cell size in px
+    // Tamaño de celda uniforme (10px) para lograr un tramado matricial homogéneo y definido en todo el lienzo
+    const CELL_SIZE = 10;
     let cols = 0;
     let rows = 0;
-    let mask: Uint8Array = new Uint8Array(0);
-    let delays: Float32Array = new Float32Array(0);
-
-    // Offscreen canvas for sampling hand silhouette
-    const offscreen = document.createElement("canvas");
-    const offCtx = offscreen.getContext("2d");
-
-    const drawHandSilhouette = (w: number, h: number) => {
-      if (!offCtx) return;
-      offscreen.width = w;
-      offscreen.height = h;
-
-      offCtx.clearRect(0, 0, w, h);
-      offCtx.fillStyle = "#ffffff";
-
-      const scale = Math.min(w * 0.2, 260);
-
-      // Helper to draw single reaching hand
-      const drawHand = (isRight: boolean) => {
-        offCtx.save();
-
-        if (isRight) {
-          offCtx.translate(w * 0.76, h * 0.46);
-          offCtx.scale(-1, 1);
-          offCtx.rotate(-Math.PI * 0.06);
-        } else {
-          offCtx.translate(w * 0.24, h * 0.52);
-          offCtx.rotate(-Math.PI * 0.06);
-        }
-
-        // Forearm
-        offCtx.beginPath();
-        offCtx.moveTo(-scale * 1.5, scale * 0.32);
-        offCtx.lineTo(-scale * 0.35, scale * 0.2);
-        offCtx.lineTo(-scale * 0.35, -scale * 0.22);
-        offCtx.lineTo(-scale * 1.5, -scale * 0.12);
-        offCtx.closePath();
-        offCtx.fill();
-
-        // Palm / Wrist
-        offCtx.beginPath();
-        offCtx.ellipse(-scale * 0.12, 0, scale * 0.28, scale * 0.22, 0, 0, Math.PI * 2);
-        offCtx.fill();
-
-        // Extended Index Finger
-        offCtx.beginPath();
-        offCtx.moveTo(scale * 0.1, -scale * 0.14);
-        offCtx.lineTo(scale * 0.82, -scale * 0.12);
-        offCtx.arc(scale * 0.82, -scale * 0.07, scale * 0.05, -Math.PI / 2, Math.PI / 2);
-        offCtx.lineTo(scale * 0.1, -scale * 0.02);
-        offCtx.closePath();
-        offCtx.fill();
-
-        // Middle Finger (slightly curved)
-        offCtx.beginPath();
-        offCtx.moveTo(scale * 0.1, -scale * 0.02);
-        offCtx.lineTo(scale * 0.65, 0);
-        offCtx.arc(scale * 0.65, scale * 0.05, scale * 0.048, -Math.PI / 2, Math.PI / 2);
-        offCtx.lineTo(scale * 0.1, scale * 0.1);
-        offCtx.closePath();
-        offCtx.fill();
-
-        // Ring Finger
-        offCtx.beginPath();
-        offCtx.moveTo(scale * 0.08, scale * 0.1);
-        offCtx.lineTo(scale * 0.5, scale * 0.14);
-        offCtx.arc(scale * 0.5, scale * 0.19, scale * 0.045, -Math.PI / 2, Math.PI / 2);
-        offCtx.lineTo(scale * 0.08, scale * 0.23);
-        offCtx.closePath();
-        offCtx.fill();
-
-        // Pinky Finger
-        offCtx.beginPath();
-        offCtx.moveTo(scale * 0.05, scale * 0.23);
-        offCtx.lineTo(scale * 0.38, scale * 0.26);
-        offCtx.arc(scale * 0.38, scale * 0.3, scale * 0.04, -Math.PI / 2, Math.PI / 2);
-        offCtx.lineTo(scale * 0.05, scale * 0.34);
-        offCtx.closePath();
-        offCtx.fill();
-
-        // Thumb (angled downward)
-        offCtx.beginPath();
-        offCtx.moveTo(-scale * 0.22, scale * 0.12);
-        offCtx.lineTo(scale * 0.12, scale * 0.36);
-        offCtx.arc(scale * 0.14, scale * 0.41, scale * 0.048, -Math.PI * 0.7, Math.PI * 0.3);
-        offCtx.lineTo(-scale * 0.12, scale * 0.25);
-        offCtx.closePath();
-        offCtx.fill();
-
-        offCtx.restore();
-      };
-
-      drawHand(false); // Left hand
-      drawHand(true);  // Right hand
-    };
+    let currentDpr = 1;
 
     const updateGrid = () => {
       const parent = canvas.parentElement;
       const width = parent ? parent.clientWidth : window.innerWidth;
       const height = parent ? parent.clientHeight : window.innerHeight;
 
-      canvas.width = width;
-      canvas.height = height;
+      // Usar setTransform explícito para prevenir la acumulación no deseada de transformaciones al redimensionar
+      currentDpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(width * currentDpr);
+      canvas.height = Math.floor(height * currentDpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      ctx.setTransform(currentDpr, 0, 0, currentDpr, 0, 0);
 
       cols = Math.ceil(width / CELL_SIZE);
       rows = Math.ceil(height / CELL_SIZE);
-      const totalCells = cols * rows;
-
-      mask = new Uint8Array(totalCells);
-      delays = new Float32Array(totalCells);
-
-      drawHandSilhouette(width, height);
-
-      if (offCtx) {
-        const imgData = offCtx.getImageData(0, 0, width, height).data;
-
-        for (let r = 0; r < rows; r++) {
-          for (let c = 0; c < cols; c++) {
-            const index = r * cols + c;
-            const px = Math.floor(c * CELL_SIZE + CELL_SIZE / 2);
-            const py = Math.floor(r * CELL_SIZE + CELL_SIZE / 2);
-
-            if (px < width && py < height) {
-              const pixelIdx = (py * width + px) * 4;
-              const alpha = imgData[pixelIdx + 3];
-              mask[index] = alpha > 40 ? 1 : 0;
-            } else {
-              mask[index] = 0;
-            }
-
-            // Pseudo-random deterministic delay between 0 and 0.55
-            const hash = Math.sin(c * 12.9898 + r * 78.233) * 43758.5453;
-            delays[index] = (hash - Math.floor(hash)) * 0.55;
-          }
-        }
-      }
     };
 
     updateGrid();
+
+    // Leer el token --foreground del CSS del sistema de diseño una sola vez al montar el componente
+    const rawForeground = getComputedStyle(document.documentElement)
+      .getPropertyValue("--foreground")
+      .trim();
+
+    // Convertir el token --foreground (en formato HSL o CSS) a valores numéricos RGB [r, g, b] para construir la cadena rgba
+    const parseForegroundRgb = (tokenStr: string): [number, number, number] => {
+      if (!tokenStr) return [17, 17, 17];
+
+      // Caso 1: Formato HSL "H S% L%" común en variables de Tailwind CSS (ej: "40 10% 8%")
+      const hslMatch = tokenStr.match(/^(\d+(?:\.\d+)?)\s*,?\s*(\d+(?:\.\d+)?)%\s*,?\s*(\d+(?:\.\d+)?)%/);
+      if (hslMatch) {
+        const h = parseFloat(hslMatch[1]);
+        const s = parseFloat(hslMatch[2]) / 100;
+        const l = parseFloat(hslMatch[3]) / 100;
+        const c = (1 - Math.abs(2 * l - 1)) * s;
+        const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+        const m = l - c / 2;
+        let r = 0, g = 0, b = 0;
+        if (0 <= h && h < 60) { r = c; g = x; b = 0; }
+        else if (60 <= h && h < 120) { r = x; g = c; b = 0; }
+        else if (120 <= h && h < 180) { r = 0; g = c; b = x; }
+        else if (180 <= h && h < 240) { r = 0; g = x; b = c; }
+        else if (240 <= h && h < 300) { r = x; g = 0; b = c; }
+        else if (300 <= h && h < 360) { r = c; g = 0; b = x; }
+        return [
+          Math.round((r + m) * 255),
+          Math.round((g + m) * 255),
+          Math.round((b + m) * 255),
+        ];
+      }
+
+      // Caso 2: Fallback utilizando el contexto de Canvas para resolver cualquier otra sintaxis de color CSS
+      try {
+        const tempCanvas = document.createElement("canvas");
+        const tempCtx = tempCanvas.getContext("2d");
+        if (tempCtx) {
+          tempCtx.fillStyle = tokenStr.includes("hsl") || tokenStr.includes("rgb") || tokenStr.startsWith("#")
+            ? tokenStr
+            : `hsl(${tokenStr})`;
+          const computed = tempCtx.fillStyle;
+          if (computed.startsWith("#")) {
+            const hex = computed.slice(1);
+            const num = parseInt(hex.length === 3 ? hex.split("").map((ch) => ch + ch).join("") : hex, 16);
+            return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
+          }
+          const rgbMatch = computed.match(/\d+/g);
+          if (rgbMatch && rgbMatch.length >= 3) {
+            return [parseInt(rgbMatch[0], 10), parseInt(rgbMatch[1], 10), parseInt(rgbMatch[2], 10)];
+          }
+        }
+      } catch {
+        // En caso de error inesperado, retornar fallback seguro
+      }
+
+      return [17, 17, 17];
+    };
+
+    const [fgR, fgG, fgB] = parseForegroundRgb(rawForeground);
+
+    // Registrar coordenadas del puntero para calcular la influencia de cercanía
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseTargetRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      };
+    };
+
+    const handleMouseLeave = () => {
+      mouseTargetRef.current = null;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mouseleave", handleMouseLeave);
 
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const isReducedMotion = mediaQuery.matches;
 
     const renderFrame = (timestamp: number) => {
-      const width = canvas.width;
-      const height = canvas.height;
-      ctx.clearRect(0, 0, width, height);
+      const parent = canvas.parentElement;
+      const displayWidth = parent ? parent.clientWidth : window.innerWidth;
+      const displayHeight = parent ? parent.clientHeight : window.innerHeight;
 
-      const LOOP_DURATION = 16000;
-      const progress = isReducedMotion ? 0.47 : (timestamp % LOOP_DURATION) / LOOP_DURATION;
+      // Limpiar lienzo considerando dimensiones lógicas
+      ctx.clearRect(0, 0, displayWidth, displayHeight);
 
-      // 5-stage animation loop
-      let globalMorph = 0;
-      if (progress >= 0.15 && progress < 0.35) {
-        const t = (progress - 0.15) / 0.2;
-        globalMorph = t * t * (3 - 2 * t); // Smoothstep 0 -> 1
-      } else if (progress >= 0.35 && progress < 0.6) {
-        globalMorph = 1;
-      } else if (progress >= 0.6 && progress < 0.8) {
-        const t = (progress - 0.6) / 0.2;
-        globalMorph = 1 - t * t * (3 - 2 * t); // Smoothstep 1 -> 0
+      // Interpolar la posición del cursor con factor de inercia (0.08) para suavizar la animación
+      if (mouseTargetRef.current) {
+        if (!smoothMouseRef.current) {
+          smoothMouseRef.current = { ...mouseTargetRef.current };
+        } else {
+          smoothMouseRef.current.x += (mouseTargetRef.current.x - smoothMouseRef.current.x) * 0.08;
+          smoothMouseRef.current.y += (mouseTargetRef.current.y - smoothMouseRef.current.y) * 0.08;
+        }
+      } else {
+        smoothMouseRef.current = null;
       }
 
       const timeSec = timestamp * 0.001;
-      const maxRadius = (CELL_SIZE / 2) * 0.92; // ~46% of cell size
+      const smoothMouse = smoothMouseRef.current;
 
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          const i = r * cols + c;
-          const delay = delays[i] || 0;
+          const cx = c * CELL_SIZE + CELL_SIZE / 2;
+          const cy = r * CELL_SIZE + CELL_SIZE / 2;
 
-          // Local morph per cell with delay
-          const localMorph = Math.min(1, Math.max(0, (globalMorph - delay) / (1 - delay)));
+          // Garantizar una presencia base uniforme y sutil de puntos en TODA la pantalla para que el fondo nunca luzca vacío
+          const ambientWave = Math.sin(c * 0.12 + r * 0.12 + timeSec * 0.4) * 0.5 + 0.5;
+          let cellAlpha = 0.13 + 0.04 * ambientWave;
+          let cellRadius = 1.1 + 0.2 * ambientWave;
 
-          // Ambient wave noise (sine/cosine combination, capped at ~0.38)
-          const rawNoise =
-            Math.sin(c * 0.09 + timeSec * 0.8) * Math.cos(r * 0.12 + timeSec * 0.6);
-          const ambientNoise = Math.min(0.38, 0.04 + 0.28 * (rawNoise * 0.5 + 0.5));
+          // Deformar localmente los puntos cercanos al cursor elevando su opacidad y tamaño mediante falloff gaussiano
+          if (smoothMouse) {
+            const dist = Math.hypot(cx - smoothMouse.x, cy - smoothMouse.y);
+            const PERTURBATION_RADIUS = 180;
 
-          // Hand intensity when cell is inside silhouette
-          const handIntensity =
-            0.55 + 0.38 * (Math.sin(c * 0.2 + r * 0.15 + timeSec * 1.2) * 0.5 + 0.5);
-
-          const targetIntensity = mask[i] === 1 ? handIntensity : ambientNoise * 0.18;
-          const cellIntensity = ambientNoise * (1 - localMorph) + targetIntensity * localMorph;
-
-          if (cellIntensity > 0.02) {
-            const cx = c * CELL_SIZE + CELL_SIZE / 2;
-            const cy = r * CELL_SIZE + CELL_SIZE / 2;
-            const radius = Math.max(0.4, cellIntensity * maxRadius);
-            const alpha = Math.min(0.85, cellIntensity * 0.95);
-
-            ctx.fillStyle = `rgba(17, 17, 17, ${alpha})`;
-            ctx.beginPath();
-            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-            ctx.fill();
+            if (dist < PERTURBATION_RADIUS) {
+              const normDist = dist / PERTURBATION_RADIUS;
+              const falloff = Math.exp(-normDist * normDist * 3.5);
+              cellAlpha = Math.min(0.75, cellAlpha + falloff * 0.55);
+              cellRadius = Math.min(3.2, cellRadius + falloff * 1.9);
+            }
           }
+
+          // Dibujar punto tinta nítido atado al token --foreground del sistema de diseño (obtenido al montar)
+          ctx.fillStyle = `rgba(${fgR}, ${fgG}, ${fgB}, ${cellAlpha})`;
+          ctx.beginPath();
+          ctx.arc(cx, cy, cellRadius, 0, Math.PI * 2);
+          ctx.fill();
         }
       }
 
@@ -221,7 +181,7 @@ export function AsciiHandsHero() {
     };
 
     if (isReducedMotion) {
-      renderFrame(16000 * 0.47);
+      renderFrame(1000);
     } else {
       animationFrameId = requestAnimationFrame(renderFrame);
     }
@@ -231,7 +191,7 @@ export function AsciiHandsHero() {
       resizeTimeout = setTimeout(() => {
         updateGrid();
         if (isReducedMotion) {
-          renderFrame(16000 * 0.47);
+          renderFrame(1000);
         }
       }, 200);
     };
@@ -244,6 +204,8 @@ export function AsciiHandsHero() {
       }
       clearTimeout(resizeTimeout);
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, []);
 
@@ -255,3 +217,8 @@ export function AsciiHandsHero() {
     />
   );
 }
+
+
+
+
+
