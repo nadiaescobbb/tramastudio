@@ -11,6 +11,6 @@ describe("Dossier 404", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText("No encontramos esta página")).toBeInTheDocument();
+    expect(screen.getByText(/No encontramos esta página/i)).toBeInTheDocument();
   });
 });

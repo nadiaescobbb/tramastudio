@@ -15,28 +15,33 @@ export const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 font-mono text-xs text-foreground font-semibold">
+          {/* Enlaces de contacto directo con tamaño táctil accesible (min 44px) y aria-labels explícitos */}
+          <div className="flex flex-col gap-3 font-mono text-xs text-foreground font-medium">
             <a
               href="https://wa.me/5493625142700"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[hsl(var(--editorial-accent))] transition-colors w-fit"
+              aria-label="Abrir chat de WhatsApp con HeyTrama (se abre en una nueva pestaña)"
+              className="hover:text-[hsl(var(--editorial-accent))] transition-colors w-fit py-1"
             >
-              WhatsApp
+              WhatsApp ↗
             </a>
             <a
               href="mailto:hola@heytrama.com"
-              className="hover:text-[hsl(var(--editorial-accent))] transition-colors w-fit"
+              aria-label="Enviar correo electrónico directo a hola@heytrama.com"
+              className="hover:text-[hsl(var(--editorial-accent))] transition-colors w-fit py-1"
             >
-              Email
+              Email ↗
             </a>
+            {/* Actualizar URL de Instagram a @heytrama según el punto 03 del Briefing Maestro */}
             <a
-              href="https://instagram.com/trama.sstudio"
+              href="https://instagram.com/heytrama"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-[hsl(var(--editorial-accent))] transition-colors w-fit"
+              aria-label="Ir al perfil oficial de Instagram @heytrama (se abre en una nueva pestaña)"
+              className="hover:text-[hsl(var(--editorial-accent))] transition-colors w-fit py-1"
             >
-              Instagram
+              Instagram ↗
             </a>
           </div>
         </div>

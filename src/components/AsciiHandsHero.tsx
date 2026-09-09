@@ -16,8 +16,8 @@ export function AsciiHandsHero() {
     let animationFrameId: number;
     let resizeTimeout: NodeJS.Timeout;
 
-    // Tamaño de celda uniforme (10px) para lograr un tramado matricial homogéneo y definido en todo el lienzo
-    const CELL_SIZE = 10;
+    // Tamaño de celda optimizado (14px) para el renderizado legible de caracteres monoespaciados
+    const CELL_SIZE = 14;
     let cols = 0;
     let rows = 0;
     let currentDpr = 1;
@@ -121,6 +121,11 @@ export function AsciiHandsHero() {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const isReducedMotion = mediaQuery.matches;
 
+    // Conjuntos de caracteres ASCII organizados por nivel de intensidad y densidad visual
+    const AMBIENT_GLYPHS = ["·", ".", "+", ":", "×", "°", "~"];
+    const PROXIMITY_GLYPHS = ["╱", "╲", "|", "-", "░", "▒", "≡", "≠"];
+    const BRAND_CHARS = ["H", "E", "Y", "T", "R", "A", "M", "A"];
+
     const renderFrame = (timestamp: number) => {
       const parent = canvas.parentElement;
       const displayWidth = parent ? parent.clientWidth : window.innerWidth;
@@ -128,6 +133,11 @@ export function AsciiHandsHero() {
 
       // Limpiar lienzo considerando dimensiones lógicas
       ctx.clearRect(0, 0, displayWidth, displayHeight);
+
+      // Configurar fuente monoespaciada alineada con el sistema tipográfico Orlean
+      ctx.font = '10px Orlean, ui-monospace, SFMono-Regular, "Courier New", monospace';
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
 
       // Interpolar la posición del cursor con factor de inercia (0.08) para suavizar la animación
       if (mouseTargetRef.current) {
@@ -149,29 +159,39 @@ export function AsciiHandsHero() {
           const cx = c * CELL_SIZE + CELL_SIZE / 2;
           const cy = r * CELL_SIZE + CELL_SIZE / 2;
 
-          // Garantizar una presencia base uniforme y sutil de puntos en TODA la pantalla para que el fondo nunca luzca vacío
-          const ambientWave = Math.sin(c * 0.12 + r * 0.12 + timeSec * 0.4) * 0.5 + 0.5;
-          let cellAlpha = 0.13 + 0.04 * ambientWave;
-          let cellRadius = 1.1 + 0.2 * ambientWave;
+          // Matriz de onda ambiental sutil para dar vida orgánica al fondo
+          const ambientWave = Math.sin(c * 0.15 + r * 0.15 + timeSec * 0.5) * 0.5 + 0.5;
+          let cellAlpha = 0.14 + 0.06 * ambientWave;
+          
+          // Glifo por defecto según posición matricial
+          const glyphIndex = (c + r * 3) % AMBIENT_GLYPHS.length;
+          let activeGlyph = AMBIENT_GLYPHS[glyphIndex];
 
-          // Deformar localmente los puntos cercanos al cursor elevando su opacidad y tamaño mediante falloff gaussiano
+          // Revelar caracteres tipográficos intensos y letras de la marca HEYTRAMA en la zona cercana al cursor
           if (smoothMouse) {
             const dist = Math.hypot(cx - smoothMouse.x, cy - smoothMouse.y);
-            const PERTURBATION_RADIUS = 180;
+            const PERTURBATION_RADIUS = 190;
 
             if (dist < PERTURBATION_RADIUS) {
               const normDist = dist / PERTURBATION_RADIUS;
-              const falloff = Math.exp(-normDist * normDist * 3.5);
-              cellAlpha = Math.min(0.75, cellAlpha + falloff * 0.55);
-              cellRadius = Math.min(3.2, cellRadius + falloff * 1.9);
+              const falloff = Math.exp(-normDist * normDist * 3.2);
+              cellAlpha = Math.min(0.85, cellAlpha + falloff * 0.65);
+
+              if (falloff > 0.65) {
+                // Zona de alta proximidad: deletrear cíclicamente H-E-Y-T-R-A-M-A
+                const brandIdx = Math.abs(c + r) % BRAND_CHARS.length;
+                activeGlyph = BRAND_CHARS[brandIdx];
+              } else if (falloff > 0.25) {
+                // Zona media: glifos de densidad intermedia (tramas y diagonales)
+                const proxIdx = Math.abs(c * 7 + r * 11) % PROXIMITY_GLYPHS.length;
+                activeGlyph = PROXIMITY_GLYPHS[proxIdx];
+              }
             }
           }
 
-          // Dibujar punto tinta nítido atado al token --foreground del sistema de diseño (obtenido al montar)
+          // Dibujar glifo tipográfico nítido atado al token --foreground
           ctx.fillStyle = `rgba(${fgR}, ${fgG}, ${fgB}, ${cellAlpha})`;
-          ctx.beginPath();
-          ctx.arc(cx, cy, cellRadius, 0, Math.PI * 2);
-          ctx.fill();
+          ctx.fillText(activeGlyph, cx, cy);
         }
       }
 
@@ -217,8 +237,3 @@ export function AsciiHandsHero() {
     />
   );
 }
-
-
-
-
-

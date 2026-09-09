@@ -39,17 +39,17 @@ export default function Metodologia() {
   return (
     <section className="relative z-10 bg-background pt-16 md:pt-24 pb-16 md:pb-24 border-b border-border/40 scroll-mt-36" id="proceso">
       <div className="container-trama px-6 md:px-12 lg:px-16">
-        {/* Header de la sección: H2 principal con espacio editorial amplio */}
+        {/* Header de la sección: H2 principal con espacio editorial amplio y titular plano según la regla del skill frontend-design */}
         <div className="mb-16 md:mb-20">
           <Reveal>
-            <h2 className="font-heading text-3xl md:text-5xl tracking-tight leading-snug text-slate-900 max-w-2xl">
-              Pensamos primero qué tiene que <span className="font-serif italic font-normal text-[hsl(var(--editorial-accent))]">resolver</span>. Después, cómo construirlo.
+            <h2 className="font-heading text-3xl md:text-5xl tracking-tight leading-snug text-slate-900 max-w-2xl font-normal">
+              Pensamos primero qué tiene que resolver. Después, cómo construirlo.
             </h2>
           </Reveal>
         </div>
 
-        {/* Layout Desktop (≥768px): Réplica exacta de la referencia con bordes superiores horizontales y espaciado holgado */}
-        <div className="hidden md:flex flex-row items-start gap-10 lg:gap-14">
+        {/* Layout Desktop (≥768px): Con min-height reservado de forma constante (min-h-[240px] lg:min-h-[250px]) e items-stretch para prevenir cualquier salto o rebote de la sección de Servicios al alternar el paso activo (CLS = 0) */}
+        <div className="hidden md:flex flex-row items-stretch min-h-[240px] lg:min-h-[250px] gap-10 lg:gap-14">
           {steps.map((step) => {
             const isActive = activeStep === step.number;
             // Remover el cero inicial para mostrar dígitos individuales (1, 2, 3, 4) como en la referencia

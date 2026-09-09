@@ -22,7 +22,7 @@ export function FeaturedCaseStudies() {
                 <button
                   key={project.slug}
                   onClick={() => setActiveIndex(index)}
-                  className={`w-full text-left font-heading text-xl sm:text-2xl font-bold tracking-tight uppercase transition-all duration-300 flex items-center justify-between group ${
+                  className={`w-full text-left font-heading text-xl sm:text-2xl font-medium tracking-tight uppercase transition-all duration-300 flex items-center justify-between group ${
                     isActive
                       ? "text-[#111111] border-l-2 border-[#111111] pl-4 py-1"
                       : "text-[#111111]/35 hover:text-[#111111]/70 border-l-2 border-transparent pl-4 py-1"
@@ -51,12 +51,12 @@ export function FeaturedCaseStudies() {
           <div className="col-span-12 lg:col-span-3 flex flex-col">
             <div className="w-full bg-[#111111] text-[#FBFBFA] p-6 sm:p-8 flex flex-col justify-between shadow-xl min-h-[320px]">
               <div className="space-y-5">
-                {/* Header: Circle Badge + Title */}
+                {/* Header: Circle Badge + Title con peso font-medium sobrio */}
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white text-black font-heading font-bold text-sm flex items-center justify-center shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-white text-black font-heading font-medium text-sm flex items-center justify-center shrink-0">
                     {activeProject.name.charAt(0)}
                   </div>
-                  <h3 className="font-heading text-lg sm:text-xl font-bold tracking-tight text-white">
+                  <h3 className="font-heading text-lg sm:text-xl font-medium tracking-tight text-white">
                     {activeProject.name}
                   </h3>
                 </div>
@@ -77,11 +77,11 @@ export function FeaturedCaseStudies() {
                 </div>
               </div>
 
-              {/* Bottom CTA Button */}
+              {/* Bottom CTA Button alineado a font-medium */}
               <div className="pt-6">
                 <Link
                   to={`/proyectos/${activeProject.slug}`}
-                  className="w-full bg-[#FBFBFA] text-[#111111] py-3 px-4 flex items-center justify-between font-sans text-xs font-bold hover:bg-white transition-all shadow-sm group"
+                  className="w-full bg-[#FBFBFA] text-[#111111] py-3 px-4 flex items-center justify-between font-sans text-xs font-medium hover:bg-white transition-all shadow-sm group"
                 >
                   <span>Ver proyecto</span>
                   <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

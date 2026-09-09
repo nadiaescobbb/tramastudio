@@ -47,7 +47,8 @@ const Dossier = () => {
         <div className="container-trama px-6 md:px-12 lg:px-16">
           {/* Top Title Bar */}
           <div className="flex flex-row items-baseline justify-between mb-8 md:mb-12">
-            <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-bold tracking-tight text-foreground">
+            {/* Título de proyecto con peso font-medium sobrio para evitar negrita sintética */}
+            <h1 className="font-heading text-5xl md:text-7xl lg:text-9xl font-medium tracking-tight text-foreground">
               {project.name}
               {project.accent && (
                 <span className="font-serif italic font-normal text-[hsl(var(--accent))] ml-3 md:ml-6">
@@ -61,7 +62,8 @@ const Dossier = () => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full font-mono text-xs font-semibold hover:bg-black/90 transition-all shadow-md group shrink-0"
+                aria-label={`Visitar sitio web oficial de ${project.name} (se abre en nueva pestaña)`}
+                className="inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full font-mono text-xs font-medium hover:bg-black/90 transition-all shadow-md group shrink-0"
               >
                 <span>Visitar Sitio</span>
                 <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -90,7 +92,7 @@ const Dossier = () => {
             {/* Tagline & 2-Column Challenge / Solution Breakdown */}
             <div className="lg:col-span-7 space-y-8">
               <div className="space-y-4">
-                <span className="font-sans text-xs font-semibold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                <span className="font-sans text-xs font-medium uppercase tracking-widest text-[hsl(var(--accent))] block">
                   Proyecto {project.number} · {project.category}
                 </span>
                 <h2 className="font-heading text-2xl md:text-4xl text-foreground font-medium leading-tight">
@@ -102,10 +104,10 @@ const Dossier = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start pt-2">
                 {/* Column 1: EL DESAFÍO */}
                 <div className="space-y-3">
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                  <span className="font-mono text-xs font-medium uppercase tracking-widest text-[hsl(var(--accent))] block">
                     EL DESAFÍO
                   </span>
-                  <div className="space-y-3 text-muted text-base md:text-lg leading-relaxed">
+                  <div className="space-y-3 text-muted text-base md:text-lg leading-relaxed font-light">
                     {project.challenge.map((paragraph, i) => (
                       <p key={i}>{paragraph}</p>
                     ))}
@@ -114,10 +116,10 @@ const Dossier = () => {
 
                 {/* Column 2: NUESTRA SOLUCIÓN */}
                 <div className="space-y-3">
-                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))] block">
+                  <span className="font-mono text-xs font-medium uppercase tracking-widest text-[hsl(var(--accent))] block">
                     NUESTRA SOLUCIÓN
                   </span>
-                  <div className="space-y-3 text-muted text-base md:text-lg leading-relaxed">
+                  <div className="space-y-3 text-muted text-base md:text-lg leading-relaxed font-light">
                     {project.solution.map((paragraph, i) => (
                       <p key={i}>{paragraph}</p>
                     ))}
@@ -128,7 +130,7 @@ const Dossier = () => {
 
             {/* Metadata Specs Table */}
             <div className="lg:col-span-5 bg-background rounded-2xl p-8 border border-border shadow-sm space-y-6">
-              <h3 className="font-mono text-xs uppercase tracking-widest text-muted font-bold pb-4 border-b border-border">
+              <h3 className="font-mono text-xs uppercase tracking-widest text-muted font-medium pb-4 border-b border-border">
                 Ficha Técnica
               </h3>
               <div className="grid grid-cols-2 gap-6">
@@ -136,7 +138,7 @@ const Dossier = () => {
                   <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
                     Cliente / Marca
                   </span>
-                  <span className="font-heading font-semibold text-foreground text-sm">
+                  <span className="font-heading font-medium text-foreground text-sm">
                     {project.name}
                   </span>
                 </div>
@@ -144,7 +146,7 @@ const Dossier = () => {
                   <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
                     Industria
                   </span>
-                  <span className="font-heading font-semibold text-foreground text-sm">
+                  <span className="font-heading font-medium text-foreground text-sm">
                     {project.industry}
                   </span>
                 </div>
@@ -152,7 +154,7 @@ const Dossier = () => {
                   <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
                     Formato
                   </span>
-                  <span className="font-heading font-semibold text-foreground text-sm">
+                  <span className="font-heading font-medium text-foreground text-sm">
                     {project.format}
                   </span>
                 </div>
@@ -160,7 +162,7 @@ const Dossier = () => {
                   <span className="font-mono text-[10px] uppercase tracking-wider text-muted/70 block mb-1">
                     Objetivo
                   </span>
-                  <span className="font-heading font-semibold text-foreground text-sm">
+                  <span className="font-heading font-medium text-foreground text-sm">
                     {project.conversion}
                   </span>
                 </div>
@@ -232,15 +234,15 @@ const Dossier = () => {
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-4">
-              <span className="font-mono text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+              <span className="font-mono text-xs font-medium uppercase tracking-widest text-[hsl(var(--accent))]">
                 01. OVERVIEW & CRITERIO
               </span>
             </div>
             <div className="md:col-span-8 space-y-6">
-              <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+              <h3 className="font-heading text-3xl md:text-5xl font-medium tracking-tight text-foreground">
                 Diseñar para comunicar con jerarquía y precisión.
               </h3>
-              <p className="text-muted text-base md:text-lg leading-relaxed">
+              <p className="text-muted text-base md:text-lg leading-relaxed font-light">
                 Cada elemento de la pantalla responde a una prioridad de negocio: ordenar la oferta, responder las objeciones clave del usuario y guiarlo directamente hacia la acción.
               </p>
             </div>
@@ -254,13 +256,13 @@ const Dossier = () => {
                   key={point.label}
                   className="bg-background rounded-2xl p-8 border border-border shadow-sm space-y-3"
                 >
-                  <div className="w-8 h-8 rounded-full bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] flex items-center justify-center font-mono text-xs font-bold mb-4">
+                  <div className="w-8 h-8 rounded-full bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] flex items-center justify-center font-mono text-xs font-medium mb-4">
                     ✓
                   </div>
-                  <h4 className="font-heading text-xl font-bold text-foreground">
+                  <h4 className="font-heading text-xl font-medium text-foreground">
                     {point.label}
                   </h4>
-                  <p className="text-muted text-sm leading-relaxed">
+                  <p className="text-muted text-sm leading-relaxed font-light">
                     {point.text}
                   </p>
                 </div>
@@ -292,12 +294,12 @@ const Dossier = () => {
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-4">
-              <span className="font-sans text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+              <span className="font-sans text-xs font-medium uppercase tracking-widest text-[hsl(var(--accent))]">
                 02. SISTEMA Y PERFORMANCE
               </span>
             </div>
             <div className="md:col-span-8 space-y-4">
-              <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+              <h3 className="font-heading text-3xl md:text-5xl font-medium tracking-tight text-foreground">
                 Arquitectura limpia y velocidad de carga.
               </h3>
               <p className="text-muted text-base md:text-lg leading-relaxed font-light">
@@ -322,7 +324,7 @@ const Dossier = () => {
               return (
                 <div key={idx} className="space-y-2">
                   <div
-                    className="h-16 rounded-xl border border-border flex items-center justify-center font-mono text-xs font-bold shadow-sm"
+                    className="h-16 rounded-xl border border-border flex items-center justify-center font-mono text-xs font-medium shadow-sm"
                     style={{
                       backgroundColor: isScore
                         ? "hsl(var(--surface))"
@@ -334,7 +336,7 @@ const Dossier = () => {
                   >
                     {isScore && swatch.hex}
                   </div>
-                  <span className="font-mono text-xs font-semibold text-foreground block">
+                  <span className="font-mono text-xs font-medium text-foreground block">
                     {swatch.hex}
                   </span>
                   <span className="font-sans text-[10px] text-muted uppercase font-medium">
@@ -352,12 +354,12 @@ const Dossier = () => {
         <div className="container-trama px-6 md:px-12 lg:px-16 space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div className="md:col-span-4">
-              <span className="font-sans text-xs font-bold uppercase tracking-widest text-[hsl(var(--accent))]">
+              <span className="font-sans text-xs font-medium uppercase tracking-widest text-[hsl(var(--accent))]">
                 03. RESULTADO
               </span>
             </div>
             <div className="md:col-span-8 space-y-6">
-              <h3 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight text-foreground">
+              <h3 className="font-heading text-3xl md:text-5xl font-medium tracking-tight text-foreground">
                 Una herramienta de negocio que genera confianza.
               </h3>
               <div className="space-y-4 text-muted text-base md:text-lg leading-relaxed font-light">
@@ -381,11 +383,11 @@ const Dossier = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
 
         <div className="relative flex-1 flex flex-col items-center justify-center text-center p-8 z-10 my-16">
-          <span className="font-sans text-xs font-bold uppercase tracking-widest text-white/60 mb-6">
+          <span className="font-sans text-xs font-medium uppercase tracking-widest text-white/60 mb-6">
             Siguiente Proyecto
           </span>
           <Link to={`/proyectos/${next.slug}`}>
-            <h2 className="font-heading text-5xl md:text-8xl font-bold text-white tracking-tight hover:text-[hsl(var(--accent))] transition-colors">
+            <h2 className="font-heading text-5xl md:text-8xl font-medium text-white tracking-tight hover:text-[hsl(var(--accent))] transition-colors">
               {next.name}
               {next.accent && (
                 <span className="font-serif italic font-normal text-[hsl(var(--accent))] ml-4">
@@ -396,7 +398,7 @@ const Dossier = () => {
           </Link>
           <Link
             to={`/proyectos/${next.slug}`}
-            className="mt-8 inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full font-sans text-xs font-bold hover:bg-white/90 transition-all shadow-lg"
+            className="mt-8 inline-flex items-center gap-3 bg-white text-black px-6 py-3 rounded-full font-sans text-xs font-medium hover:bg-white/90 transition-all shadow-lg"
           >
             <span>Ver Proyecto</span>
             <ArrowRight className="h-4 w-4" />
@@ -407,8 +409,9 @@ const Dossier = () => {
       {/* ── FINAL CONVERSATION CTA ──────────────────────────────────────────────── */}
       <section className="py-24 md:py-36 bg-background">
         <div className="container-trama px-6 md:px-12 lg:px-16 text-center max-w-3xl mx-auto space-y-8">
-          <h2 className="font-heading text-3xl md:text-5xl font-semibold tracking-tight">
-            ¿Querés construir una presencia digital con este nivel de <span className="font-serif italic font-normal text-[hsl(var(--accent))]">criterio y detalle</span>?
+          {/* Titular final H2 plano y sobrio según regla de frontend-design */}
+          <h2 className="font-heading text-3xl md:text-5xl font-medium tracking-tight">
+            ¿Querés construir una presencia digital con este nivel de criterio y detalle?
           </h2>
           <p className="text-muted text-base md:text-lg font-light">
             Hablemos sobre tu proyecto y definamos la mejor estrategia visual y tecnológica.
@@ -416,7 +419,7 @@ const Dossier = () => {
           <div>
             <a
               href={waLink(`Hola, vi el proyecto de ${project.name} y quiero hablar de mi proyecto.`)}
-              className="inline-flex items-center gap-3 bg-[hsl(var(--accent))] text-white px-8 py-4 rounded-full font-sans text-xs font-bold uppercase tracking-wider hover:bg-foreground transition-colors shadow-lg"
+              className="inline-flex items-center gap-3 bg-[hsl(var(--accent))] text-white px-8 py-4 rounded-full font-sans text-xs font-medium uppercase tracking-wider hover:bg-foreground transition-colors shadow-lg"
             >
               <span>Iniciar Conversación</span>
               <ArrowUpRight className="h-4 w-4" />

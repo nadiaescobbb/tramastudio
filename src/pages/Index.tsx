@@ -110,14 +110,15 @@ const Index = () => {
       <section className="bg-surface/10 py-20 md:py-28" id="preguntas">
         <div className="container-narrow px-6">
           <Reveal>
-            {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-            <div className="font-sans text-xs font-medium uppercase tracking-widest text-[hsl(var(--editorial-accent))]">
+            {/* Mantener etiqueta de categoría sobria y disciplinada en opacidad suave del texto principal */}
+            <div className="font-sans text-xs font-medium uppercase tracking-widest text-foreground/70">
               PREGUNTAS FRECUENTES
             </div>
           </Reveal>
           <Reveal delay={80}>
-            <h2 className="h-section mt-4 mb-16">
-              Antes de <span className="italic text-[hsl(var(--editorial-accent))]">empezar</span>.
+            {/* Titular H2 plano y sobrio eliminando la itálica en una sola palabra según la regla del skill frontend-design */}
+            <h2 className="h-section mt-4 mb-16 font-normal">
+              Antes de empezar.
             </h2>
           </Reveal>
 
@@ -203,36 +204,37 @@ const Index = () => {
             {/* Columna Izquierda (Contexto y contacto directo) */}
             <div className="col-span-12 lg:col-span-5 space-y-6">
               <Reveal>
-                {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-                <span className="font-sans text-micro uppercase tracking-wider text-[hsl(var(--editorial-accent))] font-medium block mb-4">
+                {/* Cambiar la etiqueta CONTACTO a color negro (text-foreground) en lugar de acento editorial */}
+                <span className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block mb-4">
                   CONTACTO
                 </span>
-                <h2 className="h-section leading-tight">
-                  Contanos qué querés construir.
+                {/* Actualizar el copy del titular H2 para mantener coherencia con la sección de Servicios */}
+                <h2 className="h-section leading-tight font-normal">
+                  Contanos qué necesita resolver tu negocio.
                 </h2>
-                {/* Acotar la introducción de contacto eliminando el texto redundante de la FAQ de presupuestos */}
+                {/* Introducción sobria de contacto en lenguaje de servicio directo */}
                 <p className="text-base md:text-lg text-foreground leading-relaxed max-w-md mt-6 font-light">
                   Contanos qué querés hacer o qué problema necesitás resolver y definamos juntos la mejor forma de llevarlo a algo real.
                 </p>
                 <div className="pt-6 space-y-3 font-sans text-subtle border-t border-border mt-8">
                   <p className="text-foreground font-medium">
                     Email directo:{" "}
-                    {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+                    {/* Remover subrayado (underline) del enlace de correo electrónico */}
                     <a
                       href="mailto:hola@heytrama.com"
-                      className="text-foreground underline font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
+                      className="text-foreground font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
                     >
                       hola@heytrama.com
                     </a>
                   </p>
                   <p className="text-foreground font-medium">
                     WhatsApp:{" "}
-                    {/* Unificar mensaje de WhatsApp mediante waLink() para mantener consistencia en todos los puntos de contacto del sitio */}
+                    {/* Remover subrayado (underline) del enlace de WhatsApp */}
                     <a
                       href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-foreground underline font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
+                      className="text-foreground font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
                     >
                       +54 9 362 514-2700
                     </a>

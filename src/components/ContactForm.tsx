@@ -4,12 +4,13 @@ import { waLink } from "@/data/projects";
 
 const FORM_ENDPOINT = "https://formsubmit.co/ajax/hola@heytrama.com";
 
+// Opciones de servicios alineadas exactamente con los 5 servicios del estudio (ServicesStack.tsx)
 const SERVICES_OPTIONS = [
   "Sitios web & Landing Pages",
-  "Rediseño UX/UI",
-  "Desarrollo Frontend a medida",
-  "Web Apps & Catálogos",
-  "Estrategia & MVPs",
+  "Rediseño de sitios y productos existentes",
+  "Implementación de interfaces",
+  "Web Apps, catálogos & herramientas internas",
+  "MVP",
 ];
 
 const BUDGET_OPTIONS = [
@@ -64,14 +65,15 @@ export const ContactForm = () => {
   if (sent) {
     return (
       <div className="text-center space-y-4 py-10 bg-surface rounded-2xl border border-border p-8 shadow-sm">
-        <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center mx-auto text-xl font-bold shadow-md">
+        {/* Badge de confirmación alineado a font-medium sin negritas sintéticas */}
+        <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center mx-auto text-xl font-medium shadow-md">
           <Check className="w-6 h-6" />
         </div>
-        <h4 className="font-heading text-2xl font-semibold text-foreground">
+        <h4 className="font-heading text-2xl font-medium text-foreground">
           Proyecto enviado con éxito
         </h4>
         <p className="text-muted-foreground text-sm max-w-md mx-auto leading-relaxed font-sans">
-          Gracias {name}. Nadia revisará tu proyecto para <strong className="text-foreground">{service}</strong> ({budget}) y te responderá a la brevedad.
+          Gracias {name}. Nadia revisará tu proyecto para <strong className="text-foreground font-medium">{service}</strong> ({budget}) y te responderá a la brevedad.
         </p>
       </div>
     );
@@ -81,7 +83,8 @@ export const ContactForm = () => {
     <form onSubmit={handleSubmit} className="space-y-8 bg-surface/50 p-6 md:p-8 rounded-2xl border border-border shadow-sm">
       {/* 1. Nombre Completo */}
       <div className="space-y-1.5">
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
+        {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
           Nombre completo *
         </label>
         <input
@@ -96,7 +99,8 @@ export const ContactForm = () => {
 
       {/* 2. Email */}
       <div className="space-y-1.5">
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
+        {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
           Email de contacto *
         </label>
         <input
@@ -109,10 +113,11 @@ export const ContactForm = () => {
         />
       </div>
 
-      {/* 3. Tipo de Servicio / ¿Qué querés construir? */}
+      {/* 3. Tipo de Servicio / ¿Qué necesita resolver tu negocio? */}
       <div className="space-y-3">
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
-          ¿Qué querés construir? *
+        {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+          ¿Qué necesita resolver tu negocio? *
         </label>
         <div className="flex flex-wrap gap-2">
           {SERVICES_OPTIONS.map((item) => {
@@ -137,7 +142,8 @@ export const ContactForm = () => {
 
       {/* 4. Presupuesto Estimado */}
       <div className="space-y-3">
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
+        {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
           Presupuesto estimado *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -163,7 +169,8 @@ export const ContactForm = () => {
 
       {/* 5. Detalle del Proyecto */}
       <div className="space-y-1.5">
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-semibold block">
+        {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
+        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
           Contanos un poco más
         </label>
         <textarea
@@ -182,17 +189,17 @@ export const ContactForm = () => {
             href={whatsappMessage}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-sans font-bold underline text-foreground hover:text-[hsl(var(--editorial-accent))] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-sans font-medium underline text-foreground hover:text-[hsl(var(--editorial-accent))] transition-colors"
           >
             <span>Enviar directamente por WhatsApp ↗</span>
           </a>
         </div>
       )}
 
-      {/* Submit Button */}
+      {/* Submit Button en font-medium sin negritas sintéticas */}
       <button
         type="submit"
-        className="btn-primary-trama group w-full justify-center py-3.5 font-sans text-btn font-semibold tracking-wide"
+        className="btn-primary-trama group w-full justify-center py-3.5 font-sans text-btn font-medium tracking-wide"
       >
         <span>Enviar proyecto</span>
         <div className="btn-icon-wrapper">
