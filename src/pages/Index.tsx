@@ -7,7 +7,6 @@ import { ContactForm } from "@/components/ContactForm";
 import { waLink } from "@/data/projects";
 import Metodologia from "@/components/Metodologia";
 import { ServicesStack } from "@/components/ServicesStack";
-import { AsciiHandsHero } from "@/components/AsciiHandsHero";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 
@@ -65,10 +64,15 @@ const Index = () => {
     <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-clip">
       <Nav />
 
-      {/* Usar min-h-[100dvh] sin overflow-hidden en el contenedor de la sección para evitar el recorte accidental de texto y CTAs en pantallas móviles pequeñas */}
-      <section className="hero-start relative min-h-[100dvh] flex flex-col justify-center items-center pt-20 sm:pt-24 pb-8 sm:pb-12">
-        <div className="hero-texture" />
-        <AsciiHandsHero />
+      {/* Sección Hero con fondo animado integrado por mezcla suave sin cortes de bordes */}
+      <section className="hero-start relative min-h-[100dvh] flex flex-col justify-center items-center pt-20 sm:pt-24 pb-8 sm:pb-12 overflow-hidden">
+        {/* Capa de fondo animada con la imagen frame-faq.avif y fundido en la parte inferior */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div
+            className="w-full h-full bg-[url('/frame-faq.avif')] bg-cover bg-center animate-hero-bg-pulse opacity-70 mix-blend-multiply [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
+            aria-hidden="true"
+          />
+        </div>
         <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
           {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
           <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
@@ -106,9 +110,16 @@ const Index = () => {
       {/* ── SERVICIOS STACKED ────────────────────────────────────── */}
       <ServicesStack />
 
-      {/* ── PREGUNTAS FRECUENTES ───────────────────────────────── */}
-      <section className="bg-surface/10 py-20 md:py-28" id="preguntas">
-        <div className="container-narrow px-6">
+      {/* ── PREGUNTAS FRECUENTES (Fondo faq-.avif integrado sin líneas divisoras duras, tokenizado con bg-background) ── */}
+      <section className="relative py-20 md:py-28 bg-background" id="preguntas">
+        {/* Capa de fondo sutil con opacidad atenuada al 20% y desenfoque suave para lectura impecable */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div
+            className="w-full h-full bg-[url('/faq-.avif')] bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
+            aria-hidden="true"
+          />
+        </div>
+        <div className="container-narrow relative z-10 px-6">
           <Reveal>
             {/* Mantener etiqueta de categoría sobria y disciplinada en opacidad suave del texto principal */}
             <div className="font-sans text-xs font-medium uppercase tracking-widest text-foreground/70">
@@ -197,9 +208,16 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── CONTACTO (Fondo adaptativo: contact-portrait.avif en mobile, contact-.avif en desktop) ── */}
-      <section className="relative py-20 md:py-28 bg-[url('/contact-portrait.avif')] md:bg-[url('/contact-.avif')] bg-cover bg-center" id="contacto">
-        <div className="container-trama">
+      {/* ── CONTACTO (Fondo adaptativo integrado suavemente por máscara, tokenizado con bg-background) ── */}
+      <section className="relative py-20 md:py-28 bg-background" id="contacto">
+        {/* Capa de fondo sutil (contact-portrait.avif en mobile, contact-.avif en desktop) con opacidad atenuada y desenfoque suave */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div
+            className="w-full h-full bg-[url('/contact-portrait.avif')] md:bg-[url('/contact-.avif')] bg-cover bg-center opacity-25 mix-blend-multiply blur-[15px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_100%)]"
+            aria-hidden="true"
+          />
+        </div>
+        <div className="container-trama relative z-10">
           <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Columna Izquierda (Contexto y contacto directo) */}
             <div className="col-span-12 lg:col-span-5 space-y-6">

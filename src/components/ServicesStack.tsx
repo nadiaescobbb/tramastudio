@@ -1,167 +1,233 @@
-import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { waLink } from "@/data/projects";
 
 interface ServiceItem {
   step: string;
   title: string;
   description: string;
-  gridSpan: string;
-  isDark?: boolean;
+  badge: string;
+  bgColor: string;
+  textColor: string;
+  badgeBg: string;
 }
 
-// Array de servicios con copys en tarjeta clara/oscura alternada
+// Array de los 5 servicios con paleta adaptada al sistema de diseño HeyTrama
 const services: ServiceItem[] = [
   {
     step: "01",
     title: "Sitios web & Landing Pages",
     description: "Una web que no explica todo, dice lo justo primero.",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-4",
-    isDark: false,
+    badge: "Web & Digital",
+    bgColor: "bg-surface text-foreground border-border/60",
+    textColor: "text-foreground",
+    badgeBg: "bg-foreground/5 text-foreground border-foreground/10",
   },
   {
     step: "02",
     title: "Rediseño de sitios y productos existentes",
     description: "Encontramos dónde se traba el usuario y sacamos esa fricción del medio.",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-4",
-    isDark: true,
+    badge: "UX & Rediseño",
+    /* Tarjeta en tono oscuro tokenizado según el sistema de diseño */
+    bgColor: "bg-foreground text-background border-white/10",
+    textColor: "text-background",
+    badgeBg: "bg-white/10 text-background border-white/15",
   },
   {
     step: "03",
     title: "Implementación de interfaces",
     description: "La interfaz ya diseñada, funcionando rápido y sin depender de plantillas.",
-    gridSpan: "col-span-12 md:col-span-12 lg:col-span-4",
-    isDark: false,
+    badge: "Frontend & Code",
+    bgColor: "bg-[hsl(var(--editorial-accent))] text-white border-transparent",
+    textColor: "text-white",
+    badgeBg: "bg-white/15 text-white border-white/20",
   },
   {
     step: "04",
     title: "Web Apps, catálogos & herramientas internas",
-    description: "Herramientas para mostrar, gestionar o vender sin depender de otra persona para actualizarlas.",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6",
-    isDark: true,
+    description: "Herramientas para mostrar, gestionar o vender sin depender de otra persona.",
+    badge: "Apps & Catálogos",
+    /* Tarjeta en tono oscuro tokenizado según el sistema de diseño */
+    bgColor: "bg-foreground text-background border-white/10",
+    textColor: "text-background",
+    badgeBg: "bg-white/10 text-background border-white/15",
   },
   {
     step: "05",
     title: "MVP",
     description: "Antes de construir todo, decidimos qué parte hay que construir primero.",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6",
-    isDark: false,
+    badge: "Estrategia & MVP",
+    bgColor: "bg-surface text-foreground border-border/60",
+    textColor: "text-foreground",
+    badgeBg: "bg-foreground/5 text-foreground border-foreground/10",
   },
 ];
 
-// Patrón de Halftone Editorial Opción A: Offset de Imprenta y Micro-Cruces con máscaras asimétricas deliberadas
-function HalftonePattern({ isDark = false }: { isDark?: boolean }) {
-  const dotColor = isDark ? "#B5502D" : "#141312";
-  
-  // Máscaras de opacidad diferenciadas según la orientación del panel
-  const maskStyle = isDark
-    ? {
-        // Tarjeta oscura: Degradado diagonal en ángulo de imprenta a 135 grados
-        WebkitMaskImage: "linear-gradient(135deg, black 0%, black 35%, transparent 80%)",
-        maskImage: "linear-gradient(135deg, black 0%, black 35%, transparent 80%)",
-      }
-    : {
-        // Tarjeta clara: Viñeta editorial asimétrica proyectada desde la esquina superior derecha (85% 15%)
-        WebkitMaskImage: "radial-gradient(circle at 85% 15%, black 0%, black 25%, transparent 75%)",
-        maskImage: "radial-gradient(circle at 85% 15%, black 0%, black 25%, transparent 75%)",
-      };
-
-  return (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none opacity-35 group-hover:opacity-75 group-hover:scale-[1.03] transition-all duration-700 ease-out"
-      style={{
-        backgroundImage: `radial-gradient(circle, ${dotColor} 1.4px, transparent 1.4px), radial-gradient(circle at 50% 50%, ${dotColor} 0.8px, transparent 0.8px)`,
-        backgroundSize: "12px 12px, 24px 24px",
-        backgroundPosition: "0 0, 6px 6px",
-        ...maskStyle,
-      }}
-    />
-  );
-}
-
 export function ServicesStack() {
+  // Estado para controlar el índice de la tarjeta activa en el mazo apilado
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % services.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + services.length) % services.length);
+  };
+
   return (
-    <section className="relative pt-16 md:pt-24 pb-20 md:pb-28 overflow-hidden bg-[#FBFBFA]" id="servicios">
+    /* Sección Servicios en ambiente oscuro tokenizado con bg-foreground e imagen servicios-.avif */
+    <section className="relative pt-16 md:pt-24 pb-20 md:pb-28 overflow-hidden bg-foreground bg-[url('/servicios-.avif')] bg-cover bg-center text-background" id="servicios">
       <div className="container-trama relative z-10 px-6 md:px-12 lg:px-16">
-        {/* Header con titulares alineados al peso de fuente editorial (font-normal / font-medium) */}
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 mb-20 md:mb-24">
-          <div>
-            <span className="font-sans text-xs font-medium uppercase tracking-widest text-[#141312]/70 block mb-4">
-              SERVICIOS
-            </span>
-            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-normal tracking-tight text-[#141312] leading-[1.1] max-w-2xl">
-              Cinco formas de resolver un mismo problema: qué necesita decir tu negocio.
+        <div className="grid grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Columna Izquierda: Píldora de categoría y Titular principal en texto blanco */}
+          <div className="col-span-12 lg:col-span-4 space-y-6">
+            {/* Píldora de categoría con borde y texto en blanco */}
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm text-micro font-mono font-medium text-white tracking-wider">
+              SERVICIOS Y SOLUCIONES
+            </div>
+
+            {/* Titular H2 principal en blanco */}
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-[1.12] text-white">
+              Cinco formas de resolver un mismo problema.
             </h2>
+
+            {/* Controles manuales de navegación para desktop en botones blancos */}
+            <div className="hidden lg:flex items-center gap-3 pt-4">
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Servicio anterior"
+                className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Siguiente servicio"
+                className="w-11 h-11 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
-          <p className="max-w-sm font-sans text-[#141312]/80 text-sm md:text-base leading-relaxed md:pt-10">
-            Cada proyecto entra por un lugar distinto. Elegís según lo que ya tenés y lo que te falta construir.
-          </p>
-        </div>
+          {/* Columna Central: Mazo apilado de tarjetas (Stacked Card Deck) */}
+          <div className="col-span-12 lg:col-span-5 flex flex-col items-center justify-center">
+            {/* Contenedor relativo para apilar las tarjetas en cascada */}
+            <div className="relative w-full max-w-md h-[440px] sm:h-[460px] flex items-center justify-center">
+              {services.map((service, index) => {
+                // Cálculo de la distancia relativa con respecto a la tarjeta activa
+                const offset = (index - activeIndex + services.length) % services.length;
 
-        {/* Bento Grid con amplio espacio de separación (gap-8 lg:gap-10) y tarjetas holgadas (p-9 md:p-12) */}
-        <div className="grid grid-cols-12 gap-8 lg:gap-10">
-          {services.map((service) => {
-            const isDark = service.isDark;
+                // Estilos de transformación 3D para simular el mazo de cartas apilado
+                let style: React.CSSProperties = {};
 
-            return (
-              <div
-                key={service.step}
-                className={`${service.gridSpan} relative group overflow-hidden rounded-none p-9 md:p-12 border transition-all duration-500 flex flex-col justify-between min-h-[390px] ${
-                  isDark
-                    ? "bg-[#141312] text-[#FBFBFA] border-[#141312] hover:border-[#141312]/80"
-                    : "bg-white text-[#141312] border-[#141312]/25 backdrop-blur-xl hover:border-[#141312]/40"
-                }`}
-              >
-                {/* Patrón Halftone CSS estático por máscara con efecto de escala al pasar el cursor */}
-                <HalftonePattern isDark={isDark} />
+                if (offset === 0) {
+                  style = {
+                    transform: "translateY(0px) scale(1)",
+                    zIndex: 30,
+                    opacity: 1,
+                  };
+                } else if (offset === 1) {
+                  style = {
+                    transform: "translateY(-18px) scale(0.94)",
+                    zIndex: 20,
+                    opacity: 0.75,
+                  };
+                } else if (offset === 2) {
+                  style = {
+                    transform: "translateY(-34px) scale(0.88)",
+                    zIndex: 10,
+                    opacity: 0.45,
+                  };
+                } else {
+                  style = {
+                    transform: "translateY(-48px) scale(0.82)",
+                    zIndex: 0,
+                    opacity: 0,
+                    pointerEvents: "none",
+                  };
+                }
 
-                {/* Fila superior: Badge de número en font-medium monoespaciado (sin negritas sintéticas) + Botón circular de WhatsApp */}
-                <div className="relative z-10 flex items-center justify-between">
-                  <span
-                    className={`font-mono text-xs font-medium tracking-widest uppercase ${
-                      isDark ? "text-[#FBFBFA]/70" : "text-[#141312]/70"
-                    }`}
+                return (
+                  <div
+                    key={service.step}
+                    onClick={() => setActiveIndex(index)}
+                    style={style}
+                    className={`absolute inset-0 w-full h-full rounded-[28px] p-8 sm:p-10 border shadow-2xl transition-all duration-500 ease-out cursor-pointer flex flex-col justify-between ${service.bgColor}`}
                   >
-                    {service.step}
-                  </span>
+                    {/* Encabezado de la tarjeta: Píldora de badge + WhatsApp CTA */}
+                    <div className="flex items-center justify-between">
+                      <div className={`px-3 py-1 rounded-full text-tag font-mono font-medium border ${service.badgeBg}`}>
+                        {service.step} — {service.badge}
+                      </div>
 
-                  <a
-                    href={waLink(`Hola, quiero consultar sobre: ${service.title}.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={service.title}
-                    className={`w-11 h-11 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform duration-300 ${
-                      isDark
-                        ? "bg-[#FBFBFA] text-[#141312]"
-                        : "bg-[#141312] text-[#FBFBFA]"
-                    }`}
-                  >
-                    <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:rotate-45" />
-                  </a>
-                </div>
+                      <a
+                        href={waLink(`Hola, quiero consultar sobre: ${service.title}.`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={service.title}
+                        className={`w-10 h-10 rounded-full flex items-center justify-center transition-transform duration-300 hover:scale-110 ${
+                          service.bgColor.includes("bg-foreground")
+                            ? "bg-white text-foreground"
+                            : service.bgColor.includes("bg-[hsl(var(--editorial-accent))]")
+                            ? "bg-white text-[hsl(var(--editorial-accent))]"
+                            : "bg-foreground text-white"
+                        }`}
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </a>
+                    </div>
 
-                {/* Bloque de contenido de la tarjeta con separación holgada */}
-                <div className="relative z-10 mt-auto pt-10 md:pt-12 space-y-4">
-                  <h3
-                    className={`font-heading text-2xl md:text-3xl font-medium tracking-tight leading-snug ${
-                      isDark ? "text-[#FBFBFA]" : "text-[#141312]"
-                    }`}
-                  >
-                    {service.title}
-                  </h3>
+                    {/* Contenido principal de la tarjeta */}
+                    <div className="space-y-4 my-auto">
+                      <h3 className={`font-heading text-2xl sm:text-3xl font-medium tracking-tight leading-snug ${service.textColor}`}>
+                        {service.title}
+                      </h3>
+                      <p className={`font-sans text-xs sm:text-sm leading-relaxed font-normal opacity-90 ${service.textColor}`}>
+                        {service.description}
+                      </p>
+                    </div>
 
-                  <p
-                    className={`font-sans text-xs md:text-sm leading-relaxed max-w-[95%] font-medium ${
-                      isDark ? "text-[#FBFBFA]/80" : "text-[#141312]/80"
+                    {/* Footer de la tarjeta con nombre del estudio */}
+                    <div className="pt-4 border-t border-current/10 flex items-center justify-between font-sans text-micro uppercase tracking-wider opacity-70">
+                      <span>HEYTRAMA STUDIO</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Barra de indicadores de paginación por puntos/deslizador con puntos blancos */}
+            <div className="flex items-center justify-center gap-2 mt-8">
+              {services.map((_, i) => {
+                const isCurrent = i === activeIndex;
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setActiveIndex(i)}
+                    aria-label={`Ver servicio ${i + 1}`}
+                    className={`transition-all duration-300 rounded-full ${
+                      isCurrent
+                        ? "w-8 h-2 bg-[hsl(var(--editorial-accent))]"
+                        : "w-2 h-2 bg-white/30 hover:bg-white/70"
                     }`}
-                  >
-                    {service.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+                  />
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Columna Derecha: Texto explicativo secundario en color blanco */}
+          <div className="col-span-12 lg:col-span-3 pt-6 lg:pt-36">
+            <p className="font-sans text-white/90 text-sm sm:text-base leading-relaxed">
+              Cada proyecto entra por un lugar distinto. Elegís según lo que ya tenés y lo que te falta construir.
+            </p>
+          </div>
         </div>
       </div>
     </section>

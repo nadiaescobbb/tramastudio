@@ -949,4 +949,22 @@ html {
   transform: translate(3px, -3px);
 }
 
+/* Animación fluida de movimiento y desplazamiento activo para la imagen de fondo del Hero */
+@keyframes heroBgPulse {
+  0% {
+    transform: scale(1) translate(0px, 0px);
+  }
+  50% {
+    transform: scale(1.08) translate(-25px, -15px);
+  }
+  100% {
+    transform: scale(1.02) translate(15px, 10px);
+  }
+}
+
+.animate-hero-bg-pulse {
+  animation: heroBgPulse 14s ease-in-out infinite alternate;
+}
+
+
 

@@ -37,9 +37,16 @@ export default function Metodologia() {
   const [activeStep, setActiveStep] = useState<string>("01");
 
   return (
+    /* Sección Metodología con fondo tokenizado del sistema de diseño y capa integrada por mezcla suave */
     <section className="relative z-10 bg-background pt-16 md:pt-24 pb-16 md:pb-24 scroll-mt-36" id="proceso">
-      {/* Sección Metodología sin línea divisoria inferior (border-b eliminada) */}
-      <div className="container-trama px-6 md:px-12 lg:px-16">
+      {/* Capa de fondo sutil con opacidad atenuada al 20% y desenfoque suave para no distorsionar la lectura */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div
+          className="w-full h-full bg-[url('/metodologia-.avif')] bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
+          aria-hidden="true"
+        />
+      </div>
+      <div className="container-trama relative z-10 px-6 md:px-12 lg:px-16">
         {/* Header de la sección: H2 principal con espacio editorial amplio y titular plano según la regla del skill frontend-design */}
         <div className="mb-16 md:mb-20">
           <Reveal>
