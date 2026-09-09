@@ -64,7 +64,8 @@ export const ContactForm = () => {
 
   if (sent) {
     return (
-      <div className="text-center space-y-4 py-10 bg-surface rounded-2xl border border-border p-8 shadow-sm">
+      /* Mensaje de confirmación apoyado directamente sobre la sección de contacto */
+      <div className="text-center space-y-4 py-10 bg-transparent p-4">
         {/* Badge de confirmación alineado a font-medium sin negritas sintéticas */}
         <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center mx-auto text-xl font-medium shadow-md">
           <Check className="w-6 h-6" />
@@ -80,44 +81,50 @@ export const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 bg-surface/50 p-6 md:p-8 rounded-2xl border border-border shadow-sm">
-      {/* 1. Nombre Completo */}
-      <div className="space-y-1.5">
-        {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
-          Nombre completo *
-        </label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          placeholder="Tu nombre y apellido"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
-        />
+    /* Contenedor del formulario transparente sin caja ni bordes, apoyado sobre el fondo de la sección de contacto */
+    <form onSubmit={handleSubmit} className="space-y-8 bg-transparent">
+      {/* Grid de 2 columnas en desktop para Nombre completo y Email de contacto, colapsando a 1 en mobile */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+        {/* 1. Nombre Completo */}
+        <div className="space-y-1.5">
+          {/* Label en font-medium para evitar negrita sintética */}
+          <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+            Nombre completo *
+          </label>
+          {/* Input con borde inferior simple y fondo transparente */}
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            placeholder="Tu nombre y apellido"
+            className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
+          />
+        </div>
+
+        {/* 2. Email */}
+        <div className="space-y-1.5">
+          {/* Label en font-medium para evitar negrita sintética */}
+          <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+            Email de contacto *
+          </label>
+          {/* Input con borde inferior simple y fondo transparente */}
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="tu@email.com"
+            className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
+          />
+        </div>
       </div>
 
-      {/* 2. Email */}
-      <div className="space-y-1.5">
-        {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
-          Email de contacto *
-        </label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          placeholder="tu@email.com"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
-        />
-      </div>
-
-      {/* 3. Tipo de Servicio / ¿Qué necesita resolver tu negocio? */}
+      {/* 3. Tipo de Servicio / ¿Qué querés construir? */}
       <div className="space-y-3">
         {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
         <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
-          ¿Qué necesita resolver tu negocio? *
+          ¿Qué querés construir? *
         </label>
         <div className="flex flex-wrap gap-2">
           {SERVICES_OPTIONS.map((item) => {

@@ -197,8 +197,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── CONTACTO ─────────────────────────────────────────────── */}
-      <section className="py-20 md:py-28" id="contacto">
+      {/* ── CONTACTO (Fondo adaptativo: contact-portrait.avif en mobile, contact-.avif en desktop) ── */}
+      <section className="relative py-20 md:py-28 bg-[url('/contact-portrait.avif')] md:bg-[url('/contact-.avif')] bg-cover bg-center" id="contacto">
         <div className="container-trama">
           <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Columna Izquierda (Contexto y contacto directo) */}
@@ -208,15 +208,12 @@ const Index = () => {
                 <span className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block mb-4">
                   CONTACTO
                 </span>
-                {/* Actualizar el copy del titular H2 para mantener coherencia con la sección de Servicios */}
+                {/* Titular H2 principal de contacto */}
                 <h2 className="h-section leading-tight font-normal">
                   Contanos qué necesita resolver tu negocio.
                 </h2>
-                {/* Introducción sobria de contacto en lenguaje de servicio directo */}
-                <p className="text-base md:text-lg text-foreground leading-relaxed max-w-md mt-6 font-light">
-                  Contanos qué querés hacer o qué problema necesitás resolver y definamos juntos la mejor forma de llevarlo a algo real.
-                </p>
-                <div className="pt-6 space-y-3 font-sans text-subtle border-t border-border mt-8">
+                {/* Bloque de datos de contacto sin línea divisoria (border-t eliminada) */}
+                <div className="pt-4 space-y-3 font-sans text-subtle mt-4">
                   <p className="text-foreground font-medium">
                     Email directo:{" "}
                     {/* Remover subrayado (underline) del enlace de correo electrónico */}

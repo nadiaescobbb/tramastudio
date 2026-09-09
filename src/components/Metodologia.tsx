@@ -37,7 +37,8 @@ export default function Metodologia() {
   const [activeStep, setActiveStep] = useState<string>("01");
 
   return (
-    <section className="relative z-10 bg-background pt-16 md:pt-24 pb-16 md:pb-24 border-b border-border/40 scroll-mt-36" id="proceso">
+    <section className="relative z-10 bg-background pt-16 md:pt-24 pb-16 md:pb-24 scroll-mt-36" id="proceso">
+      {/* Sección Metodología sin línea divisoria inferior (border-b eliminada) */}
       <div className="container-trama px-6 md:px-12 lg:px-16">
         {/* Header de la sección: H2 principal con espacio editorial amplio y titular plano según la regla del skill frontend-design */}
         <div className="mb-16 md:mb-20">
