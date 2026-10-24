@@ -78,7 +78,7 @@ const Index = () => {
           <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
             {/* Actualizar el H1 con el titular enfocado en resolución directa de problemas y software */}
             <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
-              Estudio de producto: entendemos el problema y construimos el software que lo resuelve.
+              entendemos el problema y construimos el software que lo resuelve.
             </span>
           </h1>
 
