@@ -69,7 +69,7 @@ const Index = () => {
         {/* Capa de fondo animada con la imagen frame-faq.avif y fundido en la parte inferior */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div
-            className="w-full h-full bg-[url('/frame-faq.avif')] bg-cover bg-center animate-hero-bg-pulse opacity-70 mix-blend-multiply [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]"
+            className="w-full h-full bg-[url('/frame-faq.avif')] bg-cover bg-center animate-hero-bg-pulse opacity-70"
             aria-hidden="true"
           />
         </div>
@@ -85,7 +85,7 @@ const Index = () => {
           {/* Centered CTAs Row */}
           <div
             className="pt-8 sm:pt-12 md:pt-14 flex flex-wrap items-center justify-center gap-4 sm:gap-6 animate-reading-text"
-            style={{ animationDelay: "2450ms" }}
+            style={{ animationDelay: "400ms" }}
           >
             {/* Unificar mensaje de WhatsApp mediante waLink() para mantener consistencia en todos los puntos de contacto del sitio */}
             <a href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">

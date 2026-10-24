@@ -451,9 +451,10 @@ html {
     border-radius: 16px;
     padding: 6px 15px 6px 6px;
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: -0.02em;
+    color: #141312;
   }
 
   .nav-menu-pill {
@@ -471,17 +472,17 @@ html {
     justify-content: center;
     border-radius: 16px;
     padding: 12px 16px;
-    color: #373737;
+    color: #141312;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: -0.02em;
     transition: background 240ms var(--ease-standard), color 240ms var(--ease-standard);
   }
 
   .nav-menu-link:hover {
-    background: rgba(0,0,0,0.05);
-    color: #050505;
+    background: rgba(0,0,0,0.06);
+    color: #000000;
   }
 
   .nav-menu-cta {
@@ -490,12 +491,12 @@ html {
     align-items: center;
     gap: 8px;
     border-radius: 999px;
-    background: #090909;
+    background: #141312;
     padding: 0 16px;
     color: white;
     font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 700;
     letter-spacing: -0.01em;
     border: 1px solid transparent;
     transition: transform 220ms var(--ease-standard), background 300ms var(--ease-standard), color 300ms var(--ease-standard), border-color 300ms var(--ease-standard);
@@ -503,13 +504,13 @@ html {
 
   .nav-menu-cta.unscrolled {
     background: transparent;
-    color: #262626;
-    border-color: rgba(0, 0, 0, 0.15);
+    color: #141312;
+    border-color: rgba(0, 0, 0, 0.2);
   }
 
   .nav-menu-cta.unscrolled:hover {
     background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 0, 0, 0.4);
     color: #000;
   }
 
@@ -949,21 +950,14 @@ html {
   transform: translate(3px, -3px);
 }
 
-/* Animación fluida de movimiento y desplazamiento activo para la imagen de fondo del Hero */
+/* Animación fluida de respiración sutil para la imagen de fondo del Hero */
 @keyframes heroBgPulse {
-  0% {
-    transform: scale(1) translate(0px, 0px);
-  }
-  50% {
-    transform: scale(1.08) translate(-25px, -15px);
-  }
-  100% {
-    transform: scale(1.02) translate(15px, 10px);
-  }
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.02); }
 }
 
 .animate-hero-bg-pulse {
-  animation: heroBgPulse 14s ease-in-out infinite alternate;
+  animation: heroBgPulse 20s ease-in-out infinite alternate;
 }
 
 
