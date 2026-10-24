@@ -13,30 +13,27 @@ import { ArrowUpRight } from "lucide-react";
 const FAQS = [
   {
     q: "¿Qué tipo de proyectos hacen?",
-    boldPrefix: "",
-    // Precisar el alcance concreto de desarrollo a medida delimitando lo que sí hacemos y lo que no
-    a: "Diseñamos y desarrollamos software a medida, aplicaciones web y productos digitales desde cero o en etapa de rediseño. No hacemos plantillas prehechas ni servicios de marketing digital aislado.",
+    body: "Diseñamos y desarrollamos software a medida, aplicaciones web y productos digitales desde cero o en etapa de rediseño. No hacemos plantillas prehechas ni servicios de marketing digital aislado.",
   },
   {
     q: "¿Tengo que tener definida la idea?",
-    boldPrefix: "No.",
-    a: "Podés llegar con una idea bastante clara o simplemente con un problema que necesitás resolver. Parte del trabajo es entender qué necesitás realmente antes de decidir qué construir.",
+    lead: "No.",
+    body: "Podés llegar con una idea bastante clara o simplemente con un problema que necesitás resolver. Parte del trabajo es entender qué necesitás realmente antes de decidir qué construir.",
   },
   {
     q: "¿Ustedes diseñan y desarrollan?",
-    boldPrefix: "Sí, por lo general las dos cosas juntas.",
-    a: "Diseñar y construir en el mismo proceso evita que se pierda algo en el traspaso entre quien pensó la interfaz y quien la programó. Si ya tenés un diseño resuelto y necesitás solo la construcción, también podemos entrar únicamente en esa etapa.",
+    lead: "Sí, por lo general las dos cosas juntas.",
+    body: "Diseñar y construir en el mismo proceso evita que se pierda algo en el traspaso entre quien pensó la interfaz y quien la programó. Si ya tenés un diseño resuelto y necesitás solo la construcción, también podemos entrar únicamente en esa etapa.",
   },
   {
     q: "¿Trabajan con empresas o también con emprendedores?",
-    boldPrefix: "Con ambos.",
-    // Explicar el valor y método diferenciado según el tipo de cliente (emprendedor vs empresa) en lugar de repetir la pregunta
-    a: "Para emprendedores nos enfocamos en validar rápido la idea inicial y construir un producto mínimo funcional. Para empresas intervenimos sobre flujos existentes, optimizando la arquitectura y la experiencia sin interrumpir la operación.",
+    lead: "Con ambos.",
+    body: "Para emprendedores nos enfocamos en validar rápido la idea inicial y construir un producto mínimo funcional. Para empresas intervenimos sobre flujos existentes, optimizando la arquitectura y la experiencia sin interrumpir la operación.",
   },
   {
     q: "¿Qué pasa si no sé cuánto cuesta mi proyecto?",
-    boldPrefix: "No necesitás llegar con un presupuesto cerrado.",
-    a: "Primero entendemos qué querés hacer, qué necesitás y qué alcance tiene. A partir de eso podemos definir la mejor forma de abordarlo.",
+    lead: "No necesitás llegar con un presupuesto cerrado.",
+    body: "Primero entendemos qué querés hacer, qué necesitás y qué alcance tiene. A partir de eso podemos definir la mejor forma de abordarlo.",
   },
 ];
 
@@ -54,10 +51,14 @@ const Index = () => {
       path: "/",
     });
 
-    if (window.location.hash) {
-      window.history.replaceState(null, "", window.location.pathname);
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      });
+    } else {
+      window.scrollTo(0, 0);
     }
-    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -69,14 +70,14 @@ const Index = () => {
         {/* Capa de fondo animada con la imagen frame-faq.avif y fundido en la parte inferior */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div
-            className="w-full h-full bg-[url('/frame-faq.avif')] bg-cover bg-center animate-hero-bg-pulse opacity-70"
+            className="w-full h-full bg-cover bg-center animate-hero-bg-pulse opacity-70"
+            style={{ backgroundImage: "url('/frame-faq.avif')" }}
             aria-hidden="true"
           />
         </div>
         <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
           {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
           <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
-            {/* Actualizar el H1 con el titular enfocado en resolución directa de problemas y software */}
             <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
               entendemos el problema y construimos el software que lo resuelve.
             </span>
@@ -96,7 +97,7 @@ const Index = () => {
             {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
             <Link
               to="/proyectos"
-              className="hidden sm:inline-block font-sans text-xs sm:text-sm font-medium text-foreground/80 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
+              className="hidden sm:inline-block ml-6 font-sans text-xs sm:text-sm font-medium text-foreground/80 opacity-60 hover:opacity-100 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
             >
               Ver proyectos
             </Link>
@@ -115,7 +116,8 @@ const Index = () => {
         {/* Capa de fondo sutil con opacidad atenuada al 20% y desenfoque suave para lectura impecable */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div
-            className="w-full h-full bg-[url('/faq-.avif')] bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
+            className="w-full h-full bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
+            style={{ backgroundImage: "url('/faq-.avif')" }}
             aria-hidden="true"
           />
         </div>
@@ -191,12 +193,12 @@ const Index = () => {
                     >
                       <div className="overflow-hidden">
                         <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl font-light pt-1 pb-6 pl-10 md:pl-16">
-                          {item.boldPrefix && (
-                            <span className="text-foreground font-medium block mb-1">
-                              {item.boldPrefix}
-                            </span>
+                          {item.lead && (
+                            <>
+                              <strong className="text-foreground font-medium">{item.lead}</strong>{" "}
+                            </>
                           )}
-                          {item.a}
+                          {item.body}
                         </p>
                       </div>
                     </div>
@@ -213,7 +215,13 @@ const Index = () => {
         {/* Capa de fondo sutil (contact-portrait.avif en mobile, contact-.avif en desktop) con opacidad atenuada y desenfoque suave */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div
-            className="w-full h-full bg-[url('/contact-portrait.avif')] md:bg-[url('/contact-.avif')] bg-cover bg-center opacity-25 mix-blend-multiply blur-[15px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_100%)]"
+            className="w-full h-full bg-cover bg-center opacity-25 mix-blend-multiply blur-[15px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_100%)] md:hidden"
+            style={{ backgroundImage: "url('/contact-portrait.avif')" }}
+            aria-hidden="true"
+          />
+          <div
+            className="hidden w-full h-full bg-cover bg-center opacity-25 mix-blend-multiply blur-[15px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_100%)] md:block"
+            style={{ backgroundImage: "url('/contact-.avif')" }}
             aria-hidden="true"
           />
         </div>
@@ -274,4 +282,3 @@ const Index = () => {
 };
 
 export default Index;
-

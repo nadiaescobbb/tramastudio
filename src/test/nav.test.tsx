@@ -15,13 +15,15 @@ describe("Nav", () => {
     expect(screen.getAllByText("HeyTrama").length).toBeGreaterThan(0);
   });
 
-  it("renders Volver on non-home route", () => {
+  it("renders brand name and secondary Volver on non-home route", () => {
     render(
       <MemoryRouter initialEntries={["/proyectos/famvar"]}>
         <Nav />
       </MemoryRouter>
     );
+    expect(screen.getAllByText("HeyTrama").length).toBeGreaterThan(0);
     expect(screen.getByText("Volver")).toBeInTheDocument();
+    expect(screen.getByLabelText("Volver atrás")).toBeInTheDocument();
   });
 
   it("renders Contar mi proyecto CTA", () => {

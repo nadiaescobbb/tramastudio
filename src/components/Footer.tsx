@@ -1,9 +1,27 @@
 import { ArrowUpRight } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { waLink } from "@/data/projects";
 
+const YEAR = 2026;
+
 export const Footer = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleHashClick = (event: React.MouseEvent<HTMLAnchorElement>, to: string) => {
+    event.preventDefault();
+    navigate(to);
+
+    const hash = to.slice(to.indexOf("#"));
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
+      });
+    });
   };
 
   return (
@@ -50,27 +68,33 @@ export const Footer = () => {
             </span>
             <ul className="space-y-2.5 text-sm font-medium">
               <li>
-                <a href="#hero" className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
+                <Link
+                  to="/"
+                  onClick={() => {
+                    if (pathname === "/") scrollToTop();
+                  }}
+                  className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors"
+                >
                   Inicio
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/proyectos" className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
+                <Link to="/proyectos" className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
                   Proyectos
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#proceso" className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
+                <a href="/#proceso" onClick={(event) => handleHashClick(event, "/#proceso")} className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
                   Cómo trabajamos
                 </a>
               </li>
               <li>
-                <a href="#servicios" className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
+                <a href="/#servicios" onClick={(event) => handleHashClick(event, "/#servicios")} className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
                   Servicios
                 </a>
               </li>
               <li>
-                <a href="#preguntas" className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
+                <a href="/#preguntas" onClick={(event) => handleHashClick(event, "/#preguntas")} className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
                   Preguntas
                 </a>
               </li>
@@ -108,7 +132,7 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#contacto" className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
+                <a href="/#contacto" onClick={(event) => handleHashClick(event, "/#contacto")} className="text-white/90 hover:text-[hsl(var(--editorial-accent))] transition-colors">
                   Enviar formulario ↗
                 </a>
               </li>
@@ -157,14 +181,14 @@ export const Footer = () => {
 
         {/* Bloque Gigante de Marca: Logotipo HEYTRAMA gigante en MAYÚSCULAS y blanco */}
         <div className="py-12 md:py-16 text-center select-none pointer-events-none overflow-hidden">
-          <span className="font-heading text-[15vw] sm:text-[16vw] leading-[0.82] font-normal tracking-tight text-white uppercase block">
+          <span className="font-heading text-[14vw] leading-[0.82] font-normal tracking-tighter text-white uppercase block">
             HEYTRAMA
           </span>
         </div>
 
         {/* Bloque Inferior: Derechos de autor y botón Scroll Top */}
         <div className="pt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-micro uppercase tracking-widest text-white/60 border-t border-white/10">
-          <div>© {new Date().getFullYear()} HeyTrama. Todos los derechos reservados.</div>
+          <div>© {YEAR} HeyTrama. Todos los derechos reservados.</div>
 
           <div className="flex items-center gap-6">
             <span>Argentina</span>
