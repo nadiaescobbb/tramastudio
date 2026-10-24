@@ -32,6 +32,8 @@ const steps = [
   },
 ];
 
+const transitionTimingFunction = "var(--ease-standard, cubic-bezier(0.2, 0, 0, 1))";
+
 export default function Metodologia() {
   // El primer paso ("01" - Entender) se encuentra activo por defecto para mantener la vista completa al ingresar
   const [activeStep, setActiveStep] = useState<string>("01");
@@ -42,7 +44,8 @@ export default function Metodologia() {
       {/* Capa de fondo sutil con opacidad atenuada al 20% y desenfoque suave para no distorsionar la lectura */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div
-          className="w-full h-full bg-[url('/metodologia-.avif')] bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
+          className="w-full h-full bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
+          style={{ backgroundImage: "url('/metodologia-.avif')" }}
           aria-hidden="true"
         />
       </div>
@@ -61,21 +64,30 @@ export default function Metodologia() {
           {steps.map((step) => {
             const isActive = activeStep === step.number;
             // Remover el cero inicial para mostrar dígitos individuales (1, 2, 3, 4) como en la referencia
-            const displayNumber = step.number.replace(/^0/, "");
+            const displayNumber = String(Number(step.number));
 
             return (
               <div
                 key={step.number}
                 onMouseEnter={() => setActiveStep(step.number)}
                 onFocus={() => setActiveStep(step.number)}
+                onClick={() => setActiveStep(step.number)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setActiveStep(step.number);
+                  }
+                }}
                 tabIndex={0}
+                role="button"
                 aria-expanded={isActive}
                 aria-label={`Paso ${displayNumber}: ${step.concept}`}
-                className={`group relative transition-all duration-500 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] border-t-2 pt-8 lg:pt-10 focus:outline-none ${
+                className={`group relative transition-all duration-500 border-t-2 pt-8 lg:pt-10 focus:outline-none ${
                   isActive
                     ? "border-[hsl(var(--editorial-accent))] flex-[2.4]"
                     : "border-slate-200 group-hover:border-[hsl(var(--editorial-accent))]/50 flex-1"
                 }`}
+                style={{ transitionTimingFunction }}
               >
                 <div className="flex items-start gap-5 lg:gap-7">
                   {/* Número grande en fuente Orlean (font-mono font-medium) para evitar negrita sintética y mantener consistencia con los tokens del sitio */}
@@ -91,21 +103,22 @@ export default function Metodologia() {
 
                   {/* Contenido expansible inline: Mantiene un ancho estable (w-full) para evitar que max-w-0 fuerce el texto a word-wrap de 0px e infle la altura del layout */}
                   <div
-                    className={`transition-all duration-500 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] overflow-hidden w-full ${
-                      isActive
-                        ? "opacity-100 max-h-96 translate-x-0"
-                        : "opacity-0 max-h-0 -translate-x-2 pointer-events-none"
+                    className={`grid min-w-0 flex-1 transition-[grid-template-rows,opacity] duration-500 ${
+                      isActive ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
                     }`}
+                    style={{ transitionTimingFunction }}
                   >
-                    <span className="font-serif italic font-normal text-lg md:text-xl text-[hsl(var(--editorial-accent))] block mb-1">
-                      {step.concept}
-                    </span>
-                    <h3 className="font-heading text-lg md:text-xl text-slate-900 font-medium tracking-tight leading-snug mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="font-sans text-xs md:text-sm text-slate-600 leading-relaxed">
-                      {step.text}
-                    </p>
+                    <div className="overflow-hidden">
+                      <span className="font-serif italic font-normal text-lg md:text-xl text-[hsl(var(--editorial-accent))] block mb-1">
+                        {step.concept}
+                      </span>
+                      <h3 className="font-heading text-lg md:text-xl text-slate-900 font-medium tracking-tight leading-snug mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="font-sans text-xs md:text-sm text-slate-600 leading-relaxed">
+                        {step.text}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -117,7 +130,7 @@ export default function Metodologia() {
         <div className="flex md:hidden flex-col divide-y divide-border border-t border-border">
           {steps.map((step) => {
             const isOpen = activeStep === step.number;
-            const displayNumber = step.number.replace(/^0/, "");
+            const displayNumber = String(Number(step.number));
             const contentId = `proceso-step-content-${step.number}`;
             const triggerId = `proceso-step-trigger-${step.number}`;
 
@@ -128,7 +141,7 @@ export default function Metodologia() {
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={contentId}
-                  onClick={() => setActiveStep(isOpen ? "" : step.number)}
+                  onClick={() => setActiveStep(isOpen ? "01" : step.number)}
                   className="w-full flex items-center justify-between py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] rounded-sm transition-colors"
                 >
                   <div className="flex items-baseline gap-4">
@@ -161,9 +174,10 @@ export default function Metodologia() {
                   id={contentId}
                   role="region"
                   aria-labelledby={triggerId}
-                  className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))] ${
+                  className={`grid transition-[grid-template-rows,opacity] duration-300 ${
                     isOpen ? "grid-rows-[1fr] opacity-100 pt-3 pb-2" : "grid-rows-[0fr] opacity-0"
                   }`}
+                  style={{ transitionTimingFunction }}
                 >
                   <div className="overflow-hidden space-y-2 pl-10">
                     <h3 className="font-heading text-base font-medium text-slate-900 tracking-tight leading-snug">
