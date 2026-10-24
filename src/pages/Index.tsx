@@ -185,10 +185,11 @@ const Index = () => {
                       id={contentId}
                       role="region"
                       aria-labelledby={triggerId}
-                      className="grid transition-[grid-template-rows,opacity] duration-300 ease-[var(--ease-standard,cubic-bezier(0.2,0,0,1))]"
+                      className="grid transition-[grid-template-rows,opacity] duration-300"
                       style={{
                         gridTemplateRows: isOpen ? "1fr" : "0fr",
                         opacity: isOpen ? 1 : 0,
+                        transitionTimingFunction: "var(--ease-standard, cubic-bezier(0.2, 0, 0, 1))",
                       }}
                     >
                       <div className="overflow-hidden">

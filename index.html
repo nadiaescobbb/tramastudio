@@ -1,14 +1,23 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WX7ELP1JQF"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      const gaMeasurementId = "G-WX7ELP1JQF";
+      const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
 
-      gtag('config', 'G-WX7ELP1JQF');
+      if (gaMeasurementId && gaMeasurementId !== "undefined" && !isLocalhost) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag;
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
+        document.head.appendChild(script);
+
+        gtag('js', new Date());
+        gtag('config', gaMeasurementId);
+      }
     </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,10 +38,11 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="HeyTrama — Productos Digitales y Software a Medida" />
     <meta name="twitter:description" content="Convertimos ideas y necesidades de negocio en productos digitales que funcionan." />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" href="/favicons/favicon.ico" sizes="any">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    <link rel="manifest" href="/favicons/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicons/favicon-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
 
     <script type="application/ld+json">
     {
@@ -40,7 +50,7 @@
       "@type": "Organization",
       "name": "HeyTrama",
       "url": "https://www.heytrama.com/",
-      "logo": "https://www.heytrama.com/favicons/android-chrome-512x512.png",
+      "logo": "https://www.heytrama.com/favicons/favicon-512x512.png",
       "email": "hola@heytrama.com",
       "sameAs": [
         "https://instagram.com/trama.sstudio"
