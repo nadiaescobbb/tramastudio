@@ -2,11 +2,10 @@ import { ArrowUpRight } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { waLink } from "@/data/projects";
 
-const YEAR = 2026;
-
 export const Footer = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const year = new Date().getFullYear();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -17,19 +16,17 @@ export const Footer = () => {
     navigate(to);
 
     const hash = to.slice(to.indexOf("#"));
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
-      });
-    });
+    window.setTimeout(() => {
+      document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
   };
 
   return (
     /* Footer completo de HeyTrama en ambiente oscuro tokenizado con bg-foreground con letras blancas y marca en mayúsculas */
-    <footer className="bg-foreground text-white pt-20 md:pt-28 pb-12 overflow-hidden border-t border-white/10">
+    <footer className="bg-[#050505] text-white pt-20 md:pt-28 pb-12 overflow-hidden">
       <div className="container-trama px-6 md:px-12 lg:px-16">
         {/* Bloque Superior: CTA Principal y Declaración del Estudio */}
-        <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start pb-16 md:pb-24 border-b border-white/10">
+        <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start pb-16 md:pb-24">
           {/* Pregunta principal y enlace directo de correo en blanco */}
           <div className="col-span-12 lg:col-span-7 space-y-6">
             <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white leading-[1.12] max-w-2xl">
@@ -188,7 +185,7 @@ export const Footer = () => {
 
         {/* Bloque Inferior: Derechos de autor y botón Scroll Top */}
         <div className="pt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-micro uppercase tracking-widest text-white/60 border-t border-white/10">
-          <div>© {YEAR} HeyTrama. Todos los derechos reservados.</div>
+          <div>© {year} HeyTrama. Todos los derechos reservados.</div>
 
           <div className="flex items-center gap-6">
             <span>Argentina</span>

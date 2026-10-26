@@ -12,17 +12,43 @@ const NAV_LINKS = [
 ] as const;
 
 const WHATSAPP_MESSAGE = "Hola, vi HeyTrama y quiero contarte sobre mi proyecto.";
+const navPillBase = "rounded-full backdrop-blur-md border transition-colors";
 
-export const Nav = () => {
+interface NavProps {
+  variant?: "default" | "dark-transparent";
+}
+
+export const Nav = ({ variant = "default" }: NavProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const isHome = pathname === "/";
+  const isDark = variant === "dark-transparent" || pathname.startsWith("/proyectos");
+  const navPillDark = "bg-black/40 border-white/10 text-white";
+  const navPillLight = "bg-white/90 border-black/5 text-black/80";
+  const navPillClasses = `${navPillBase} ${isDark ? navPillDark : navPillLight}`;
+  const navLinkDark = isDark
+    ? "text-white/70 hover:text-white hover:bg-white/10"
+    : "text-black/70 hover:text-black hover:bg-black/5";
 
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const previousOverflowRef = useRef<string | null>(null);
+
+  const restoreBodyOverflow = useCallback(() => {
+    if (previousOverflowRef.current === null) return;
+
+    document.body.style.overflow = previousOverflowRef.current;
+    previousOverflowRef.current = null;
+  }, []);
+
+  const closeMenu = useCallback((restoreFocus = false) => {
+    setIsOpen(false);
+    restoreBodyOverflow();
+    if (restoreFocus) toggleBtnRef.current?.focus();
+  }, [restoreBodyOverflow]);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 100);
@@ -35,12 +61,10 @@ export const Nav = () => {
   useEffect(() => {
     if (!isOpen) return;
 
-    const previousOverflow = document.body.style.overflow;
+    previousOverflowRef.current = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen]);
+    return restoreBodyOverflow;
+  }, [isOpen, restoreBodyOverflow]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -48,8 +72,7 @@ export const Nav = () => {
     const focusTimer = window.setTimeout(() => firstLinkRef.current?.focus(), 50);
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsOpen(false);
-        toggleBtnRef.current?.focus();
+        closeMenu(true);
         return;
       }
 
@@ -77,12 +100,12 @@ export const Nav = () => {
       window.clearTimeout(focusTimer);
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+  }, [closeMenu, isOpen]);
 
   const handleHashClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>, to: string) => {
       event.preventDefault();
-      setIsOpen(false);
+      closeMenu();
 
       const hash = to.slice(to.indexOf("#"));
       if (pathname !== "/") {
@@ -97,7 +120,7 @@ export const Nav = () => {
         });
       });
     },
-    [navigate, pathname]
+    [closeMenu, navigate, pathname]
   );
 
   const handleVolver = useCallback(() => {
@@ -108,19 +131,14 @@ export const Nav = () => {
     }
   }, [navigate]);
 
-  const closeMenu = () => {
-    setIsOpen(false);
-    toggleBtnRef.current?.focus();
-  };
-
   return (
     <>
       <header className="fixed top-0 inset-x-0 z-[100] flex justify-between items-center p-4 md:p-6 pointer-events-none">
         <div className="pointer-events-auto flex items-center gap-2">
           <Link
             to="/"
-            className="nav-brand-pill !static pointer-events-auto flex items-center gap-2.5"
-            onClick={() => setIsOpen(false)}
+            className={`nav-brand-pill static pointer-events-auto flex items-center gap-2.5 ${navPillClasses}`}
+            onClick={() => closeMenu()}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black text-white">
               <Logo size={20} invert />
@@ -132,7 +150,11 @@ export const Nav = () => {
               type="button"
               onClick={handleVolver}
               aria-label="Volver atrás"
-              className="nav-volver-pill pointer-events-auto inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/80 px-3 py-2 text-sm text-[#171717] shadow-sm backdrop-blur-md"
+              className={`nav-volver-pill pointer-events-auto inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-sm shadow-sm backdrop-blur-md ${
+                isDark
+                  ? "border-white/20 bg-transparent text-white"
+                  : "border-black/10 bg-white/80 text-[#171717]"
+              }`}
             >
               <ArrowLeft className="h-4 w-4" aria-hidden="true" />
               <span>Volver</span>
@@ -141,7 +163,7 @@ export const Nav = () => {
         </div>
 
         <nav
-          className={`nav-menu-pill !static !max-w-none pointer-events-auto ${isOpen ? "open" : ""}`}
+          className={`nav-menu-pill static flex items-center pointer-events-auto ${navPillClasses} ${isOpen ? "open" : ""}`}
           aria-label="Navegación principal"
         >
           <div className="hidden items-center gap-2 md:flex">
@@ -150,13 +172,18 @@ export const Nav = () => {
                 <a
                   key={label}
                   href={to}
-                  className="nav-menu-link"
+                  className={`nav-menu-link ${navLinkDark}`}
                   onClick={(event) => handleHashClick(event, to)}
                 >
                   {label}
                 </a>
               ) : (
-                <Link key={label} to={to} className="nav-menu-link">
+                <Link
+                  key={label}
+                  to={to}
+                  className={`nav-menu-link ${navLinkDark}`}
+                  onClick={() => closeMenu()}
+                >
                   {label}
                 </Link>
               )
@@ -177,7 +204,7 @@ export const Nav = () => {
             ref={toggleBtnRef}
             type="button"
             onClick={() => setIsOpen((open) => !open)}
-            className="nav-mobile-toggle md:hidden"
+            className={`nav-mobile-toggle md:hidden ${isDark ? "bg-black/40 text-white" : ""}`}
             aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
@@ -192,7 +219,11 @@ export const Nav = () => {
               role="dialog"
               aria-modal="true"
               aria-label="Menú de navegación"
-              className="absolute right-0 top-[calc(100%+0.75rem)] w-[calc(100vw-2rem)] max-w-sm rounded-[1.75rem] border border-black/10 bg-white/95 p-8 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-2xl md:hidden"
+              className={`absolute left-4 right-4 top-[calc(100%+0.75rem)] w-auto max-w-sm rounded-[1.75rem] border p-8 shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop-blur-2xl md:hidden ${
+                isDark
+                  ? "border-white/10 bg-neutral-950/95 text-white"
+                  : "border-black/10 bg-white/95"
+              }`}
             >
               {NAV_LINKS.map(({ label, to, isHash }, index) =>
                 isHash ? (
@@ -211,7 +242,7 @@ export const Nav = () => {
                     key={label}
                     ref={index === 0 ? firstLinkRef : undefined}
                     to={to}
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => closeMenu()}
                     className="mobile-overlay-link"
                     style={{ transitionDelay: `${100 + index * 100}ms` }}
                   >
@@ -240,7 +271,7 @@ export const Nav = () => {
       {isOpen && (
         <div
           className="fixed inset-0 z-[90] bg-background/30 backdrop-blur-sm animate-in fade-in duration-700 md:hidden"
-          onClick={closeMenu}
+          onClick={() => closeMenu(true)}
         />
       )}
     </>

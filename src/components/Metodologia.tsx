@@ -3,28 +3,28 @@ import { Reveal } from "@/components/Reveal";
 
 const steps = [
   {
-    number: "01",
+    number: 1,
     label: "PASO 01",
     concept: "Entender",
     title: "Decidir qué merece resolverse.",
     text: "Un pedido casi nunca es el problema completo. Antes de diseñar, buscamos qué hay detrás — qué necesita resolverse de verdad, y para quién.",
   },
   {
-    number: "02",
+    number: 2,
     label: "PASO 02",
     concept: "Estructurar",
     title: "Decidir qué va primero y qué sobra.",
     text: "Ordenamos la información antes de pensar en pantallas: qué necesita ver la persona primero, qué puede esperar, y qué directamente no hace falta decir.",
   },
   {
-    number: "03",
+    number: 3,
     label: "PASO 03",
     concept: "Construir",
     title: "Diseño y desarrollo como una sola decisión.",
     text: "No hay traspaso entre quien diseña y quien programa: la interfaz y el código se deciden juntos, para que lo diseñado sea lo que realmente funciona en uso real.",
   },
   {
-    number: "04",
+    number: 4,
     label: "PASO 04",
     concept: "Evolucionar",
     title: "Publicar no cierra el trabajo.",
@@ -35,8 +35,7 @@ const steps = [
 const transitionTimingFunction = "var(--ease-standard, cubic-bezier(0.2, 0, 0, 1))";
 
 export default function Metodologia() {
-  // El primer paso ("01" - Entender) se encuentra activo por defecto para mantener la vista completa al ingresar
-  const [activeStep, setActiveStep] = useState<string>("01");
+  const [activeStep, setActiveStep] = useState(1);
 
   return (
     /* Sección Metodología con fondo tokenizado del sistema de diseño y capa integrada por mezcla suave */
@@ -44,8 +43,8 @@ export default function Metodologia() {
       {/* Capa de fondo sutil con opacidad atenuada al 20% y desenfoque suave para no distorsionar la lectura */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div
-          className="w-full h-full bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
-          style={{ backgroundImage: "url('/metodologia-.avif')" }}
+          className="w-full h-full bg-cover bg-center opacity-20 mix-blend-multiply blur-[12px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
+          style={{ backgroundImage: "url('/metodologia.avif')" }}
           aria-hidden="true"
         />
       </div>
@@ -63,26 +62,18 @@ export default function Metodologia() {
         <div className="hidden md:flex flex-row items-stretch min-h-[240px] lg:min-h-[250px] gap-10 lg:gap-14">
           {steps.map((step) => {
             const isActive = activeStep === step.number;
-            // Remover el cero inicial para mostrar dígitos individuales (1, 2, 3, 4) como en la referencia
-            const displayNumber = String(Number(step.number));
+            const displayNumber = step.number;
 
             return (
-              <div
+              <button
                 key={step.number}
+                type="button"
                 onMouseEnter={() => setActiveStep(step.number)}
                 onFocus={() => setActiveStep(step.number)}
                 onClick={() => setActiveStep(step.number)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setActiveStep(step.number);
-                  }
-                }}
-                tabIndex={0}
-                role="button"
                 aria-expanded={isActive}
                 aria-label={`Paso ${displayNumber}: ${step.concept}`}
-                className={`group relative transition-all duration-500 border-t-2 pt-8 lg:pt-10 focus:outline-none ${
+                className={`group relative appearance-none bg-transparent text-left transition-all duration-500 border-t-2 pt-8 lg:pt-10 focus:outline-none ${
                   isActive
                     ? "border-[hsl(var(--editorial-accent))] flex-[2.4]"
                     : "border-slate-200 group-hover:border-[hsl(var(--editorial-accent))]/50 flex-1"
@@ -121,7 +112,7 @@ export default function Metodologia() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -130,7 +121,7 @@ export default function Metodologia() {
         <div className="flex md:hidden flex-col divide-y divide-border border-t border-border">
           {steps.map((step) => {
             const isOpen = activeStep === step.number;
-            const displayNumber = String(Number(step.number));
+            const displayNumber = step.number;
             const contentId = `proceso-step-content-${step.number}`;
             const triggerId = `proceso-step-trigger-${step.number}`;
 
@@ -141,7 +132,7 @@ export default function Metodologia() {
                   type="button"
                   aria-expanded={isOpen}
                   aria-controls={contentId}
-                  onClick={() => setActiveStep(isOpen ? "01" : step.number)}
+                  onClick={() => setActiveStep(isOpen ? 1 : step.number)}
                   className="w-full flex items-center justify-between py-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] rounded-sm transition-colors"
                 >
                   <div className="flex items-baseline gap-4">
