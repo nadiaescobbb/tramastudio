@@ -28,7 +28,7 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
   return (
     /* Footer completo de HeyTrama en ambiente oscuro tokenizado con bg-foreground con letras blancas y marca en mayúsculas */
     <footer className="bg-[#050505] text-white pt-20 md:pt-28 pb-12 overflow-hidden">
-      <div className="container-trama px-6 md:px-12 lg:px-16">
+      <div className="container-trama">
         {showIntro && (
           <div className="grid grid-cols-12 items-start gap-8 pb-16 lg:gap-12 md:pb-24">
             <div className="col-span-12 space-y-6 lg:col-span-7">

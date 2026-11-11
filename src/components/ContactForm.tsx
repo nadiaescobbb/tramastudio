@@ -14,18 +14,18 @@ const SERVICES_OPTIONS = [
 ];
 
 const BUDGET_OPTIONS = [
-  "Hasta USD 500",
-  "USD 500 – 1.500",
-  "USD 1.500 – 3.000",
-  "Más de USD 3.000",
+  "Hasta USD 1.500",
+  "USD 1.500–3.000",
+  "USD 3.000–6.000",
+  "Más de USD 6.000",
   "Necesito orientación",
 ];
 
 export const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [service, setService] = useState("Sitios web & Landing Pages");
-  const [budget, setBudget] = useState("USD 500 – 1.500");
+  const [service, setService] = useState("");
+  const [budget, setBudget] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
@@ -65,7 +65,7 @@ export const ContactForm = () => {
   if (sent) {
     return (
       /* Mensaje de confirmación apoyado directamente sobre la sección de contacto */
-      <div className="text-center space-y-4 py-10 bg-transparent p-4">
+      <div role="status" aria-live="polite" className="text-center space-y-4 py-10 bg-transparent p-4">
         {/* Badge de confirmación alineado a font-medium sin negritas sintéticas */}
         <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center mx-auto text-xl font-medium shadow-md">
           <Check className="w-6 h-6" />
@@ -83,109 +83,131 @@ export const ContactForm = () => {
   return (
     /* Contenedor del formulario transparente sin caja ni bordes, apoyado sobre el fondo de la sección de contacto */
     <form onSubmit={handleSubmit} className="space-y-8 bg-transparent">
+      <p className="font-sans text-sm text-foreground">
+        <span aria-hidden="true">*</span> Campo obligatorio
+      </p>
       {/* Grid de 2 columnas en desktop para Nombre completo y Email de contacto, colapsando a 1 en mobile */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
         {/* 1. Nombre Completo */}
         <div className="space-y-1.5">
           {/* Label en font-medium para evitar negrita sintética */}
-          <label className="font-sans text-micro uppercase text-foreground font-medium block">
+          <label htmlFor="contact-name" className="font-sans text-micro uppercase text-foreground font-medium block">
             Nombre completo *
           </label>
           {/* Input con borde inferior simple y fondo transparente */}
           <input
+            id="contact-name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
             placeholder="Tu nombre y apellido"
-            className="w-full border-b border-border bg-transparent py-2.5 text-[15px] md:text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground"
+            className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
           />
         </div>
 
         {/* 2. Email */}
         <div className="space-y-1.5">
           {/* Label en font-medium para evitar negrita sintética */}
-          <label className="font-sans text-micro uppercase text-foreground font-medium block">
+          <label htmlFor="contact-email" className="font-sans text-micro uppercase text-foreground font-medium block">
             Email de contacto *
           </label>
           {/* Input con borde inferior simple y fondo transparente */}
           <input
+            id="contact-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="tu@email.com"
-            className="w-full border-b border-border bg-transparent py-2.5 text-[15px] md:text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground"
+            className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
           />
         </div>
       </div>
 
       {/* 3. Tipo de Servicio / ¿Qué querés construir? */}
-      <div className="space-y-3">
+      <fieldset className="space-y-3">
         {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase text-foreground font-medium block">
+        <legend className="font-sans text-micro uppercase text-foreground font-medium">
           ¿Qué querés construir? *
-        </label>
+        </legend>
         <div className="flex flex-wrap gap-2">
           {SERVICES_OPTIONS.map((item) => {
             const isSelected = service === item;
             return (
-              <button
-                type="button"
-                key={item}
-                onClick={() => setService(item)}
-                className={`px-3.5 py-1.5 rounded-full font-sans text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
-                  isSelected
-                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-background text-foreground font-medium border-border hover:border-foreground/40 hover:text-foreground hover:-translate-y-0.5"
-                }`}
-              >
-                {item}
-              </button>
+              <label key={item} className="cursor-pointer">
+                <input
+                  type="radio"
+                  name="service"
+                  value={item}
+                  checked={isSelected}
+                  onChange={() => setService(item)}
+                  required
+                  className="peer sr-only"
+                />
+                <span
+                  className={`inline-flex rounded-full border px-3.5 py-1.5 font-sans text-tag font-medium transition-all duration-300 ease-out peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#C45A3A] ${
+                    isSelected
+                      ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                      : "border-[#6F6A62] bg-background text-foreground hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item}
+                </span>
+              </label>
             );
           })}
         </div>
-      </div>
+      </fieldset>
 
       {/* 4. Presupuesto Estimado */}
-      <div className="space-y-3">
+      <fieldset className="space-y-3">
         {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase text-foreground font-medium block">
+        <legend className="font-sans text-micro uppercase text-foreground font-medium">
           Presupuesto estimado *
-        </label>
+        </legend>
         <div className="flex flex-wrap gap-2">
           {BUDGET_OPTIONS.map((item) => {
             const isSelected = budget === item;
             return (
-              <button
-                type="button"
-                key={item}
-                onClick={() => setBudget(item)}
-                className={`px-3.5 py-1.5 rounded-full font-sans text-tag font-medium transition-all duration-300 ease-out cursor-pointer border ${
-                  isSelected
-                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-background text-foreground font-medium border-border hover:border-foreground/40 hover:text-foreground hover:-translate-y-0.5"
-                }`}
-              >
-                {item}
-              </button>
+              <label key={item} className="cursor-pointer">
+                <input
+                  type="radio"
+                  name="budget"
+                  value={item}
+                  checked={isSelected}
+                  onChange={() => setBudget(item)}
+                  required
+                  className="peer sr-only"
+                />
+                <span
+                  className={`inline-flex rounded-full border px-3.5 py-1.5 font-sans text-tag font-medium transition-all duration-300 ease-out peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#C45A3A] ${
+                    isSelected
+                      ? "border-primary bg-primary text-primary-foreground shadow-sm"
+                      : "border-[#6F6A62] bg-background text-foreground hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item}
+                </span>
+              </label>
             );
           })}
         </div>
-      </div>
+      </fieldset>
 
       {/* 5. Detalle del Proyecto */}
       <div className="space-y-1.5">
         {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase text-foreground font-medium block">
+        <label htmlFor="contact-message" className="font-sans text-micro uppercase text-foreground font-medium block">
           Contanos un poco más
         </label>
         <textarea
+          id="contact-message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           placeholder="¿Qué querés construir, qué problema querés resolver o qué te gustaría mejorar?"
-          className="w-full border-b border-border bg-transparent py-2.5 text-[15px] md:text-sm font-sans text-foreground outline-none transition-colors focus:border-primary resize-none placeholder:text-muted-foreground"
+          className="w-full resize-none rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
         />
       </div>
 
@@ -208,7 +230,7 @@ export const ContactForm = () => {
         type="submit"
         className="btn-primary-trama group w-full justify-center py-3.5 font-sans text-btn font-medium"
       >
-        <span>Enviar proyecto</span>
+        <span>Enviar mi proyecto</span>
         <div className="btn-icon-wrapper">
           <ArrowUpRight className="h-4 w-4" />
         </div>

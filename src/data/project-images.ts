@@ -1,16 +1,16 @@
 export const projectImages: Record<string, string> = {
-  famvar: "/famvarhome.avif",
-  "joyeria-cuore": "/cuore-home.avif",
+  famvar: "/famvar-.jpg",
+  "joyeria-cuore": "/cuore-.jpg",
 };
 
 export const projectGalleries: Record<string, string[]> = {
   famvar: [
-    "/famvarhome.avif",
+    "/famvar-.jpg",
     "/famvar-termos.avif",
     "/famvar-fundas.avif",
   ],
   "joyeria-cuore": [
-    "/cuore-home.avif",
+    "/cuore-.jpg",
     "/cuore-catalogo.avif",
     "/cuore-catalogo-2.avif",
     "/cuore-relojes.avif",

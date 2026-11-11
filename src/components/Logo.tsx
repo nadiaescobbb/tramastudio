@@ -10,7 +10,7 @@ interface LogoProps {
 export const Logo = ({ className, size = 32, invert = false, alt }: LogoProps) => {
   return (
     <img
-      src="/ht-logo.png"
+      src="/logo-trama.svg"
       alt={alt ?? ""}
       aria-hidden={alt ? undefined : true}
       style={{ width: typeof size === "number" ? `${size}px` : size }}

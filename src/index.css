@@ -667,6 +667,26 @@ html {
   }
 }
 
+.isotipo-tile .pill {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.isotipo-tile.blink .pill {
+  animation: isotipo-blink 0.25s ease-in-out 1;
+}
+
+@keyframes isotipo-blink {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .isotipo-tile.blink .pill {
+    animation: none;
+  }
+}
+
 /* Emil Kowalski Motion & Micro-Interactions System */
 :root {
   --ease-kowalski-smooth: cubic-bezier(0.16, 1, 0.3, 1);

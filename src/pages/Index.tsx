@@ -15,41 +15,36 @@ import { projects } from "@/data/projects";
 const FAQS = [
   {
     q: "¿Qué tipo de proyectos hacen?",
-    body: "Diseñamos y desarrollamos software a medida, aplicaciones web y productos digitales desde cero o en etapa de rediseño. No hacemos plantillas prehechas ni servicios de marketing digital aislado.",
+    body: "Diseñamos sitios, tiendas y aplicaciones a medida para resolver necesidades concretas.",
   },
   {
     q: "¿Tengo que tener definida la idea?",
-    lead: "No.",
-    body: "Podés llegar con una idea bastante clara o simplemente con un problema que necesitás resolver. Parte del trabajo es entender qué necesitás realmente antes de decidir qué construir.",
+    body: "No. Te ayudamos a definir qué problema resolver y qué conviene construir.",
   },
   {
     q: "¿Ustedes diseñan y desarrollan?",
-    lead: "Sí, por lo general las dos cosas juntas.",
-    body: "Diseñar y construir en el mismo proceso evita que se pierda algo en el traspaso entre quien pensó la interfaz y quien la programó. Si ya tenés un diseño resuelto y necesitás solo la construcción, también podemos entrar únicamente en esa etapa.",
+    body: "Sí. Podemos encargarnos de ambas etapas o sumarnos solo a una.",
   },
   {
     q: "¿Trabajan con empresas o también con emprendedores?",
-    lead: "Con ambos.",
-    body: "Para emprendedores nos enfocamos en validar rápido la idea inicial y construir un producto mínimo funcional. Para empresas intervenimos sobre flujos existentes, optimizando la arquitectura y la experiencia sin interrumpir la operación.",
+    body: "Trabajamos con empresas y emprendedores, ajustando el alcance a cada equipo.",
   },
   {
     q: "¿Qué pasa si no sé cuánto cuesta mi proyecto?",
-    lead: "No necesitás llegar con un presupuesto cerrado.",
-    body: "Primero entendemos qué querés hacer, qué necesitás y qué alcance tiene. A partir de eso podemos definir la mejor forma de abordarlo.",
+    body: "Es lo más común. Nos contás qué necesitás y te respondemos con un rango estimado y los pasos que haríamos, antes de que decidas nada.",
   },
 ];
 
 const Index = () => {
   // Estado para gestionar de forma determinista qué item del acordeón de FAQS está desplegado
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
     setSeo({
-      title: "HeyTrama — Productos Digitales y Software a Medida",
+      title: "HeyTrama — Sitios web y software para negocios",
       description:
-        "Diseñamos y desarrollamos aplicaciones, plataformas y software a medida para convertir ideas y necesidades de negocio en productos digitales que funcionan.",
-      ogDescription:
-        "Convertimos ideas y necesidades de negocio en productos digitales que funcionan.",
+        "Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina.",
+      image: "https://www.heytrama.com/og-image-1200x630.jpg",
       path: "/",
     });
 
@@ -68,7 +63,7 @@ const Index = () => {
       <Nav />
 
       {/* Sección Hero con fondo animado integrado por mezcla suave sin cortes de bordes */}
-      <section className="hero-start relative min-h-[100dvh] flex flex-col justify-center items-center pt-20 sm:pt-24 pb-8 sm:pb-12 overflow-hidden">
+      <section className="hero-start relative min-h-[100svh] flex flex-col justify-center items-center overflow-hidden pb-36 pt-24 sm:pb-44 sm:pt-28">
         {/* Capa de fondo animada con la imagen frame-faq.avif y fundido en la parte inferior */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div
@@ -77,17 +72,24 @@ const Index = () => {
             aria-hidden="true"
           />
         </div>
-        <div className="container-trama relative z-10 w-full text-center max-w-4xl lg:max-w-[58rem] mx-auto px-6 flex flex-col items-center justify-center my-auto">
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent via-[#FFFBF5]/75 to-[#FFFBF5] md:h-64"
+          aria-hidden="true"
+        />
+        <div className="container-trama relative z-10 my-auto flex w-full max-w-4xl flex-col items-center justify-center px-6 text-center lg:max-w-[58rem]">
           {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
           <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
             <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
-              entendemos el problema y construimos el software que lo resuelve.
+              primero entendemos el problema. después lo diseñamos y lo programamos.
             </span>
           </h1>
+          <p className="mt-5 max-w-3xl font-sans text-lg leading-relaxed text-muted md:text-xl">
+            Hacemos sitios web, tiendas online y sistemas para negocios y profesionales de Argentina.
+          </p>
 
           {/* Centered CTAs Row */}
           <div
-            className="pt-8 sm:pt-12 md:pt-14 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 animate-reading-text"
+            className="flex flex-col items-center justify-center gap-5 pt-6 sm:flex-row sm:gap-8 sm:pt-8 animate-reading-text"
             style={{ animationDelay: "400ms" }}
           >
             {/* Unificar mensaje de WhatsApp mediante waLink() para mantener consistencia en todos los puntos de contacto del sitio */}
@@ -123,14 +125,14 @@ const Index = () => {
       {/* ── SERVICIOS STACKED ────────────────────────────────────── */}
       <ServicesStack />
 
-      <section className="bg-[#050505] py-20 text-white md:py-28" id="proyectos">
-        <div className="container-trama px-6 md:px-12 lg:px-16">
+      <section className="bg-[#050505] py-20 text-[#FFFBF5] md:py-28" id="proyectos">
+        <div className="container-trama">
           <div className="mb-12 md:mb-16">
             <div>
-              <p className="font-mono text-micro font-medium uppercase tracking-[0.01em] text-white/70">
+              <p className="font-mono text-micro font-medium uppercase tracking-[0.01em] text-[#FFFBF5]">
                 TRABAJO SELECCIONADO
               </p>
-              <h2 className="mt-4 font-heading text-4xl font-normal tracking-tight text-white sm:text-5xl">
+              <h2 className="mt-4 font-heading text-4xl font-normal tracking-tight text-[#FFFBF5] sm:text-5xl">
                 Proyectos
               </h2>
             </div>
@@ -143,7 +145,7 @@ const Index = () => {
           <div className="mt-12 flex justify-center md:mt-16">
             <Link
               to="/proyectos"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 font-sans text-[15px] font-medium tracking-[0.01em] text-white transition-colors hover:border-white hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:text-base"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/60 px-6 py-3 font-sans text-[15px] font-medium tracking-[0.01em] text-white transition-colors hover:border-white hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:text-base"
             >
               Ver todos los proyectos
               <ArrowUpRight
@@ -165,10 +167,10 @@ const Index = () => {
             aria-hidden="true"
           />
         </div>
-        <div className="container-narrow relative z-10 px-6">
+        <div className="relative z-10 mx-auto w-full max-w-[720px] px-6">
           <Reveal>
             {/* Mantener etiqueta de categoría sobria y disciplinada en opacidad suave del texto principal */}
-            <div className="font-sans text-[15px] md:text-sm font-medium uppercase tracking-[0.01em] text-foreground">
+            <div className="font-sans text-[15px] md:text-sm font-medium uppercase tracking-[0.01em] text-[#B04A2A]">
               PREGUNTAS FRECUENTES
             </div>
           </Reveal>
@@ -185,7 +187,7 @@ const Index = () => {
               const isOpen = openFaq === i;
               const triggerId = `faq-trigger-${i}`;
               const contentId = `faq-content-${i}`;
-              const formattedIndex = `[${String(i + 1).padStart(2, "0")}]`;
+              const formattedIndex = String(i + 1).padStart(2, "0");
 
               return (
                 <Reveal key={item.q} delay={i * 80}>
@@ -199,9 +201,8 @@ const Index = () => {
                       onClick={() => setOpenFaq(isOpen ? null : i)}
                       className="w-full flex items-center justify-between py-6 text-left group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] rounded-sm transition-colors"
                     >
-                      <div className="flex items-center gap-4 md:gap-6">
-                        {/* Índice numerado en formato [01], [02], etc. */}
-                        <span className="font-mono text-[15px] md:text-sm text-foreground flex-shrink-0">
+                      <div className="flex items-baseline gap-4 md:gap-6">
+                        <span className="w-12 flex-shrink-0 font-heading text-[40px] font-normal leading-none text-[#C45A3A]">
                           {formattedIndex}
                         </span>
 
@@ -229,6 +230,7 @@ const Index = () => {
                       id={contentId}
                       role="region"
                       aria-labelledby={triggerId}
+                      aria-hidden={!isOpen}
                       className="grid transition-[grid-template-rows,opacity] duration-300"
                       style={{
                         gridTemplateRows: isOpen ? "1fr" : "0fr",
@@ -237,12 +239,7 @@ const Index = () => {
                       }}
                     >
                       <div className="overflow-hidden">
-                        <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl font-light pt-1 pb-6 pl-10 md:pl-16">
-                          {item.lead && (
-                            <>
-                              <strong className="text-foreground font-medium">{item.lead}</strong>{" "}
-                            </>
-                          )}
+                        <p className="text-base md:text-lg leading-relaxed text-foreground max-w-2xl font-light pt-1 pb-6 pl-16 md:pl-[72px]">
                           {item.body}
                         </p>
                       </div>
@@ -270,22 +267,20 @@ const Index = () => {
             aria-hidden="true"
           />
         </div>
-        <div className="container-trama relative z-10 px-6 md:px-12 lg:px-16">
-          <div className="mx-auto max-w-3xl">
-            <Reveal>
-              <div className="mb-8">
-                <span className="font-sans text-micro font-medium uppercase text-foreground">
-                  CONTACTO
-                </span>
-                <h2 className="h-section mt-4 leading-tight font-normal">
-                  Contanos qué necesita resolver tu negocio.
-                </h2>
-              </div>
-            </Reveal>
-            <Reveal delay={150}>
-              <ContactForm />
-            </Reveal>
-          </div>
+        <div className="relative z-10 mx-auto w-full max-w-[720px] px-6">
+          <Reveal>
+            <div className="mb-8">
+              <span className="font-sans text-micro font-medium uppercase text-[#B04A2A]">
+                CONTACTO
+              </span>
+              <h2 className="h-section mt-4 leading-tight font-normal">
+                Contanos qué necesita resolver tu negocio.
+              </h2>
+            </div>
+          </Reveal>
+          <Reveal delay={150}>
+            <ContactForm />
+          </Reveal>
         </div>
       </section>
 

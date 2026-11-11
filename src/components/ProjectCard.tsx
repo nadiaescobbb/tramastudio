@@ -15,11 +15,12 @@ import { projectImages } from "@/data/project-images";
 interface ProjectCardProps {
   project: Project;
   index: number;
+  theme?: "dark" | "light";
 }
 
 const revealEase = [0.2, 0, 0, 1] as const;
 
-export const ProjectCard = ({ project, index }: ProjectCardProps) => {
+export const ProjectCard = ({ project, index, theme = "dark" }: ProjectCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const tiltRef = useRef<HTMLDivElement>(null);
@@ -45,6 +46,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
   );
   const image = projectImages[project.slug] ?? "/famvarhome.avif";
   const tags = [project.category, ...project.format.split(/\s*\+\s*/)].join(" · ");
+  const isLight = theme === "light";
 
   const handleMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion) return;
@@ -81,7 +83,11 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
     >
       <Link
         to={`/proyectos/${project.slug}`}
-        className="group block text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-4 focus-visible:ring-offset-black"
+        className={`group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-4 ${
+          isLight
+            ? "text-foreground focus-visible:ring-offset-background"
+            : "text-white focus-visible:ring-offset-black"
+        }`}
       >
         <motion.div
           ref={containerRef}
@@ -100,15 +106,21 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleTiltReset}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-neutral-900"
+            className={`relative aspect-[16/11] overflow-hidden rounded-2xl ${
+              isLight ? "bg-[#FFFBF5]" : "bg-neutral-900"
+            }`}
           >
             <div
-              className={`absolute inset-0 flex items-center justify-center bg-neutral-800 transition-opacity duration-700 ${
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${
+                isLight ? "bg-[#F1ECE3]" : "bg-neutral-800"
+              } ${
                 imageLoaded ? "opacity-0" : "opacity-100"
               }`}
               aria-hidden="true"
             >
-              <span className="select-none font-heading text-7xl font-medium lowercase text-white/20 blur-sm">
+              <span className={`select-none font-heading text-7xl font-medium lowercase blur-sm ${
+                isLight ? "text-foreground/15" : "text-white/20"
+              }`}>
                 ht
               </span>
             </div>
@@ -138,17 +150,23 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           </motion.div>
         </motion.div>
 
-        <p className="pt-4 font-mono text-[15px] md:text-sm uppercase tracking-[0.01em] text-white/70">
+        <p className={`pt-4 font-mono text-[15px] md:text-sm uppercase tracking-[0.01em] ${
+          isLight ? "text-muted" : "text-white/70"
+        }`}>
           {tags}
         </p>
 
         <div className="flex justify-between gap-4 pt-2">
           <div>
-            <h2 className="font-heading text-2xl font-normal tracking-tight text-white transition-colors duration-300 group-hover:text-orange-500">
+            <h2 className={`font-heading text-2xl font-normal tracking-tight transition-colors duration-300 group-hover:text-orange-500 ${
+              isLight ? "text-foreground" : "text-white"
+            }`}>
               {project.name}
             </h2>
             {project.accent && (
-              <span className="font-serif text-lg font-normal italic text-white/60">
+              <span className={`font-serif text-lg font-normal italic ${
+                isLight ? "text-muted" : "text-white/60"
+              }`}>
                 {project.accent}
               </span>
             )}

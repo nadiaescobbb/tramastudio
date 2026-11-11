@@ -140,9 +140,7 @@ export const Nav = ({ variant = "default" }: NavProps) => {
             }`}
             onClick={() => closeMenu()}
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black text-white">
-              <Logo size={20} invert />
-            </span>
+            <Logo size={32} />
             <span>HeyTrama</span>
           </Link>
           {!isHome && (
