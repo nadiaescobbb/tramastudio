@@ -9,6 +9,8 @@ import Metodologia from "@/components/Metodologia";
 import { ServicesStack } from "@/components/ServicesStack";
 import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
+import { ProjectCard } from "@/components/ProjectCard";
+import { projects } from "@/data/projects";
 
 const FAQS = [
   {
@@ -85,7 +87,7 @@ const Index = () => {
 
           {/* Centered CTAs Row */}
           <div
-            className="pt-8 sm:pt-12 md:pt-14 flex flex-wrap items-center justify-center gap-4 sm:gap-6 animate-reading-text"
+            className="pt-8 sm:pt-12 md:pt-14 flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 animate-reading-text"
             style={{ animationDelay: "400ms" }}
           >
             {/* Unificar mensaje de WhatsApp mediante waLink() para mantener consistencia en todos los puntos de contacto del sitio */}
@@ -94,12 +96,22 @@ const Index = () => {
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
 
-            {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
             <Link
               to="/proyectos"
-              className="hidden sm:inline-block ml-6 font-sans text-xs sm:text-sm font-medium text-foreground/80 opacity-60 hover:opacity-100 hover:text-foreground hover:underline underline-offset-4 transition-colors px-3 py-3"
+              className="group inline-flex items-center gap-2 py-2 font-sans text-[15px] md:text-base font-medium tracking-[0.01em] text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
             >
-              Ver proyectos
+              <span className="relative py-1">
+                Ver proyectos
+                <span className="absolute inset-x-0 bottom-0 h-px bg-current opacity-30" aria-hidden="true" />
+                <span
+                  className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-current transition-transform [transition-duration:250ms] [transition-timing-function:var(--ease-standard)] group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
+                  aria-hidden="true"
+                />
+              </span>
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform [transition-duration:250ms] [transition-timing-function:var(--ease-standard)] group-hover:translate-x-1 group-hover:-translate-y-1 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-1 motion-reduce:transition-none"
+                aria-hidden="true"
+              />
             </Link>
           </div>
         </div>
@@ -110,6 +122,38 @@ const Index = () => {
 
       {/* ── SERVICIOS STACKED ────────────────────────────────────── */}
       <ServicesStack />
+
+      <section className="bg-[#050505] py-20 text-white md:py-28" id="proyectos">
+        <div className="container-trama px-6 md:px-12 lg:px-16">
+          <div className="mb-12 md:mb-16">
+            <div>
+              <p className="font-mono text-micro font-medium uppercase tracking-[0.01em] text-white/70">
+                TRABAJO SELECCIONADO
+              </p>
+              <h2 className="mt-4 font-heading text-4xl font-normal tracking-tight text-white sm:text-5xl">
+                Proyectos
+              </h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8">
+            {projects.slice(0, 3).map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
+          <div className="mt-12 flex justify-center md:mt-16">
+            <Link
+              to="/proyectos"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 font-sans text-[15px] font-medium tracking-[0.01em] text-white transition-colors hover:border-white hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:text-base"
+            >
+              Ver todos los proyectos
+              <ArrowUpRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                aria-hidden="true"
+              />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ── PREGUNTAS FRECUENTES (Fondo faq-.avif integrado sin líneas divisoras duras, tokenizado con bg-background) ── */}
       <section className="relative py-20 md:py-28 bg-background" id="preguntas">
@@ -124,7 +168,7 @@ const Index = () => {
         <div className="container-narrow relative z-10 px-6">
           <Reveal>
             {/* Mantener etiqueta de categoría sobria y disciplinada en opacidad suave del texto principal */}
-            <div className="font-sans text-xs font-medium uppercase tracking-widest text-foreground/70">
+            <div className="font-sans text-[15px] md:text-sm font-medium uppercase tracking-[0.01em] text-foreground">
               PREGUNTAS FRECUENTES
             </div>
           </Reveal>
@@ -157,7 +201,7 @@ const Index = () => {
                     >
                       <div className="flex items-center gap-4 md:gap-6">
                         {/* Índice numerado en formato [01], [02], etc. */}
-                        <span className="font-mono text-sm text-foreground/50 flex-shrink-0">
+                        <span className="font-mono text-[15px] md:text-sm text-foreground flex-shrink-0">
                           {formattedIndex}
                         </span>
 
@@ -226,58 +270,26 @@ const Index = () => {
             aria-hidden="true"
           />
         </div>
-        <div className="container-trama relative z-10">
-          <div className="grid grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Columna Izquierda (Contexto y contacto directo) */}
-            <div className="col-span-12 lg:col-span-5 space-y-6">
-              <Reveal>
-                {/* Cambiar la etiqueta CONTACTO a color negro (text-foreground) en lugar de acento editorial */}
-                <span className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block mb-4">
+        <div className="container-trama relative z-10 px-6 md:px-12 lg:px-16">
+          <div className="mx-auto max-w-3xl">
+            <Reveal>
+              <div className="mb-8">
+                <span className="font-sans text-micro font-medium uppercase text-foreground">
                   CONTACTO
                 </span>
-                {/* Titular H2 principal de contacto */}
-                <h2 className="h-section leading-tight font-normal">
+                <h2 className="h-section mt-4 leading-tight font-normal">
                   Contanos qué necesita resolver tu negocio.
                 </h2>
-                {/* Bloque de datos de contacto sin línea divisoria (border-t eliminada) */}
-                <div className="pt-4 space-y-3 font-sans text-subtle mt-4">
-                  <p className="text-foreground font-medium">
-                    Email directo:{" "}
-                    {/* Remover subrayado (underline) del enlace de correo electrónico */}
-                    <a
-                      href="mailto:hola@heytrama.com"
-                      className="text-foreground font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
-                    >
-                      hola@heytrama.com
-                    </a>
-                  </p>
-                  <p className="text-foreground font-medium">
-                    WhatsApp:{" "}
-                    {/* Remover subrayado (underline) del enlace de WhatsApp */}
-                    <a
-                      href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground font-medium hover:text-[hsl(var(--editorial-accent))] transition-colors"
-                    >
-                      +54 9 362 514-2700
-                    </a>
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Columna Derecha (Formulario) */}
-            <div className="col-span-12 lg:col-span-7">
-              <Reveal delay={150}>
-                <ContactForm />
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <ContactForm />
+            </Reveal>
           </div>
         </div>
       </section>
 
-      <Footer />
+      <Footer showIntro={false} />
     </div>
   );
 };

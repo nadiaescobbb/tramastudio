@@ -28,9 +28,7 @@ export const Nav = ({ variant = "default" }: NavProps) => {
   const navPillDark = "bg-black/40 border-white/10 text-white";
   const navPillLight = "bg-white/90 border-black/5 text-black/80";
   const navPillClasses = `${navPillBase} ${isDark ? navPillDark : navPillLight}`;
-  const navLinkDark = isDark
-    ? "text-white/70 hover:text-white hover:bg-white/10"
-    : "text-black/70 hover:text-black hover:bg-black/5";
+  const navLinkDark = isDark ? "nav-menu-link-dark" : "";
 
   const toggleBtnRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -137,7 +135,9 @@ export const Nav = ({ variant = "default" }: NavProps) => {
         <div className="pointer-events-auto flex items-center gap-2">
           <Link
             to="/"
-            className={`nav-brand-pill static pointer-events-auto flex items-center gap-2.5 ${navPillClasses}`}
+            className={`nav-brand-pill static pointer-events-auto flex items-center gap-2.5 ${navPillClasses} ${
+              isDark ? "nav-pill-dark" : ""
+            }`}
             onClick={() => closeMenu()}
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-black text-white">
@@ -150,7 +150,7 @@ export const Nav = ({ variant = "default" }: NavProps) => {
               type="button"
               onClick={handleVolver}
               aria-label="Volver atrás"
-              className={`nav-volver-pill pointer-events-auto inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-sm shadow-sm backdrop-blur-md ${
+              className={`nav-volver-pill pointer-events-auto inline-flex items-center gap-1.5 rounded-full border px-3 py-2 text-[15px] md:text-sm shadow-sm backdrop-blur-md ${
                 isDark
                   ? "border-white/20 bg-transparent text-white"
                   : "border-black/10 bg-white/80 text-[#171717]"
@@ -163,7 +163,9 @@ export const Nav = ({ variant = "default" }: NavProps) => {
         </div>
 
         <nav
-          className={`nav-menu-pill static flex items-center pointer-events-auto ${navPillClasses} ${isOpen ? "open" : ""}`}
+          className={`nav-menu-pill static flex items-center pointer-events-auto ${navPillClasses} ${
+            isDark ? "nav-pill-dark" : ""
+          } ${isOpen ? "open" : ""}`}
           aria-label="Navegación principal"
         >
           <div className="hidden items-center gap-2 md:flex">

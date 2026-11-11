@@ -73,7 +73,7 @@ export const ContactForm = () => {
         <h4 className="font-heading text-2xl font-medium text-foreground">
           Proyecto enviado con éxito
         </h4>
-        <p className="text-muted-foreground text-sm max-w-md mx-auto leading-relaxed font-sans">
+        <p className="text-muted-foreground text-[15px] md:text-sm max-w-md mx-auto leading-relaxed font-sans">
           Gracias {name}. Nadia revisará tu proyecto para <strong className="text-foreground font-medium">{service}</strong> ({budget}) y te responderá a la brevedad.
         </p>
       </div>
@@ -88,7 +88,7 @@ export const ContactForm = () => {
         {/* 1. Nombre Completo */}
         <div className="space-y-1.5">
           {/* Label en font-medium para evitar negrita sintética */}
-          <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+          <label className="font-sans text-micro uppercase text-foreground font-medium block">
             Nombre completo *
           </label>
           {/* Input con borde inferior simple y fondo transparente */}
@@ -98,14 +98,14 @@ export const ContactForm = () => {
             onChange={(e) => setName(e.target.value)}
             required
             placeholder="Tu nombre y apellido"
-            className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
+            className="w-full border-b border-border bg-transparent py-2.5 text-[15px] md:text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground"
           />
         </div>
 
         {/* 2. Email */}
         <div className="space-y-1.5">
           {/* Label en font-medium para evitar negrita sintética */}
-          <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+          <label className="font-sans text-micro uppercase text-foreground font-medium block">
             Email de contacto *
           </label>
           {/* Input con borde inferior simple y fondo transparente */}
@@ -115,7 +115,7 @@ export const ContactForm = () => {
             onChange={(e) => setEmail(e.target.value)}
             required
             placeholder="tu@email.com"
-            className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground/50"
+            className="w-full border-b border-border bg-transparent py-2.5 text-[15px] md:text-sm font-sans text-foreground outline-none transition-colors focus:border-primary placeholder:text-muted-foreground"
           />
         </div>
       </div>
@@ -123,7 +123,7 @@ export const ContactForm = () => {
       {/* 3. Tipo de Servicio / ¿Qué querés construir? */}
       <div className="space-y-3">
         {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+        <label className="font-sans text-micro uppercase text-foreground font-medium block">
           ¿Qué querés construir? *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -150,7 +150,7 @@ export const ContactForm = () => {
       {/* 4. Presupuesto Estimado */}
       <div className="space-y-3">
         {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+        <label className="font-sans text-micro uppercase text-foreground font-medium block">
           Presupuesto estimado *
         </label>
         <div className="flex flex-wrap gap-2">
@@ -177,7 +177,7 @@ export const ContactForm = () => {
       {/* 5. Detalle del Proyecto */}
       <div className="space-y-1.5">
         {/* Reemplazar font-semibold por font-medium para evitar negrita sintética en fuente Aventa */}
-        <label className="font-sans text-micro uppercase tracking-wider text-foreground font-medium block">
+        <label className="font-sans text-micro uppercase text-foreground font-medium block">
           Contanos un poco más
         </label>
         <textarea
@@ -185,18 +185,18 @@ export const ContactForm = () => {
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           placeholder="¿Qué querés construir, qué problema querés resolver o qué te gustaría mejorar?"
-          className="w-full border-b border-border bg-transparent py-2.5 text-sm font-sans text-foreground outline-none transition-colors focus:border-primary resize-none placeholder:text-muted-foreground/50"
+          className="w-full border-b border-border bg-transparent py-2.5 text-[15px] md:text-sm font-sans text-foreground outline-none transition-colors focus:border-primary resize-none placeholder:text-muted-foreground"
         />
       </div>
 
       {error && (
         <div className="space-y-2 pt-2">
-          <p className="text-xs text-[hsl(var(--editorial-accent))] font-sans font-medium">{error}</p>
+          <p className="text-[15px] md:text-sm text-[hsl(var(--editorial-accent))] font-sans font-medium">{error}</p>
           <a
             href={whatsappMessage}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-sans font-medium underline text-foreground hover:text-[hsl(var(--editorial-accent))] transition-colors"
+            className="inline-flex items-center gap-1.5 text-[15px] md:text-sm font-sans font-medium underline text-foreground hover:text-[hsl(var(--editorial-accent))] transition-colors"
           >
             <span>Enviar directamente por WhatsApp ↗</span>
           </a>
@@ -206,7 +206,7 @@ export const ContactForm = () => {
       {/* Submit Button en font-medium sin negritas sintéticas */}
       <button
         type="submit"
-        className="btn-primary-trama group w-full justify-center py-3.5 font-sans text-btn font-medium tracking-wide"
+        className="btn-primary-trama group w-full justify-center py-3.5 font-sans text-btn font-medium"
       >
         <span>Enviar proyecto</span>
         <div className="btn-icon-wrapper">

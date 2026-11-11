@@ -77,9 +77,9 @@ export default function Projects() {
                 data-filter-target={category.toLowerCase()}
                 data-filter-status={isActive ? "active" : "not-active"}
                 onClick={() => setActiveFilter(category)}
-                className={`cta-2 btn group relative isolate overflow-hidden rounded-full border px-5 py-2.5 text-xs uppercase tracking-widest transition-colors ${
+                className={`group relative isolate overflow-hidden rounded-full border px-5 py-2.5 text-[15px] md:text-sm uppercase tracking-[0.01em] transition-colors ${
                   isActive
-                    ? "bg-white border-white text-black"
+                    ? "--is-active bg-white border-white text-black"
                     : "bg-[#111] border-white/15 text-white/60 hover:border-white/30"
                 }`}
                 aria-pressed={isActive}
@@ -122,7 +122,7 @@ export default function Projects() {
         </div>
 
         {filteredProjects.length === 0 && (
-          <p className="py-16 text-center font-sans text-sm text-white/60">
+          <p className="py-16 text-center font-sans text-[15px] md:text-sm text-white/70">
             No hay proyectos en esta categoría por el momento.
           </p>
         )}
@@ -143,26 +143,26 @@ export default function Projects() {
             <br />
             <span className="font-serif font-light italic">merece existir?</span>
           </h2>
-          <p className="mt-8 max-w-2xl text-sm leading-[1.6] text-white/55 md:text-lg">
+          <p className="mt-8 max-w-2xl text-[15px] md:text-sm leading-[1.6] tracking-normal text-white/70 md:text-lg">
             Diseñamos y construimos productos digitales que funcionan. Contanos tu proyecto.
           </p>
           <a
             href={waLink("Hola, quiero contarles sobre mi proyecto.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="cta-2 btn group relative isolate mt-10 inline-flex items-center gap-2 overflow-hidden rounded-full !border-white !bg-white px-8 py-4 text-xs font-medium uppercase tracking-widest !text-black"
+            className="group relative isolate mt-10 inline-flex items-center gap-2 overflow-hidden rounded-full border border-white bg-white px-8 py-4 text-[15px] md:text-sm font-medium uppercase tracking-[0.01em] text-black"
           >
             <span className="btn__circle-wrap pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-full" aria-hidden="true">
               <span className="btn__circle absolute left-1/2 top-1/2 aspect-square w-[320%] -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full bg-black transition-transform duration-700 group-hover:scale-100" />
             </span>
-            <span className="btn__text relative z-10 transition-colors group-hover:!text-white">
+            <span className="btn__text relative z-10 transition-colors group-hover:text-white">
               HABLEMOS
               <ArrowUpRight className="ml-1 inline h-4 w-4" aria-hidden="true" />
             </span>
           </a>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-4 px-6 py-5 text-[10px] uppercase tracking-widest text-white/30 md:px-12">
+        <div className="absolute bottom-0 left-0 right-0 flex flex-col items-start justify-between gap-2 px-6 py-5 text-[15px] md:flex-row md:items-center md:px-12 md:text-sm uppercase tracking-[0.01em] text-white/70">
           <span>© {new Date().getFullYear()} HeyTrama. Todos los derechos reservados.</span>
           <button
             type="button"

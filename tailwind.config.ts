@@ -13,9 +13,9 @@ export default {
     },
     extend: {
       fontSize: {
-        micro: ['0.6875rem', { lineHeight: '1rem', letterSpacing: '0.05em' }],
-        tag: ['0.75rem', { lineHeight: '1rem', letterSpacing: '0.08em' }],
-        btn: ['0.8125rem', { lineHeight: '1.25rem' }],
+        micro: ['0.875rem', { lineHeight: '1.35', letterSpacing: '0.01em' }],
+        tag: ['0.875rem', { lineHeight: '1.35', letterSpacing: '0.01em' }],
+        btn: ['0.875rem', { lineHeight: '1.35', letterSpacing: '0.01em' }],
         subtle: ['0.875rem', { lineHeight: '1.25rem' }],
         body: ['1rem', { lineHeight: '1.6' }],
         'body-lg': ['1.125rem', { lineHeight: '1.6' }],

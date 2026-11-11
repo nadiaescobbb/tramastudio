@@ -138,7 +138,7 @@ export const ProjectCard = ({ project, index }: ProjectCardProps) => {
           </motion.div>
         </motion.div>
 
-        <p className="pt-4 font-mono text-[0.68rem] uppercase tracking-widest text-white/60">
+        <p className="pt-4 font-mono text-[15px] md:text-sm uppercase tracking-[0.01em] text-white/70">
           {tags}
         </p>
 

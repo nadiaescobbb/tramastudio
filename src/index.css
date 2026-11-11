@@ -175,14 +175,14 @@ html {
     font-variation-settings: "SOFT" 0, "WONK" 0;
     font-weight: 400;
     line-height: 1.1;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.01em;
     font-size: clamp(22px, 2.5vw, 32px);
   }
   .eyebrow {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.4em;
+    letter-spacing: 0.01em;
     text-transform: uppercase;
     color: hsl(var(--accent));
   }
@@ -219,7 +219,7 @@ html {
   /* Button Architecture */
   .btn-primary-trama {
     /* Reemplazar font-semibold por font-medium para no depender de negrita sintética al no contar con peso 600 en Aventa */
-    @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-[13px] font-medium text-white transition-all duration-300 active:scale-[0.97] rounded-full;
+    @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-sm font-medium text-white transition-all duration-300 active:scale-[0.97] rounded-full;
   }
   .btn-icon-wrapper {
     @apply flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:bg-white/20 group-hover:translate-x-1;
@@ -235,7 +235,7 @@ html {
     transform: translateY(0) scale(0.98);
   }
   .btn-primary-trama.large {
-    font-size: 13px;
+    font-size: 14px;
     padding: 18px 36px;
   }
   .trama-card:hover {
@@ -317,9 +317,9 @@ html {
     margin-top: 9px;
     color: hsl(var(--muted));
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.01em;
     line-height: 1.2;
   }
 
@@ -393,10 +393,10 @@ html {
     padding: 0 28px;
     color: white;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 14px;
     text-transform: uppercase;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.01em;
     box-shadow: 0 18px 38px rgba(0,0,0,0.24);
     transition: transform 280ms var(--ease-standard), box-shadow 280ms var(--ease-standard);
   }
@@ -445,6 +445,13 @@ html {
     backdrop-filter: blur(18px);
   }
 
+  .nav-brand-pill.nav-pill-dark,
+  .nav-menu-pill.nav-pill-dark {
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(0,0,0,0.4);
+    color: #ffffff;
+  }
+
   .nav-brand-pill {
     left: clamp(16px, 3vw, 42px);
     min-height: 44px;
@@ -453,7 +460,7 @@ html {
     font-family: var(--font-mono);
     font-size: 14px;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.01em;
     color: #141312;
   }
 
@@ -476,13 +483,22 @@ html {
     font-family: var(--font-mono);
     font-size: 14px;
     font-weight: 600;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.01em;
     transition: background 240ms var(--ease-standard), color 240ms var(--ease-standard);
   }
 
   .nav-menu-link:hover {
     background: rgba(0,0,0,0.06);
     color: #000000;
+  }
+
+  .nav-menu-link.nav-menu-link-dark {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .nav-menu-link.nav-menu-link-dark:hover {
+    background: rgba(255,255,255,0.1);
+    color: #ffffff;
   }
 
   .nav-menu-cta {
@@ -495,9 +511,9 @@ html {
     padding: 0 16px;
     color: white;
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.01em;
     border: 1px solid transparent;
     transition: transform 220ms var(--ease-standard), background 300ms var(--ease-standard), color 300ms var(--ease-standard), border-color 300ms var(--ease-standard);
   }
@@ -552,13 +568,13 @@ html {
       left: 16px;
       min-height: 42px;
       padding-right: 13px;
-      font-size: 13px;
+      font-size: 15px;
     }
 
     .nav-menu-pill {
       right: 16px;
       gap: 6px;
-      max-width: 50px;
+      max-width: none;
     }
 
     .nav-menu-cta {
@@ -594,8 +610,8 @@ html {
     }
 
     .project-showcase-footer p {
-      font-size: 9px;
-      letter-spacing: 0.28em;
+      font-size: 15px;
+      letter-spacing: 0.01em;
     }
 
     .project-showcase-arrow {
@@ -909,11 +925,11 @@ html {
 
 .project-grid__service {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 14px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.7);
   margin: 0;
 }
 
@@ -960,5 +976,22 @@ html {
   animation: heroBgPulse 20s ease-in-out infinite alternate;
 }
 
+@media (max-width: 767px) {
+  .nav-menu-pill {
+    max-width: 50px;
+  }
 
+  .text-micro,
+  .text-tag,
+  .text-btn,
+  .eyebrow {
+    font-size: 15px;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+  }
 
+  .hero-primary-cta,
+  .btn-primary-trama {
+    font-size: 15px;
+  }
+}
