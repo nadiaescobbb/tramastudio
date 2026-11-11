@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { waLink } from "@/data/projects";
+import { Logo } from "@/components/Logo";
 
 interface FooterProps {
   showIntro?: boolean;
@@ -29,6 +30,10 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
     /* Footer completo de HeyTrama en ambiente oscuro tokenizado con bg-foreground con letras blancas y marca en mayúsculas */
     <footer className="bg-[#050505] text-white pt-20 md:pt-28 pb-12 overflow-hidden">
       <div className="container-trama">
+        <Link to="/" className="mb-12 inline-flex items-center gap-3 text-white" aria-label="HeyTrama, inicio">
+          <Logo size={32} alt="Isotipo de HeyTrama" />
+          <span className="font-heading text-2xl">HeyTrama</span>
+        </Link>
         {showIntro && (
           <div className="grid grid-cols-12 items-start gap-8 pb-16 lg:gap-12 md:pb-24">
             <div className="col-span-12 space-y-6 lg:col-span-7">
@@ -48,7 +53,7 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
             </div>
             <div className="col-span-12 space-y-4 lg:col-span-5 lg:pt-4">
               <span className="block font-mono text-[15px] font-medium uppercase tracking-[0.01em] text-white/70 md:text-sm">
-                ESTUDIO DE PRODUCTO & SOFTWARE
+                Estudio de producto y software
               </span>
               <p className="max-w-md font-sans text-[15px] font-normal leading-relaxed text-white/80 sm:text-base">
                 Diseñamos y desarrollamos aplicaciones, plataformas y software a medida para convertir ideas y necesidades de negocio en productos digitales que funcionan.
@@ -61,8 +66,8 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
         <div className="grid grid-cols-12 gap-8 lg:gap-10 py-16 md:py-20 border-b border-white/10 font-sans">
           {/* Columna 1: Navegación */}
           <div className="col-span-6 sm:col-span-3 space-y-4">
-            <span className="font-mono text-micro font-medium uppercase text-white/70 block">
-              NAVEGACIÓN
+            <span className="font-mono text-micro font-medium text-white/70 block">
+              Navegación
             </span>
             <ul className="space-y-2.5 text-[15px] md:text-sm font-medium">
               <li>
@@ -96,42 +101,47 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
                   Preguntas
                 </a>
               </li>
+              <li>
+                <a href="/#contacto" onClick={(event) => handleHashClick(event, "/#contacto")} className="text-white/90 hover:text-white transition-colors">
+                  Contacto
+                </a>
+              </li>
             </ul>
           </div>
 
           {/* Columna 2: Servicios (Alineados exactamente con los 5 servicios canónicos del estudio) */}
           <div className="col-span-6 sm:col-span-3 space-y-4">
-            <span className="font-mono text-micro font-medium uppercase text-white/70 block">
-              SERVICIOS
+            <span className="font-mono text-micro font-medium text-white/70 block">
+              Servicios
             </span>
             <ul className="space-y-2.5 text-[15px] md:text-sm font-medium text-white/80">
-              <li>Sitios web & Landing Pages</li>
-              <li>Rediseño de sitios y productos existentes</li>
-              <li>Implementación de interfaces</li>
-              <li>Web Apps, catálogos & herramientas internas</li>
-              <li>MVP</li>
+              <li>Sitios web y landing pages</li>
+              <li>Rediseño de sitios</li>
+              <li>Programación de interfaces</li>
+              <li>Apps, catálogos y herramientas internas</li>
+              <li>Estrategia y MVP</li>
             </ul>
           </div>
 
           {/* Columna 3: Contacto */}
           <div className="col-span-6 sm:col-span-3 space-y-4">
-            <span className="font-mono text-micro font-medium uppercase text-white/70 block">
-              CONTACTO
+            <span className="font-mono text-micro font-medium text-white/70 block">
+              Contacto
             </span>
             <ul className="space-y-2.5 text-[15px] md:text-sm font-medium">
               <li>
                 <a href="mailto:hola@heytrama.com" className="text-white/90 hover:text-white transition-colors">
-                  hola@heytrama.com
+                  Email directo: hola@heytrama.com
                 </a>
               </li>
               <li>
                 <a href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")} target="_blank" rel="noopener noreferrer" className="text-white/90 hover:text-white transition-colors">
-                  +54 9 362 514-2700
+                  WhatsApp: +54 9 362 514-2700
                 </a>
               </li>
               <li>
                 <a href="/#contacto" onClick={(event) => handleHashClick(event, "/#contacto")} className="text-white/90 hover:text-white transition-colors">
-                  Enviar formulario ↗
+                  Enviar formulario
                 </a>
               </li>
             </ul>
@@ -139,8 +149,8 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
 
           {/* Columna 4: Redes Sociales */}
           <div className="col-span-6 sm:col-span-3 space-y-4">
-            <span className="font-mono text-micro font-medium uppercase text-white/70 block">
-              REDES SOCIALES
+            <span className="font-mono text-micro font-medium text-white/70 block">
+              Redes
             </span>
             <ul className="space-y-2.5 text-[15px] md:text-sm font-medium">
               <li>
@@ -154,31 +164,12 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
                   Instagram ↗
                 </a>
               </li>
-              <li>
-                <a
-                  href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="WhatsApp de HeyTrama"
-                  className="text-white/90 hover:text-white transition-colors inline-flex items-center gap-1"
-                >
-                  WhatsApp ↗
-                </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:hola@heytrama.com"
-                  className="text-white/90 hover:text-white transition-colors inline-flex items-center gap-1"
-                >
-                  Email Directo ↗
-                </a>
-              </li>
             </ul>
           </div>
         </div>
 
         {/* Bloque Inferior: Derechos de autor y botón Scroll Top */}
-        <div className="pt-8 flex flex-wrap items-center justify-between gap-4 font-mono text-micro uppercase text-white/70 border-t border-white/10">
+        <div className="pt-8 flex flex-wrap items-center justify-between gap-4 pr-16 font-mono text-micro text-white/70 border-t border-white/10 sm:pr-20">
           <div>© {year} HeyTrama. Todos los derechos reservados.</div>
 
           <div className="flex items-center gap-6">
@@ -189,7 +180,7 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
               aria-label="Volver arriba en la página"
               className="inline-flex items-center gap-1 text-white hover:text-white transition-colors cursor-pointer"
             >
-              <span>SCROLL TOP</span>
+              <span>Scroll top</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>

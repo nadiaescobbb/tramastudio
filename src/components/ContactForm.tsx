@@ -6,24 +6,25 @@ const FORM_ENDPOINT = "https://formsubmit.co/ajax/hola@heytrama.com";
 
 // Opciones de servicios alineadas exactamente con los 5 servicios del estudio (ServicesStack.tsx)
 const SERVICES_OPTIONS = [
-  "Sitios web & Landing Pages",
-  "Rediseño de sitios y productos existentes",
-  "Implementación de interfaces",
-  "Web Apps, catálogos & herramientas internas",
-  "MVP",
+  "Sitios web y landing pages",
+  "Rediseño de sitios",
+  "Programación de interfaces",
+  "Apps, catálogos y herramientas internas",
+  "Estrategia y MVP (primera versión)",
+  "No estoy seguro todavía",
 ];
 
 const BUDGET_OPTIONS = [
-  "Hasta USD 1.500",
-  "USD 1.500–3.000",
-  "USD 3.000–6.000",
-  "Más de USD 6.000",
+  "USD 400–1.000",
+  "USD 1.000–2.500",
+  "USD 2.500–5.000",
   "Necesito orientación",
 ];
 
 export const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
   const [service, setService] = useState("");
   const [budget, setBudget] = useState("");
   const [message, setMessage] = useState("");
@@ -41,6 +42,7 @@ export const ContactForm = () => {
         body: JSON.stringify({
           name,
           email,
+          whatsapp,
           service,
           budget,
           message,
@@ -71,11 +73,8 @@ export const ContactForm = () => {
           <Check className="w-6 h-6" />
         </div>
         <h4 className="font-heading text-2xl font-medium text-foreground">
-          Proyecto enviado con éxito
+          Recibimos tu proyecto. Te respondemos por email en [PLAZO].
         </h4>
-        <p className="text-muted-foreground text-[15px] md:text-sm max-w-md mx-auto leading-relaxed font-sans">
-          Gracias {name}. Nadia revisará tu proyecto para <strong className="text-foreground font-medium">{service}</strong> ({budget}) y te responderá a la brevedad.
-        </p>
       </div>
     );
   }
@@ -107,21 +106,36 @@ export const ContactForm = () => {
         </div>
 
         {/* 2. Email */}
-        <div className="space-y-1.5">
-          {/* Label en font-medium para evitar negrita sintética */}
-          <label htmlFor="contact-email" className="font-sans text-micro uppercase text-foreground font-medium block">
-            Email de contacto *
-          </label>
-          {/* Input con borde inferior simple y fondo transparente */}
-          <input
-            id="contact-email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="tu@email.com"
-            className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
-          />
+        <div className="space-y-8">
+          <div className="space-y-1.5">
+            {/* Label en font-medium para evitar negrita sintética */}
+            <label htmlFor="contact-email" className="font-sans text-micro uppercase text-foreground font-medium block">
+              Email de contacto *
+            </label>
+            {/* Input con borde inferior simple y fondo transparente */}
+            <input
+              id="contact-email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="tu@email.com"
+              className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <label htmlFor="contact-whatsapp" className="font-sans text-micro uppercase text-foreground font-medium block">
+              WhatsApp (opcional)
+            </label>
+            <input
+              id="contact-whatsapp"
+              type="tel"
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
+              placeholder="+54 9 ..."
+              className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
+            />
+          </div>
         </div>
       </div>
 
@@ -206,7 +220,7 @@ export const ContactForm = () => {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
-          placeholder="¿Qué querés construir, qué problema querés resolver o qué te gustaría mejorar?"
+          placeholder="¿Qué problema querés resolver o qué te gustaría mejorar?"
           className="w-full resize-none rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
         />
       </div>

@@ -15,7 +15,7 @@ import { projects } from "@/data/projects";
 const FAQS = [
   {
     q: "¿Qué tipo de proyectos hacen?",
-    body: "Diseñamos sitios, tiendas y aplicaciones a medida para resolver necesidades concretas.",
+    body: "Sitios web, tiendas online, catálogos, sistemas internos y apps. Si lo tuyo no entra en esa lista, contanos y te decimos si lo hacemos.",
   },
   {
     q: "¿Tengo que tener definida la idea?",
@@ -23,11 +23,11 @@ const FAQS = [
   },
   {
     q: "¿Ustedes diseñan y desarrollan?",
-    body: "Sí. Podemos encargarnos de ambas etapas o sumarnos solo a una.",
+    body: "Las dos cosas, y las hacemos juntas. No hay traspaso entre quien diseña y quien programa, así que lo que se diseña es lo que después se construye.",
   },
   {
     q: "¿Trabajan con empresas o también con emprendedores?",
-    body: "Trabajamos con empresas y emprendedores, ajustando el alcance a cada equipo.",
+    body: "Con los dos: negocios que ya funcionan, profesionales independientes y gente que recién arranca. Contanos en qué punto estás y vemos qué tiene sentido hacer ahora.",
   },
   {
     q: "¿Qué pasa si no sé cuánto cuesta mi proyecto?",
@@ -76,14 +76,17 @@ const Index = () => {
           className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent via-[#FFFBF5]/75 to-[#FFFBF5] md:h-64"
           aria-hidden="true"
         />
-        <div className="container-trama relative z-10 my-auto flex w-full max-w-4xl flex-col items-center justify-center px-6 text-center lg:max-w-[58rem]">
+        <div className="container-trama relative z-10 my-auto flex w-full max-w-4xl translate-y-10 flex-col items-center justify-center px-6 text-center lg:max-w-[58rem]">
           {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
-          <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground">
-            <span className="inline-block animate-reading-text" style={{ animationDelay: "100ms" }}>
-              primero entendemos el problema. después lo diseñamos y lo programamos.
+          <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground [text-wrap:balance]">
+            <span className="block animate-reading-text" style={{ animationDelay: "100ms" }}>
+              primero entendemos el problema.
+            </span>
+            <span className="block animate-reading-text">
+              después lo diseñamos y lo programamos.
             </span>
           </h1>
-          <p className="mt-5 max-w-3xl font-sans text-lg leading-relaxed text-muted md:text-xl">
+          <p className="mt-5 max-w-4xl font-sans text-lg leading-relaxed text-muted [text-wrap:balance] md:text-xl">
             Hacemos sitios web, tiendas online y sistemas para negocios y profesionales de Argentina.
           </p>
 
@@ -274,7 +277,7 @@ const Index = () => {
                 CONTACTO
               </span>
               <h2 className="h-section mt-4 leading-tight font-normal">
-                Contanos qué necesita resolver tu negocio.
+                Contanos qué necesitás resolver.
               </h2>
             </div>
           </Reveal>

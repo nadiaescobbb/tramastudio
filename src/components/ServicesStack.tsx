@@ -3,31 +3,36 @@ import { useState } from "react";
 const SERVICIOS = [
   {
     id: "01",
-    title: "Sitios web & Landing Pages",
+    category: "Web",
+    title: "Sitios web y landing pages",
     desc: "Sitios que explican lo que hacés y llevan a la consulta. Diseño, desarrollo y puesta en línea.",
     bullets: ["Diseño adaptable a cada pantalla", "Estructura enfocada en conversión", "Implementación y puesta en línea"],
   },
   {
     id: "02",
-    title: "UX & Rediseño",
+    category: "Web",
+    title: "Rediseño de sitios",
     desc: "Tomamos un sitio que ya existe y lo reordenamos para que se entienda y la gente consulte.",
     bullets: ["Detectar fricciones", "Ordenar contenido y navegación", "Mejorar los flujos de uso"],
   },
   {
     id: "03",
-    title: "Frontend & Code",
+    category: "Web",
+    title: "Programación de interfaces",
     desc: "Programamos tu diseño, o el nuestro, en código que otro desarrollador pueda tomar y seguir.",
     bullets: ["Implementación de interfaces", "Integración con servicios", "Rendimiento y accesibilidad"],
   },
   {
     id: "04",
-    title: "Apps & Catálogos",
+    category: "Software",
+    title: "Apps, catálogos y herramientas internas",
     desc: "Catálogos, tiendas y herramientas internas para vender u operar sin planillas.",
     bullets: ["Catálogos digitales", "Tiendas online", "Herramientas internas"],
   },
   {
     id: "05",
-    title: "Estrategia & MVP",
+    category: "Software",
+    title: "Estrategia y MVP",
     desc: "Definimos qué construir primero y lo lanzamos en una versión mínima que se pueda probar.",
     bullets: ["Definir el alcance inicial", "Priorizar funcionalidades", "Validar antes de escalar"],
   },
@@ -58,14 +63,19 @@ export function ServicesStack() {
 
             return (
               <article key={servicio.id} className="border-b border-[#6F6A62]">
-                <div className="grid grid-cols-[48px_minmax(0,1fr)_40px] items-center gap-x-3 gap-y-2 py-6 md:grid-cols-[64px_minmax(190px,0.8fr)_minmax(0,1.6fr)_48px] md:gap-x-6 md:py-7">
+                <div className="grid grid-cols-[48px_minmax(0,1fr)_40px] items-center gap-x-3 gap-y-2 py-6 md:grid-cols-[64px_minmax(0,1fr)_90px_minmax(0,1.6fr)_48px] md:gap-x-6 md:py-7 xl:grid-cols-[64px_280px_90px_minmax(0,1fr)_48px] xl:gap-x-4">
                   <span className="row-span-2 font-heading text-[40px] font-normal leading-none text-[#C45A3A] md:row-span-1">
                     {servicio.id}
                   </span>
-                  <h3 className="min-w-0 whitespace-nowrap font-heading text-[clamp(16px,5vw,22px)] font-medium leading-tight tracking-tight text-foreground md:text-2xl">
-                    {servicio.title}
-                  </h3>
-                  <p className="col-start-2 text-base leading-[1.55] text-foreground/75 md:col-start-3 md:row-start-1">
+                  <div className="flex min-w-0 items-center gap-x-3 md:contents">
+                    <h3 className="min-w-0 font-heading text-[clamp(16px,5vw,22px)] font-medium leading-tight tracking-tight text-foreground md:text-2xl">
+                      {servicio.title}
+                    </h3>
+                    <span className="shrink-0 rounded-full bg-[#544F4F]/[0.06] px-2.5 py-0.5 font-mono text-xs leading-tight text-[#544F4F]">
+                      {servicio.category}
+                    </span>
+                  </div>
+                  <p className="col-start-2 text-base leading-[1.55] text-foreground/75 md:col-start-4 md:row-start-1 xl:whitespace-nowrap xl:text-sm">
                     {servicio.desc}
                   </p>
                   <button
@@ -75,7 +85,7 @@ export function ServicesStack() {
                     aria-controls={detailsId}
                     aria-label={`${isActive ? "Cerrar" : "Ampliar"} detalles de ${servicio.title}`}
                     onClick={() => setActive(isActive ? null : servicio.id)}
-                    className="col-start-3 row-start-1 flex h-10 w-10 items-center justify-center rounded-full border border-[#6F6A62] text-foreground transition-colors hover:bg-foreground hover:text-[#FFFBF5] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C45A3A] md:col-start-4 md:h-12 md:w-12"
+                    className="col-start-3 row-start-1 flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-foreground/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#C45A3A] md:col-start-5 md:h-12 md:w-12"
                   >
                     <span aria-hidden="true" className="font-sans text-2xl font-light leading-none">
                       {isActive ? "−" : "+"}
