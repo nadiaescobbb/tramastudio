@@ -1,73 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useIsotipoMotion } from "@/hooks/use-isotipo-motion";
 
 export default function IsotipoOjos() {
   const tile = useRef<HTMLDivElement>(null);
   const sphere = useRef<HTMLDivElement>(null);
   const marks = useRef<SVGGElement>(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (!window.matchMedia("(min-width: 768px) and (hover: hover)").matches) return;
-
-    const target = { x: 0, y: 0 };
-    const cur = { x: 0, y: 0 };
-    const MAX = 9;
-    const TILT = 7;
-    let raf = 0;
-    let idle = 0;
-
-    const tick = () => {
-      cur.x += (target.x - cur.x) * 0.12;
-      cur.y += (target.y - cur.y) * 0.12;
-      marks.current?.setAttribute(
-        "transform",
-        `translate(${cur.x * MAX} ${cur.y * MAX})`,
-      );
-      if (sphere.current) {
-        sphere.current.style.transform =
-          `perspective(600px) rotateY(${cur.x * TILT}deg) rotateX(${-cur.y * TILT}deg)`;
-      }
-      const moving = Math.abs(target.x - cur.x) + Math.abs(target.y - cur.y) > 0.001;
-      raf = moving ? requestAnimationFrame(tick) : 0;
-    };
-    const kick = () => {
-      if (!raf) raf = requestAnimationFrame(tick);
-    };
-
-    const onMove = (event: PointerEvent) => {
-      if (!tile.current) return;
-      const bounds = tile.current.getBoundingClientRect();
-      const dx = event.clientX - (bounds.left + bounds.width / 2);
-      const dy = event.clientY - (bounds.top + bounds.height / 2);
-      const distance = Math.hypot(dx, dy) || 1;
-      const scale = Math.tanh(distance / 300);
-      target.x = (dx / distance) * scale;
-      target.y = (dy / distance) * scale;
-      kick();
-      window.clearTimeout(idle);
-      idle = window.setTimeout(() => {
-        target.x = 0;
-        target.y = 0;
-        kick();
-      }, 2500);
-    };
-
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => {
-      window.removeEventListener("pointermove", onMove);
-      cancelAnimationFrame(raf);
-      window.clearTimeout(idle);
-    };
-  }, []);
-
-  const blink = () => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const element = tile.current;
-    if (!element) return;
-    element.classList.remove("blink");
-    void element.offsetWidth;
-    element.classList.add("blink");
-  };
+  const blink = useIsotipoMotion({
+    tileRef: tile,
+    sphereRef: sphere,
+    marksRef: marks,
+  });
 
   return (
     <div
