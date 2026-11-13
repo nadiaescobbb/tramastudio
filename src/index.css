@@ -1,5 +1,4 @@
-﻿
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&display=swap');
 
 @font-face {
   font-family: 'Aventa';
@@ -39,7 +38,7 @@
 
 /*
   Design Tokens
-  Rules: 60/30/10 Â· Dual Typography Â· Spacing rule of 8
+  Rules: 60/30/10 · Dual Typography · Spacing rule of 8
 */
 
 html {
@@ -50,10 +49,10 @@ html {
 @layer base {
   :root {
     /* Base Warm Paper / Canvas Editorial */
-    --background: 40 20% 98%;        /* #FBFBFA â€” Canvas principal */
-    --foreground: 40 10% 8%;         /* #141312 â€” Texto principal tinta profunda */
+    --background: 40 20% 98%;        /* #FBFBFA — Canvas principal */
+    --foreground: 40 10% 8%;         /* #141312 — Texto principal tinta profunda */
     --surface: 0 0% 100%;            /* Pure White */
-    
+
     /* Superficies Secundarias y Bordes */
     --border: 40 12% 88%;            /* Borde sutil */
     --border-strong: 40 10% 78%;     /* Borde activo */
@@ -62,19 +61,19 @@ html {
     --card: 0 0% 100%;
     --card-foreground: 40 10% 8%;
 
-    /* AcciÃ³n Primaria e Identidad */
-    --primary: 40 10% 8%;            /* Negro cÃ¡lido para CTAs principales */
+    /* Acción Primaria e Identidad */
+    --primary: 40 10% 8%;            /* Negro cálido para CTAs principales */
     --primary-foreground: 40 20% 98%;
     --accent: 40 10% 8%;
     --accent-foreground: 40 20% 98%;
 
-    /* Acento Editorial Ãšnico Controlado */
-    --editorial-accent: 15 65% 45%;  /* Terracota para Ã©nfasis sutiles de texto */
+    /* Acento Editorial Único Controlado */
+    --editorial-accent: 15 65% 45%;  /* Terracota para énfasis sutiles de texto */
 
     /* Tokens Oscuros Unificados (Services Stack y Cards Dark) */
-    --studio-dark-bg: 40 10% 7%;     /* #131211 â€” Negro cÃ¡lido unificado */
-    --studio-dark-card: 40 8% 11%;   /* #1D1C1A â€” ElevaciÃ³n suave */
-    --studio-dark-border: 40 6% 18%; /* #302E2B â€” DelimitaciÃ³n */
+    --studio-dark-bg: 40 10% 7%;     /* #131211 — Negro cálido unificado */
+    --studio-dark-card: 40 8% 11%;   /* #1D1C1A — Elevación suave */
+    --studio-dark-border: 40 6% 18%; /* #302E2B — Delimitación */
     --studio-dark-text: 40 15% 94%;  /* Texto de alto contraste sobre oscuro */
     --studio-dark-muted: 40 6% 60%;  /* Texto secundario sobre oscuro */
 
@@ -85,13 +84,13 @@ html {
     --input: 40 12% 88%;
     --ring: 40 10% 8%;
 
-    /* Escala de radios de 3 pasos consolidada por tamaÃ±o */
-    --radius-sm: 12px;   /* Inputs, botones chicos, elementos de navegaciÃ³n */
+    /* Escala de radios de 3 pasos consolidada por tamaño */
+    --radius-sm: 12px;   /* Inputs, botones chicos, elementos de navegación */
     --radius-md: 20px;   /* Cards internas, contenido anidado */
     --radius-lg: 32px;   /* Cards exteriores, contenedores principales */
-    
+
     /* Shadows */
-    --shadow-standard: 0 4px 20px -2px hsla(40, 10%, 10%, 0.05), 
+    --shadow-standard: 0 4px 20px -2px hsla(40, 10%, 10%, 0.05),
                        0 2px 10px -2px hsla(40, 10%, 10%, 0.03);
 
     /* Typography */
@@ -108,10 +107,8 @@ html {
     --section-py: clamp(64px, 10vw, 128px);
 
     /* Text Scale */
-    --text-tertiary: 40 8% 27%;      /* #444444 â€” between foreground and muted */
+    --text-tertiary: 40 8% 27%;      /* #444444 — between foreground and muted */
   }
-
-
 
   * {
     border-color: hsl(var(--border));
@@ -146,14 +143,22 @@ html {
   .container-trama {
     @apply mx-auto w-full max-w-[1400px] px-6 md:px-12 lg:px-16;
   }
+
   .container-narrow {
     @apply w-full mx-auto px-6;
     max-width: 860px;
   }
 
   /* Typography Styles */
-  .font-heading { font-family: var(--font-heading); font-optical-sizing: auto; font-variation-settings: "SOFT" 0, "WONK" 0; }
-  .font-mono { font-family: var(--font-mono); }
+  .font-heading {
+    font-family: var(--font-heading);
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
 
   .h-section {
     font-family: var(--font-heading);
@@ -164,6 +169,7 @@ html {
     letter-spacing: -0.03em;
     font-size: clamp(32px, 5vw, 56px);
   }
+
   .h-card {
     font-family: var(--font-heading);
     font-optical-sizing: auto;
@@ -173,6 +179,7 @@ html {
     letter-spacing: 0.01em;
     font-size: clamp(22px, 2.5vw, 32px);
   }
+
   .eyebrow {
     font-family: var(--font-mono);
     font-size: 14px;
@@ -189,6 +196,7 @@ html {
     transition: opacity 700ms var(--ease-trama), transform 700ms var(--ease-trama);
     transition-delay: var(--delay, 0ms);
   }
+
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
@@ -203,6 +211,7 @@ html {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-standard);
   }
+
   .trama-card-inner {
     @apply relative h-full w-full border border-white/5;
     background: hsl(var(--surface));
@@ -213,26 +222,32 @@ html {
 
   /* Button Architecture */
   .btn-primary-trama {
-    /* Reemplazar font-semibold por font-medium para no depender de negrita sintÃ©tica al no contar con peso 600 en Aventa */
+    /* Reemplazar font-semibold por font-medium para no depender de negrita sintética al no contar con peso 600 en Aventa */
     @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-sm font-medium text-white transition-all duration-300 active:scale-[0.97] rounded-full;
   }
+
   .btn-icon-wrapper {
     @apply flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:bg-white/20 group-hover:translate-x-1;
   }
+
   .btn-primary-trama.large {
     @apply py-2.5 pr-2.5;
   }
+
   .btn-primary-trama:hover {
     transform: translateY(-2px);
     box-shadow: 0 16px 40px hsl(var(--accent) / 0.35);
   }
+
   .btn-primary-trama:active {
     transform: translateY(0) scale(0.98);
   }
+
   .btn-primary-trama.large {
     font-size: 14px;
     padding: 18px 36px;
   }
+
   .trama-card:hover {
     transform: translateY(-4px);
     border-color: hsl(var(--border-strong));
@@ -346,8 +361,6 @@ html {
   ::-webkit-scrollbar-thumb { background: hsl(var(--border-strong)); border-radius: 4px; }
   ::-webkit-scrollbar-thumb:hover { background: hsl(var(--accent)); }
 
-
-
   /* ── HERO START ─────────────────────────────────────────── */
   .hero-start {
     background: #FFFBF5;
@@ -408,10 +421,12 @@ html {
     transition: opacity 180ms linear;
     pointer-events: none;
   }
+
   .mascota-layer.is-active {
     opacity: 1;
     pointer-events: auto;
   }
+
   .mascota-layer:not(.is-active) .oeil0,
   .mascota-layer:not(.is-active) .oeil1 {
     animation-play-state: paused !important;
@@ -420,6 +435,7 @@ html {
   /* Fill overrides (CSS beats SVG presentation attributes) */
   .mascota-layer svg rect[fill="#0a0a0c"],
   .mascota-layer svg rect[fill="#0A0A0C"] { fill: #050505; }
+
   .mascota-layer svg path[fill="#f9f9f9"],
   .mascota-layer svg path[fill="#F9F9F9"] { fill: #FFFBF5; }
 
@@ -436,12 +452,15 @@ html {
       animation: none !important;
       translate: none !important;
     }
+
     .mascota-layer--curioso,
     .mascota-layer--sorprendido { display: none !important; }
+
     .mascota-layer--neutro {
       opacity: 1 !important;
       pointer-events: none !important;
     }
+
     .mascota-host { pointer-events: none !important; }
   }
 
@@ -453,11 +472,13 @@ html {
       position: relative;
       min-height: calc(100svh - 7rem);
     }
+
     .hero-text-col {
       position: relative;
       z-index: 2;
       padding-left: clamp(24px, 4vw, 64px);
     }
+
     .mascota-host {
       position: absolute;
       right: calc(-0.32 * clamp(480px, 50vw, 680px));
@@ -470,47 +491,13 @@ html {
       align-self: auto;
       z-index: 1;
     }
+
     .mascota-layer svg {
       width: 80% !important;
       height: 80% !important;
       margin: 10% auto;
       display: block;
     }
-  }
-
-  /* HeroIsotipo: hide the decorative sphere surface, keep the tile */
-  .hero-sphere {
-    width: min(110vw, 1100px);
-    height: clamp(200px, 30vh, 260px);
-  }
-  .hero-sphere-surface { display: none; }
-
-  .hero-sphere-surface {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 100%;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at 50% 0%, #FBF1E7 0%, #F0DFD0 55%, #E6D0BD 100%);
-    transform: translateX(-50%);
-  }
-  .hero-isotipo-origin {
-    width: clamp(30px, 3.6vw, 52px);
-    height: calc(clamp(30px, 3.6vw, 52px) * 2.1);
-    position: relative;
-    z-index: 1;
-    pointer-events: auto;
-  }
-
-  .hero-isotipo-marks {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: calc(clamp(30px, 3.6vw, 52px) * 2.35);
-    height: calc(clamp(30px, 3.6vw, 52px) * 2.1);
-    overflow: visible;
-    transform: translate(-50%, -50%);
   }
 
   .hero-texture {
@@ -558,8 +545,6 @@ html {
     box-shadow: 0 22px 48px rgba(0,0,0,0.28);
   }
 
-
-
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -576,11 +561,7 @@ html {
       filter: none !important;
       transform: none !important;
     }
-
-
   }
-
-
 
   /* Navigation Layout */
   .nav-brand-pill,
@@ -698,8 +679,6 @@ html {
     color: #050505;
   }
 
-
-
   @media (max-width: 980px) {
     .container-trama {
       padding-left: 24px;
@@ -740,8 +719,6 @@ html {
       letter-spacing: -0.035em;
       line-height: 1.05;
     }
-
-
 
     .project-showcase-card {
       border-radius: 16px;
@@ -805,6 +782,7 @@ html {
   .mobile-overlay-link {
     @apply block text-4xl font-heading tracking-tight text-foreground opacity-0 translate-y-8 transition-all duration-700;
   }
+
   .open .mobile-overlay-link {
     @apply opacity-100 translate-y-0;
   }
@@ -814,6 +792,7 @@ html {
   0%, 100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-8px);
   }
@@ -862,6 +841,7 @@ html {
     filter: blur(2px);
     transform: translateY(3px);
   }
+
   100% {
     opacity: 1;
     filter: blur(0px);
@@ -875,11 +855,13 @@ html {
     filter: blur(3px);
     transform: scale(0.85) translateY(8px);
   }
+
   65% {
     opacity: 1;
     filter: blur(0px);
     transform: scale(1.15) translateY(-5px);
   }
+
   100% {
     opacity: 1;
     filter: blur(0px);
@@ -1171,46 +1153,24 @@ html {
   --hm-size: clamp(420px, min(44vw, 92svh), 600px);
   position: absolute;
   top: 50%;
-  right: calc(var(--hm-size) * -0.28); /* recorta cerca del 22 % del círculo */
+  right: calc(var(--hm-size) * -0.28);
   z-index: 0;
-  display: grid; /* las tres capas se apilan en la misma celda */
   width: var(--hm-size);
   transform: translateY(-50%);
   pointer-events: none;
 }
 
-.hm-layer {
-  grid-area: 1 / 1;
-  transform: scaleX(-1); /* ojos arriba a la izquierda, mirando al texto */
-  opacity: 0;
-  transition: opacity 180ms ease;
-}
-.hm-layer.is-active {
-  opacity: 1;
-}
-.hm-layer svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Colores de la marca (los fill del SVG son atributos de presentación: el CSS los pisa) */
-.hm-layer rect[fill="#0a0a0c"] { fill: #050505; }
-.hm-layer path[fill="#f9f9f9"] { fill: #fffbf5; }
-
-/* Las capas inactivas no gastan animación */
-.hm-layer:not(.is-active) [class^="oeil"] {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hm-layer { transition: none; }
-}
-
 /* Menos de 1024px: texto primero y la mascota asoma desde abajo */
 @media (max-width: 1023px) {
-  section.hero-start { overflow: clip; }
-  .hm-inner { flex-direction: column; align-items: stretch; }
+  section.hero-start {
+    overflow: clip;
+  }
+
+  .hm-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .hm-host {
     --hm-size: min(100vw, 560px);
     position: relative;
@@ -1218,5 +1178,12 @@ html {
     right: auto;
     transform: none;
     margin: 48px auto calc(var(--hm-size) * -0.36);
+  }
+
+  .hm-host > svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    transform: scaleX(-1);
   }
 }

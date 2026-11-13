@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
@@ -11,7 +12,7 @@ import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
-import { HeroMascota } from "@/components/HeroMascota";
+import MascotaTrama from "@/components/MascotaTrama";
 
 const FAQS = [
   {
@@ -37,7 +38,6 @@ const FAQS = [
 ];
 
 const Index = () => {
-  // Estado para gestionar de forma determinista qué item del acordeón de FAQS está desplegado
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const Index = () => {
     });
 
     const hash = window.location.hash.slice(1);
+
     if (hash) {
       window.requestAnimationFrame(() => {
         document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
@@ -70,29 +71,48 @@ const Index = () => {
           <div className="container-trama relative z-10">
             <div className="max-w-[620px]">
               <h1 className="font-heading font-medium leading-[1.02] tracking-tight text-foreground [font-size:clamp(44px,4.4vw,64px)]">
-                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "100ms" }}>
+                <span
+                  className="block animate-reading-text lg:whitespace-nowrap"
+                  style={{ animationDelay: "100ms" }}
+                >
                   primero entendemos
                 </span>
-                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "180ms" }}>
+                <span
+                  className="block animate-reading-text lg:whitespace-nowrap"
+                  style={{ animationDelay: "180ms" }}
+                >
                   el problema.
                 </span>
-                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "260ms" }}>
+                <span
+                  className="block animate-reading-text lg:whitespace-nowrap"
+                  style={{ animationDelay: "260ms" }}
+                >
                   después lo diseñamos
                 </span>
-                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "340ms" }}>
+                <span
+                  className="block animate-reading-text lg:whitespace-nowrap"
+                  style={{ animationDelay: "340ms" }}
+                >
                   y lo programamos.
                 </span>
               </h1>
+
               <p className="mt-5 max-w-[480px] font-sans text-lg leading-relaxed text-muted [text-wrap:balance] md:text-xl">
-                Hacemos sitios web, tiendas online y sistemas para negocios y profesionales de Argentina.
+                Hacemos sitios web, tiendas online y sistemas para negocios y
+                profesionales de Argentina.
               </p>
 
-              {/* CTAs: sin cambios respecto de lo que ya existe */}
+              {/* CTAs: sin cambios */}
               <div
                 className="flex flex-col items-start gap-5 pt-6 sm:flex-row sm:items-center sm:gap-8 sm:pt-8 animate-reading-text"
                 style={{ animationDelay: "480ms" }}
               >
-                <a href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">
+                <a
+                  href={waLink(
+                    "Hola, vi HeyTrama y quiero contarte sobre mi proyecto."
+                  )}
+                  className="hero-primary-cta group text-sm sm:text-base px-7 py-4"
+                >
                   <span>Contar mi proyecto</span>
                   <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </a>
@@ -103,7 +123,10 @@ const Index = () => {
                 >
                   <span className="relative py-1">
                     Ver proyectos
-                    <span className="absolute inset-x-0 bottom-0 h-px bg-current opacity-30" aria-hidden="true" />
+                    <span
+                      className="absolute inset-x-0 bottom-0 h-px bg-current opacity-30"
+                      aria-hidden="true"
+                    />
                     <span
                       className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-current transition-transform [transition-duration:250ms] [transition-timing-function:var(--ease-standard)] group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
                       aria-hidden="true"
@@ -118,7 +141,10 @@ const Index = () => {
             </div>
           </div>
 
-          <HeroMascota />
+          {/* Nueva mascota animada */}
+          <div className="hm-host" aria-hidden="true">
+            <MascotaTrama size={600} />
+          </div>
         </div>
       </section>
 
@@ -128,7 +154,11 @@ const Index = () => {
       {/* ── SERVICIOS STACKED ────────────────────────────────────── */}
       <ServicesStack />
 
-      <section className="bg-[#050505] py-20 text-[#FFFBF5] md:py-28" id="proyectos">
+      {/* ── PROYECTOS ───────────────────────────────────────────── */}
+      <section
+        className="bg-[#050505] py-20 text-[#FFFBF5] md:py-28"
+        id="proyectos"
+      >
         <div className="container-trama">
           <div className="mb-12 md:mb-16">
             <div>
@@ -140,11 +170,17 @@ const Index = () => {
               </h2>
             </div>
           </div>
+
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8">
             {projects.slice(0, 3).map((project, index) => (
-              <ProjectCard key={project.slug} project={project} index={index} />
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                index={index}
+              />
             ))}
           </div>
+
           <div className="mt-12 flex justify-center md:mt-16">
             <Link
               to="/proyectos"
@@ -160,9 +196,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── PREGUNTAS FRECUENTES (Fondo faq-.avif integrado sin líneas divisoras duras, tokenizado con bg-background) ── */}
-      <section className="relative py-20 md:py-28 bg-background" id="preguntas">
-        {/* Capa de fondo sutil con opacidad atenuada al 20% y desenfoque suave para lectura impecable */}
+      {/* ── PREGUNTAS FRECUENTES ─────────────────────────────────── */}
+      <section
+        className="relative py-20 md:py-28 bg-background"
+        id="preguntas"
+      >
+        {/* Fondo sutil */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div
             className="w-full h-full bg-cover bg-center opacity-20 mix-blend-multiply blur-[20px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_20%,black_80%,transparent_100%)]"
@@ -170,21 +209,21 @@ const Index = () => {
             aria-hidden="true"
           />
         </div>
+
         <div className="relative z-10 mx-auto w-full max-w-[720px] px-6">
           <Reveal>
-            {/* Mantener etiqueta de categoría sobria y disciplinada en opacidad suave del texto principal */}
             <div className="font-sans text-[15px] md:text-sm font-medium uppercase tracking-[0.01em] text-[#B04A2A]">
               PREGUNTAS FRECUENTES
             </div>
           </Reveal>
+
           <Reveal delay={80}>
-            {/* Titular H2 plano y sobrio eliminando la itálica en una sola palabra según la regla del skill frontend-design */}
             <h2 className="h-section mt-4 mb-16 font-normal">
               Antes de empezar.
             </h2>
           </Reveal>
 
-          {/* Acordeón numerado interactivo con semántica y atributos de accesibilidad WCAG */}
+          {/* Acordeón de preguntas */}
           <div className="divide-y divide-border/40 border-t border-border/40">
             {FAQS.map((item, i) => {
               const isOpen = openFaq === i;
@@ -195,7 +234,6 @@ const Index = () => {
               return (
                 <Reveal key={item.q} delay={i * 80}>
                   <div className="border-b border-border/40 last:border-0">
-                    {/* Botón trigger del acordeón con id y atributos de accesibilidad */}
                     <button
                       id={triggerId}
                       type="button"
@@ -209,7 +247,6 @@ const Index = () => {
                           {formattedIndex}
                         </span>
 
-                        {/* Pregunta con cambio de color al estar abierta */}
                         <h3
                           className={`font-heading text-xl md:text-2xl tracking-tight font-medium transition-colors duration-300 ${
                             isOpen
@@ -221,14 +258,14 @@ const Index = () => {
                         </h3>
                       </div>
 
-                      {/* Flecha con rotación de 45 grados en estado abierto */}
                       <ArrowUpRight
                         className="h-5 w-5 transition-transform duration-300 flex-shrink-0 ml-4 text-foreground/70 group-hover:text-[hsl(var(--editorial-accent))]"
-                        style={{ transform: isOpen ? "rotate(45deg)" : "rotate(0deg)" }}
+                        style={{
+                          transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                        }}
                       />
                     </button>
 
-                    {/* Contenido expansible del acordeón con transición de altura por grid CSS */}
                     <div
                       id={contentId}
                       role="region"
@@ -238,7 +275,8 @@ const Index = () => {
                       style={{
                         gridTemplateRows: isOpen ? "1fr" : "0fr",
                         opacity: isOpen ? 1 : 0,
-                        transitionTimingFunction: "var(--ease-standard, cubic-bezier(0.2, 0, 0, 1))",
+                        transitionTimingFunction:
+                          "var(--ease-standard, cubic-bezier(0.2, 0, 0, 1))",
                       }}
                     >
                       <div className="overflow-hidden">
@@ -255,9 +293,12 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── CONTACTO (Fondo adaptativo integrado suavemente por máscara, tokenizado con bg-background) ── */}
-      <section className="relative py-20 md:py-28 bg-background" id="contacto">
-        {/* Capa de fondo sutil (contact-portrait.avif en mobile, contact-.avif en desktop) con opacidad atenuada y desenfoque suave */}
+      {/* ── CONTACTO ─────────────────────────────────────────────── */}
+      <section
+        className="relative py-20 md:py-28 bg-background"
+        id="contacto"
+      >
+        {/* Fondos adaptativos */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div
             className="w-full h-full bg-cover bg-center opacity-25 mix-blend-multiply blur-[15px] [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_100%)] md:hidden"
@@ -270,6 +311,7 @@ const Index = () => {
             aria-hidden="true"
           />
         </div>
+
         <div className="relative z-10 mx-auto w-full max-w-[720px] px-6">
           <Reveal>
             <div className="mb-8">
@@ -281,6 +323,7 @@ const Index = () => {
               </h2>
             </div>
           </Reveal>
+
           <Reveal delay={150}>
             <ContactForm />
           </Reveal>

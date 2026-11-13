@@ -1,13 +1,14 @@
+
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { ErrorBoundary } from "./components/ErrorBoundary";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
 import ScrollToTop from "./components/ScrollToTop";
-import Index from "./pages/Index.tsx";
+import Index from "./pages/Index";
 
-const Projects = lazy(() => import("./pages/Projects.tsx"));
-const Dossier = lazy(() => import("./pages/Dossier.tsx"));
-const NotFound = lazy(() => import("./pages/NotFound.tsx"));
+const Projects = lazy(() => import("./pages/Projects"));
+const Dossier = lazy(() => import("./pages/Dossier"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const MascotaPreview = lazy(() => import("./pages/MascotaPreview"));
 
 const loadingFallback = (
   <div className="min-h-screen flex items-center justify-center text-muted font-mono text-[11px] uppercase tracking-widest">
@@ -26,7 +27,9 @@ const GoogleAnalyticsTracker = () => {
 
   useEffect(() => {
     const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
-    const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    const isLocalhost = ["localhost", "127.0.0.1"].includes(
+      window.location.hostname,
+    );
 
     if (!measurementId || isLocalhost || typeof window.gtag !== "function") {
       return;
@@ -46,16 +49,21 @@ const App = () => (
     <ScrollToTop />
     <FloatingWhatsApp />
 
-    <ErrorBoundary>
-      <Suspense fallback={loadingFallback}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/proyectos" element={<Projects />} />
-          <Route path="/proyectos/:slug" element={<Dossier />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </ErrorBoundary>
+    <Suspense fallback={loadingFallback}>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/proyectos" element={<Projects />} />
+        <Route path="/proyectos/:slug" element={<Dossier />} />
+        <Route path="*" element={<NotFound />} />
+
+        {import.meta.env.DEV && (
+          <Route
+            path="/__preview/mascota"
+            element={<MascotaPreview />}
+          />
+        )}
+      </Routes>
+    </Suspense>
   </>
 );
 
