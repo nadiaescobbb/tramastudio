@@ -69,7 +69,7 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
             <span className="font-mono text-micro font-medium text-white/70 block">
               Navegación
             </span>
-            <ul className="space-y-2.5 text-[15px] md:text-sm font-medium">
+            <ul className="space-y-2.5 text-[15px] leading-relaxed font-medium md:text-base">
               <li>
                 <Link
                   to="/"
@@ -114,7 +114,7 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
             <span className="font-mono text-micro font-medium text-white/70 block">
               Servicios
             </span>
-            <ul className="space-y-2.5 text-[15px] md:text-sm font-medium text-white/80">
+            <ul className="space-y-2.5 text-[15px] leading-relaxed font-medium text-white/80 md:text-base">
               <li>Sitios web y landing pages</li>
               <li>Rediseño de sitios</li>
               <li>Programación de interfaces</li>
@@ -128,7 +128,7 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
             <span className="font-mono text-micro font-medium text-white/70 block">
               Contacto
             </span>
-            <ul className="space-y-2.5 text-[15px] md:text-sm font-medium">
+            <ul className="space-y-2.5 text-[15px] leading-relaxed font-medium md:text-base">
               <li>
                 <a href="mailto:hola@heytrama.com" className="text-white/90 hover:text-white transition-colors">
                   Email directo: hola@heytrama.com
@@ -152,7 +152,7 @@ export const Footer = ({ showIntro = true }: FooterProps) => {
             <span className="font-mono text-micro font-medium text-white/70 block">
               Redes
             </span>
-            <ul className="space-y-2.5 text-[15px] md:text-sm font-medium">
+            <ul className="space-y-2.5 text-[15px] leading-relaxed font-medium md:text-base">
               <li>
                 <a
                   href="https://instagram.com/heytrama"

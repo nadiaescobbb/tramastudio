@@ -63,19 +63,19 @@ export function ServicesStack() {
 
             return (
               <article key={servicio.id} className="border-b border-[#6F6A62]">
-                <div className="grid grid-cols-[48px_minmax(0,1fr)_40px] items-center gap-x-3 gap-y-2 py-6 md:grid-cols-[64px_minmax(0,1fr)_90px_minmax(0,1.6fr)_48px] md:gap-x-6 md:py-7 xl:grid-cols-[64px_280px_90px_minmax(0,1fr)_48px] xl:gap-x-4">
+                <div className="grid grid-cols-[48px_minmax(0,1fr)_40px] items-center gap-x-3 gap-y-2 py-6 md:grid-cols-[64px_minmax(0,1fr)_90px_minmax(0,1.6fr)_48px] md:gap-x-5 md:py-7 xl:grid-cols-[64px_300px_90px_minmax(0,1fr)_48px] xl:gap-x-3">
                   <span className="row-span-2 font-heading text-[40px] font-normal leading-none text-[#C45A3A] md:row-span-1">
                     {servicio.id}
                   </span>
-                  <div className="flex min-w-0 items-center gap-x-3 md:contents">
-                    <h3 className="min-w-0 font-heading text-[clamp(16px,5vw,22px)] font-medium leading-tight tracking-tight text-foreground md:text-2xl">
+                  <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1 md:contents">
+                    <h3 className="w-full min-w-0 font-heading text-[clamp(16px,5vw,22px)] font-medium leading-tight tracking-tight text-foreground md:w-auto md:text-2xl">
                       {servicio.title}
                     </h3>
                     <span className="shrink-0 rounded-full bg-[#544F4F]/[0.06] px-2.5 py-0.5 font-mono text-xs leading-tight text-[#544F4F]">
                       {servicio.category}
                     </span>
                   </div>
-                  <p className="col-start-2 text-base leading-[1.55] text-foreground/75 md:col-start-4 md:row-start-1 xl:whitespace-nowrap xl:text-sm">
+                  <p className="col-start-2 text-base leading-relaxed text-foreground/80 md:col-start-4 md:row-start-1 xl:whitespace-nowrap">
                     {servicio.desc}
                   </p>
                   <button

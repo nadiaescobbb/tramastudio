@@ -1,4 +1,4 @@
-
+﻿
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&display=swap');
 
 @font-face {
@@ -39,7 +39,7 @@
 
 /*
   Design Tokens
-  Rules: 60/30/10 · Dual Typography · Spacing rule of 8
+  Rules: 60/30/10 Â· Dual Typography Â· Spacing rule of 8
 */
 
 html {
@@ -50,8 +50,8 @@ html {
 @layer base {
   :root {
     /* Base Warm Paper / Canvas Editorial */
-    --background: 40 20% 98%;        /* #FBFBFA — Canvas principal */
-    --foreground: 40 10% 8%;         /* #141312 — Texto principal tinta profunda */
+    --background: 40 20% 98%;        /* #FBFBFA â€” Canvas principal */
+    --foreground: 40 10% 8%;         /* #141312 â€” Texto principal tinta profunda */
     --surface: 0 0% 100%;            /* Pure White */
     
     /* Superficies Secundarias y Bordes */
@@ -62,19 +62,19 @@ html {
     --card: 0 0% 100%;
     --card-foreground: 40 10% 8%;
 
-    /* Acción Primaria e Identidad */
-    --primary: 40 10% 8%;            /* Negro cálido para CTAs principales */
+    /* AcciÃ³n Primaria e Identidad */
+    --primary: 40 10% 8%;            /* Negro cÃ¡lido para CTAs principales */
     --primary-foreground: 40 20% 98%;
     --accent: 40 10% 8%;
     --accent-foreground: 40 20% 98%;
 
-    /* Acento Editorial Único Controlado */
-    --editorial-accent: 15 65% 45%;  /* Terracota para énfasis sutiles de texto */
+    /* Acento Editorial Ãšnico Controlado */
+    --editorial-accent: 15 65% 45%;  /* Terracota para Ã©nfasis sutiles de texto */
 
     /* Tokens Oscuros Unificados (Services Stack y Cards Dark) */
-    --studio-dark-bg: 40 10% 7%;     /* #131211 — Negro cálido unificado */
-    --studio-dark-card: 40 8% 11%;   /* #1D1C1A — Elevación suave */
-    --studio-dark-border: 40 6% 18%; /* #302E2B — Delimitación */
+    --studio-dark-bg: 40 10% 7%;     /* #131211 â€” Negro cÃ¡lido unificado */
+    --studio-dark-card: 40 8% 11%;   /* #1D1C1A â€” ElevaciÃ³n suave */
+    --studio-dark-border: 40 6% 18%; /* #302E2B â€” DelimitaciÃ³n */
     --studio-dark-text: 40 15% 94%;  /* Texto de alto contraste sobre oscuro */
     --studio-dark-muted: 40 6% 60%;  /* Texto secundario sobre oscuro */
 
@@ -85,8 +85,8 @@ html {
     --input: 40 12% 88%;
     --ring: 40 10% 8%;
 
-    /* Escala de radios de 3 pasos consolidada por tamaño */
-    --radius-sm: 12px;   /* Inputs, botones chicos, elementos de navegación */
+    /* Escala de radios de 3 pasos consolidada por tamaÃ±o */
+    --radius-sm: 12px;   /* Inputs, botones chicos, elementos de navegaciÃ³n */
     --radius-md: 20px;   /* Cards internas, contenido anidado */
     --radius-lg: 32px;   /* Cards exteriores, contenedores principales */
     
@@ -107,13 +107,8 @@ html {
     /* Layout */
     --section-py: clamp(64px, 10vw, 128px);
 
-    /* Hero Gradient Tokens */
-    --hero-warm: 38 14% 63%;        /* rgba(177, 164, 145) — warm sand accent */
-    --hero-cream-light: 42 24% 96%; /* hero background gradient start */
-    --hero-cream-dark: 38 18% 92%;  /* hero background gradient end */
-
     /* Text Scale */
-    --text-tertiary: 40 8% 27%;      /* #444444 — between foreground and muted */
+    --text-tertiary: 40 8% 27%;      /* #444444 â€” between foreground and muted */
   }
 
 
@@ -218,7 +213,7 @@ html {
 
   /* Button Architecture */
   .btn-primary-trama {
-    /* Reemplazar font-semibold por font-medium para no depender de negrita sintética al no contar con peso 600 en Aventa */
+    /* Reemplazar font-semibold por font-medium para no depender de negrita sintÃ©tica al no contar con peso 600 en Aventa */
     @apply relative inline-flex items-center gap-4 bg-[hsl(var(--accent))] pl-8 pr-2 py-2 font-sans text-sm font-medium text-white transition-all duration-300 active:scale-[0.97] rounded-full;
   }
   .btn-icon-wrapper {
@@ -353,12 +348,169 @@ html {
 
 
 
-  /* Taste Skill inspired home hero */
+  /* ── HERO START ─────────────────────────────────────────── */
   .hero-start {
-    background:
-      radial-gradient(circle at 18% 24%, rgba(255, 255, 255, 0.88), transparent 32%),
-      radial-gradient(circle at 86% 14%, hsl(var(--hero-warm) / 0.42), transparent 28%),
-      linear-gradient(110deg, hsl(var(--hero-cream-light)) 0%, hsl(var(--hero-cream-dark)) 100%);
+    background: #FFFBF5;
+    overflow-x: hidden;
+  }
+
+  /* Inner flex: text left + mascota right on desktop, stacked on mobile */
+  .hero-layout-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100svh - 6rem);
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    justify-content: center;
+  }
+
+  /* Text column */
+  .hero-text-col {
+    flex: 0 0 auto;
+    max-width: 620px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* H1: clamp(44px, 4.4vw, 64px) in four lines */
+  .hero-h1 {
+    font-size: clamp(44px, 4.4vw, 64px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-subtitle {
+    max-width: 480px;
+  }
+
+  /* ── MASCOTA HOST ── */
+  .mascota-host {
+    position: relative;
+    width: min(100vw, 560px);
+    align-self: center;
+    margin-top: 56px;
+    overflow: hidden;
+    height: calc(min(100vw, 560px) * 0.4);
+    flex-shrink: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  /* Stacked SVG layers */
+  .mascota-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 180ms linear;
+    pointer-events: none;
+  }
+  .mascota-layer.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .mascota-layer:not(.is-active) .oeil0,
+  .mascota-layer:not(.is-active) .oeil1 {
+    animation-play-state: paused !important;
+  }
+
+  /* Fill overrides (CSS beats SVG presentation attributes) */
+  .mascota-layer svg rect[fill="#0a0a0c"],
+  .mascota-layer svg rect[fill="#0A0A0C"] { fill: #050505; }
+  .mascota-layer svg path[fill="#f9f9f9"],
+  .mascota-layer svg path[fill="#F9F9F9"] { fill: #FFFBF5; }
+
+  .mascota-layer svg {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+
+  /* prefers-reduced-motion: static neutro only, no tracking */
+  @media (prefers-reduced-motion: reduce) {
+    .mascota-layer .oeil0,
+    .mascota-layer .oeil1 {
+      animation: none !important;
+      translate: none !important;
+    }
+    .mascota-layer--curioso,
+    .mascota-layer--sorprendido { display: none !important; }
+    .mascota-layer--neutro {
+      opacity: 1 !important;
+      pointer-events: none !important;
+    }
+    .mascota-host { pointer-events: none !important; }
+  }
+
+  /* ── DESKTOP layout (>= 1024px) ── */
+  @media (min-width: 1024px) {
+    .hero-layout-inner {
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+      min-height: calc(100svh - 7rem);
+    }
+    .hero-text-col {
+      position: relative;
+      z-index: 2;
+      padding-left: clamp(24px, 4vw, 64px);
+    }
+    .mascota-host {
+      position: absolute;
+      right: calc(-0.32 * clamp(480px, 50vw, 680px));
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(480px, 50vw, 680px);
+      height: clamp(480px, 50vw, 680px);
+      overflow: visible;
+      margin-top: 0;
+      align-self: auto;
+      z-index: 1;
+    }
+    .mascota-layer svg {
+      width: 80% !important;
+      height: 80% !important;
+      margin: 10% auto;
+      display: block;
+    }
+  }
+
+  /* HeroIsotipo: hide the decorative sphere surface, keep the tile */
+  .hero-sphere {
+    width: min(110vw, 1100px);
+    height: clamp(200px, 30vh, 260px);
+  }
+  .hero-sphere-surface { display: none; }
+
+  .hero-sphere-surface {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 0%, #FBF1E7 0%, #F0DFD0 55%, #E6D0BD 100%);
+    transform: translateX(-50%);
+  }
+  .hero-isotipo-origin {
+    width: clamp(30px, 3.6vw, 52px);
+    height: calc(clamp(30px, 3.6vw, 52px) * 2.1);
+    position: relative;
+    z-index: 1;
+    pointer-events: auto;
+  }
+
+  .hero-isotipo-marks {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: calc(clamp(30px, 3.6vw, 52px) * 2.35);
+    height: calc(clamp(30px, 3.6vw, 52px) * 2.1);
+    overflow: visible;
+    transform: translate(-50%, -50%);
   }
 
   .hero-texture {
@@ -986,16 +1138,6 @@ html {
   transform: translate(3px, -3px);
 }
 
-/* Animación fluida de respiración sutil para la imagen de fondo del Hero */
-@keyframes heroBgPulse {
-  0%   { transform: scale(1); }
-  100% { transform: scale(1.02); }
-}
-
-.animate-hero-bg-pulse {
-  animation: heroBgPulse 20s ease-in-out infinite alternate;
-}
-
 @media (max-width: 767px) {
   .nav-menu-pill {
     max-width: 50px;
@@ -1013,5 +1155,68 @@ html {
   .hero-primary-cta,
   .btn-primary-trama {
     font-size: 15px;
+  }
+}
+
+/* ── Hero: texto a la izquierda, mascota a la derecha ── */
+.hm-inner {
+  position: relative;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  align-items: center;
+}
+
+.hm-host {
+  --hm-size: clamp(420px, min(44vw, 92svh), 600px);
+  position: absolute;
+  top: 50%;
+  right: calc(var(--hm-size) * -0.28); /* recorta cerca del 22 % del círculo */
+  z-index: 0;
+  display: grid; /* las tres capas se apilan en la misma celda */
+  width: var(--hm-size);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.hm-layer {
+  grid-area: 1 / 1;
+  transform: scaleX(-1); /* ojos arriba a la izquierda, mirando al texto */
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.hm-layer.is-active {
+  opacity: 1;
+}
+.hm-layer svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Colores de la marca (los fill del SVG son atributos de presentación: el CSS los pisa) */
+.hm-layer rect[fill="#0a0a0c"] { fill: #050505; }
+.hm-layer path[fill="#f9f9f9"] { fill: #fffbf5; }
+
+/* Las capas inactivas no gastan animación */
+.hm-layer:not(.is-active) [class^="oeil"] {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-layer { transition: none; }
+}
+
+/* Menos de 1024px: texto primero y la mascota asoma desde abajo */
+@media (max-width: 1023px) {
+  section.hero-start { overflow: clip; }
+  .hm-inner { flex-direction: column; align-items: stretch; }
+  .hm-host {
+    --hm-size: min(100vw, 560px);
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    margin: 48px auto calc(var(--hm-size) * -0.36);
   }
 }

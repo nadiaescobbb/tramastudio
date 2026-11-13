@@ -11,6 +11,7 @@ import { setSeo } from "@/lib/seo";
 import { ArrowUpRight } from "lucide-react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
+import { HeroMascota } from "@/components/HeroMascota";
 
 const FAQS = [
   {
@@ -62,63 +63,62 @@ const Index = () => {
     <div className="relative min-h-screen selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-clip">
       <Nav />
 
-      {/* Sección Hero con fondo animado integrado por mezcla suave sin cortes de bordes */}
-      <section className="hero-start relative min-h-[100svh] flex flex-col justify-center items-center overflow-hidden pb-36 pt-24 sm:pb-44 sm:pt-28">
-        {/* Capa de fondo animada con la imagen frame-faq.avif y fundido en la parte inferior */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div
-            className="w-full h-full bg-cover bg-center animate-hero-bg-pulse opacity-70"
-            style={{ backgroundImage: "url('/frame-faq.avif')" }}
-            aria-hidden="true"
-          />
-        </div>
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-b from-transparent via-[#FFFBF5]/75 to-[#FFFBF5] md:h-64"
-          aria-hidden="true"
-        />
-        <div className="container-trama relative z-10 my-auto flex w-full max-w-4xl translate-y-10 flex-col items-center justify-center px-6 text-center lg:max-w-[58rem]">
-          {/* Centered Large H1 with Emil Kowalski Sequential Reading Choreography */}
-          <h1 className="font-heading text-[1.95rem] sm:text-5xl md:text-6xl lg:text-[3.95rem] font-medium tracking-tight leading-[1.38] text-foreground [text-wrap:balance]">
-            <span className="block animate-reading-text" style={{ animationDelay: "100ms" }}>
-              primero entendemos el problema.
-            </span>
-            <span className="block animate-reading-text">
-              después lo diseñamos y lo programamos.
-            </span>
-          </h1>
-          <p className="mt-5 max-w-4xl font-sans text-lg leading-relaxed text-muted [text-wrap:balance] md:text-xl">
-            Hacemos sitios web, tiendas online y sistemas para negocios y profesionales de Argentina.
-          </p>
+      {/* ── HERO ─────────────────────────────────────────────────── */}
+      <section className="hero-start relative flex min-h-[100svh] flex-col overflow-x-clip pt-24 sm:pt-28">
+        <div className="hm-inner">
+          {/* Mismo contenedor que el resto de la página: el borde izquierdo queda alineado */}
+          <div className="container-trama relative z-10">
+            <div className="max-w-[620px]">
+              <h1 className="font-heading font-medium leading-[1.02] tracking-tight text-foreground [font-size:clamp(44px,4.4vw,64px)]">
+                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "100ms" }}>
+                  primero entendemos
+                </span>
+                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "180ms" }}>
+                  el problema.
+                </span>
+                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "260ms" }}>
+                  después lo diseñamos
+                </span>
+                <span className="block animate-reading-text lg:whitespace-nowrap" style={{ animationDelay: "340ms" }}>
+                  y lo programamos.
+                </span>
+              </h1>
+              <p className="mt-5 max-w-[480px] font-sans text-lg leading-relaxed text-muted [text-wrap:balance] md:text-xl">
+                Hacemos sitios web, tiendas online y sistemas para negocios y profesionales de Argentina.
+              </p>
 
-          {/* Centered CTAs Row */}
-          <div
-            className="flex flex-col items-center justify-center gap-5 pt-6 sm:flex-row sm:gap-8 sm:pt-8 animate-reading-text"
-            style={{ animationDelay: "400ms" }}
-          >
-            {/* Unificar mensaje de WhatsApp mediante waLink() para mantener consistencia en todos los puntos de contacto del sitio */}
-            <a href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">
-              <span>Contar mi proyecto</span>
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </a>
+              {/* CTAs: sin cambios respecto de lo que ya existe */}
+              <div
+                className="flex flex-col items-start gap-5 pt-6 sm:flex-row sm:items-center sm:gap-8 sm:pt-8 animate-reading-text"
+                style={{ animationDelay: "480ms" }}
+              >
+                <a href={waLink("Hola, vi HeyTrama y quiero contarte sobre mi proyecto.")} className="hero-primary-cta group text-sm sm:text-base px-7 py-4">
+                  <span>Contar mi proyecto</span>
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </a>
 
-            <Link
-              to="/proyectos"
-              className="group inline-flex items-center gap-2 py-2 font-sans text-[15px] md:text-base font-medium tracking-[0.01em] text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
-            >
-              <span className="relative py-1">
-                Ver proyectos
-                <span className="absolute inset-x-0 bottom-0 h-px bg-current opacity-30" aria-hidden="true" />
-                <span
-                  className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-current transition-transform [transition-duration:250ms] [transition-timing-function:var(--ease-standard)] group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
-                  aria-hidden="true"
-                />
-              </span>
-              <ArrowUpRight
-                className="h-4 w-4 transition-transform [transition-duration:250ms] [transition-timing-function:var(--ease-standard)] group-hover:translate-x-1 group-hover:-translate-y-1 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-1 motion-reduce:transition-none"
-                aria-hidden="true"
-              />
-            </Link>
+                <Link
+                  to="/proyectos"
+                  className="group inline-flex items-center gap-2 py-2 font-sans text-[15px] md:text-base font-medium tracking-[0.01em] text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+                >
+                  <span className="relative py-1">
+                    Ver proyectos
+                    <span className="absolute inset-x-0 bottom-0 h-px bg-current opacity-30" aria-hidden="true" />
+                    <span
+                      className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-current transition-transform [transition-duration:250ms] [transition-timing-function:var(--ease-standard)] group-hover:scale-x-100 group-focus-visible:scale-x-100 motion-reduce:transition-none"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  <ArrowUpRight
+                    className="h-4 w-4 transition-transform [transition-duration:250ms] [transition-timing-function:var(--ease-standard)] group-hover:translate-x-1 group-hover:-translate-y-1 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-1 motion-reduce:transition-none"
+                    aria-hidden="true"
+                  />
+                </Link>
+              </div>
+            </div>
           </div>
+
+          <HeroMascota />
         </div>
       </section>
 
