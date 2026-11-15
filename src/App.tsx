@@ -6,7 +6,6 @@ import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 
 const Projects = lazy(() => import("./pages/Projects"));
-const Dossier = lazy(() => import("./pages/Dossier"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const MascotaPreview = lazy(() => import("./pages/MascotaPreview"));
 
@@ -53,7 +52,6 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/proyectos" element={<Projects />} />
-        <Route path="/proyectos/:slug" element={<Dossier />} />
         <Route path="*" element={<NotFound />} />
 
         {import.meta.env.DEV && (

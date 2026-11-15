@@ -28,29 +28,56 @@ export default function Projects() {
         "Explorá nuestro portafolio de sitios web, e-commerce y aplicaciones digitales diseñadas y construidas para marcas reales.",
       path: "/proyectos",
     });
-
-    window.scrollTo(0, 0);
   }, []);
+
+  const normalizedFilter = activeFilter.toLowerCase();
 
   const filteredProjects =
     activeFilter === "TODOS"
       ? projects
       : projects.filter((project) => {
-          const filter = activeFilter.toLowerCase();
-          const matchesCategory = project.category.toLowerCase().includes(filter);
-          const matchesTag = project.tags?.some((tag) => tag.toLowerCase() === filter);
+          const matchesCategory = project.category
+            .toLowerCase()
+            .includes(normalizedFilter);
+
+          const matchesTag = project.tags.some(
+            (tag) => tag.toLowerCase() === normalizedFilter,
+          );
+
           return matchesCategory || matchesTag;
         });
+
+  const resultsAnnouncement =
+    filteredProjects.length === 0
+      ? "No se encontraron proyectos"
+      : filteredProjects.length === 1
+        ? "Se encontró 1 proyecto"
+        : `Se encontraron ${filteredProjects.length} proyectos`;
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-white selection:bg-[hsl(var(--accent))] selection:text-white overflow-x-hidden">
       <Nav variant="dark-transparent" />
 
-      <section className="relative flex min-h-[58vh] flex-col items-center justify-center overflow-hidden bg-[#050505] px-6 pb-10 pt-28 md:min-h-[72vh]">
+      {/* Hero con video de fondo */}
+      <section className="relative isolate flex min-h-[58vh] flex-col items-center justify-center overflow-hidden bg-[#050505] px-6 pb-10 pt-28 md:min-h-[72vh]">
+        {!shouldReduceMotion && (
+          <video
+            className="absolute inset-0 z-0 h-full w-full object-cover"
+            src="/videos/banner-proyectos.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
+        )}
+
         <div
-          className="pointer-events-none absolute left-1/2 top-[42%] h-[650px] w-[900px] max-h-[80vh] max-w-[100vw] -translate-x-1/2 -translate-y-1/2 bg-[radial-gradient(ellipse_at_center,rgba(120,35,5,0.55)_0%,rgba(80,20,0,0.25)_32%,transparent_68%)] blur-[100px]"
+          className="pointer-events-none absolute inset-0 z-[1] bg-black/45"
           aria-hidden="true"
         />
+
         <div className="relative z-10 px-6 text-center">
           <Reveal>
             <h1 className="font-heading text-[clamp(4rem,9.5vw,10rem)] font-normal uppercase leading-[0.9] tracking-tight text-white">
@@ -60,7 +87,12 @@ export default function Projects() {
         </div>
       </section>
 
-      <section className="projects" aria-label="Proyectos de HeyTrama" style={{ backgroundColor: "#050505" }}>
+      {/* Proyectos y filtros */}
+      <section
+        className="projects"
+        aria-label="Proyectos de HeyTrama"
+        style={{ backgroundColor: "#050505" }}
+      >
         <div
           className="projects-selectors relative z-10 !mb-0 flex flex-wrap gap-2.5 bg-[#050505] px-6 pb-12 pt-6 md:px-12 lg:px-16"
           role="group"
@@ -69,6 +101,7 @@ export default function Projects() {
         >
           {CATEGORIES.map((category) => {
             const isActive = activeFilter === category;
+
             return (
               <button
                 key={category}
@@ -84,7 +117,11 @@ export default function Projects() {
                 }`}
                 aria-pressed={isActive}
               >
-                <div className="btn__bg absolute inset-0 -z-20 rounded-full bg-[#111]" aria-hidden="true" />
+                <div
+                  className="btn__bg absolute inset-0 -z-20 rounded-full bg-[#111]"
+                  aria-hidden="true"
+                />
+
                 <div className="btn__circle-wrap absolute inset-0 -z-10 overflow-hidden rounded-full">
                   <motion.div
                     className="btn__circle absolute left-1/2 top-1/2 aspect-square w-[319%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
@@ -97,6 +134,7 @@ export default function Projects() {
                     }}
                   />
                 </div>
+
                 <span
                   className="btn__text relative z-10 group-hover:text-black data-[active=true]:text-black"
                   data-active={isActive}
@@ -109,14 +147,18 @@ export default function Projects() {
           })}
         </div>
 
-        <div
-          className="grid grid-cols-1 gap-8 px-6 md:grid-cols-2 md:px-12 lg:gap-10"
-          aria-live="polite"
-          aria-atomic="false"
-        >
+        <p className="sr-only" role="status">
+          {resultsAnnouncement}
+        </p>
+
+        <div className="grid grid-cols-1 gap-8 px-6 md:grid-cols-2 md:px-12 lg:gap-10">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.slug} project={project} index={index} />
+              <ProjectCard
+                key={project.slug}
+                project={project}
+                index={index}
+              />
             ))}
           </AnimatePresence>
         </div>
@@ -128,42 +170,61 @@ export default function Projects() {
         )}
       </section>
 
+      {/* Cierre y contacto */}
       <section className="relative flex min-h-[70vh] flex-col items-center justify-center overflow-hidden bg-[#050505] px-6 py-24 pb-32 md:py-32">
         <div
           className="pointer-events-none absolute left-[-12%] top-[10%] h-[520px] w-[620px] max-w-[90vw] bg-[radial-gradient(ellipse_at_center,rgba(120,30,5,0.28)_0%,transparent_62%)] blur-[100px]"
           aria-hidden="true"
         />
+
         <div
           className="pointer-events-none absolute bottom-0 right-[-10%] h-[520px] w-[620px] max-w-[90vw] bg-[radial-gradient(ellipse_at_center,rgba(80,25,0,0.28)_0%,transparent_62%)] blur-[100px]"
           aria-hidden="true"
         />
+
         <div className="relative z-10 flex max-w-5xl flex-col items-center text-center">
           <h2 className="font-heading text-[clamp(3rem,8vw,7rem)] font-normal leading-[0.9] tracking-tighter text-white">
             ¿Tenés una idea que
             <br />
-            <span className="font-serif font-light italic">merece existir?</span>
+            <span className="font-serif font-light italic">
+              merece existir?
+            </span>
           </h2>
+
           <p className="mt-8 max-w-2xl text-[15px] md:text-sm leading-[1.6] tracking-normal text-white/70 md:text-lg">
-            Diseñamos y construimos productos digitales que funcionan. Contanos tu proyecto.
+            Diseñamos y construimos productos digitales que funcionan.
+            Contanos tu proyecto.
           </p>
+
           <a
             href={waLink("Hola, quiero contarles sobre mi proyecto.")}
             target="_blank"
             rel="noopener noreferrer"
             className="group relative isolate mt-10 inline-flex items-center gap-2 overflow-hidden rounded-full border border-white bg-white px-8 py-4 text-[15px] md:text-sm font-medium uppercase tracking-[0.01em] text-black"
           >
-            <span className="btn__circle-wrap pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-full" aria-hidden="true">
+            <span
+              className="btn__circle-wrap pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-full"
+              aria-hidden="true"
+            >
               <span className="btn__circle absolute left-1/2 top-1/2 aspect-square w-[320%] -translate-x-1/2 -translate-y-1/2 scale-0 rounded-full bg-black transition-transform duration-700 group-hover:scale-100" />
             </span>
+
             <span className="btn__text relative z-10 transition-colors group-hover:text-white">
               HABLEMOS
-              <ArrowUpRight className="ml-1 inline h-4 w-4" aria-hidden="true" />
+              <ArrowUpRight
+                className="ml-1 inline h-4 w-4"
+                aria-hidden="true"
+              />
             </span>
           </a>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 flex flex-col items-start justify-between gap-2 px-6 py-5 text-[15px] md:flex-row md:items-center md:px-12 md:text-sm uppercase tracking-[0.01em] text-white/70">
-          <span>© {new Date().getFullYear()} HeyTrama. Todos los derechos reservados.</span>
+          <span>
+            © {new Date().getFullYear()} HeyTrama. Todos los derechos
+            reservados.
+          </span>
+
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
