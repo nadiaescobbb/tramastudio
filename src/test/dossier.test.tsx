@@ -1,16 +1,18 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Dossier from "@/pages/Dossier";
+import App from "@/App";
 
-describe("Dossier 404", () => {
-  it("renders NotFound for unknown slug", () => {
+describe("App routes", () => {
+  it("renders NotFound for unknown project routes", async () => {
     render(
       <MemoryRouter initialEntries={["/proyectos/slug-inexistente"]}>
-        <Dossier />
+        <App />
       </MemoryRouter>
     );
 
-    expect(screen.getByText(/No encontramos esta página/i)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/No encontramos esta página/i)
+    ).toBeInTheDocument();
   });
 });

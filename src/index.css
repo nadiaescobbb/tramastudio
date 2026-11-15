@@ -449,7 +449,7 @@ html {
   }
 
   /* =======================================================
-     DOSSIER
+     RESPONSIVE LAYOUT
      ======================================================= */
 
   @media (max-width: 980px) {
@@ -483,32 +483,6 @@ html {
 
     .nav-menu-cta {
       display: none;
-    }
-
-    .dossier-page h1,
-    .dossier-page h2,
-    .dossier-page p,
-    .dossier-page span,
-    .dossier-page a {
-      overflow-wrap: anywhere;
-    }
-
-    .dossier-page section:first-of-type p {
-      width: min(315px, calc(100vw - 48px));
-      max-width: min(315px, calc(100vw - 48px));
-    }
-
-    .dossier-page section:first-of-type > div {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .dossier-page section:first-of-type [class*='grid-cols-1'] {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .dossier-page section:first-of-type a[target='_blank'] {
-      width: 100%;
-      justify-content: center;
     }
   }
 
