@@ -1,13 +1,20 @@
+```html
 <!doctype html>
 <html lang="es-AR">
   <head>
     <script>
       const gaMeasurementId = "G-WX7ELP1JQF";
-      const isLocalhost = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+      const isLocalhost = ["localhost", "127.0.0.1"].includes(
+        window.location.hostname
+      );
 
       if (gaMeasurementId && gaMeasurementId !== "undefined" && !isLocalhost) {
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+
         window.gtag = gtag;
 
         const script = document.createElement("script");
@@ -15,47 +22,85 @@
         script.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
         document.head.appendChild(script);
 
-        gtag('js', new Date());
-        gtag('config', gaMeasurementId);
+        gtag("js", new Date());
+        gtag("config", gaMeasurementId);
       }
     </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
     <title>HeyTrama — Sitios web y software para negocios</title>
-    <meta name="description" content="Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina." />
+
+    <meta
+      name="description"
+      content="Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina."
+    />
     <meta name="author" content="HeyTrama" />
+
     <link rel="canonical" href="https://www.heytrama.com/" />
 
-    <meta property="og:title" content="HeyTrama — Sitios web y software para negocios" />
-    <meta property="og:description" content="Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina." />
-    <meta property="og:image" content="https://www.heytrama.com/og-image-1200x630.jpg" />
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/favicon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon-192.png"
+    />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="HeyTrama — Sitios web y software para negocios"
+    />
+    <meta
+      property="og:description"
+      content="Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina."
+    />
+    <meta
+      property="og:image"
+      content="https://www.heytrama.com/og-heytrama.jpg"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="HeyTrama — Diseño, estrategia y desarrollo de productos digitales."
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.heytrama.com/" />
     <meta property="og:site_name" content="HeyTrama" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="HeyTrama — Sitios web y software para negocios" />
-    <meta name="twitter:description" content="Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina." />
-    <meta name="twitter:image" content="https://www.heytrama.com/og-image-1200x630.jpg" />
-    <link rel="icon" type="image/svg+xml" href="/logo-trama.svg">
-
+    <!-- Structured data -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "HeyTrama",
-      "url": "https://www.heytrama.com/",
-      "logo": "https://www.heytrama.com/logo-trama.svg",
-      "email": "hola@heytrama.com",
-      "sameAs": [
-        "https://instagram.com/trama.sstudio"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "HeyTrama",
+        "url": "https://www.heytrama.com/",
+        "email": "hola@heytrama.com",
+        "sameAs": [
+          "https://instagram.com/heytrama"
+        ]
+      }
     </script>
   </head>
 
@@ -64,3 +109,4 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+```
