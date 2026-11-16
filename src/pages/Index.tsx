@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
@@ -45,7 +44,6 @@ const Index = () => {
       title: "HeyTrama — Sitios web y software para negocios",
       description:
         "Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina.",
-      image: "https://www.heytrama.com/og-image-1200x630.jpg",
       path: "/",
     });
 
