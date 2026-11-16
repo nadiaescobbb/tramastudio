@@ -1,4 +1,3 @@
-
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
