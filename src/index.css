@@ -1,8 +1,23 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,SOFT,WONK,opsz,wght@0,0..100,0..1,9..144,100..900;1,0..100,0..1,9..144,100..900&display=swap');
+﻿@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/Fraunces-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/Fraunces-Italic-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
 
 @font-face {
   font-family: 'Aventa';
-  src: url('/fonts/Aventa-Regular.woff') format('woff');
+  src: url('/fonts/Aventa-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -10,7 +25,7 @@
 
 @font-face {
   font-family: 'Aventa';
-  src: url('/fonts/Aventa-Light.woff') format('woff');
+  src: url('/fonts/Aventa-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -18,7 +33,7 @@
 
 @font-face {
   font-family: 'Orlean';
-  src: url('/fonts/Orlean-Regular.woff') format('woff');
+  src: url('/fonts/Orlean-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -26,7 +41,7 @@
 
 @font-face {
   font-family: 'Orlean';
-  src: url('/fonts/Orlean-Medium.woff') format('woff');
+  src: url('/fonts/Orlean-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -48,9 +63,9 @@ html {
 @layer base {
   :root {
     /* Surfaces */
-    --background: 40 20% 98%;
-    --foreground: 40 10% 8%;
-    --surface: 0 0% 100%;
+    --background: 60 11.1% 98.2%;
+    --foreground: 0 0% 6.7%;
+    --surface: 60 11.1% 98.2%;
 
     /* Borders and muted text */
     --border: 40 12% 88%;
@@ -59,20 +74,24 @@ html {
     --muted-foreground: 40 8% 40%;
 
     /* Cards */
-    --card: 0 0% 100%;
-    --card-foreground: 40 10% 8%;
+    --card: 60 11.1% 98.2%;
+    --card-foreground: 0 0% 6.7%;
 
     /* Primary actions */
-    --primary: 40 10% 8%;
-    --primary-foreground: 40 20% 98%;
-    --accent: 40 10% 8%;
-    --accent-foreground: 40 20% 98%;
+    --primary: 0 0% 6.7%;
+    --primary-foreground: 60 11.1% 98.2%;
+    --accent: 0 0% 6.7%;
+    --accent-foreground: 60 11.1% 98.2%;
 
     /* Editorial accent */
     --editorial-accent: 15 65% 45%;
 
+    /* WhatsApp */
+    --whatsapp: 142 70% 49%;
+    --whatsapp-hover: 142 71% 42%;
+
     /* Dark surfaces */
-    --studio-dark-bg: 40 10% 7%;
+    --studio-dark-bg: 0 0% 6.7%;
     --studio-dark-card: 40 8% 11%;
     --studio-dark-border: 40 6% 18%;
     --studio-dark-text: 40 15% 94%;
@@ -80,11 +99,11 @@ html {
 
     /* Secondary and feedback */
     --secondary: 40 10% 95%;
-    --secondary-foreground: 40 10% 8%;
+    --secondary-foreground: 0 0% 6.7%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
     --input: 40 12% 88%;
-    --ring: 40 10% 8%;
+    --ring: 0 0% 6.7%;
 
     /* Radius scale */
     --radius-sm: 12px;
@@ -93,8 +112,8 @@ html {
 
     /* Shadows */
     --shadow-standard:
-      0 4px 20px -2px hsla(40, 10%, 10%, 0.05),
-      0 2px 10px -2px hsla(40, 10%, 10%, 0.03);
+      0 4px 20px -2px hsl(40 10% 10% / 0.05),
+      0 2px 10px -2px hsl(40 10% 10% / 0.03);
 
     /* Typography */
     --font-heading: 'Fraunces', 'Iowan Old Style', serif;
@@ -113,7 +132,9 @@ html {
     --text-tertiary: 40 8% 27%;
   }
 
-  * {
+  *,
+  *::before,
+  *::after {
     border-color: hsl(var(--border));
   }
 
@@ -147,7 +168,6 @@ html {
 
 @layer components {
   /* Layout */
-
   .container-trama {
     @apply mx-auto w-full max-w-[1400px] px-6 md:px-12 lg:px-16;
   }
@@ -158,7 +178,6 @@ html {
   }
 
   /* Typography */
-
   .font-heading {
     font-family: var(--font-heading);
     font-optical-sizing: auto;
@@ -193,13 +212,12 @@ html {
     color: hsl(var(--accent));
     font-family: var(--font-mono);
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.01em;
     text-transform: uppercase;
   }
 
   /* Reveal */
-
   .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -215,9 +233,8 @@ html {
   }
 
   /* Buttons */
-
   .btn-primary-trama {
-    @apply relative inline-flex items-center gap-4 rounded-full bg-[hsl(var(--accent))] py-2 pl-8 pr-2 font-sans text-sm font-medium text-white transition-all duration-300 active:scale-[0.97];
+    @apply relative inline-flex items-center gap-4 rounded-full bg-[hsl(var(--accent))] py-2 pl-8 pr-2 font-sans text-sm font-medium text-background transition-all duration-300 active:scale-[0.97];
   }
 
   .btn-primary-trama.large {
@@ -235,11 +252,10 @@ html {
   }
 
   .btn-icon-wrapper {
-    @apply flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-500 group-hover:translate-x-1 group-hover:bg-white/20;
+    @apply flex h-10 w-10 items-center justify-center rounded-full bg-background/10 transition-all duration-500 group-hover:translate-x-1 group-hover:bg-background/20;
   }
 
   /* Scrollbar */
-
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -263,7 +279,7 @@ html {
 
   .hero-start {
     overflow-x: hidden;
-    background: #FFFBF5;
+    background: hsl(var(--background));
   }
 
   .hero-primary-cta {
@@ -272,15 +288,15 @@ html {
     align-items: center;
     gap: 18px;
     border-radius: 16px;
-    background: #050505;
+    background: hsl(var(--foreground));
     padding: 0 28px;
-    color: #fff;
+    color: hsl(var(--background));
     font-family: var(--font-mono);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.01em;
     text-transform: uppercase;
-    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 18px 38px hsl(var(--foreground) / 0.24);
     transition:
       transform 280ms var(--ease-standard),
       box-shadow 280ms var(--ease-standard);
@@ -288,11 +304,10 @@ html {
 
   .hero-primary-cta:hover {
     transform: translateY(-2px);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 22px 48px hsl(var(--foreground) / 0.28);
   }
 
   /* Mascot layout */
-
   .hm-inner {
     position: relative;
     display: flex;
@@ -324,18 +339,18 @@ html {
     z-index: 100;
     display: flex;
     align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    background: rgba(255, 255, 255, 0.82);
-    color: #171717;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid hsl(0 0% 0% / 0.08);
+    background: hsl(60 11.1% 98.2% / 0.82);
+    color: hsl(var(--foreground));
+    box-shadow: 0 10px 30px hsl(0 0% 0% / 0.12);
     backdrop-filter: blur(18px);
   }
 
   .nav-brand-pill.nav-pill-dark,
   .nav-menu-pill.nav-pill-dark {
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.4);
-    color: #fff;
+    border-color: hsl(0 0% 100% / 0.1);
+    background: hsl(0 0% 0% / 0.4);
+    color: hsl(60 11.1% 98.2%);
   }
 
   .nav-brand-pill {
@@ -343,10 +358,10 @@ html {
     min-height: 44px;
     border-radius: 16px;
     padding: 6px 15px 6px 6px;
-    color: #141312;
+    color: hsl(var(--foreground));
     font-family: var(--font-mono);
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.01em;
   }
 
@@ -365,10 +380,10 @@ html {
     justify-content: center;
     border-radius: 16px;
     padding: 12px 16px;
-    color: #141312;
+    color: hsl(var(--foreground));
     font-family: var(--font-mono);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 0.01em;
     transition:
       background 240ms var(--ease-standard),
@@ -376,17 +391,17 @@ html {
   }
 
   .nav-menu-link:hover {
-    background: rgba(0, 0, 0, 0.06);
-    color: #000;
+    background: hsl(var(--foreground) / 0.06);
+    color: hsl(var(--foreground));
   }
 
   .nav-menu-link.nav-menu-link-dark {
-    color: rgba(255, 255, 255, 0.8);
+    color: hsl(60 11.1% 98.2% / 0.8);
   }
 
   .nav-menu-link.nav-menu-link-dark:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    background: hsl(60 11.1% 98.2% / 0.1);
+    color: hsl(60 11.1% 98.2%);
   }
 
   .nav-menu-cta {
@@ -396,12 +411,12 @@ html {
     gap: 8px;
     border: 1px solid transparent;
     border-radius: 999px;
-    background: #141312;
+    background: hsl(var(--foreground));
     padding: 0 16px;
-    color: #fff;
+    color: hsl(var(--background));
     font-family: var(--font-mono);
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.01em;
     transition:
       transform 220ms var(--ease-standard),
@@ -411,20 +426,20 @@ html {
   }
 
   .nav-menu-cta.unscrolled {
-    border-color: rgba(0, 0, 0, 0.2);
+    border-color: hsl(var(--foreground) / 0.2);
     background: transparent;
-    color: #141312;
+    color: hsl(var(--foreground));
   }
 
   .nav-menu-cta.unscrolled:hover {
-    border-color: rgba(0, 0, 0, 0.4);
-    background: rgba(0, 0, 0, 0.05);
-    color: #000;
+    border-color: hsl(var(--foreground) / 0.4);
+    background: hsl(var(--foreground) / 0.05);
+    color: hsl(var(--foreground));
   }
 
   .nav-menu-cta:hover {
     transform: translateY(-1px);
-    background: #151515;
+    background: hsl(var(--foreground));
   }
 
   .nav-mobile-toggle {
@@ -434,12 +449,11 @@ html {
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    background: rgba(0, 0, 0, 0.06);
-    color: #050505;
+    background: hsl(var(--foreground) / 0.06);
+    color: hsl(var(--foreground));
   }
 
   /* Mobile navigation overlay */
-
   .mobile-overlay-link {
     @apply block translate-y-8 text-4xl font-heading tracking-tight text-foreground opacity-0 transition-all duration-700;
   }
@@ -496,7 +510,7 @@ html {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 24px 120px;
-    background-color: #000;
+    background-color: hsl(var(--foreground));
   }
 
   .projects-selectors {
@@ -567,30 +581,6 @@ html {
 }
 
 /* =========================================================
-   ISOTIPO ANIMATION
-   ========================================================= */
-
-.isotipo-tile .pill {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.isotipo-tile.blink .pill {
-  animation: isotipo-blink 250ms ease-in-out 1;
-}
-
-@keyframes isotipo-blink {
-  0%,
-  100% {
-    transform: scaleY(1);
-  }
-
-  50% {
-    transform: scaleY(0.12);
-  }
-}
-
-/* =========================================================
    READING ANIMATION
    ========================================================= */
 
@@ -636,9 +626,5 @@ html {
     opacity: 1 !important;
     filter: none !important;
     transform: none !important;
-  }
-
-  .isotipo-tile.blink .pill {
-    animation: none;
   }
 }

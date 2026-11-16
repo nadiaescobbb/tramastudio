@@ -3,7 +3,12 @@ import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -13,15 +18,15 @@ export default {
     },
     extend: {
       fontSize: {
-        micro: ['0.875rem', { lineHeight: '1.35', letterSpacing: '0.01em' }],
-        tag: ['0.875rem', { lineHeight: '1.35', letterSpacing: '0.01em' }],
-        btn: ['0.875rem', { lineHeight: '1.35', letterSpacing: '0.01em' }],
-        subtle: ['0.875rem', { lineHeight: '1.25rem' }],
-        body: ['1rem', { lineHeight: '1.6' }],
-        'body-lg': ['1.125rem', { lineHeight: '1.6' }],
-        h3: ['1.25rem', { lineHeight: '1.4' }],
-        h2: ['1.875rem', { lineHeight: '1.2' }],
-        h1: ['2.75rem', { lineHeight: '1.1' }],
+        micro: ["0.875rem", { lineHeight: "1.35", letterSpacing: "0.01em" }],
+        tag: ["0.875rem", { lineHeight: "1.35", letterSpacing: "0.01em" }],
+        btn: ["0.875rem", { lineHeight: "1.35", letterSpacing: "0.01em" }],
+        subtle: ["0.875rem", { lineHeight: "1.25rem" }],
+        body: ["1rem", { lineHeight: "1.6" }],
+        "body-lg": ["1.125rem", { lineHeight: "1.6" }],
+        h3: ["1.25rem", { lineHeight: "1.4" }],
+        h2: ["1.875rem", { lineHeight: "1.2" }],
+        h1: ["2.75rem", { lineHeight: "1.1" }],
       },
       fontFamily: {
         heading: ["Fraunces", "Iowan Old Style", "serif"],
@@ -63,6 +68,10 @@ export default {
         editorial: {
           DEFAULT: "hsl(var(--editorial-accent))",
         },
+        whatsapp: {
+        DEFAULT: "hsl(var(--whatsapp) / <alpha-value>)",
+        hover: "hsl(var(--whatsapp-hover) / <alpha-value>)",
+        },
         "studio-dark": {
           bg: "hsl(var(--studio-dark-bg))",
           card: "hsl(var(--studio-dark-card))",
@@ -72,14 +81,22 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sm: "var(--radius-sm)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
       },
       keyframes: {
         "slide-up-blur": {
-          from: { opacity: "0", transform: "translateY(40px)", filter: "blur(8px)" },
-          to: { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
+          from: {
+            opacity: "0",
+            transform: "translateY(40px)",
+            filter: "blur(8px)",
+          },
+          to: {
+            opacity: "1",
+            transform: "translateY(0)",
+            filter: "blur(0)",
+          },
         },
       },
       animation: {

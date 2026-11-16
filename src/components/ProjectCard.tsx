@@ -227,7 +227,7 @@ export const ProjectCard = ({
 
             {project.accent && (
               <span
-                className={`font-serif text-lg font-normal italic ${
+                className={`font-heading text-lg font-normal italic ${
                   isLight ? "text-muted" : "text-white/60"
                 }`}
               >

@@ -1,3 +1,4 @@
+
 import { useState, type FormEvent } from "react";
 import { ArrowUpRight, Check } from "lucide-react";
 import { waLink } from "@/data/projects";
@@ -15,9 +16,10 @@ const SERVICES_OPTIONS = [
 ];
 
 const BUDGET_OPTIONS = [
-  "USD 400–1.000",
-  "USD 1.000–2.500",
-  "USD 2.500–5.000",
+  "USD 350–550",
+  "USD 550–850",
+  "USD 850–1.500",
+  "Más de USD 1.500",
   "Necesito orientación",
 ];
 
@@ -101,7 +103,7 @@ export const ContactForm = () => {
             onChange={(e) => setName(e.target.value)}
             required
             placeholder="Tu nombre y apellido"
-            className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
+            className="w-full rounded-md border border-border bg-background/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
           />
         </div>
 
@@ -120,7 +122,7 @@ export const ContactForm = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="tu@email.com"
-              className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
+              className="w-full rounded-md border border-border bg-background/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
             />
           </div>
           <div className="space-y-1.5">
@@ -133,7 +135,7 @@ export const ContactForm = () => {
               value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)}
               placeholder="+54 9 ..."
-              className="w-full rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
+              className="w-full rounded-md border border-border bg-background/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
             />
           </div>
         </div>
@@ -160,10 +162,10 @@ export const ContactForm = () => {
                   className="peer sr-only"
                 />
                 <span
-                  className={`inline-flex rounded-full border px-3.5 py-1.5 font-sans text-tag font-medium transition-all duration-300 ease-out peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#C45A3A] ${
+                  className={`inline-flex rounded-full border px-3.5 py-1.5 font-sans text-tag font-medium transition-all duration-300 ease-out peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[hsl(var(--editorial-accent))] ${
                     isSelected
                       ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                      : "border-[#6F6A62] bg-background text-foreground hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
+                      : "border-border bg-background text-foreground hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
                   }`}
                 >
                   {item}
@@ -195,10 +197,10 @@ export const ContactForm = () => {
                   className="peer sr-only"
                 />
                 <span
-                  className={`inline-flex rounded-full border px-3.5 py-1.5 font-sans text-tag font-medium transition-all duration-300 ease-out peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#C45A3A] ${
+                  className={`inline-flex rounded-full border px-3.5 py-1.5 font-sans text-tag font-medium transition-all duration-300 ease-out peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[hsl(var(--editorial-accent))] ${
                     isSelected
                       ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                      : "border-[#6F6A62] bg-background text-foreground hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
+                      : "border-border bg-background text-foreground hover:-translate-y-0.5 hover:border-foreground hover:text-foreground"
                   }`}
                 >
                   {item}
@@ -221,7 +223,7 @@ export const ContactForm = () => {
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
           placeholder="¿Qué problema querés resolver o qué te gustaría mejorar?"
-          className="w-full resize-none rounded-md border border-[#6F6A62] bg-white/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[#C45A3A] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
+          className="w-full resize-none rounded-md border border-border bg-background/70 px-3 py-2.5 text-[15px] font-sans text-foreground outline-none transition-colors placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-[hsl(var(--editorial-accent))] focus-visible:ring-offset-2 focus-visible:ring-offset-background md:text-sm"
         />
       </div>
 

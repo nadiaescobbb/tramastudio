@@ -186,7 +186,7 @@ export default function Projects() {
           <h2 className="font-heading text-[clamp(3rem,8vw,7rem)] font-normal leading-[0.9] tracking-tighter text-white">
             ¿Tenés una idea que
             <br />
-            <span className="font-serif font-light italic">
+            <span className="font-heading font-light italic">
               merece existir?
             </span>
           </h2>
