@@ -1,3 +1,4 @@
+
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { FloatingWhatsApp } from "./components/FloatingWhatsApp";
@@ -33,8 +34,10 @@ const GoogleAnalyticsTracker = () => {
       return;
     }
 
-    window.gtag("config", measurementId, {
+    window.gtag("event", "page_view", {
       page_path: `${location.pathname}${location.search}`,
+      page_location: window.location.href,
+      page_title: document.title,
     });
   }, [location]);
 

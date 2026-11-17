@@ -1,17 +1,18 @@
+
 <!doctype html>
 <html lang="es-AR">
   <head>
     <script>
-      const gaMeasurementId = "G-WX7ELP1JQF";
+      const gaMeasurementId = "%VITE_GA_MEASUREMENT_ID%";
       const isLocalhost = ["localhost", "127.0.0.1"].includes(
         window.location.hostname
       );
 
-      if (gaMeasurementId && gaMeasurementId !== "undefined" && !isLocalhost) {
+      if (gaMeasurementId.startsWith("G-") && !isLocalhost) {
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
-          dataLayer.push(arguments);
+          window.dataLayer.push(arguments);
         }
 
         window.gtag = gtag;
@@ -22,20 +23,20 @@
         document.head.appendChild(script);
 
         gtag("js", new Date());
-        gtag("config", gaMeasurementId);
+        gtag("config", gaMeasurementId, {
+          send_page_view: false,
+        });
       }
     </script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
-
-    <title>HeyTrama — Sitios web y software para negocios</title>
+   <title>HeyTrama — Sitios web y software para negocios</title>
 
     <meta
       name="description"
-      content="Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina."
+      content="Definimos qué necesita comunicar tu negocio y diseñamos y desarrollamos la solución web adecuada."
     />
     <meta name="author" content="HeyTrama" />
 
@@ -57,12 +58,12 @@
 
     <!-- Open Graph -->
     <meta
-      property="og:title"
-      content="HeyTrama — Sitios web y software para negocios"
+    property="og:title"
+    content="HeyTrama — Sitios web y software para negocios"
     />
     <meta
       property="og:description"
-      content="Diseñamos y programamos sitios web, tiendas online y sistemas a medida para negocios y profesionales de Argentina."
+      content="Definimos qué necesita comunicar tu negocio y diseñamos y desarrollamos la solución web adecuada."
     />
     <meta
       property="og:image"
@@ -72,11 +73,12 @@
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="HeyTrama — Diseño, estrategia y desarrollo de productos digitales."
+      content="HeyTrama — Estrategia, diseño y desarrollo web."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.heytrama.com/" />
     <meta property="og:site_name" content="HeyTrama" />
+    <meta property="og:locale" content="es_AR" />
 
     <!-- Structured data -->
     <script type="application/ld+json">

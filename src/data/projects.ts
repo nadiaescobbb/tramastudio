@@ -5,6 +5,7 @@
   format: string;
   category: string;
   tags: string[];
+  image: string;
   demoUrl: string;
   status: "maqueta" | "en-desarrollo" | "publicado";
 };
@@ -17,6 +18,7 @@ export const projects: Project[] = [
     format: "Catálogo + tienda online",
     category: "E-Commerce",
     tags: ["Sitios web", "Web Apps", "Frontend", "MVPs"],
+    image: "/assets/famvar-.jpg",
     demoUrl: "https://famvar.vercel.app/",
     status: "en-desarrollo",
   },
@@ -27,6 +29,7 @@ export const projects: Project[] = [
     format: "Catálogo + experiencia digital",
     category: "Joyería y relojería",
     tags: ["Sitios web", "Landing Pages", "Rediseño UX/UI", "Frontend"],
+    image: "/assets/cuore-.jpg",
     demoUrl: "https://cuore-joyeria.vercel.app/",
     status: "en-desarrollo",
   },

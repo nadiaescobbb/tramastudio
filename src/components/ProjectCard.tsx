@@ -1,3 +1,4 @@
+
 import { useRef, useState, type MouseEvent as ReactMouseEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import {
@@ -9,7 +10,6 @@ import {
   useTransform,
 } from "motion/react";
 import type { Project } from "@/data/projects";
-import { projectImages } from "@/data/project-images";
 
 interface ProjectCardProps {
   project: Project;
@@ -63,12 +63,12 @@ export const ProjectCard = ({
     shouldReduceMotion ? [0, 0] : [-20, 20],
   );
 
-  const image = projectImages[project.slug];
+  const image = project.image;
   const hasImage = Boolean(image) && !imageError;
 
   const tags = [
-  project.category,
-  ...project.format.split(/\s*\+\s*/),
+    project.category,
+    ...project.format.split(/\s*\+\s*/),
   ].join(" · ");
 
   const isLight = theme === "light";
