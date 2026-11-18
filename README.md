@@ -1,79 +1,125 @@
-# heytrama
+# HeyTrama
 
-Estudio independiente de diseño de producto y desarrollo frontend.
+Sitio institucional de **HeyTrama**, estudio independiente que trabaja entre estrategia digital, diseño de producto y desarrollo frontend.
 
-[Sitio](#) · [LinkedIn](#) · [Email](#)
+El proyecto presenta los servicios del estudio, su metodología de trabajo, proyectos y canales de contacto.
 
-## Qué hace heytrama
-
-heytrama no vende sitios web: diseña y construye herramientas digitales que ayudan a comunicar mejor y facilitar una decisión de compra. La tecnología es el medio, no el producto — cada decisión, de un color a un patrón de arquitectura, tiene que reducir fricción, organizar información o generar confianza. Si una decisión no cumple esa función, no entra al proyecto.
-
-El proceso se ordena en cuatro etapas: entender el negocio antes de proponer nada, comunicar la propuesta con la misma claridad que se le va a pedir al producto final, construirlo con un stack que prioriza mantenibilidad sobre complejidad innecesaria, y acompañar después del lanzamiento en vez de entregar y desaparecer.
-
-## Sistema de diseño
-
-La identidad visual usa tokens HSL desacoplados, definidos en `src/index.css` y extendidos en `tailwind.config.ts`.
-
-| Token | Valor | Uso |
-|---|---|---|
-| Warm Paper Canvas | `40 20% 98%` (#FBFBFA) | Superficie base |
-| Editorial Accent | `15 65% 45%` (terracota) | Énfasis de texto, CTAs, bordes activos |
-| Studio Dark | `40 10% 8%` (#131211) | Bloques oscuros en tarjetas y casos de estudio |
-
-Tipografía: Fraunces para títulos editoriales, Hanken Grotesk para cuerpo, Space Mono para el detalle técnico — la misma lógica mixta entre elegancia editorial y precisión que se aplica al resto del sistema.
-
-## Casos
-
-**Cuore** — landing de conversión para un taller de joyería y relojería, con animaciones nativas sin dependencias externas y arquitectura pensada para derivar consultas a WhatsApp con contexto precargado. Cliente real.
-
-**FlowBoard** — dashboard de operaciones de revenue construido como pieza técnica de portfolio: patrón `Result<T>`, branded types, tests con Vitest y Playwright, repositorio público. No es trabajo de cliente — es la evidencia de cómo se piensa una capa de datos cuando el proyecto lo permite sin restricción comercial.
-
-**FAMVAR** — catálogo digital para un negocio familiar de tecnología y bazar importado, con fichas técnicas dinámicas y conversión a WhatsApp. Es un proyecto propio, no un caso de cliente pago, y se muestra como tal: es donde se prueban patrones (como la conversión a WhatsApp que después se reutilizó en Cuore) antes de ofrecerlos a un cliente.
+**Web:** https://www.heytrama.com
+**Repositorio:** https://github.com/nadiaescobbb/tramastudio
 
 ## Stack
 
-| Tecnología | Rol |
+- React 18
+- TypeScript 5
+- Vite 8
+- Tailwind CSS 3
+- React Router 6
+- Motion
+- Vitest y React Testing Library
+- ESLint
+- Husky y Commitlint
+
+## Funcionalidades
+
+- Sitio institucional responsive.
+- Navegación mediante React Router.
+- Carga diferida de determinadas páginas.
+- Listado de proyectos administrado desde datos estructurados.
+- Integración con Google Analytics 4 mediante variable de entorno.
+- Botón de contacto por WhatsApp.
+- Prerender estático de la página principal.
+
+## Arquitectura
+
+La aplicación separa páginas, componentes reutilizables, datos y utilidades.
+
+Rutas principales:
+
+| Ruta | Contenido |
 |---|---|
-| React 18 | UI y arquitectura de componentes |
-| TypeScript | Tipado estático para datasets, props y contratos |
-| Tailwind CSS v3 | Utilidades y mapeo de tokens HSL |
-| React Router v6 | Rutas `/` y `/dossier` |
-| Vite + Vitest | Entorno de desarrollo y tests unitarios |
-| Husky + Commitlint | Validación de commits |
+| `/` | Página principal |
+| `/proyectos` | Listado de proyectos |
+| `*` | Página no encontrada |
 
-## Estructura
+La ruta `/__preview/mascota` está disponible únicamente en desarrollo.
 
-```
-tramastudio/
-├── .husky/                  # Git hooks (Vitest, Commitlint)
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/           # Nav, ServicesStack, Metodologia, ContactForm
-│   ├── data/                 # projects.ts, project-images.ts
-│   ├── hooks/                 # use-reveal.ts
-│   ├── lib/                   # seo.ts, utils.ts
-│   ├── pages/                 # Index.tsx, Dossier.tsx, NotFound.tsx
-│   ├── test/
-│   ├── index.css
-│   ├── App.tsx
-│   └── main.tsx
-├── tailwind.config.ts
-├── vite.config.ts
-└── vitest.config.ts
-```
+### Prerenderizado
 
-## Desarrollo local
+El proceso de build incluye un prerender estático de la página principal mediante `renderToString` y `StaticRouter`.
+
+No implementa SSR completo ni genera HTML independiente para todas las rutas.
+
+## Sistema de diseño
+
+Los tokens visuales se centralizan en `src/index.css` y utilizan valores HSL.
+
+- **Colores principales:** bone y charcoal.
+- **Títulos:** Fraunces.
+- **Texto general:** Aventa.
+- **Etiquetas y detalles técnicos:** Orlean.
+
+Las fuentes se cargan localmente en formato WOFF2.
+
+## Proyectos
+
+Los datos se centralizan en `src/data/projects.ts`.
+
+| Proyecto | Tipo | Estado |
+|---|---|---|
+| FAMVAR | Catálogo y tienda online | En desarrollo |
+| CUORE | Catálogo y experiencia digital | En desarrollo |
+
+## Instalación
+
+Requisitos: Node.js y npm.
 
 ```bash
 git clone https://github.com/nadiaescobbb/tramastudio.git
 cd tramastudio
 npm install
+```
+
+Iniciar el servidor local:
+
+```bash
 npm run dev
-npm test
+```
+
+Vite utiliza el puerto `8080`.
+
+## Comandos
+
+| Comando | Descripción |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Compilación y prerender |
+| `npm run build:dev` | Build en modo development |
+| `npm run preview` | Previsualización del build |
+| `npm run lint` | Análisis estático |
+| `npm test` | Ejecución de tests |
+| `npm run test:watch` | Tests en modo watch |
+
+## Variables de entorno
+
+La integración con Google Analytics 4 utiliza:
+
+```env
+VITE_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+```
+
+La variable es opcional. Sin un identificador configurado, Analytics no registra visitas.
+
+Las variables con prefijo `VITE_` quedan expuestas en el código del navegador. No deben contener secretos ni credenciales privadas.
+
+## Build
+
+```bash
 npm run build
 ```
 
-## Créditos
+El resultado se genera en `dist/`. El proyecto utiliza Vercel para el despliegue.
 
-Nadia Escobar — dirección de producto, diseño UI/UX y desarrollo frontend.
+## Autoría
+
+**Nadia Escobar**
+Estrategia digital y desarrollo frontend.
